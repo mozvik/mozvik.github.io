@@ -1,12 +1,12 @@
 <template>
-   <div class="section" id="about">
-    <h1>About</h1>
+   <div class="section" id="contact">
+    <h1>contact</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "About",
+  name: "Contact",
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
