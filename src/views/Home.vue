@@ -1,7 +1,7 @@
 <template>
   <div class="section" id="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
-    <SplitTitle animation="randomfadein">
+    <SplitTitle animation="randomfadein" :animationDelay=10>
        <h1 class="title-light">Hello, <span class="title-green">I'm</span></h1>
        <h1 class="title-light">Attila Mozvik</h1>
     </SplitTitle>
@@ -10,9 +10,9 @@
     
     <br>
   <div>
-    <ButtonDownload>Teszt button</ButtonDownload>
-    <SplitTitle animation="randomfadein">
-      <h1>Web and Software
+    <ButtonDownload>Download CV</ButtonDownload>
+    <SplitTitle animation="randomfadein" :animationDelay=3100>
+      <h1>Web & Software
                   <div>Developer</div>
                 </h1>
 
