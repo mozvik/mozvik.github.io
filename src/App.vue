@@ -157,7 +157,7 @@ export default {
     box-sizing: border-box;
     background: transparent;
     scroll-behavior: smooth;
-    font-size: 16px;
+    /* font-size: 16px; */
 }
 
 .section{
