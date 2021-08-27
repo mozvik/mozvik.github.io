@@ -4,7 +4,7 @@
   <!-- <router-view/> -->
   <div id="main" class="scroll-snap-container"  @scroll="parallaxScrollFunction">
     <Home></Home>
-    <About :ref="setItemRef"></About>
+    <About></About>
     <Skills></Skills>
     <Portfolio></Portfolio>
     <Contact></Contact>
@@ -136,17 +136,34 @@ export default {
 </script>
 
 <style>
+:root {
+  
+  --darkest: #121212;
+  --dark: #2F2F2F;
+  
+  
+  /* #026CCF
+  --darkgreen: #61892f; */
+  --light: #cacaca; 
+  --lightgrey: #9a9a9a;
+  --grey: #8a8a8a;
+  --green: #00877A;
+  /* --green: #026CCF; */
+  --orange-red: #ba411f;
+}
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     background: transparent;
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 .section{
   height: 100vh;
-   
+   background: var(--dark); 
+   color: var(--green);
    user-select: none;
 }
 #app {
@@ -179,12 +196,34 @@ img {
     min-height: 100vh;
     overflow: hidden;
     position: relative;
-    border: 5px solid deeppink;
-    font-size: 30px;
+    /* border: 5px solid deeppink; */
+    /* font-size: 30px; */
     font-weight: bold;
     padding-top: 70px; 
     scroll-snap-align: center;
 
+}
+h1, h1 span{
+  font-family: 'Oswald', sans-serif;
+  font-size: 60px;
+  font-weight: 400;
+  text-transform: uppercase;
+  
+}
+.title-green{
+  color: var(--green);
+}
+.title-light{
+  color: var(--light);
+}
+.randomfadein {
+  opacity: 0;
+  animation: fadein var(--rnda) var(--rnd) forwards ease;
+  /* color: var(--light); */
+}
+@keyframes fadein {
+  0% {opacity:0}
+  100% {opacity:1}
 }
 
 </style>
