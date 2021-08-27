@@ -1,7 +1,5 @@
 <template>
-  <button @mouseover="moveIcon"
-          @mouseleave="hover = false"
-          :class="{ active: hover }">
+  <button>
           <span class="dlbtn-icon"><Icon icon="uiw:login" width="48" /></span>
           <span class="dlbtn-text">
             <slot></slot>
@@ -20,7 +18,7 @@ export default {
   },
   data () {
     return {
-      hover: false,
+     
     }
   },
   props: {
@@ -30,20 +28,7 @@ export default {
   },
   emits: ["selectedMenuItem"],
   methods: {
-   moveIcon(e){
-     const span = e.target.querySelector('i')
-     if (span) {
-       span.classList.remove('reseticon')
-     span.classList.add('downwards')
-     }
-     
-     console.log('on :>> ', span);
-   },
-   resetIcon(e){
-     e.target.querySelector('i').classList.remove('downwards')
-     e.target.querySelector('i').classList.add('reseticon')
-    console.log('out :>> ', e.target.querySelector('i'));
-   }
+  
   }
   
 };
