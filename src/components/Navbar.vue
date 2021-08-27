@@ -1,30 +1,40 @@
 <template>
-   <div class="empty" v-if="displaySize < 2"></div>
    <nav :class="[displaySize < 2 ? 'nav-mobile':'']">
     <div class="navbar">
       <div class="logo">
         <div><img src="https://picsum.photos/50/50" alt="logo" width="50" height="50"></div>
-        <div v-if="menuActive"><i class="fas fa-times" @click="menuActive = !menuActive"></i></div>
-        <div v-else><i class="fas fa-bars" @click="menuActive = !menuActive"></i></div>
+        
+        <div><transition name="fade" mode="out-in">
+          <i v-if="menuActive" class="fas fa-times" @click="menuActive = !menuActive" key="x"></i>
+
+          <i v-else class="fas fa-bars" @click="menuActive = !menuActive" key="ham"></i></transition>
+
+        </div>
+        
+        <!-- <div v-if="!menuActive"><transition name="slide-fade" mode="out-in">
+          <i class="fas fa-bars" @click="menuActive = !menuActive"></i></transition>
+            </div>
+         -->
       </div>
-    
-      <div class="nav-items" v-if="menuActive || displaySize > 1">
-        <ul>
-            <li v-for="item in navItems" class
-                :key="item"
-                :class="{'active-menu-item': (item.id == activeMenuItem)}"
-                @click.prevent="$emit('selectedMenuItem', item.id)">
-                <a :href="'#'+item.id">{{item.name}}</a>
-            </li>
-        </ul>
-      </div>
+      <transition name="fade">
+        <div class="nav-items" v-if="menuActive || displaySize > 1">
+          <ul>
+              <li v-for="item in navItems" class
+                  :key="item"
+                  :class="{'active-menu-item': (item.id == activeMenuItem)}"
+                  @click.prevent="$emit('selectedMenuItem', item.id)">
+                  <a :href="'#'+item.id">{{item.name}}</a>
+              </li>
+          </ul>
+        </div>
+      </transition>
     </div>
   </nav>
 </template>
 
 <script>
 export default {
-  name: "navbar",
+  name: "Navbar",
   data () {
     return {
       menuActive: false,
@@ -47,11 +57,15 @@ nav {
   z-index: 1;
   top: 0;
   left: 0;
-  height: auto;
+  height: 100%;
+  background: var(--darkest);
 }
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--light);
+}
+nav a:hover {
+  color: var(--orange-red);
 }
 
 
@@ -63,6 +77,7 @@ nav a {
 }
 .nav-mobile i:hover{
   cursor: pointer;
+  
 }
 .nav-mobile .logo{
   display: flex;
@@ -76,5 +91,20 @@ nav a {
   background: rgb(0, 0, 0);
   color: gainsboro;
 }
-
+.nav-items>ul>li>a{
+  text-decoration: none;
+}
+.nav-items>ul>li>a:hover{
+  
+}
+.nav-items>ul>li{
+  padding: 1rem;
+  text-transform: uppercase;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
