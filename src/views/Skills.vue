@@ -1,10 +1,23 @@
 <template>
   <div class="section" id="skills">
     <h1>skills</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi itaque quam excepturi, perspiciatis a facere reprehenderit fugit similique aliquam maiores at id nisi iusto pariatur dolores omnis quia, voluptate deleniti.
-    Reprehenderit expedita nulla culpa deserunt cumque pariatur deleniti ut, voluptate nisi vero architecto eveniet ad distinctio quia mollitia doloremque totam aperiam, delectus corporis voluptatibus sequi et voluptates enim corrupti! Perspiciatis.
-    Et quaerat quod magnam provident. Officiis fugit distinctio eius itaque, doloribus saepe asperiores nulla ad temporibus aut velit explicabo facere quibusdam beatae officia, ipsa perferendis, repellat dolorum minus obcaecati magnam.</p>
+    <p>My main area of expertise is front-end development, <span>HTML, CSS, JavaScript</span>. Building small web applications, animations, and interactive layouts.</p>
+
+    <p>I also have back-end knowledge of <span>PHP</span>, and popular <span>WordPress</span> CMS.</p>
+    <div><h3>Skills & Experience</h3></div>
+                <div>
+                    <ul>
+                        <li>Vue.js</li>
+                        <li>Angular</li>
+                        <li>Node.js</li>
+                        <li>Php</li>
+                        <li>Wordpress</li>
+                        <li>SQL</li>
+                        <li>C#</li>
+                    </ul>
+                </div>
   </div>
+  
 </template>
 
 <script>

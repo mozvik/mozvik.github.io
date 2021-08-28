@@ -137,7 +137,7 @@ export default {
 
 <style>
 :root {
-  
+  /**nunito betutipus? */
   --darkest: #121212;
   --dark: #2F2F2F;
   
@@ -205,10 +205,9 @@ img {
 }
 h1, h1 span{
   font-family: 'Oswald', sans-serif;
-  font-size: 60px;
+  font-size: 11vw;
   font-weight: 400;
   text-transform: uppercase;
-  
 }
 .title-green{
   color: var(--green);
@@ -226,4 +225,13 @@ h1, h1 span{
   100% {opacity:1}
 }
 
+
+
+/****************************************************** */
+/**          DESKTOP                                   **/
+@media screen and (min-width: 601px) {
+  div.example {
+    font-size: 80px;
+  }
+}
 </style>

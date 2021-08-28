@@ -1,6 +1,6 @@
 <template>
   <button>
-          <span class="dlbtn-icon"><Icon icon="uiw:login" width="48" /></span>
+          <span class="dlbtn-icon"><Icon icon="uiw:login" width="30" /></span>
           <span class="dlbtn-text">
             <slot></slot>
           </span>
@@ -40,19 +40,20 @@ button {
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   border-radius: 3px;
   border: 3px solid var(--light);
   color: var(--light);
   overflow: hidden;
   transition: color 300ms ease-in-out;
   margin: 0 auto;
-  padding: 1.0em 4.8em;
-   display: flex; 
+  padding: .5em 2.0em;
+  display: flex; 
   flex-direction: row;
   justify-content: center;
   align-items: center;
   transition: all 300ms ease-in-out;
+  max-width: 80vw;
 } 
 
 button:hover{
@@ -67,7 +68,7 @@ button > .dlbtn-icon{
   transform: translate(-.5rem, 7rem);
   display: inline-block;
   text-align: left;
-  font-size: 24px;
+  font-size: 20px;
   transition: all 300ms ease-in-out;
 }
 button:hover > .dlbtn-icon{
@@ -82,12 +83,12 @@ button > .dlbtn-text{
   transform: translate(-1rem, 0rem);
   display: inline-block;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   transition: all 300ms ease-in-out;
 }
 button:hover > .dlbtn-text{
   color: var(--darkest);
-  transform: translate(1.5rem, 0);
+  transform: translate(1.0rem, 0);
   transition: all 300ms ease-in-out;
 }
 </style>

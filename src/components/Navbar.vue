@@ -57,7 +57,7 @@ nav {
   z-index: 1;
   top: 0;
   left: 0;
-  height: 100%;
+  /* height: 100%; */
   background: var(--darkest);
 }
 nav a {
