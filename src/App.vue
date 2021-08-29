@@ -1,14 +1,16 @@
 <template>
-  <Navbar :navItems="navItems" :displaySize="displaySize" @selectedMenuItem="goToSection"></Navbar>
-  {{}}
-  <!-- <router-view/> -->
-  <div id="main" class="scroll-snap-container"  @scroll="parallaxScrollFunction">
-    <Home></Home>
-    <About></About>
-    <Skills></Skills>
-    <Portfolio></Portfolio>
-    <Contact></Contact>
-  </div>
+    <div class="wrap row">
+      <Navbar :navItems="navItems" :displaySize="displaySize" @selectedMenuItem="goToSection"></Navbar>
+      {{}}
+      <!-- <router-view/> -->
+      <div id="main" class="scroll-snap-container col-sm-auto  col-md-9 col-lg-10 "  @scroll="parallaxScrollFunction">
+        <Home></Home>
+        <About></About>
+        <Skills></Skills>
+        <Portfolio></Portfolio>
+        <Contact></Contact>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -67,6 +69,7 @@ export default {
     this.initObserver()
     console.log("Mounted!")
     this.observeSections()
+    
   },
   unmounted(){
     window.removeEventListener('resize', this.onResize)
@@ -159,9 +162,12 @@ export default {
     scroll-behavior: smooth;
     /* font-size: 16px; */
 }
-
+html, body{
+  overflow: hidden;
+  
+}
 .section{
-  height: 100vh;
+   height: 100vh;
    background: var(--dark); 
    color: var(--green);
    user-select: none;
@@ -170,9 +176,10 @@ export default {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   position: relative;
+  
 }
 
 img {
@@ -199,13 +206,13 @@ img {
     /* border: 5px solid deeppink; */
     /* font-size: 30px; */
     font-weight: bold;
-    padding-top: 70px; 
+    /* padding-top: 70px;  */
     scroll-snap-align: center;
 
 }
 h1, h1 span{
   font-family: 'Oswald', sans-serif;
-  font-size: 11vw;
+  font-size: 30px;
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -226,12 +233,18 @@ h1, h1 span{
 }
 
 
-
+/****************************************************** */
+/**          TABLET                                   **/
+@media screen and (min-width: 7687px) {
+  h1, h1 span {
+    font-size: 42px;
+  }
+}
 /****************************************************** */
 /**          DESKTOP                                   **/
-@media screen and (min-width: 601px) {
-  div.example {
-    font-size: 80px;
+@media screen and (min-width: 992px) {
+  h1, h1 span {
+    font-size: 48px;
   }
 }
 </style>

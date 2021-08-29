@@ -1,5 +1,5 @@
 <template>
-   <div class="section" id="contact">
+  <div class="section" id="contact">
     <h1>contact</h1>
   </div>
 </template>
@@ -7,11 +7,11 @@
 <script>
 export default {
   name: "Contact",
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+      msg: "Welcome to Your Vue.js App",
+    };
+  },
   // props: {
   //   msg: String,
   // },
@@ -19,6 +19,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>
