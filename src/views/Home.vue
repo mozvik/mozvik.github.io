@@ -1,32 +1,23 @@
 <template>
   
-  <div  class="section container-fluid my-auto d-flex flex-column justify-content-sm-start justify-content-md-center pt-md-0 pt-5" id="home">
-    <div class="row border border-light d-flex justify-content-sm-start justify-content-md-center text-center">
-      <div class="col-sm-12 col-md-4 border border-light">
-        <SplitTitle animation="randomfadein" :animationDelay=10>
-          <h1 class="title-light">Hello, <span class="title-green">I'm</span></h1>
-          <h1 class="title-light">Attila Mozvik</h1>
+  <div  class="section container-fluid d-flex flex-column justify-content-sm-start justify-content-md-center pt-md-0 pt-5" id="home">
+    <div class="row text-center ">
+      <div class="col-sm-12 col-md-5 pt-5 text-md-end">
+        <SplitTitle animation="randomfadein" :animationDelay=2110>
+          <h1 class="title-light light-stroke">Hello, I'm</h1>
+        </SplitTitle>
+        
+      </div>
+      <div class="col-sm-12 col-md-6 pt-5 text-md-start">
+        <SplitTitle animation="randomfadein" :animationDelay=2100>
+            <h1>Attila Mozvik</h1>
         </SplitTitle>
       </div>
-      <div class="col-sm-12 col-md-2 border border-light">
-        <img src="https://picsum.photos/180/180" alt="">
+      <div class="title-light col-sm-12 col-md-11 py-5 text-md-center">
+        <SplitTitle animation="randomfadein" :animationDelay=2100>
+            <h3>Web & Software Developer</h3>
+        </SplitTitle>
       </div>
-    
-    
-      <div class="col-sm-12 col-md-4">
-          <hr>
-          <SplitTitle animation="randomfadein" :animationDelay=3100>
-            <h1>Web & Software
-                        <div>Developer</div>
-                      </h1>
-          </SplitTitle>
-          <hr>
-      <div>
-    </div>
-      
-      
-    
-    </div>
     </div>
   </div>
 </template>

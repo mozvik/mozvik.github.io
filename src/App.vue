@@ -1,9 +1,9 @@
 <template>
     <div class="wrap row">
-      <Navbar :navItems="navItems" :displaySize="displaySize" @selectedMenuItem="goToSection"></Navbar>
-      {{}}
+      <Navbar :navItems="navItems" :displaySize="displaySize" :activeMenuItem="activeMenuItem" @selectedMenuItem="goToSection"></Navbar>
+      
       <!-- <router-view/> -->
-      <div id="main" class="scroll-snap-container col-sm-auto  col-md-9 col-lg-10 "  @scroll="parallaxScrollFunction">
+      <div id="main" class="scroll-snap-container col-sm-auto  col-md-9 col-lg-10 p-md-0"  @scroll="parallaxScrollFunction">
         <Home></Home>
         <About></About>
         <Skills></Skills>
@@ -57,7 +57,6 @@ export default {
        },
        displaySize: null,
        activeMenuItem: '',
-       currentSection: null,
        observer: null,
      }
    },
@@ -117,9 +116,6 @@ export default {
         this.observer.observe(section)
       });
     },
-    setActiveSection(section) {
-      this.currentSection = section;
-    },
     initObserver() {
       const options = {
          threshold: [0.5]
@@ -127,7 +123,6 @@ export default {
       this.observer = new IntersectionObserver(entries => {
         const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
         if(active.length) {
-         
           this.activeMenuItem = active[0].target.id
         }
       },options)
@@ -141,8 +136,8 @@ export default {
 <style>
 :root {
   /**nunito betutipus? */
-  --darkest: #121212;
-  --dark: #2F2F2F;
+  --darkest: rgb(18, 18, 18);
+  --dark: rgb(47, 47, 47);
   
   
   /* #026CCF
@@ -150,7 +145,7 @@ export default {
   --light: #cacaca; 
   --lightgrey: #9a9a9a;
   --grey: #8a8a8a;
-  --green: #00877A;
+  --green: rgb(0, 135, 122);
   /* --green: #026CCF; */
   --orange-red: #ba411f;
 }
@@ -168,7 +163,7 @@ html, body{
 }
 .section{
    height: 100vh;
-   background: var(--dark); 
+   background: linear-gradient(90deg, rgba(18, 18, 18, 1) 30%,rgba(47,47,47,1) ); 
    color: var(--green);
    user-select: none;
 }
@@ -182,12 +177,12 @@ html, body{
   
 }
 
-img {
+/* img {
     height: auto;
     max-width: 100%;
     display: block;
     margin: auto;
-}
+} */
 
 .scroll-snap-container {
 
@@ -213,11 +208,15 @@ img {
 h1, h1 span{
   font-family: 'Oswald', sans-serif;
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
 }
+.light-stroke span{
+  color: transparent;
+ -webkit-text-stroke: 1px var(--light);
+}
 .title-green{
-  color: var(--green);
+  color: var(--green); 
 }
 .title-light{
   color: var(--light);
