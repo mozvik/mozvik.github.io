@@ -3,7 +3,7 @@
       <Navbar :navItems="navItems" :displaySize="displaySize" :activeMenuItem="activeMenuItem" @selectedMenuItem="goToSection"></Navbar>
       
       <!-- <router-view/> -->
-      <div id="main" class="scroll-snap-container col-sm-auto  col-md-9 col-lg-10 p-md-0"  @scroll="parallaxScrollFunction">
+      <div id="main" class="scroll-snap-container col-sm-auto col-md col-lg p-0"  @scroll="parallaxScrollFunction">
         <Home></Home>
         <About></About>
         <Skills></Skills>
@@ -83,11 +83,23 @@ export default {
   },
   methods: {
     onResize() {
+      const ua = navigator.userAgent;
+      if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)){
+        this.displaySize = 0 //mobile
+        return
+      } 
+      if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)){
+        this.displaySize = 1 //tablet
+        return
+      } 
+
       if (window.innerWidth <= 480) {
         this.displaySize = 0 //mobile
       } else if (window.innerWidth <= 768){
         this.displaySize = 1 //tablet
       } else if (window.innerWidth <= 1024){
+        
+
         this.displaySize = 2 //small screen/laptop
       } else if (window.innerWidth <= 1200){
         this.displaySize = 3 //desktop
@@ -145,11 +157,12 @@ export default {
   --light: #cacaca; 
   --lightgrey: #9a9a9a;
   --grey: #8a8a8a;
-  --green: rgb(0, 135, 122);
+  --green: #00877a;
   /* --green: #026CCF; */
-  --orange-red: #ba411f;
+  --orange-red: #FCB023;
+  /* --orange-red: #ba411f; */
 }
-* {
+* { 
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -166,6 +179,7 @@ html, body{
    background: linear-gradient(90deg, rgba(18, 18, 18, 1) 30%,rgba(47,47,47,1) ); 
    color: var(--green);
    user-select: none;
+   
 }
 #app {
   font-family: 'Roboto', sans-serif;
@@ -174,7 +188,7 @@ html, body{
   /* text-align: center; */
   color: #2c3e50;
   position: relative;
-  
+ 
 }
 
 /* img {
@@ -190,7 +204,7 @@ html, body{
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     height: 100vh; 
-
+ 
 }
 
 .scroll-snap-container .section {
