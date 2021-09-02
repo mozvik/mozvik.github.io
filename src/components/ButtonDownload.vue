@@ -34,20 +34,22 @@ button {
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 3px;
   border: 3px solid var(--light);
   color: var(--light);
   overflow: hidden;
   transition: color 300ms ease-in-out;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0.5em 2em;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   transition: all 300ms ease-in-out;
-  max-width: 80vw;
+  /* max-width: 80vw; */
+  width: 130%;
+  height: auto;
 }
 
 button:hover {
@@ -77,7 +79,7 @@ button > .dlbtn-text {
   transform: translate(-1rem, 0rem);
   display: inline-block;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   transition: all 300ms ease-in-out;
 }
 button:hover > .dlbtn-text {
@@ -85,4 +87,12 @@ button:hover > .dlbtn-text {
   transform: translate(1rem, 0);
   transition: all 300ms ease-in-out;
 }
+/****************************************************** */
+/**          DESKTOP                                   **/
+@media screen and (min-width: 992px) {
+  
+  button {
+    width: 100%;
+  }
+  }
 </style>

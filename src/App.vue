@@ -179,7 +179,7 @@ html, body{
    background: linear-gradient(90deg, rgba(18, 18, 18, 1) 30%,rgba(47,47,47,1) ); 
    color: var(--green);
    user-select: none;
-   
+   padding-top: 75px;
 }
 #app {
   font-family: 'Roboto', sans-serif;
@@ -219,7 +219,7 @@ html, body{
     scroll-snap-align: center;
 
 }
-h1, h1 span{
+h1, h1 span, .title-light{
   font-family: 'Oswald', sans-serif;
   font-size: 30px;
   font-weight: 600;
@@ -234,6 +234,7 @@ h1, h1 span{
 }
 .title-light{
   color: var(--light);
+  margin-bottom: 2rem;
 }
 .randomfadein {
   opacity: 0;
@@ -249,15 +250,18 @@ h1, h1 span{
 /****************************************************** */
 /**          TABLET                                   **/
 @media screen and (min-width: 7687px) {
-  h1, h1 span {
+  h1, h1 span, .title-light {
     font-size: 42px;
   }
 }
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
-  h1, h1 span {
+  h1, h1 span, .title-light {
     font-size: 48px;
+  }
+  section {
+    padding: 0;
   }
 }
 </style>
