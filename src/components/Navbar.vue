@@ -1,18 +1,17 @@
 <template>
-  <nav :class="[displaySize < 2 ? 'nav-mobile' : 'nav-desktop']" class="col-sm-auto col-md-4 col-lg-2">
-    <div class="navbar d-md-flex flex-md-column align-items-md-start justify-content-md-start">
-      <div class="logo flex-shrink-1">
+  <nav :class="[displaySize < 3 ? 'nav-mobile' : 'nav-desktop']" class="">
+    <div class="mobile-bar" v-if="displaySize < 3">
+      <div class="logo">
         <div>
-          <img class="img-fluid"
+          <img class=""
             src="/am5.png"
             alt="logo"
-            :width="displaySize < 2 ? 50 : 250"
-            :height="displaySize < 2 ? 50 : 250"
+            width="250"
+            height="250"
           />
         </div>
-
-        <div v-if="displaySize < 2">
-          <transition name="fade" mode="out-in">
+      </div>
+      <transition name="fade" mode="out-in">
             <i
               v-if="menuActive"
               class="fas fa-times"
@@ -27,15 +26,21 @@
               key="ham"
             ></i
           ></transition>
+    </div>
+    <transition name="roll-in" appear>
+    <div class="navbar" v-if="menuActive || displaySize > 2">
+      <div class="logo" v-if="displaySize >= 3">
+        <div>
+          <img class=""
+            src="/am5.png"
+            alt="logo"
+            width="250"
+            height="250"
+          />
         </div>
-
-        <!-- <div v-if="!menuActive"><transition name="slide-fade" mode="out-in">
-          <i class="fas fa-bars" @click="menuActive = !menuActive"></i></transition>
-            </div>
-         -->
       </div>
-      <transition name="roll-in" appear>
-      <div class="nav-items d-flex flex-column justify-content-between flex-grow-1" v-if="menuActive || displaySize > 1">
+      
+      <div class="nav-items" >
         <ul>
           <li
             v-for="item in navItems"
@@ -47,18 +52,19 @@
             <a :href="'#' + item.id">{{ item.name }}</a>
           </li>
         </ul>
-        <div class="social w-100 " >
-            <div class="d-flex justify-content-md-center ">
-              <div class="social-icon me-lg-1 me-md-3 me-xl-3 mb-3 "><i class="lni lni-facebook"></i></div>
-              <div class="social-icon me-lg-1 me-md-3 me-xl-3 mb-3 "><i class="lni lni-linkedin"></i></div>
-              <div class="social-icon me-lg-1 me-md-3 me-xl-3 mb-3 "><i class="lni lni-github"></i></div>
-            </div>
-        </div>
+        
       </div>
-      </transition>
+      
+      <div class="social">
+              <div class="social-icon "><i class="lni lni-facebook"></i></div>
+              <div class="social-icon"><i class="lni lni-linkedin"></i></div>
+              <div class="social-icon"><i class="lni lni-github"></i></div>
+        </div>
+      
       
 
     </div>
+    </transition>
   </nav>
 </template>
 
@@ -91,44 +97,29 @@ nav a {
 
 }
 
- .nav-desktop .navbar{
-
-  height: 100vh;
-}
-/*.nav-desktop .navbar ul{
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: 0;
-}
-.nav-desktop .navbar ul li{
-  padding-left: 2rem;
-} */
-
-.nav-mobile {
+/* .nav-mobile {
   width: 100%;
+  height: 70px;
   position: fixed;
   top: 0;
   left: 0;
   padding: 0;
   z-index: 2;
 }
-.nav-mobile .navbar {
-  padding: 0;
-}
+*/
 .nav-mobile i {
   display: block;
 }
 .nav-mobile i:hover {
   cursor: pointer;
-}
-.nav-mobile .logo {
+} 
+.mobile-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 70px;
   font-size: 2.5rem;
@@ -144,16 +135,13 @@ nav a {
   padding: 0;
 
 }
-/* .nav-items > ul > li:first-child{
-  background: var(--green);
-} */
-
 .nav-items > ul > li > a {
   text-decoration: none;
 }
 
 .nav-items > ul > li {
-  padding: .5rem 3rem;
+  padding: .75rem 3rem;
+  font-size: 22px;
   text-transform: uppercase;
   list-style: none;
   position: relative;
@@ -171,15 +159,7 @@ nav a {
 .nav-items > ul > li:hover{
       cursor: pointer;
 }
-.nav-mobile .nav-items {
-    position: fixed;
-    top: 75px;
-    left: 0;
-    width: 50%;
-    height: calc(100vh - 20%);
-    /* z-index: 1; */
-    background: var(--darkest);
-}
+
 .nav-mobile .nav-items li::after{
   position: absolute;
   content: '';
@@ -206,9 +186,7 @@ nav a {
   width: 100%;
   background: linear-gradient(270deg, rgba(18, 18, 18, 1) 30%,rgba(33, 95, 89, 1) ); 
 }
-/* .nav-items > ul > li:first-child::after{
-  background: transparent;
-} */
+
 .social-icon{
   height: 2.8rem;
   width: 2.8rem;
@@ -235,6 +213,26 @@ nav a {
   font-size: 1.5rem;
   transition: all .4s ease-out;
 }
+.nav-mobile .social,.nav-desktop .social{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  /* padding-bottom: 6rem; */
+}
+.navbar {
+  position:fixed;
+  top: 70px;
+  left: 0;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    align-items: start;
+    width: 60%;
+    height: 100vh;
+    z-index: 2;
+    background: var(--darkest);
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.4s;
@@ -262,5 +260,26 @@ nav a {
   100% {
     transform: translateX(00%);
   }
+}
+/****************************************************** */
+/**          TABLET                                   **/
+@media screen and (min-width: 768px) {
+  
+}
+/****************************************************** */
+/**          DESKTOP                                   **/
+@media screen and (min-width: 992px) {
+ .nav-desktop{
+  /* width: 25vw;
+  max-width: 250px; */
+  height: 100vh;
+}
+.navbar {
+  grid-template-rows: 3fr 4fr 1fr;
+  overflow: hidden;
+  width: auto;
+  top: 0;
+}
+
 }
 </style>

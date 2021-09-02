@@ -1,16 +1,15 @@
 <template>
-    <div class="wrap row">
       <Navbar :navItems="navItems" :displaySize="displaySize" :activeMenuItem="activeMenuItem" @selectedMenuItem="goToSection"></Navbar>
       
       <!-- <router-view/> -->
-      <div id="main" class="scroll-snap-container col-sm-auto col-md col-lg p-0"  @scroll="parallaxScrollFunction">
+      <div id="main" class="scroll-snap-container"  @scroll="parallaxScrollFunction">
         <Home></Home>
         <About></About>
         <Skills></Skills>
         <Portfolio></Portfolio>
         <Contact></Contact>
       </div>
-    </div>
+    
 </template>
 
 <script>
@@ -97,7 +96,7 @@ export default {
         this.displaySize = 0 //mobile
       } else if (window.innerWidth <= 768){
         this.displaySize = 1 //tablet
-      } else if (window.innerWidth <= 1024){
+      } else if (window.innerWidth < 992){
         
 
         this.displaySize = 2 //small screen/laptop
@@ -138,7 +137,28 @@ export default {
           this.activeMenuItem = active[0].target.id
         }
       },options)
-    }
+    },
+     parallaxScrollFunction(e) {
+      var depth, i, layer, layers, len, movement, topDistance, translate3d;
+
+      // topDistance = e.target.scrollTop;
+      topDistance = document.getElementById('about').getBoundingClientRect().top +  window.scrollY
+      console.log('topDistance :>> ', topDistance, e.target.scrollTop);
+      layers = document.querySelectorAll("[data-type='parallax']");
+      console.log('layers :>> ', layers);
+      for (i = 0, len = layers.length; i < len; i++) {
+      layer = layers[i];
+      depth = layer.getAttribute('data-depth');
+      
+      movement = -(topDistance * depth);
+      translate3d = 'translate3d(0, ' + movement + 'px, 0)';
+      layer.style['-webkit-transform'] = translate3d;
+      layer.style['-moz-transform'] = translate3d;
+      layer.style['-ms-transform'] = translate3d;
+      layer.style['-o-transform'] = translate3d;
+      layer.style.transform = translate3d;
+      }
+    },
   },
 }
 
@@ -171,8 +191,13 @@ export default {
     /* font-size: 16px; */
 }
 html, body{
-  overflow: hidden;
-  
+  /* overflow: hidden; */
+   width: 100%; 
+   width: 100vw;
+}
+
+main{
+  width: 100%;
 }
 .section{
    height: 100vh;
@@ -180,6 +205,7 @@ html, body{
    color: var(--green);
    user-select: none;
    padding-top: 75px;
+   padding: 1rem;
 }
 #app {
   font-family: 'Roboto', sans-serif;
@@ -188,15 +214,17 @@ html, body{
   /* text-align: center; */
   color: #2c3e50;
   position: relative;
- 
+  display: grid;
+  grid-template-rows: 70px 1fr;
+height: 100vh; 
 }
 
-/* img {
+ /* img {
     height: auto;
     max-width: 100%;
     display: block;
     margin: auto;
-} */
+}  */
 
 .scroll-snap-container {
 
@@ -225,11 +253,20 @@ h1, h1 span, .title-light{
   font-weight: 600;
   text-transform: uppercase;
 }
+h3{
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+p{
+  padding: 1rem 0;
+  font-size: 18px;
+}
 .light-stroke span{
   color: transparent;
  -webkit-text-stroke: 1px var(--light);
 }
 .title-green{
+
   color: var(--green); 
 }
 .title-light{
@@ -245,23 +282,81 @@ h1, h1 span, .title-light{
   0% {opacity:0}
   100% {opacity:1}
 }
+.parallax::after{
+    color: var(--grey);
+    font-size: 35vw;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 200;
+     /* content: "ABOUT"; */
+    position: absolute;
+    top: -5vw;
+    left: 10vw;
+    background-size: 100%;
+    z-index: -3;
+    opacity: .05;
+    width: 100%;
+    height: 100vh;
+pointer-events: none
+  }
+  
+  
 
 
 /****************************************************** */
 /**          TABLET                                   **/
-@media screen and (min-width: 7687px) {
+/* @media screen and (min-width: 768px) {
   h1, h1 span, .title-light {
     font-size: 42px;
   }
-}
+  #app{
+    grid-template-columns: 3fr 5fr;
+  }
+} */
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
   h1, h1 span, .title-light {
     font-size: 48px;
   }
+  h3{
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+  
+  #app{
+    grid-template-columns: 2fr 6fr;
+  }
+ .parallax::after{
+    font-size: 28vw;
+    top: -5vw;
+    left: 0vw;
+
+  }
+}
+/****************************************************** */
+/**          LARGE DESKTOP                                   **/
+@media screen and (min-width: 1200px) {
+  h1, h1 span, .title-light {
+    font-size: 48px;
+  }
+  h3{
+    font-size: 24px;
+    text-transform: uppercase;
+  }
   section {
     padding: 0;
+    perspective: 2px;
   }
+  #app{
+    grid-template-columns: minmax(auto, 250px) 8fr;
+  }
+  .parallax::after{
+    font-size: 32.5vw;
+    top: -5vw;
+    left: 0vw;
+
+  }
+ 
+  
 }
 </style>
