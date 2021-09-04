@@ -1,6 +1,6 @@
 <template>
   <div  class="section" id="about" >
-    <div class="parallax" data-depth='0.80' data-type='parallax'></div>
+    <div class="parallax" data-depth='0.50' data-type='parallax'></div>
     <div class="content">
       <div class="title" >
         <h2 class="title-light">About</h2>
@@ -66,8 +66,8 @@ export default {
   }
   
   .parallax::after{
-   
-     content: "ABOUT";
+
+content: "ABOUT";
    
   }
  
@@ -86,9 +86,7 @@ export default {
   .img, .title{
     height: 400px;
   }
-  .title{
-    width: 75%;
-  }
+  
   .img img{
    padding: 1rem;
   }

@@ -138,26 +138,27 @@ export default {
         }
       },options)
     },
-     parallaxScrollFunction(e) {
-      var depth, i, layer, layers, len, movement, topDistance, translate3d;
-
-      // topDistance = e.target.scrollTop;
-      topDistance = document.getElementById('about').getBoundingClientRect().top +  window.scrollY
-      console.log('topDistance :>> ', topDistance, e.target.scrollTop);
-      layers = document.querySelectorAll("[data-type='parallax']");
-      console.log('layers :>> ', layers);
-      for (i = 0, len = layers.length; i < len; i++) {
-      layer = layers[i];
-      depth = layer.getAttribute('data-depth');
+     parallaxScrollFunction() {
+      var depth, i, layer, layers, len, movement, topDistance, translate3d, array;
+      array = document.querySelectorAll('.section')
       
-      movement = -(topDistance * depth);
-      translate3d = 'translate3d(0, ' + movement + 'px, 0)';
-      layer.style['-webkit-transform'] = translate3d;
-      layer.style['-moz-transform'] = translate3d;
-      layer.style['-ms-transform'] = translate3d;
-      layer.style['-o-transform'] = translate3d;
-      layer.style.transform = translate3d;
-      }
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        topDistance = element.getBoundingClientRect().top +  window.scrollY
+        layers = element.querySelectorAll("[data-type='parallax']");
+        for (i = 0, len = layers.length; i < len; i++) {
+          layer = layers[i];
+          depth = layer.getAttribute('data-depth');
+          
+          movement = -(topDistance * depth);
+          translate3d = 'translate3d(0, ' + movement + 'px, 0)';
+          layer.style['-webkit-transform'] = translate3d;
+          layer.style['-moz-transform'] = translate3d;
+          layer.style['-ms-transform'] = translate3d;
+          layer.style['-o-transform'] = translate3d;
+          layer.style.transform = translate3d;
+        }
+       }
     },
   },
 }
@@ -245,7 +246,7 @@ height: 100vh;
     font-weight: bold;
     /* padding-top: 70px;  */
     scroll-snap-align: center;
-
+    z-index: 0;
 }
 h1, h1 span, .title-light{
   font-family: 'Oswald', sans-serif;
@@ -282,21 +283,25 @@ p{
   0% {opacity:0}
   100% {opacity:1}
 }
+.parallax{
+  z-index: -1;
+}
 .parallax::after{
     color: var(--grey);
-    font-size: 35vw;
+    font-size: 200px;
     font-family: 'Oswald', sans-serif;
-    font-weight: 200;
+    font-weight: 600;
      /* content: "ABOUT"; */
     position: absolute;
-    top: -5vw;
-    left: 10vw;
+    top: 40vw;
+    left: 20vw;
     background-size: 100%;
-    z-index: -3;
-    opacity: .05;
+    z-index: 0;
+    opacity: .12;
     width: 100%;
     height: 100vh;
-pointer-events: none
+    pointer-events: none;
+    
   }
   
   
@@ -327,9 +332,9 @@ pointer-events: none
     grid-template-columns: 2fr 6fr;
   }
  .parallax::after{
-    font-size: 28vw;
-    top: -5vw;
-    left: 0vw;
+    font-size: 18vw;
+    top: 0vw;
+    left: 10vw;
 
   }
 }
@@ -351,12 +356,14 @@ pointer-events: none
     grid-template-columns: minmax(auto, 250px) 8fr;
   }
   .parallax::after{
-    font-size: 32.5vw;
-    top: -5vw;
-    left: 0vw;
+    font-size: 300px;
+    top: 0vw;
+    left: 2vw;
 
   }
- 
+ .title{
+    width: 75%;
+  }
   
 }
 </style>
