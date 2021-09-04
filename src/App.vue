@@ -2,7 +2,7 @@
       <Navbar :navItems="navItems" :displaySize="displaySize" :activeMenuItem="activeMenuItem" @selectedMenuItem="goToSection"></Navbar>
       
       <!-- <router-view/> -->
-      <div id="main" class="scroll-snap-container"  @scroll="parallaxScrollFunction">
+      <div id="main" class="scroll-snap-container parallax"  @scroll="parallaxScrollFunction">
         <Home></Home>
         <About></About>
         <Skills></Skills>
@@ -138,28 +138,28 @@ export default {
         }
       },options)
     },
-     parallaxScrollFunction() {
-      var depth, i, layer, layers, len, movement, topDistance, translate3d, array;
-      array = document.querySelectorAll('.section')
+    //  parallaxScrollFunction() {
+    //   var depth, i, layer, layers, len, movement, topDistance, translate3d, array;
+    //   array = document.querySelectorAll('.section')
       
-      for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        topDistance = element.getBoundingClientRect().top +  window.scrollY
-        layers = element.querySelectorAll("[data-type='parallax']");
-        for (i = 0, len = layers.length; i < len; i++) {
-          layer = layers[i];
-          depth = layer.getAttribute('data-depth');
+    //   for (let index = 0; index < array.length; index++) {
+    //     const element = array[index];
+    //     topDistance = element.getBoundingClientRect().top +  window.scrollY
+    //     layers = element.querySelectorAll("[data-type='parallax']");
+    //     for (i = 0, len = layers.length; i < len; i++) {
+    //       layer = layers[i];
+    //       depth = layer.getAttribute('data-depth');
           
-          movement = -(topDistance * depth);
-          translate3d = 'translate3d(0, ' + movement + 'px, 0)';
-          layer.style['-webkit-transform'] = translate3d;
-          layer.style['-moz-transform'] = translate3d;
-          layer.style['-ms-transform'] = translate3d;
-          layer.style['-o-transform'] = translate3d;
-          layer.style.transform = translate3d;
-        }
-       }
-    },
+    //       movement = -(topDistance * depth);
+    //       translate3d = 'translate3d(0, ' + movement + 'px, 0)';
+    //       layer.style['-webkit-transform'] = translate3d;
+    //       layer.style['-moz-transform'] = translate3d;
+    //       layer.style['-ms-transform'] = translate3d;
+    //       layer.style['-o-transform'] = translate3d;
+    //       layer.style.transform = translate3d;
+    //     }
+    //    }
+    // },
   },
 }
 
@@ -192,9 +192,12 @@ export default {
     /* font-size: 16px; */
 }
 html, body{
-  /* overflow: hidden; */
-   width: 100%; 
-   width: 100vw;
+   overflow: hidden;
+   /* width: 100%; 
+   width: 100vw; */
+   
+   height: 100%;
+   
 }
 
 main{
@@ -217,7 +220,8 @@ main{
   position: relative;
   display: grid;
   grid-template-rows: 70px 1fr;
-height: 100vh; 
+/* height: 100vh;  */
+height: 100%; 
 }
 
  /* img {
@@ -259,7 +263,7 @@ h3{
     text-transform: uppercase;
   }
 p{
-  padding: 1rem 0;
+  padding: .5rem 0;
   font-size: 18px;
 }
 .light-stroke span{
@@ -283,30 +287,81 @@ p{
   0% {opacity:0}
   100% {opacity:1}
 }
-.parallax{
-  z-index: -1;
-}
-.parallax::after{
-    color: var(--grey);
-    font-size: 200px;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-     /* content: "ABOUT"; */
-    position: absolute;
-    top: 40vw;
-    left: 20vw;
-    background-size: 100%;
-    z-index: 0;
-    opacity: .12;
+
+.parallax {
+    margin: 0 auto;
     width: 100%;
     height: 100vh;
-    pointer-events: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 1cm;
+    perspective-origin: center;
     
   }
-  
-  
+  .parallax-group {
+    width: 100%;
+    position: relative;
+    height: 500px; /* fallback régi browserek miatt */
+    height: 100vh;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    overflow: hidden;
+  } 
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
+  }
+  .parallax-layer-base {
+    -webkit-transform: translateZ(0cm);
+    transform: translateZ(0cm);
+    border: 1px solid white;
+    font-size:56px;
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 5;
 
+  }
+  .parallax-layer-back {
+    -webkit-transform: translateZ(-0.1cm) scale(1.1);
+    transform: translateZ(-0.1cm) scale(1.1);
+    z-index: 4;
+    border: 1px solid red; 
+  }
+  .parallax-layer-deep {
+    -webkit-transform: translateZ(-.2cm) scale(1.1);
+    transform: translateZ(-.2cm) scale(1.2);
+    z-index: 3;
+    border: 1px solid blue;
+    background-repeat: no-repeat;
+    background-size: 300px auto;
+    background-position: center right;
+  }
+  .parallax-layer-deepest {
+    -webkit-transform: translateZ(-.3cm) scale(1.4);
+    transform: translateZ(-.3cm) scale(1.3);
+    z-index: 2;
+    border: 1px solid green; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  .back-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mouse-scroll-down{
+    display: none;
+  }
+  .back-title h1 {
+    font-size: 400px;
+    color: var(--grey);
+    opacity: .1;
+  }
 /****************************************************** */
 /**          TABLET                                   **/
 /* @media screen and (min-width: 768px) {
@@ -331,16 +386,23 @@ p{
   #app{
     grid-template-columns: 2fr 6fr;
   }
- .parallax::after{
-    font-size: 18vw;
-    top: 0vw;
-    left: 10vw;
-
+ .mouse-scroll-down{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 3rem;
   }
 }
 /****************************************************** */
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
+  html, body{
+   overflow: hidden;
+   width: 100%; 
+   width: 100vw;
+   padding: relative;
+}
   h1, h1 span, .title-light {
     font-size: 48px;
   }
@@ -355,14 +417,14 @@ p{
   #app{
     grid-template-columns: minmax(auto, 250px) 8fr;
   }
-  .parallax::after{
+  /* .parallax::after{
     font-size: 300px;
     top: 0vw;
     left: 2vw;
 
-  }
+  } */
  .title{
-    width: 75%;
+    /* width: 75%; */
   }
   
 }

@@ -89,7 +89,7 @@ export default {
 <style scoped>
 nav {
   background: var(--darkest);
-   overflow: auto;
+   overflow: hidden;
 }
 nav a {
   font-weight: bold;

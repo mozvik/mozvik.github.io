@@ -1,7 +1,10 @@
 <template>
-  <div  class="section" id="about" >
-    <div class="parallax" data-depth='0.50' data-type='parallax'></div>
-    <div class="content">
+  <div  class="section parallax-group" id="about" >
+
+    <div class="content parallax-layer parallax-layer-base">
+      <div class="img">
+        <img src="/enkicsi.png" alt="" class="" >
+      </div>
       <div class="title" >
         <h2 class="title-light">About</h2>
       
@@ -14,14 +17,17 @@
           I love experimenting with UI animations and effects, build something, or
           just solving problems.
         </p>
+        <div class="cv-button"><ButtonDownload>Download CV</ButtonDownload></div>
       </div>
-      <div class="img">
-        <img src="/enkicsi.png" alt="" class="" >
-        <ButtonDownload>Download CV</ButtonDownload>
-      </div>
-    </div>
       
-     
+      
+    </div>
+    <div class="parallax-layer parallax-layer-deep back-title">
+      <h1>ABOUT</h1>
+    </div>
+     <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
+      <div>eger-scroll down</div>
+    </div>
   </div>
 </template>
 
@@ -52,24 +58,35 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #about .content{
-    /* text-align: center; */
     display: grid;
     grid-template-rows: auto;
     justify-content: center;
     align-items: center;
     padding-bottom: 10rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .cv-button{
+    margin-top: 2rem;
   }
   .img{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.25rem;
+  }
+  .img img{
+    border: 5px solid var(--grey);
+    background: var(--light);
+
+   
   }
   
-  .parallax::after{
+  /* .parallax::after{
 
 content: "ABOUT";
    
-  }
+  } */
  
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
@@ -86,7 +103,9 @@ content: "ABOUT";
   .img, .title{
     height: 400px;
   }
-  
+  .title p {
+    width: 75%;
+  }
   .img img{
    padding: 1rem;
   }
