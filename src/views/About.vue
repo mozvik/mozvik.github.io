@@ -57,23 +57,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #about .content{
-    display: grid;
-    grid-template-rows: auto;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 10rem;
+#about .content{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: space-around;
+     padding-bottom: 10rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    height: 100vh;
   }
+  
   .cv-button{
     margin-top: 2rem;
   }
   .img{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 1.25rem;
   }
   .img img{
     border: 5px solid var(--grey);
@@ -81,30 +80,47 @@ export default {
 
    
   }
-  
-  /* .parallax::after{
+ 
+  /**          LAPTOP TABLET                                   **/
+@media screen and (min-width: 992px) {
+#about .content{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+    padding-bottom: 0rem;
+    height: 100vh;
+  }
+.img {
+  padding: 0;
+}
+.title p {
+    width: 100%;
+  }
 
-content: "ABOUT";
-   
-  } */
+}
  
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
  #about .content{
-    grid-template-columns: 1fr 1fr;
-    justify-content: start;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-around;
     padding-bottom: 0rem;
     height: 100vh;
   }
   .img{
-    grid-row: 1;
-    /* grid-row: 1/3; */
+   
+    margin: 0 3rem;
+    padding: 1.25rem;
   }
   .img, .title{
     height: 400px;
   }
+  
   .title p {
-    width: 75%;
+    width: 80%;
   }
   .img img{
    padding: 1rem;

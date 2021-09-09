@@ -1,12 +1,17 @@
 <template>
   <div class="section" id="contact">
     <h1>contact</h1>
+    
   </div>
 </template>
 
 <script>
+
 export default {
   name: "Contact",
+  components:{
+    
+  },
   data() {
     return {
       msg: "Welcome to Your Vue.js App",

@@ -57,6 +57,9 @@ export default {
        displaySize: null,
        activeMenuItem: '',
        observer: null,
+       intersectionDirection: 0,
+       previousRatio: 0,
+       previousY: 0,
      }
    },
    created(){
@@ -67,7 +70,7 @@ export default {
     this.initObserver()
     console.log("Mounted!")
     this.observeSections()
-    
+    this.observeMySkills()
   },
   unmounted(){
     window.removeEventListener('resize', this.onResize)
@@ -75,6 +78,9 @@ export default {
   computed: {
     getSectionsRefs() {
       return document.querySelectorAll('.section')
+    },
+    getMySkillsRefs() {
+      return document.querySelectorAll('.my-skills')
     },
     getSectionContainer(){
       return document.querySelector('.scroll-snap-container');
@@ -127,6 +133,11 @@ export default {
         this.observer.observe(section)
       });
     },
+    observeMySkills() {
+      this.getMySkillsRefs.forEach(skills => {
+        this.observer.observe(skills)
+      });
+    },
     initObserver() {
       const options = {
          threshold: [0.5]
@@ -134,32 +145,22 @@ export default {
       this.observer = new IntersectionObserver(entries => {
         const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
         if(active.length) {
-          this.activeMenuItem = active[0].target.id
+         
+          active.forEach(element => {
+            if (element.target.className.includes('my-skills') && element.isIntersecting) { 
+              //console.log('this.intersectionDirection :>> ', this.intersectionDirection, element.boundingClientRect.y, element.target)
+              console.log('element.target :>> ', element.target)
+              element.target.classList.add('my-skills-animated')
+              this.observer.unobserve(element.target)
+            }
+          });
+          this.activeMenuItem = active[0].target.id 
         }
+       
+        
       },options)
     },
-    //  parallaxScrollFunction() {
-    //   var depth, i, layer, layers, len, movement, topDistance, translate3d, array;
-    //   array = document.querySelectorAll('.section')
-      
-    //   for (let index = 0; index < array.length; index++) {
-    //     const element = array[index];
-    //     topDistance = element.getBoundingClientRect().top +  window.scrollY
-    //     layers = element.querySelectorAll("[data-type='parallax']");
-    //     for (i = 0, len = layers.length; i < len; i++) {
-    //       layer = layers[i];
-    //       depth = layer.getAttribute('data-depth');
-          
-    //       movement = -(topDistance * depth);
-    //       translate3d = 'translate3d(0, ' + movement + 'px, 0)';
-    //       layer.style['-webkit-transform'] = translate3d;
-    //       layer.style['-moz-transform'] = translate3d;
-    //       layer.style['-ms-transform'] = translate3d;
-    //       layer.style['-o-transform'] = translate3d;
-    //       layer.style.transform = translate3d;
-    //     }
-    //    }
-    // },
+
   },
 }
 
@@ -320,7 +321,7 @@ p{
     transform: translateZ(0cm);
     border: 1px solid white;
     font-size:56px;
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     z-index: 5;
 
   }
@@ -362,6 +363,12 @@ p{
     color: var(--grey);
     opacity: .1;
   }
+  .vueperslides__arrow {
+  color: var(--light);
+  }
+  .vueperslides__arrow svg {stroke-width: 2;
+  font-size: 20px;}
+
 /****************************************************** */
 /**          TABLET                                   **/
 /* @media screen and (min-width: 768px) {
@@ -384,7 +391,8 @@ p{
   }
   
   #app{
-    grid-template-columns: 2fr 6fr;
+   
+    grid-template-columns: minmax(auto, 250px) 8fr;
   }
  .mouse-scroll-down{
     display: flex;
@@ -414,9 +422,7 @@ p{
     padding: 0;
     perspective: 2px;
   }
-  #app{
-    grid-template-columns: minmax(auto, 250px) 8fr;
-  }
+ 
   /* .parallax::after{
     font-size: 300px;
     top: 0vw;
