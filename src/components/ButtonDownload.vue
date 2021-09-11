@@ -1,7 +1,7 @@
 <template>
   <button>
     <span class="dlbtn-icon"><Icon icon="uiw:login" width="30" /></span>
-    <span class="dlbtn-text">
+    <span class="dlbtn-text" data-color="">
       <slot></slot>
     </span>
   </button>
@@ -19,11 +19,11 @@ export default {
     return {};
   },
   props: {
-    navItems: Object,
-    displaySize: Number,
-    activeMenuItem: Number,
+   
+    },
+  mounted() {
+    
   },
-  emits: ["selectedMenuItem"],
   methods: {},
 };
 </script>
@@ -36,11 +36,9 @@ button {
   font-weight: 500;
   font-size: 18px;
   border-radius: 3px;
-  border: 3px solid var(--light);
-  color: var(--light);
+  border: 3px solid var(--primary);
   overflow: hidden;
   transition: color 300ms ease-in-out;
-  /* margin: 0 auto; */
   padding: 0.5em 2em;
   display: flex;
   flex-direction: row;
@@ -54,7 +52,7 @@ button {
 
 
 button > .dlbtn-icon {
-  color: var(--green);
+  color: var(--primary);
   transform: translate(-0.5rem, 7rem);
   display: inline-block;
   text-align: left;
@@ -64,26 +62,24 @@ button > .dlbtn-icon {
 button:hover > .dlbtn-icon {
   margin: 0;
   padding: 0;
-  color: var(--green);
+  color: var(--primary);
   transform: translate(-0.5rem, 0);
   transition: all 300ms ease-in-out;
 }
 button > .dlbtn-text {
   color: var(--light);
   transform: translate(-1rem, 0rem);
-  /* display: inline-block; */
   text-align: center;
   font-size: 18px;
   transition: all 300ms ease-in-out;
   
 }
 button:hover > .dlbtn-text {
-  color: var(--darkest);
+  color: var(--primary);
   transform: translate(1rem, 0);
   transition: all 300ms ease-in-out;
 }
 button:hover {
-  color: var(--darkest);
   background: var(--light);
   border: 3px solid var(--light);
   cursor: pointer;

@@ -6,13 +6,13 @@
     </div>
       <div class="parallax-layer parallax-layer-base title">
         <div class="title-home">
-          <div class="title-light to-right">
+          <div class="title to-right">
             <SplitTitle animation="randomfadein" :animationDelay=2110>
               <h1 class=" light-stroke">Hello, I'm </h1>
             </SplitTitle>
           
           </div>
-          <div class="title-green to-left">
+          <div class="title to-left light">
             <SplitTitle animation="randomfadein" :animationDelay=2100>
                 <h1>Attila Mozvik</h1>
             </SplitTitle>
@@ -46,7 +46,6 @@ export default {
   flex-direction:row;
 }
 #home .title{
-  color: var(--light);
   text-align: center;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -54,7 +53,7 @@ export default {
   justify-content: center;
 }
 #home .subtitle{
-  color: var(--light);
+  color: var(--primary);
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -63,16 +62,7 @@ export default {
 }
 /**          TABLET                                   **/
 @media screen and (min-width: 768px) {
-  /* #home .parallax-layer{
-  color: var(--light);
-  text-align: center;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
-} */
-
-
-
+  
 #home .title{
   align-items: flex-end;
 } 
@@ -90,7 +80,9 @@ export default {
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
-  
+  .title-home{
+    display: flex;
+  }
 }
 /****************************************************** */
 /**          LARGE DESKTOP                                   **/

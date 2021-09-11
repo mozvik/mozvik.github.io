@@ -82,13 +82,16 @@ export default {
     activeMenuItem: String,
   },
   emits: ["selectedMenuItem"],
+  methods: {
+   
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 nav {
-  background: var(--darkest);
+  background: var(--background);
    overflow: hidden;
 }
 nav a {
@@ -97,16 +100,6 @@ nav a {
 
 }
 
-/* .nav-mobile {
-  width: 100%;
-  height: 70px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0;
-  z-index: 2;
-}
-*/
 .nav-mobile i {
   display: block;
 }
@@ -123,8 +116,8 @@ nav a {
   width: 100%;
   height: 70px;
   font-size: 2.5rem;
-  background: rgb(0, 0, 0);
-  color: gainsboro;
+  background: var(--background);
+  color: var(--light100);
 }
 .nav-items {
   width: 100%;
@@ -137,8 +130,12 @@ nav a {
 }
 .nav-items > ul > li > a {
   text-decoration: none;
+  
 }
-
+.nav-items a {
+  color: var(--light300);
+  transition: all .4s ease-out;
+}
 .nav-items > ul > li {
   padding: .75rem 3rem;
   font-size: 22px;
@@ -146,31 +143,24 @@ nav a {
   list-style: none;
   position: relative;
   z-index: 0;
+ 
 }
+
 .nav-desktop .nav-items li:hover::after{
   width: 100%;
     transition: all .4s ease-out;
 }
 .nav-items > ul > li:hover a{
-  color: var(--orange-red);
+  color: var(--background);
+  opacity: .9;
   transition: all .4s ease-out;
 }
 
 .nav-items > ul > li:hover{
       cursor: pointer;
+      
 }
 
-.nav-mobile .nav-items li::after{
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  height: 95%;
-  width: 0;
-  z-index: -1;
-  background: linear-gradient(270deg, rgba(18, 18, 18, 1) 30%,rgba(33, 95, 89, 1) , rgba(18, 18, 18, 1) 70%); 
-  transition: all .4s ease-out;
-}
 .nav-desktop .nav-items li::after{
   position: absolute;
   content: '';
@@ -179,29 +169,47 @@ nav a {
   height: 95%;
   width: 0;
   z-index: -1;
-  background: linear-gradient(270deg, rgba(18, 18, 18, 1) 30%,rgba(33, 95, 89, .5) ); 
+  background: var(--primary400);
+  opacity: .3;
+  
   transition: all .4s ease-out;
+}
+ .active-menu-item{
+  background: var(--primary);
+  transition: all .4s ease-out;
+}  
+
+.active-menu-item > a{
+  color: var(--light);
+  transition: all .4s ease-out;
+}
+.nav-items .active-menu-item:hover > a{
+  color: var(--light);
+  opacity: 1;
 }
 .nav-items > ul > .active-menu-item::after{
   width: 100%;
-  background: linear-gradient(270deg, rgba(18, 18, 18, 1) 30%,rgba(33, 95, 89, 1) ); 
+  background: var(--primary);
+
 }
+
 
 .social-icon{
   height: 2.8rem;
   width: 2.8rem;
-  border: 2px solid var(--green);
+  border: 2px solid var(--light300);
+  opacity: .7;
   border-radius: 50%;
   position: relative;
   transition: all .4s ease-out;
 }
 .social-icon:hover {
-  border: 2px solid var(--orange-red);
+  border: 2px solid var(--primary-dark);
   transition: all .4s ease-out;
   cursor: pointer;
 }
 .social-icon:hover i{
-  color: var(--orange-red);
+  color: var(--primary-light);
   transition: all .4s ease-out;
 }
 .social-icon i{
@@ -218,7 +226,7 @@ nav a {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
-  /* padding-bottom: 6rem; */
+
 }
 .navbar {
   position:fixed;
@@ -230,7 +238,7 @@ nav a {
     width: 60%;
     height: 100vh;
     z-index: 2;
-    background: var(--darkest);
+    background: var(--background);
 }
 
 .fade-enter-active,
@@ -270,8 +278,6 @@ nav a {
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
  .nav-desktop{
-  /* width: 25vw;
-  max-width: 250px; */
   height: 100vh;
 }
 .navbar {

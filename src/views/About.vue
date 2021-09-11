@@ -5,19 +5,19 @@
       <div class="img">
         <img src="/enkicsi.png" alt="" class="" >
       </div>
-      <div class="title" >
-        <h2 class="title-light">About</h2>
+      <div class="cont" >
+        <h2 class="title light">About</h2>
       
-        <p>
-          I have a serious passion for web development, it provides me the
+        <p class="light300">
+          I have a serious passion for web development, that provides me the
           opportunity of both creativity and programming.
         </p>
       
-        <p>
+        <p class="light300">
           I love experimenting with UI animations and effects, build something, or
           just solving problems.
         </p>
-        <div class="cv-button"><ButtonDownload>Download CV</ButtonDownload></div>
+        <div class="cv-button"><ButtonDownload >Download CV</ButtonDownload></div>
       </div>
       
       
@@ -37,7 +37,10 @@ export default {
   components: { ButtonDownload },
   name: "About",
   data() {
-    return {};
+    return {
+     
+    };
+    
   },
   computed: {
    
@@ -75,10 +78,7 @@ export default {
     align-items: center;
   }
   .img img{
-    border: 5px solid var(--grey);
-    background: var(--light);
-
-   
+    background: transparent;
   }
  
   /**          LAPTOP TABLET                                   **/
@@ -94,7 +94,7 @@ export default {
 .img {
   padding: 0;
 }
-.title p {
+.cont p {
     width: 100%;
   }
 
@@ -115,11 +115,11 @@ export default {
     margin: 0 3rem;
     padding: 1.25rem;
   }
-  .img, .title{
+  .img, .cont{
     height: 400px;
   }
   
-  .title p {
+  .cont p {
     width: 80%;
   }
   .img img{

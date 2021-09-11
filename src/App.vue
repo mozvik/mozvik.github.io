@@ -67,7 +67,8 @@ export default {
    },
    mounted() {
     this.onResize()
-    this.initObserver()
+    this.initSectionObserver()
+    this.initSkillObserver()
     console.log("Mounted!")
     this.observeSections()
     this.observeMySkills()
@@ -119,42 +120,52 @@ export default {
     this.itemRefs = []
     },
     updated() {
-    console.log(this.itemRefs)
+    // console.log(this.itemRefs)
     },
     goToSection(sectionName) {
+            console.log('sectionName :>> ', sectionName);
             this.getSectionContainer.scrollTo({
               top: document.getElementById(sectionName).offsetTop - 100,
               left: 0,
-              behavior: 'smooth'
+              behavior: 'auto'
             });
+            
     },
     observeSections() {
       this.getSectionsRefs.forEach(section => {
-        this.observer.observe(section)
+        this.sectionObserver.observe(section)
       });
     },
     observeMySkills() {
       this.getMySkillsRefs.forEach(skills => {
-        this.observer.observe(skills)
+        this.skillObserver.observe(skills)
       });
     },
-    initObserver() {
+    initSectionObserver() {
       const options = {
          threshold: [0.5]
       }
-      this.observer = new IntersectionObserver(entries => {
+      this.sectionObserver = new IntersectionObserver(entries => {
         const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
         if(active.length) {
-         
+          this.activeMenuItem = active[0].target.id
+        }
+      },options)
+    },
+    initSkillObserver() {
+      const options = {
+         threshold: [0.5]
+      }
+      this.skillObserver = new IntersectionObserver(entries => {
+        const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
+         if(active.length) {
           active.forEach(element => {
             if (element.target.className.includes('my-skills') && element.isIntersecting) { 
-              //console.log('this.intersectionDirection :>> ', this.intersectionDirection, element.boundingClientRect.y, element.target)
-              console.log('element.target :>> ', element.target)
+              document.querySelector('.skill-list>ul').classList.add('skill-list-animated')
               element.target.classList.add('my-skills-animated')
-              this.observer.unobserve(element.target)
+              this.skillObserver.unobserve(element.target)
             }
           });
-          this.activeMenuItem = active[0].target.id 
         }
        
         
@@ -169,34 +180,74 @@ export default {
 
 <style>
 :root {
-  /**nunito betutipus? */
-  --darkest: rgb(18, 18, 18);
-  --dark: rgb(47, 47, 47);
+  /* material black #121212*/
+  
+  --background: rgb(18, 18, 18, 1);
+  --background800: rgb(59, 59, 59, 1);
+  --background700: rgb(81, 81, 81, 1);
+  --background600: rgb(98, 98, 98, 1);
+  --background500: rgb(126, 126, 126, 1);
+  
+
+  --primary: #FA7D09;
+  --primary: #FA7D09;
+  --primary400: #fb9637;
+  --primary900: #FA7D09;
+  --primary-dark: #c86407;
+  --primary-light: #fb973a;
+
+  /* blue gray #102a43*/
+  /* --background: rgb(16, 42, 67, 1);
+  --background800: rgb(36, 59, 83, 1);
+  --background700: rgb(51, 78, 104, 1);
+  --background600: rgb(72, 101, 129, 1);
+  --background500: rgb(98, 125, 152, 1);
+    */
+  
+  /* cool gray #102a43*/
+  /* --background: rgb(31, 41, 51, 1);
+  --background800: rgb(50, 63, 75, 1);
+  --background700: rgb(62, 76, 89, 1);
+  --background600: rgb(82, 96, 109, 1);
+  --background500: rgb(97, 110, 124, 1);
+   */
+
+/* warm gray #102a43*/
+  /* --background: #27241d;
+  --background800: #423d33;
+  --background700: #504a40;
+  --background600: #625d52;
+  --background500: #857f72;
+   */
+
+
+--light: #f7f7f7; 
+--light100: #e1e1e1; 
+--light200: #cfcfcf; 
+--light300: #b1b1b1; 
+
+
+
+  
+  --orange-red: #c62b28;
   
   
-  /* #026CCF
-  --darkgreen: #61892f; */
-  --light: #cacaca; 
+  
   --lightgrey: #9a9a9a;
-  --grey: #8a8a8a;
-  --green: #00877a;
-  /* --green: #026CCF; */
-  --orange-red: #FCB023;
-  /* --orange-red: #ba411f; */
+  --background700: #8a8a8a;
+  
 }
 * { 
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     background: transparent;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     /* font-size: 16px; */
 }
 html, body{
    overflow: hidden;
-   /* width: 100%; 
-   width: 100vw; */
-   
+   color: var(--light300);
    height: 100%;
    
 }
@@ -206,8 +257,7 @@ main{
 }
 .section{
    height: 100vh;
-   background: linear-gradient(90deg, rgba(18, 18, 18, 1) 30%,rgba(47,47,47,1) ); 
-   color: var(--green);
+   background: linear-gradient(90deg, var(--background) 30%,var(--background800) ); 
    user-select: none;
    padding-top: 75px;
    padding: 1rem;
@@ -216,12 +266,9 @@ main{
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
   position: relative;
   display: grid;
   grid-template-rows: 70px 1fr;
-/* height: 100vh;  */
 height: 100%; 
 }
 
@@ -246,14 +293,11 @@ height: 100%;
     min-height: 100vh;
     overflow: hidden;
     position: relative;
-    /* border: 5px solid deeppink; */
-    /* font-size: 30px; */
     font-weight: bold;
-    /* padding-top: 70px;  */
     scroll-snap-align: center;
     z-index: 0;
 }
-h1, h1 span, .title-light{
+h1, h1 span, .title{
   font-family: 'Oswald', sans-serif;
   font-size: 30px;
   font-weight: 600;
@@ -271,18 +315,39 @@ p{
   color: transparent;
  -webkit-text-stroke: 1px var(--light);
 }
+/* COLORS */
+.primary{
+  color: var(--primary);
+}
+.primary-dark{
+  color: var(--primary-dark);
+}
+.primary-light{
+  color: var(--primary-light);
+}
+.light{
+  color: var(--light);
+}
+.light100{
+  color: var(--light100);
+}
+.light200{
+  color: var(--light200);
+}
+.light300{
+  color: var(--light300);
+}
+
 .title-green{
 
-  color: var(--green); 
+  color: var(--primary); 
 }
-.title-light{
-  color: var(--light);
+.title{
   margin-bottom: 2rem;
 }
 .randomfadein {
   opacity: 0;
   animation: fadein var(--rnda) var(--rnd) forwards ease;
-  /* color: var(--light); */
 }
 @keyframes fadein {
   0% {opacity:0}
@@ -360,7 +425,7 @@ p{
   }
   .back-title h1 {
     font-size: 400px;
-    color: var(--grey);
+    color: var(--background700);
     opacity: .1;
   }
   .vueperslides__arrow {
@@ -372,7 +437,7 @@ p{
 /****************************************************** */
 /**          TABLET                                   **/
 /* @media screen and (min-width: 768px) {
-  h1, h1 span, .title-light {
+  h1, h1 span, .title {
     font-size: 42px;
   }
   #app{
@@ -382,7 +447,7 @@ p{
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
-  h1, h1 span, .title-light {
+  h1, h1 span, .title {
     font-size: 48px;
   }
   h3{
@@ -411,7 +476,7 @@ p{
    width: 100vw;
    padding: relative;
 }
-  h1, h1 span, .title-light {
+  h1, h1 span, .title {
     font-size: 48px;
   }
   h3{
@@ -423,15 +488,5 @@ p{
     perspective: 2px;
   }
  
-  /* .parallax::after{
-    font-size: 300px;
-    top: 0vw;
-    left: 2vw;
-
-  } */
- .title{
-    /* width: 75%; */
-  }
-  
 }
 </style>

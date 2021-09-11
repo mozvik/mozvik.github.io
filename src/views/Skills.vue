@@ -1,8 +1,8 @@
 <template>
   <div class="section parallax-group" id="skills">
     <div class="content parallax-layer parallax-layer-base">
-      <div class="title">
-        <h1 class="title-light">Skills</h1>
+      <div class="cont">
+        <h1 class="title light">Skills</h1>
         <p>
           My main area of expertise is front-end development,
           <span>HTML, CSS, JavaScript</span>. Building small web applications,
@@ -25,7 +25,7 @@
         <div class="skill-list">
           <ul>
             <li v-for="(item, index) in skillData" :key="item.stack" class="my-skills"
-            :style="{ '--delay': index * 50 + 'ms' }">
+            :style="{ '--delay': ( index * 200 ) + 300 + 'ms' }">
               {{item.stack}}
             </li>
           </ul>
@@ -75,7 +75,6 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    /* padding: 10rem 1rem; */
     padding-left: 1rem;
     padding-right: 1rem;
     height: 100vh;
@@ -94,13 +93,13 @@ export default {
 }
 .my-skills{
  
-  border-bottom: 2px solid var(--green);
+  border-bottom: 2px solid var(--primary);
   margin: 1.25rem 0;
   padding: .25rem;
   }
 .skill-list{
  
-    color: var(--light);
+    color: var(--light200);
     font-size: 18px;
     font-family: 'Roboto', Helvetica, sans-serif;
     position: relative;
@@ -136,7 +135,7 @@ export default {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-  #skills .content .title{
+  #skills .content .cont{
     margin-left: 4.5rem; 
   }
     #skills .content p{
@@ -151,10 +150,21 @@ export default {
 
 
 #skillbox ul {
-  position: absolute;
-  width: 25vw;
+ 
 }
-
+.skill-list > ul{
+   position: absolute;
+  top: 0;
+  left: 0;
+  width: 25vw;
+  opacity: 0; 
+  
+}
+.skill-list > .skill-list-animated{
+  opacity: 1;
+  transition: opacity .5s;
+  
+}
 .my-skills-animated{
   
   opacity: 0;
@@ -163,6 +173,7 @@ export default {
 @keyframes upward {
   
   100%{ opacity: 1; 
+       
         transform: translateY(-3rem);
         }
 }
