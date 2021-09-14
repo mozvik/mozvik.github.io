@@ -2,11 +2,11 @@
       <Navbar :navItems="navItems" :displaySize="displaySize" :activeMenuItem="activeMenuItem" @selectedMenuItem="goToSection"></Navbar>
       
       <!-- <router-view/> -->
-      <div id="main" class="scroll-snap-container parallax"  @scroll="parallaxScrollFunction">
+      <div id="main" class="scroll-snap-container parallax">
         <Home></Home>
         <About></About>
         <Skills></Skills>
-        <Portfolio></Portfolio>
+        <Portfolio :displaySize="displaySize"></Portfolio>
         <Contact></Contact>
       </div>
     
@@ -110,6 +110,7 @@ export default {
       } else if (window.innerWidth <= 1200){
         this.displaySize = 3 //desktop
       } else this.displaySize = 4 //large screens
+      
     },
     setItemRef(el) {
       if (el && this.itemRefs.indexOf(el) === -1) {
@@ -296,7 +297,7 @@ height: 100%;
     font-weight: bold;
     scroll-snap-align: center;
     z-index: 0;
-}
+} 
 h1, h1 span, .title{
   font-family: 'Oswald', sans-serif;
   font-size: 30px;
@@ -360,7 +361,7 @@ p{
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    perspective: 1cm;
+    perspective: .5cm;
     perspective-origin: center;
     
   }
@@ -429,20 +430,15 @@ p{
     opacity: .1;
   }
   .vueperslides__arrow {
-  color: var(--light);
+  color: var(--primary);
   }
-  .vueperslides__arrow svg {stroke-width: 2;
-  font-size: 20px;}
+  .vueperslides__arrow svg {stroke-width: 3;
+  font-size: 10px;}
 
 /****************************************************** */
 /**          TABLET                                   **/
 /* @media screen and (min-width: 768px) {
-  h1, h1 span, .title {
-    font-size: 42px;
-  }
-  #app{
-    grid-template-columns: 3fr 5fr;
-  }
+  
 } */
 /****************************************************** */
 /**          DESKTOP                                   **/
