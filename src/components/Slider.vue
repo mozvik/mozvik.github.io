@@ -5,7 +5,7 @@
     :breakpoints="breakpoints"
     fade
     bullets-outside
-    prevent-y-scroll
+    
   >
     <vueper-slide
       v-for="(card, i) in cards"
