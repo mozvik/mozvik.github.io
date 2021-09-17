@@ -26,15 +26,16 @@
       <h1>ABOUT</h1>
     </div>
      <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <div>eger-scroll down</div>
+      <MouseScrollDown></MouseScrollDown>
     </div>
   </div>
 </template>
 
 <script>
 import ButtonDownload from "@/components/ButtonDownload.vue";
+import MouseScrollDown from "@/components/MouseScrollDown.vue";
 export default {
-  components: { ButtonDownload },
+  components: { ButtonDownload, MouseScrollDown },
   name: "About",
   data() {
     return {

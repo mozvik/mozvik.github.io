@@ -26,7 +26,7 @@
         
       </div>
       <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <div>eger-scroll down</div>
+      <MouseScrollDown></MouseScrollDown>
     </div>
     </div>
 </template>
@@ -35,9 +35,10 @@
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
 import SplitTitle from "@/components/SplitTitle.vue";
+import MouseScrollDown from "@/components/MouseScrollDown.vue";
 export default {
   name: "Home",
-  components: {SplitTitle},
+  components: {SplitTitle, MouseScrollDown},
 };
 </script>
 <style scoped>
