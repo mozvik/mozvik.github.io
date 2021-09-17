@@ -137,8 +137,8 @@ nav a {
   transition: all .4s ease-out;
 }
 .nav-items > ul > li {
-  padding: .75rem 3rem;
-  font-size: 22px;
+  padding: .60rem 3rem;
+  font-size: 20px;
   text-transform: uppercase;
   list-style: none;
   position: relative;
