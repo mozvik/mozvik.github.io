@@ -1,35 +1,42 @@
 <template>
-  <div class="mouse " :class="scrollDown"
-  >{{scrollDown}}
+  <div class="mouse " 
+  :class="setOpacity">
     <div class="mouse-button"></div>
   </div>
 </template>
 
+  
 <script>
+import { inject, ref } from 'vue'
 
 export default {
   name: "MouseScrollDown",
   components: {
-   
+    
   },
+  setup() {
+    const scrollState = inject('scrollState')
+    const opacity = ref(1) 
+        
+    return {
+      scrollState,
+      opacity
+    }
+  },
+  props:{
+  
+  },
+  
   data() {
     return {
-      scrollDown: 'mouse-fade-out',
+      
       
     };
   },
-  props: {
-     
-    },
-  mounted() {
-    document.addEventListener("mousewheel", function(event){
-  if(event.wheelDelta >= 0){
-    this.scrollDown = '111'
-  }else{
-    this.scrollDown = 'mouse-fade-out'
-    console.log('object :>> ', this.scrollDown);
-  }
-})
+  computed: {
+    setOpacity(){
+      return this.scrollState.ypos - window.innerHeight * this.scrollState.activeSection > 50 ? "mouse-fade-out":""
+    }
   },
   methods: {
     
@@ -40,6 +47,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .mouse{
+    opacity: v-bind(setOpacity);
+    transition: opacity .25s ease;
     position:relative;
     width: 40px;
     height: 70px;
@@ -84,7 +93,7 @@ export default {
   }
   .mouse-fade-out{
     opacity: 0;
-    transition: opacity .5s ease;
+    transition: opacity .25s ease;
   }
       
 

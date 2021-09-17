@@ -2,7 +2,7 @@
       <Navbar :navItems="navItems" :displaySize="displaySize" :activeMenuItem="activeMenuItem" @selectedMenuItem="goToSection"></Navbar>
       
       <!-- <router-view/> -->
-      <div id="main" class="scroll-snap-container parallax">
+      <div @scroll="globalScroll" id="main" class="scroll-snap-container parallax">
         <Home></Home>
         <About></About>
         <Skills></Skills>
@@ -17,6 +17,7 @@
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // gsap.registerPlugin(ScrollTrigger);
+import { computed, provide, reactive } from "vue"
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import Skills from "@/views/Skills.vue";
@@ -26,6 +27,18 @@ import Navbar from "@/components/Navbar.vue";
 export default {
   components:{
     Home, About, Skills, Portfolio, Contact, Navbar,
+  },
+  setup() {
+    const scrollState = reactive({
+      ypos: 0,
+      activeSection: 0,
+    });
+
+    // provide('ypos', computed(() => scrollState.ypos));
+    // provide('activeSection', computed(() => scrollState.activeSection));
+    provide('scrollState', computed(() => scrollState));
+
+    return { scrollState };
   },
   data() {
      return {
@@ -54,6 +67,7 @@ export default {
        
        
        },
+      
        displaySize: null,
        activeMenuItem: '',
        observer: null,
@@ -62,6 +76,7 @@ export default {
        previousY: 0,
      }
    },
+   
    created(){
      window.addEventListener('resize', this.onResize)
    },
@@ -88,6 +103,10 @@ export default {
     },
   },
   methods: {
+     globalScroll(e) {
+      this.scrollState.ypos = e.target.scrollTop
+      this.scrollState.activeSection =  Object.keys(this.navItems).indexOf(this.activeMenuItem)
+    },
     onResize() {
       const ua = navigator.userAgent;
       if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)){
@@ -361,7 +380,7 @@ p{
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    perspective: .5cm;
+    perspective: .55cm;
     perspective-origin: center;
     
   }
@@ -385,46 +404,44 @@ p{
   .parallax-layer-base {
     -webkit-transform: translateZ(0cm);
     transform: translateZ(0cm);
-    /* border: 1px solid white; */
     font-size:56px;
     /* font-family: Arial, Helvetica, sans-serif; */
     z-index: 5;
 
   }
   .parallax-layer-back {
-    -webkit-transform: translateZ(-0.1cm) scale(1.1);
-    transform: translateZ(-0.1cm) scale(1.1);
+    -webkit-transform: translateZ(-0.1cm) scale(1.16);
+    transform: translateZ(-0.1cm) scale(1.16);
     z-index: 4;
-    
   }
   .parallax-layer-deep {
-    -webkit-transform: translateZ(-.2cm) scale(1.1);
-    transform: translateZ(-.2cm) scale(1.2);
+    -webkit-transform: translateZ(-.2cm) scale(1.3);
+    transform: translateZ(-.2cm) scale(1.3);
     z-index: 3;
     background-repeat: no-repeat;
     background-size: 300px auto;
     background-position: center right;
   }
   .parallax-layer-deepest {
-    -webkit-transform: translateZ(-.3cm) scale(1.4);
-    transform: translateZ(-.3cm) scale(1.3);
+    -webkit-transform: translateZ(-0.3cm) scale(1.3);
+    transform: translateZ(-0.3cm) scale(1.3);
     z-index: 2;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
   }
   .back-title{
-    margin-top: 1rem;
+    margin-bottom: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
   .mouse-scroll-down{
     display: none;
   }
   .back-title h1 {
-    font-size: 400px;
+    font-size: 300px;
     color: var(--background700);
     opacity: .1;
   }
@@ -466,7 +483,7 @@ p{
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
   html, body{
-   overflow: hidden;
+   /* overflow: hidden; */
    width: 100%; 
    width: 100vw;
    padding: relative;

@@ -1,6 +1,7 @@
 <template>
   
-  <div  class="section parallax-group" id="home">
+  <div class="section parallax-group" id="home" ref="home"
+  @mousewheel="mWheel" @scroll="mScroll">
      <div class="parallax-layer parallax-layer-base">
       <p>language</p>
     </div>
@@ -18,6 +19,7 @@
             </SplitTitle>
           </div>
         </div>
+        
       </div>
       <div class="parallax-layer parallax-layer-deep subtitle">
         <SplitTitle animation="randomfadein" :animationDelay=2100>
@@ -34,11 +36,32 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import SplitTitle from "@/components/SplitTitle.vue";
-import MouseScrollDown from "@/components/MouseScrollDown.vue";
+import SplitTitle from "@/components/SplitTitle.vue"
+import MouseScrollDown from "@/components/MouseScrollDown.vue"
+import { mouseWheelDirection } from '../composables/MouseWheelFunctions.js'
+
 export default {
   name: "Home",
   components: {SplitTitle, MouseScrollDown},
+  data() {
+    return {
+      mouseWheelDirection: ''
+    }
+  },
+ 
+  methods: {
+    mWheel(e) {
+      this.mouseWheelDirection = mouseWheelDirection(e).mouseWheelDirection
+      // console.log('object :>> ', mouseWheelDirection(e));
+    },
+    mScroll(e) {
+      
+      console.log('scroll e :>> ', e);
+    },
+
+  },
+  
+  
 };
 </script>
 <style scoped>

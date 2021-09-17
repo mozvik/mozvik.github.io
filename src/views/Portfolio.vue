@@ -20,18 +20,18 @@
     </div>  
    
     <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <div>eger-scroll down</div>
+      <MouseScrollDown></MouseScrollDown>
     </div>
   </div>
 </template>
 
 <script>
 import Slider from "@/components/Slider.vue";
-
+import MouseScrollDown from "@/components/MouseScrollDown.vue";
 export default {
   name: "Portfolio",
    components:{
-    Slider,
+    Slider, MouseScrollDown
     
    },
   data() {

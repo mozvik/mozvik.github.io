@@ -33,18 +33,18 @@
       </div>
     </div>
     <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <div>eger-scroll down</div>
+      <MouseScrollDown></MouseScrollDown>
     </div>
   </div>
     
 </template>
 
 <script>
-// import { Icon } from "@iconify/vue";
+import MouseScrollDown from "@/components/MouseScrollDown.vue";
 export default {
   name: "Skills",
   components: {
-    // Icon,
+    MouseScrollDown
   },
   data() {
     return {
