@@ -51,12 +51,12 @@ button {
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 18px;
+  /* font-size: 18px; */
   border-radius: 3px;
   border: 3px solid var(--primary);
   overflow: hidden;
   transition: color 300ms ease-in-out;
-  padding: 0.5em 2em;
+  padding: 0.25em 2em;
   margin: .5rem;
   display: flex;
   flex-direction: row;
@@ -74,14 +74,14 @@ button > .btn-icon {
   transform: translate(-0.5rem, 7rem);
   display: inline-block;
   text-align: left;
-  font-size: 20px;
+  font-size: 18px;
   transition: all 300ms ease-in-out;
 }
 button:hover > .btn-icon {
   margin: 0;
   padding: 0;
   color: var(--primary);
-  transform: translate(-0.5rem, 0);
+  transform: translate(-0.5rem, 0.19rem);
   transition: all 300ms ease-in-out;
 }
 button > .btn-text {
