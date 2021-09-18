@@ -65,7 +65,6 @@ export default {
           el.textContent[index] +
           "</span>";
       }
-      console.log("ele :>> ", el, spans.value);
       el.innerHTML = spans.value;
     }
     function randomFadeIn() {
