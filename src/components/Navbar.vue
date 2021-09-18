@@ -69,22 +69,19 @@
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
   name: "Navbar",
-  data() {
-    return {
-      menuActive: false,
-    };
-  },
   props: {
     navItems: Object,
     displaySize: Number,
     activeMenuItem: String,
   },
   emits: ["selectedMenuItem"],
-  methods: {
-   
-  }
+  setup(){
+    const menuActive = ref(false)
+    return {menuActive}
+  },
 };
 </script>
 

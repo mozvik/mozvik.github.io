@@ -23,6 +23,7 @@
     <div class="parallax-layer parallax-layer-back " id="skillbox">
       <div class="skillbox-container">
         <div class="skill-list">
+          
           <ul>
             <li v-for="(item, index) in skillData" :key="item.stack" class="my-skills"
             :style="{ '--delay': ( index * 200 ) + 300 + 'ms' }">
@@ -40,16 +41,16 @@
 </template>
 
 <script>
+import { reactive } from "vue";
 import MouseScrollDown from "@/components/MouseScrollDown.vue";
 export default {
   name: "Skills",
   components: {
     MouseScrollDown
   },
-  data() {
-    return {
-      skillData: [
-        {stack: 'Vue.js',
+  setup(){
+    const skillData = reactive([
+         {stack: 'Vue.js',
         progress: 0,},
         {stack: 'Angular',
         progress: 0,},
@@ -59,12 +60,9 @@ export default {
         progress: 0,},
         {stack: 'C sharp', 
         progress: 0,},
-        ]
-    };
-  },
-  // props: {
-  //   msg: String,
-  // },
+    ])
+    return {skillData}
+  },  
 };
 </script>
 

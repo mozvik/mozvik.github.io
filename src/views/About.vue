@@ -37,25 +37,6 @@ import MouseScrollDown from "@/components/MouseScrollDown.vue";
 export default {
   components: { ButtonDownload, MouseScrollDown },
   name: "About",
-  data() {
-    return {
-     
-    };
-    
-  },
-  computed: {
-   
-  },
-  methods: {
-    getContent(e) {
-      return e;
-    },
-   
-  }
-  // props: {
-  //   msg: String,
-  // },
-  
 };
 </script>
 

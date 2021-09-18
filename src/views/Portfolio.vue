@@ -32,21 +32,9 @@ export default {
   name: "Portfolio",
    components:{
     Slider, MouseScrollDown
-    
    },
-  data() {
-    return {
-    
-  }
-    
-  },
   props: {
-    
-    displaySize: Number,
-    
-  },
-  mounted() {
-   
+     displaySize: Number,
   }
 };
 </script>

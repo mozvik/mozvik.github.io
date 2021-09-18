@@ -249,9 +249,6 @@ export default {
       type: Number,
     },
   },
-
-  mounted() {},
-  computed: {},
 };
 </script>
 

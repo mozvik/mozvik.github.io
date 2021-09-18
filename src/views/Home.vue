@@ -1,21 +1,23 @@
 <template>
   
   <div class="section parallax-group" id="home" ref="home"
-  @mousewheel="mWheel" @scroll="mScroll">
-     <div class="parallax-layer parallax-layer-base">
+  @scroll="mScroll">
+     <div class="parallax-layer parallax-layer-base switch-line">
       <p>language</p>
+      <p>dark mode</p>
     </div>
       <div class="parallax-layer parallax-layer-base title">
         <div class="title-home">
           <div class="title to-right">
-            <SplitTitle animation="randomfadein" :animationDelay=2110>
-              <h1 class=" light-stroke">Hello, I'm </h1>
+            <SplitTitle animation="randomfadein" letterKick=true :animationDelay=2110>
+              <h1 class=" light-stroke">Hello,&nbsp;I'm </h1>
             </SplitTitle>
           
           </div>
           <div class="title to-left light">
-            <SplitTitle animation="randomfadein" :animationDelay=2100>
-                <h1>Attila Mozvik</h1>
+            <SplitTitle animation="randomfadein" 
+            letterKick=true :animationDelay=2100>
+                <h1>Attila&nbsp;Mozvik</h1>
             </SplitTitle>
           </div>
         </div>
@@ -23,7 +25,7 @@
       </div>
       <div class="parallax-layer parallax-layer-deep subtitle">
         <SplitTitle animation="randomfadein" :animationDelay=2100>
-            <h3>Web & Software Developer</h3>
+            <h3>Web&nbsp;&amp;&nbsp;Software&nbsp;Developer</h3>
         </SplitTitle>
         
       </div>
@@ -34,34 +36,13 @@
 </template>
 
 <script>
-// @ is an alias to /src
-//import HelloWorld from "@/components/HelloWorld.vue";
+
 import SplitTitle from "@/components/SplitTitle.vue"
 import MouseScrollDown from "@/components/MouseScrollDown.vue"
-import { mouseWheelDirection } from '../composables/MouseWheelFunctions.js'
 
 export default {
   name: "Home",
   components: {SplitTitle, MouseScrollDown},
-  data() {
-    return {
-      mouseWheelDirection: ''
-    }
-  },
- 
-  methods: {
-    mWheel(e) {
-      this.mouseWheelDirection = mouseWheelDirection(e).mouseWheelDirection
-      // console.log('object :>> ', mouseWheelDirection(e));
-    },
-    mScroll(e) {
-      
-      console.log('scroll e :>> ', e);
-    },
-
-  },
-  
-  
 };
 </script>
 <style scoped>
@@ -99,6 +80,11 @@ export default {
   justify-self: flex-start;
   padding-left: .5rem;
   display: inline-block;
+}
+.switch-line{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 } 
 /****************************************************** */

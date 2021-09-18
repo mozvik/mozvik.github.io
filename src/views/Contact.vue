@@ -57,10 +57,7 @@ export default {
         anchor: '',
       },
     };
-  },
-  // props: {
-  //   msg: String,
-  // },
+  },  
 };
 </script>
 
@@ -142,7 +139,7 @@ export default {
   }
   form{
     margin-top: 0;
-    margin-bottom: 4.5rem;
+    margin-bottom: 4.25rem;
     width: 40vw;
     max-width: 800px;
   }
