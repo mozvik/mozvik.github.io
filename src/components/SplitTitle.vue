@@ -1,12 +1,13 @@
 <template>
   <transition name="randomfadein" appear>
-    <div ref="split">
+    <div class="split" ref="split">
       <slot></slot>
     </div>
   </transition>
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
 export default {
   name: "SplitTitle",
   props: {
@@ -16,69 +17,315 @@ export default {
       required: false,
       default: 1000,
     },
+    letterKick: {
+      type: [Boolean, String],
+      required: false,
+      default: false,
+    },
   },
-  data() {
-    return {};
-  },
-  mounted() {
-    this.splitContent(this.$refs.split);
-    if (this.animation === "randomfadein") this.randomFadeIn();
-  },
-  computed: {},
-  methods: {
-    randomFadeIn() {
-      let array = this.$refs.split.querySelectorAll("span");
+  setup(props) {
+    const split = ref(null);
+    const mouseY = ref(0);
+    const mouseX = ref(0);
+    const mouseDirectionY = ref("");
+    const mouseDirectionX = ref("");
+    const spans = ref("");
+    onMounted(() => {
+      splitContent(split.value);
+      if (props.animation === "randomfadein") randomFadeIn();
+      document.addEventListener("mousemove", direction);
+      if (props.letterKick) setupKickableSpans(split.value);
+    });
+
+    function splitContent(ele) {
+      let el = ele.querySelector("h1,h3");
+      spans.value = "";
+      for (let index = 0; index < el.textContent.length; index++) {
+        let t = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
+        spans.value +=
+          "<span id='" +
+          index +
+          "-" +
+          index +
+          "-" +
+          index +
+          "letter' style='--xvar:" +
+          index +
+          "; --xpos:" +
+          (Math.floor(Math.random() * 500) - 250) +
+          "px; --ypos:" +
+          (Math.floor(Math.random() * 450) - 400) +
+          "px; --angle:" +
+          (Math.floor(Math.random() * 300) + 60) +
+          "deg; --mtp:" +
+          t +
+          "; --scale:" +
+          Math.random() +
+          ";'>" +
+          el.textContent[index] +
+          "</span>";
+      }
+      console.log("ele :>> ", el, spans.value);
+      el.innerHTML = spans.value;
+    }
+    function randomFadeIn() {
+      let array = split.value.querySelectorAll("span");
       array.forEach((element) => {
         element.style =
           "--rnd: " +
-          (Math.floor(Math.random() * this.animationDelay) + 1042) +
+          (Math.floor(Math.random() * props.animationDelay) + 1042) +
           "ms; --rnda: " +
           (Math.floor(Math.random() * 2000) + 1042) +
           "ms";
-        element.classList.add(this.animation);
+        element.classList.add(props.animation);
       });
-    },
-    splitContent(ele) {
-      let exit = false;
-      let innerArray = ele.innerHTML;
-      let currentPos = 0;
-      do {
-        let leftArrowIndex = innerArray.indexOf(">", currentPos);
-        if (leftArrowIndex < 0) exit = true;
-        else {
-          currentPos = leftArrowIndex + 1;
-          let rightArrowIndex = innerArray.indexOf("<", currentPos);
-          if (rightArrowIndex < 0) exit = true;
-          else {
-            let spanUnescaped = innerArray
-              .substring(leftArrowIndex + 1, rightArrowIndex)
-              .replace(/&amp;/g, "&")
-              .replace(/&lt;/g, "<")
-              .replace(/&gt;/g, ">");
-            let span = innerArray.substring(
-              leftArrowIndex + 1,
-              rightArrowIndex
-            );
-            let x = "";
-            for (let index = 0; index < spanUnescaped.length; index++) {
-              const element = spanUnescaped[index];
-              if (element != "") x += "<span>" + element + "</span>";
-            }
-            ele.innerHTML = ele.innerHTML.replace(span, x);
-            currentPos = rightArrowIndex;
-          }
+    }
+    function direction(e) {
+      if (e.pageY == mouseY.value) mouseDirectionY.value = "";
+      else if (e.pageY < mouseY.value) mouseDirectionY.value = "top";
+      else mouseDirectionY.value = "bottom";
+
+      if (e.pageX == mouseX.value) mouseDirectionX.value = "";
+      else if (e.pageX < mouseX.value) mouseDirectionX.value = "left";
+      else mouseDirectionX.value = "right";
+
+      mouseY.value = e.pageY;
+      mouseX.value = e.pageX;
+    }
+    function setupKickableSpans(spanContainer) {
+      let elements = spanContainer.querySelectorAll("span");
+      elements.forEach((element) => {
+        element.addEventListener("animationend", animEnd);
+      });
+    }
+    function mouseEnter(e) {
+      if (!e.target.classList.contains("kick")) {
+        if (mouseDirectionX.value === "left" && mouseDirectionY.value === "") {
+          e.target.classList.add("kick-to-left");
         }
-      } while (!exit);
-    },
-    elementTextToSpan(ele) {
-      return ele.textContent;
-    },
-    makeSpans(letter) {
-      this.spans += "<span>" + letter + "</span>";
-    },
+        if (mouseDirectionX.value === "right" && mouseDirectionY.value === "") {
+          e.target.classList.add("kick-to-right");
+        }
+        if (mouseDirectionX.value === "" && mouseDirectionY.value === "top") {
+          e.target.classList.add("kick-to-top");
+        }
+        if (
+          mouseDirectionX.value === "" &&
+          mouseDirectionY.value === "bottom"
+        ) {
+          e.target.classList.add("kick-to-bottom");
+        }
+        if (
+          mouseDirectionX.value === "right" &&
+          mouseDirectionY.value === "bottom"
+        ) {
+          e.target.style =
+            " --xm: " +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px;" +
+            " --ym: " +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px; --angle: " +
+            (Math.floor(Math.random() * 40) + 160) +
+            "deg; --speed: " +
+            (Math.floor(Math.random() * 440) + 660) +
+            "ms;";
+          e.target.classList.add("kick-to-bottom-right");
+        }
+        if (
+          mouseDirectionX.value === "left" &&
+          mouseDirectionY.value === "bottom"
+        ) {
+          e.target.style =
+            " --xm: -" +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px;" +
+            " --ym: " +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px; --angle: -" +
+            (Math.floor(Math.random() * 40) + 160) +
+            "deg; --speed: " +
+            (Math.floor(Math.random() * 440) + 660) +
+            "ms;";
+          e.target.classList.add("kick-to-bottom-left");
+        }
+        if (
+          mouseDirectionX.value === "right" &&
+          mouseDirectionY.value === "top"
+        ) {
+          e.target.style =
+            " --xm: " +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px;" +
+            " --ym: -" +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px; --angle: " +
+            (Math.floor(Math.random() * 40) + 160) +
+            "deg; --speed: " +
+            (Math.floor(Math.random() * 440) + 660) +
+            "ms;";
+          e.target.classList.add("kick-to-top-right");
+        }
+        if (
+          mouseDirectionX.value === "left" &&
+          mouseDirectionY.value === "top"
+        ) {
+          e.target.style =
+            " --xm: -" +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px;" +
+            " --ym: -" +
+            (Math.floor(Math.random() * 35) + 35) +
+            "px; --angle: -" +
+            (Math.floor(Math.random() * 40) + 160) +
+            "deg; --speed: " +
+            (Math.floor(Math.random() * 440) + 660) +
+            "ms;";
+          e.target.classList.add("kick-to-top-left");
+        }
+      }
+    }
+    function animEnd(e) {
+      if (e.animationName.includes("fadein")) {
+        e.target.classList.remove("randomfadein");
+        e.target.addEventListener("mouseenter", mouseEnter);
+        return;
+      }
+      let arr = [];
+      for (let index = 0; index < e.target.classList.length; index++) {
+        arr[index] = e.target.classList[index];
+      }
+
+      arr
+        .filter((x) => x.includes("kick"))
+        .forEach((element) => {
+          e.target.classList.remove(element);
+        });
+    }
+    return {
+      // It is important to return the ref,
+      // otherwise it won't work.
+      split,
+    };
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style>
+.split span {
+  display: inline-block;
+}
+.kick-to-left {
+  animation: kick-to-left 0.9s ease 1 forwards;
+}
+@keyframes kick-to-left {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-50px) skewX(13deg);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.kick-to-right {
+  animation: kick-to-right 0.9s ease 1 forwards;
+}
+@keyframes kick-to-right {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(50px) skewX(-13deg);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.kick-to-bottom-right {
+  animation: kick-to-bottom-right var(--speed) ease 1 forwards;
+}
+@keyframes kick-to-bottom-right {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(var(--xm)) translateY(var(--ym)) rotate(var(--angle));
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(360deg);
+  }
+}
+.kick-to-bottom-left {
+  animation: kick-to-bottom-left var(--speed) ease 1 forwards;
+}
+@keyframes kick-to-bottom-left {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(var(--xm)) translateY(var(--ym)) rotate(var(--angle));
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(-360deg);
+  }
+}
+.kick-to-top-right {
+  animation: kick-to-top-right var(--speed) ease 1 forwards;
+}
+@keyframes kick-to-top-right {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(var(--xm)) translateY(var(--ym)) rotate(var(--angle));
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(360deg);
+  }
+}
+.kick-to-top-left {
+  animation: kick-to-top-left var(--speed) ease 1 forwards;
+}
+@keyframes kick-to-top-left {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(var(--xm)) translateY(var(--ym)) rotate(var(--angle));
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(-360deg);
+  }
+}
+.kick-to-top {
+  animation: kick-to-top 1s ease 1 forwards !important;
+}
+@keyframes kick-to-top {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-50px) scaleY(1.4) scaleX(0.75);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.kick-to-bottom {
+  animation: kick-to-bottom 1s ease 1 forwards;
+}
+@keyframes kick-to-bottom {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(50px) scaleY(1.4) scaleX(0.75);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+</style>
