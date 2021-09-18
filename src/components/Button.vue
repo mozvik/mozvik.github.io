@@ -31,14 +31,9 @@ export default {
         },
         anchor: {
           type: String,
-          
         },
       },
-    },
-  mounted() {
-    
-  },
-  methods: {},
+    },  
 };
 </script>
 

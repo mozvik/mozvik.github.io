@@ -14,17 +14,7 @@ export default {
   name: "ButtonDownload",
   components: {
     Icon,
-  },
-  data() {
-    return {};
-  },
-  props: {
-   
-    },
-  mounted() {
-    
-  },
-  methods: {},
+  },  
 };
 </script>
 
