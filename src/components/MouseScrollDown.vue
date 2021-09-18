@@ -7,7 +7,7 @@
 
   
 <script>
-import { inject, ref } from 'vue'
+import { inject, ref, computed } from 'vue'
 
 export default {
   name: "MouseScrollDown",
@@ -17,29 +17,14 @@ export default {
   setup() {
     const scrollState = inject('scrollState')
     const opacity = ref(1) 
-        
+    const setOpacity = computed(() => 
+      scrollState.value.ypos - window.innerHeight * scrollState.value.activeSection > 50 ? "mouse-fade-out":""
+    )
     return {
       scrollState,
-      opacity
+      opacity,
+      setOpacity,
     }
-  },
-  props:{
-  
-  },
-  
-  data() {
-    return {
-      
-      
-    };
-  },
-  computed: {
-    setOpacity(){
-      return this.scrollState.ypos - window.innerHeight * this.scrollState.activeSection > 50 ? "mouse-fade-out":""
-    }
-  },
-  methods: {
-    
   },
 };
 </script>
