@@ -17,7 +17,7 @@
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // gsap.registerPlugin(ScrollTrigger);
-import { computed, provide, reactive } from "vue"
+import { computed, provide, reactive, onMounted, ref } from "vue"
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import Skills from "@/views/Skills.vue";
@@ -32,16 +32,8 @@ export default {
     const scrollState = reactive({
       ypos: 0,
       activeSection: 0,
-    });
-
-    provide('scrollState', computed(() => scrollState));
-
-    return { scrollState };
-  },
-  data() {
-     return {
-       itemRefs: [],
-       navItems: {
+    })
+    const navItems = reactive({
          home: {
            name: "Home",
            id: "home",
@@ -62,135 +54,106 @@ export default {
            name: "Contact",
            id: "contact",
          },  
-       
-       
-       },
-      
-       displaySize: null,
-       activeMenuItem: '',
-       observer: null,
-       intersectionDirection: 0,
-       previousRatio: 0,
-       previousY: 0,
-     }
-   },
-   
-   created(){
-     window.addEventListener('resize', this.onResize)
-   },
-   mounted() {
-    this.onResize()
-    this.initSectionObserver()
-    this.initSkillObserver()
-    console.log("Mounted!")
-    this.observeSections()
-    this.observeMySkills()
-  },
-  unmounted(){
-    window.removeEventListener('resize', this.onResize)
-  },
-  computed: {
-    getSectionsRefs() {
-      return document.querySelectorAll('.section')
-    },
-    getMySkillsRefs() {
-      return document.querySelectorAll('.my-skills')
-    },
-    getSectionContainer(){
-      return document.querySelector('.scroll-snap-container');
-    },
-  },
-  methods: {
-     globalScroll(e) {
-      this.scrollState.ypos = e.target.scrollTop
-      this.scrollState.activeSection =  Object.keys(this.navItems).indexOf(this.activeMenuItem)
-    },
-    onResize() {
-      const ua = navigator.userAgent;
-      if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)){
-        this.displaySize = 0 //mobile
-        return
-      } 
-      if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)){
-        this.displaySize = 1 //tablet
-        return
-      } 
+       })
+    const displaySize = ref(null)
+    const activeMenuItem = ref(null)
+    const sectionObserver = ref(null)
+    const skillObserver = ref(null)
+    
+    onMounted(() =>{
+      onResize()
+      window.addEventListener('resize', onResize)
+      initSectionObserver()
+      initSkillObserver()
+      observeSections()
+      observeMySkills()
+    })
 
-      if (window.innerWidth <= 480) {
-        this.displaySize = 0 //mobile
-      } else if (window.innerWidth <= 768){
-        this.displaySize = 1 //tablet
-      } else if (window.innerWidth < 992){
-        
+    const sections = computed(() =>
+      document.querySelectorAll('.section'))
+    const mySkills = computed(() =>
+      document.querySelectorAll('.my-skills'))
+    const sectionContainer = computed(() =>
+      document.querySelector('.scroll-snap-container'))
 
-        this.displaySize = 2 //small screen/laptop
-      } else if (window.innerWidth <= 1200){
-        this.displaySize = 3 //desktop
-      } else this.displaySize = 4 //large screens
-      
-    },
-    setItemRef(el) {
-      if (el && this.itemRefs.indexOf(el) === -1) {
-        this.itemRefs.push(el)
-      }
-    },
-    beforeUpdate() {
-    this.itemRefs = []
-    },
-    updated() {
-    // console.log(this.itemRefs)
-    },
-    goToSection(sectionName) {
-            console.log('sectionName :>> ', sectionName);
-            this.getSectionContainer.scrollTo({
-              top: document.getElementById(sectionName).offsetTop - 100,
-              left: 0,
-              behavior: 'auto'
-            });
-            
-    },
-    observeSections() {
-      this.getSectionsRefs.forEach(section => {
-        this.sectionObserver.observe(section)
-      });
-    },
-    observeMySkills() {
-      this.getMySkillsRefs.forEach(skills => {
-        this.skillObserver.observe(skills)
-      });
-    },
-    initSectionObserver() {
+    provide('scrollState', computed(() => scrollState))
+
+    function onResize() {
+    const ua = navigator.userAgent
+    if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)){
+        displaySize.value = 0 //mobile
+        return
+    } 
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)){
+        displaySize.value = 1 //tablet
+        return
+    } 
+
+    if (window.innerWidth <= 480) {
+      displaySize.value = 0 //mobile
+    } else if (window.innerWidth <= 768){
+      displaySize.value = 1 //tablet
+    } else if (window.innerWidth < 992){
+      displaySize.value = 2 //small screen/laptop
+    } else if (window.innerWidth <= 1200){
+      displaySize.value = 3 //desktop
+    } else displaySize.value = 4 //large screens
+    return    
+    }
+    function observeSections() {
+      sections.value.forEach(section => {
+        sectionObserver.value.observe(section)
+      })
+    }
+    function observeMySkills() {
+      mySkills.value.forEach(skills => {
+        skillObserver.value.observe(skills)
+      })
+    }
+    function initSectionObserver() {
       const options = {
          threshold: [0.5]
       }
-      this.sectionObserver = new IntersectionObserver(entries => {
+      sectionObserver.value = new IntersectionObserver(entries => {
         const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
         if(active.length) {
-          this.activeMenuItem = active[0].target.id
+          activeMenuItem.value = active[0].target.id
         }
       },options)
-    },
-    initSkillObserver() {
+    }
+    function initSkillObserver() {
       const options = {
          threshold: [0.5]
       }
-      this.skillObserver = new IntersectionObserver(entries => {
+      skillObserver.value = new IntersectionObserver(entries => {
         const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
          if(active.length) {
           active.forEach(element => {
             if (element.target.className.includes('my-skills') && element.isIntersecting) { 
               document.querySelector('.skill-list>ul').classList.add('skill-list-animated')
               element.target.classList.add('my-skills-animated')
-              this.skillObserver.unobserve(element.target)
+              skillObserver.value.unobserve(element.target)
             }
           });
         }
        
         
       },options)
-    },
-
-  },
+    }
+    function goToSection(sectionName) {
+            sectionContainer.value.scrollTo({
+              top: document.getElementById(sectionName).offsetTop - 100,
+              left: 0,
+              behavior: 'auto'
+            });
+    }
+    function globalScroll(e) {
+      scrollState.ypos = e.target.scrollTop
+      scrollState.activeSection =  Object.keys(navItems).indexOf(activeMenuItem.value)
+    }
+    return { scrollState, displaySize, activeMenuItem, goToSection, globalScroll, navItems }
+  }
+ 
 }
 
 

@@ -36,10 +36,8 @@ export default {
       document.addEventListener("mousemove", direction);
       if (props.letterKick) setupKickableSpans(split.value);
     });
-
     function splitContent(ele) {
       let el = ele.querySelector("h1,h3");
-      spans.value = "";
       for (let index = 0; index < el.textContent.length; index++) {
         let t = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
         spans.value +=
@@ -205,6 +203,11 @@ export default {
       // It is important to return the ref,
       // otherwise it won't work.
       split,
+      spans,
+      mouseY,
+      mouseX,
+      mouseDirectionY,
+      mouseDirectionX,
     };
   },
 };
