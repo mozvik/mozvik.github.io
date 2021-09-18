@@ -34,8 +34,6 @@ export default {
       activeSection: 0,
     });
 
-    // provide('ypos', computed(() => scrollState.ypos));
-    // provide('activeSection', computed(() => scrollState.activeSection));
     provide('scrollState', computed(() => scrollState));
 
     return { scrollState };
