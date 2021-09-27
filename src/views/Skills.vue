@@ -108,6 +108,9 @@ export default {
 }
 /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 992px) {
+  #skills .content{
+    margin-top: 10vh;
+  }
   #skillbox ul{
   
   width: 25vw;
@@ -121,7 +124,7 @@ export default {
    align-items: center;
    justify-content: space-between;
    height: 100vh;
-
+   margin-top: 0;
   }
   #skillbox{
   
