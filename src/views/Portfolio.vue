@@ -51,7 +51,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: start;
+    justify-content: flex-start;
     padding-left: 1rem;
     padding-right: 1rem;
     /* height: 100vh; */
@@ -72,7 +72,7 @@ export default {
    display: flex;
    flex-direction: column;
    align-items: start;
-   justify-content: space-between;
+   justify-content: center;
    height: 100vh;
    padding: 0 1rem;
    /* padding-bottom: 1rem; */
@@ -88,13 +88,14 @@ export default {
   height: 100vh;
 }
    #portfolio .content{
+    
      padding-left: 5.5rem;
      padding-right: 5.5rem;
    }
   
   #portfolio .content .projects-container, .card-item{
     width: 100%;
-    max-width: 1600px;
+    max-width: 800px;
     /* margin: 0 auto; */
   }
 }
