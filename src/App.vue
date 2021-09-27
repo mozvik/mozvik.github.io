@@ -33,6 +33,9 @@ export default {
       ypos: 0,
       activeSection: 0,
     })
+    const language = reactive({
+      selected: "hu"
+    })
     const navItems = reactive({
          home: {
            name: "Home",
@@ -77,6 +80,7 @@ export default {
       document.querySelector('.scroll-snap-container'))
 
     provide('scrollState', computed(() => scrollState))
+    provide('language', computed(() => language))
 
     function onResize() {
     const ua = navigator.userAgent
@@ -325,6 +329,7 @@ p{
 }
 .title{
   margin-bottom: 2rem;
+  
 }
 .randomfadein {
   opacity: 0;
@@ -353,6 +358,7 @@ p{
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     overflow: hidden;
+    /* pointer-events: none; */
   } 
 .parallax-layer {
     position: absolute;
@@ -360,7 +366,7 @@ p{
     left: 0;
     right: 0;
     bottom: 0;
-
+    
   }
   .parallax-layer-base {
     -webkit-transform: translateZ(0cm);
@@ -368,24 +374,24 @@ p{
     font-size:56px;
     /* font-family: Arial, Helvetica, sans-serif; */
     z-index: 5;
-
+    
   }
   .parallax-layer-back {
-    -webkit-transform: translateZ(-0.1cm) scale(1.16);
-    transform: translateZ(-0.1cm) scale(1.16);
+    -webkit-transform: translateZ(-0.1cm) scale(1.00);
+    transform: translateZ(-0.1cm) scale(1.00);
     z-index: 4;
   }
   .parallax-layer-deep {
-    -webkit-transform: translateZ(-.2cm) scale(1.3);
-    transform: translateZ(-.2cm) scale(1.3);
+    -webkit-transform: translateZ(-.2cm) scale(1.37);
+    transform: translateZ(-.2cm) scale(1.37);
     z-index: 3;
     background-repeat: no-repeat;
     background-size: 300px auto;
     background-position: center right;
   }
   .parallax-layer-deepest {
-    -webkit-transform: translateZ(-0.3cm) scale(1.3);
-    transform: translateZ(-0.3cm) scale(1.3);
+    -webkit-transform: translateZ(-0.3cm) scale(1.55);
+    transform: translateZ(-0.3cm) scale(1.55);
     z-index: 2;
     background-repeat: no-repeat;
     background-position: center center;
@@ -437,7 +443,7 @@ p{
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding-bottom: 0rem;
+    padding-bottom: 5rem;
   }
 }
 /****************************************************** */
