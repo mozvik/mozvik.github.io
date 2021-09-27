@@ -4,10 +4,10 @@
       <div class="logo">
         <div>
           <img class=""
-            src="/am5.png"
+            src="/logo-full-en-white.svg"
             alt="logo"
-            width="250"
-            height="250"
+            width="140"
+            height="40"
           />
         </div>
       </div>
@@ -29,12 +29,14 @@
     </div>
     <transition name="roll-in" appear>
     <div class="navbar" v-if="menuActive || displaySize > 2">
+      
+
       <div class="logo" v-if="displaySize >= 3">
         <div>
           <img class=""
-            src="/am5.png"
+            src="/logo-full-en-white.svg"
             alt="logo"
-            width="250"
+            width="180"
             height="250"
           />
         </div>
@@ -43,7 +45,7 @@
       <div class="nav-items" >
         <ul>
           <li
-            v-for="item in navItems"
+            v-for="item in languageData.navItems"
             class
             :key="item"
             :class="{ 'active-menu-item': item.id == activeMenuItem }"
@@ -52,15 +54,14 @@
             <a :href="'#' + item.id">{{ item.name }}</a>
           </li>
         </ul>
-        
       </div>
       
       <div class="social">
               <div class="social-icon "><i class="lni lni-facebook"></i></div>
               <div class="social-icon"><i class="lni lni-linkedin"></i></div>
               <div class="social-icon"><i class="lni lni-github"></i></div>
-        </div>
-      
+      </div>
+      <div class="navbar-bg" @click="menuActive = !menuActive"></div>
       
 
     </div>
@@ -69,7 +70,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from "vue"
+import Languages from "@/components/Languages.vue"
 export default {
   name: "Navbar",
   props: {
@@ -80,7 +82,11 @@ export default {
   emits: ["selectedMenuItem"],
   setup(){
     const menuActive = ref(false)
-    return {menuActive}
+    const { language, languageData } = Languages()
+    
+    return {menuActive,language, languageData
+     }
+    
   },
 };
 </script>
@@ -189,8 +195,12 @@ nav a {
   background: var(--primary);
 
 }
-
-
+.logo {
+  text-align: center;
+}
+.mobile-bar .logo img{
+  padding-top: 8px;
+}
 .social-icon{
   height: 2.8rem;
   width: 2.8rem;
@@ -236,6 +246,17 @@ nav a {
     height: 100vh;
     z-index: 2;
     background: var(--background);
+}
+.navbar-bg {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200vw;
+  background: var(--background);
+  z-index: -1;
+  opacity: .5;
 }
 
 .fade-enter-active,
