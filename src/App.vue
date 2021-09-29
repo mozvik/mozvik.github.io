@@ -1,15 +1,19 @@
 <template>
-      <Navbar :navItems="navItems" :displaySize="displaySize" :activeMenuItem="activeMenuItem" @selectedMenuItem="goToSection"></Navbar>
-      
-      <!-- <router-view/> -->
-      <div @scroll="globalScroll" id="main" class="scroll-snap-container parallax">
-        <Home></Home>
-        <About></About>
-        <Skills></Skills>
-        <Portfolio :displaySize="displaySize"></Portfolio>
-        <Contact></Contact>
-      </div>
-    
+  <Navbar
+    :navItems="navItems"
+    :displaySize="displaySize"
+    :activeMenuItem="activeMenuItem"
+    @selectedMenuItem="goToSection"
+  ></Navbar>
+
+  <!-- <router-view/> -->
+  <div @scroll="globalScroll" id="main" class="scroll-snap-container parallax">
+    <Home></Home>
+    <About></About>
+    <Skills></Skills>
+    <Portfolio :displaySize="displaySize"></Portfolio>
+    <Contact></Contact>
+  </div>
 </template>
 
 <script>
@@ -17,7 +21,7 @@
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // gsap.registerPlugin(ScrollTrigger);
-import { computed, provide, reactive, onMounted, ref } from "vue"
+import { computed, provide, reactive, onMounted, ref } from "vue";
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import Skills from "@/views/Skills.vue";
@@ -25,138 +29,165 @@ import Portfolio from "@/views/Portfolio.vue";
 import Contact from "@/views/Contact.vue";
 import Navbar from "@/components/Navbar.vue";
 export default {
-  components:{
-    Home, About, Skills, Portfolio, Contact, Navbar,
+  components: {
+    Home,
+    About,
+    Skills,
+    Portfolio,
+    Contact,
+    Navbar,
   },
   setup() {
     const scrollState = reactive({
       ypos: 0,
       activeSection: 0,
-    })
+    });
+    const language = reactive({
+      selected: "hu",
+    });
     const navItems = reactive({
-         home: {
-           name: "Home",
-           id: "home",
-           },
-         about: {
-           name:"About",
-           id: "about",
-         },
-         skills: {
-           name: "Skills",
-           id: "skills",
-         },
-         portfolio: {
-           name: "Portfolio",
-           id: "portfolio",
-         },
-         contact: {
-           name: "Contact",
-           id: "contact",
-         },  
-       })
-    const displaySize = ref(null)
-    const activeMenuItem = ref(null)
-    const sectionObserver = ref(null)
-    const skillObserver = ref(null)
-    
-    onMounted(() =>{
-      onResize()
-      window.addEventListener('resize', onResize)
-      initSectionObserver()
-      initSkillObserver()
-      observeSections()
-      observeMySkills()
-    })
+      home: {
+        name: "Home",
+        id: "home",
+      },
+      about: {
+        name: "About",
+        id: "about",
+      },
+      skills: {
+        name: "Skills",
+        id: "skills",
+      },
+      portfolio: {
+        name: "Portfolio",
+        id: "portfolio",
+      },
+      contact: {
+        name: "Contact",
+        id: "contact",
+      },
+    });
+    const displaySize = ref(null);
+    const activeMenuItem = ref(null);
+    const sectionObserver = ref(null);
+    const skillObserver = ref(null);
 
-    const sections = computed(() =>
-      document.querySelectorAll('.section'))
-    const mySkills = computed(() =>
-      document.querySelectorAll('.my-skills'))
+    onMounted(() => {
+      onResize();
+      window.addEventListener("resize", onResize);
+      initSectionObserver();
+      initSkillObserver();
+      observeSections();
+      observeMySkills();
+    });
+
+    const sections = computed(() => document.querySelectorAll(".section"));
+    const mySkills = computed(() => document.querySelectorAll(".my-skills"));
     const sectionContainer = computed(() =>
-      document.querySelector('.scroll-snap-container'))
+      document.querySelector(".scroll-snap-container")
+    );
 
-    provide('scrollState', computed(() => scrollState))
+    provide(
+      "scrollState",
+      computed(() => scrollState)
+    );
+    provide(
+      "language",
+      computed(() => language)
+    );
 
     function onResize() {
-    const ua = navigator.userAgent
-    if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)){
-        displaySize.value = 0 //mobile
-        return
-    } 
-    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)){
-        displaySize.value = 1 //tablet
-        return
-    } 
+      const ua = navigator.userAgent;
+      if (
+        /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+          ua
+        )
+      ) {
+        displaySize.value = 0; //mobile
+        return;
+      }
+      if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+        displaySize.value = 1; //tablet
+        return;
+      }
 
-    if (window.innerWidth <= 480) {
-      displaySize.value = 0 //mobile
-    } else if (window.innerWidth <= 768){
-      displaySize.value = 1 //tablet
-    } else if (window.innerWidth < 992){
-      displaySize.value = 2 //small screen/laptop
-    } else if (window.innerWidth <= 1200){
-      displaySize.value = 3 //desktop
-    } else displaySize.value = 4 //large screens
-    return    
+      if (window.innerWidth <= 480) {
+        displaySize.value = 0; //mobile
+      } else if (window.innerWidth <= 768) {
+        displaySize.value = 1; //tablet
+      } else if (window.innerWidth < 992) {
+        displaySize.value = 2; //small screen/laptop
+      } else if (window.innerWidth <= 1200) {
+        displaySize.value = 3; //desktop
+      } else displaySize.value = 4; //large screens
+      return;
     }
     function observeSections() {
-      sections.value.forEach(section => {
-        sectionObserver.value.observe(section)
-      })
+      sections.value.forEach((section) => {
+        sectionObserver.value.observe(section);
+      });
     }
     function observeMySkills() {
-      mySkills.value.forEach(skills => {
-        skillObserver.value.observe(skills)
-      })
+      mySkills.value.forEach((skills) => {
+        skillObserver.value.observe(skills);
+      });
     }
     function initSectionObserver() {
       const options = {
-         threshold: [0.5]
-      }
-      sectionObserver.value = new IntersectionObserver(entries => {
-        const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
-        if(active.length) {
-          activeMenuItem.value = active[0].target.id
+        threshold: [0.5],
+      };
+      sectionObserver.value = new IntersectionObserver((entries) => {
+        const active = entries.filter((e) => e.isIntersecting); //entry.intersectionRatio
+        if (active.length) {
+          activeMenuItem.value = active[0].target.id;
         }
-      },options)
+      }, options);
     }
     function initSkillObserver() {
       const options = {
-         threshold: [0.5]
-      }
-      skillObserver.value = new IntersectionObserver(entries => {
-        const active = entries.filter(e => e.isIntersecting);//entry.intersectionRatio 
-         if(active.length) {
-          active.forEach(element => {
-            if (element.target.className.includes('my-skills') && element.isIntersecting) { 
-              document.querySelector('.skill-list>ul').classList.add('skill-list-animated')
-              element.target.classList.add('my-skills-animated')
-              skillObserver.value.unobserve(element.target)
+        threshold: [0.5],
+      };
+      skillObserver.value = new IntersectionObserver((entries) => {
+        const active = entries.filter((e) => e.isIntersecting); //entry.intersectionRatio
+        if (active.length) {
+          active.forEach((element) => {
+            if (
+              element.target.className.includes("my-skills") &&
+              element.isIntersecting
+            ) {
+              document
+                .querySelector(".skill-list>ul")
+                .classList.add("skill-list-animated");
+              element.target.classList.add("my-skills-animated");
+              skillObserver.value.unobserve(element.target);
             }
           });
         }
-       
-        
-      },options)
+      }, options);
     }
     function goToSection(sectionName) {
-            sectionContainer.value.scrollTo({
-              top: document.getElementById(sectionName).offsetTop - 100,
-              left: 0,
-              behavior: 'auto'
-            });
+      sectionContainer.value.scrollTo({
+        top: document.getElementById(sectionName).offsetTop - 100,
+        left: 0,
+        behavior: "auto",
+      });
     }
     function globalScroll(e) {
-      scrollState.ypos = e.target.scrollTop
-      scrollState.activeSection =  Object.keys(navItems).indexOf(activeMenuItem.value)
+      scrollState.ypos = e.target.scrollTop;
+      scrollState.activeSection = Object.keys(navItems).indexOf(
+        activeMenuItem.value
+      );
     }
-    return { scrollState, displaySize, activeMenuItem, goToSection, globalScroll, navItems }
-  }
- 
-}
-
-
+    return {
+      scrollState,
+      displaySize,
+      activeMenuItem,
+      goToSection,
+      globalScroll,
+      navItems,
+    };
+  },
+};
 </script>
 
 <style>
@@ -169,14 +200,12 @@ export default {
   --background600: rgb(98, 98, 98, 1);
   --background500: rgb(126, 126, 126, 1);
   
-
   --primary: #FA7D09;
   --primary: #FA7D09;
   --primary400: #fb9637;
   --primary900: #FA7D09;
   --primary-dark: #c86407;
   --primary-light: #fb973a;
-
   /* blue gray #102a43*/
   /* --background: rgb(16, 42, 67, 1);
   --background800: rgb(36, 59, 83, 1);
@@ -192,7 +221,6 @@ export default {
   --background600: rgb(82, 96, 109, 1);
   --background500: rgb(97, 110, 124, 1);
    */
-
 /* warm gray #102a43*/
   /* --background: #27241d;
   --background800: #423d33;
@@ -200,15 +228,10 @@ export default {
   --background600: #625d52;
   --background500: #857f72;
    */
-
-
 --light: #f7f7f7; 
 --light100: #e1e1e1; 
 --light200: #cfcfcf; 
 --light300: #b1b1b1; 
-
-
-
   
   --orange-red: #c62b28;
   
@@ -232,7 +255,6 @@ html, body{
    height: 100%;
    
 }
-
 main{
   width: 100%;
 }
@@ -252,25 +274,20 @@ main{
   grid-template-rows: 70px 1fr;
 height: 100%; 
 }
-
  /* img {
     height: auto;
     max-width: 100%;
     display: block;
     margin: auto;
 }  */
-
 .scroll-snap-container {
-
     scroll-snap-destination: 0 100px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     height: 100vh; 
  
 }
-
 .scroll-snap-container .section {
-
     min-height: 100vh;
     overflow: hidden;
     position: relative;
@@ -318,9 +335,7 @@ p{
 .light300{
   color: var(--light300);
 }
-
 .title-green{
-
   color: var(--primary); 
 }
 .title{
@@ -334,7 +349,6 @@ p{
   0% {opacity:0}
   100% {opacity:1}
 }
-
 .parallax {
     margin: 0 auto;
     width: 100%;
@@ -360,7 +374,6 @@ p{
     left: 0;
     right: 0;
     bottom: 0;
-
   }
   .parallax-layer-base {
     -webkit-transform: translateZ(0cm);
@@ -368,7 +381,6 @@ p{
     font-size:56px;
     /* font-family: Arial, Helvetica, sans-serif; */
     z-index: 5;
-
   }
   .parallax-layer-back {
     -webkit-transform: translateZ(-0.1cm) scale(1.16);
@@ -411,7 +423,6 @@ p{
   }
   .vueperslides__arrow svg {stroke-width: 3;
   font-size: 10px;}
-
 /****************************************************** */
 /**          TABLET                                   **/
 /* @media screen and (min-width: 768px) {

@@ -2,11 +2,13 @@
   
   <div class="section parallax-group" id="home" ref="home"
   @scroll="mScroll">
-     <div class="parallax-layer parallax-layer-base switch-line">
-      <p>language</p>
+     <div class="switch-line">
+        <Toggle :options="toggleLanguage"></Toggle>
+      <p>language {{language.selected}}</p>
       <p>dark mode</p>
     </div>
-      <div class="parallax-layer parallax-layer-base title">
+     <div class="parallax-layer parallax-layer-front title">
+        
         <div class="title-home">
           <div class="title to-right">
             <SplitTitle animation="randomfadein" letterKick=true :animationDelay=2110>
@@ -30,23 +32,35 @@
         
       </div>
       <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
+        
       <MouseScrollDown></MouseScrollDown>
-    </div>
+      </div>
     </div>
 </template>
 
 <script>
 
 import SplitTitle from "@/components/SplitTitle.vue"
+import Toggle from "@/components/Toggle.vue"
 import MouseScrollDown from "@/components/MouseScrollDown.vue"
-
+import { inject, reactive } from "vue"
 export default {
   name: "Home",
-  components: {SplitTitle, MouseScrollDown},
+  components: {SplitTitle, MouseScrollDown, Toggle},
+  setup(){
+    const toggleLanguage = reactive( {
+            text1: "",
+            text2: "",
+            icon1: "bi:moon-stars",
+            icon2: "ic:outline-light-mode",
+          })
+    const language = inject('language')
+    return {language, toggleLanguage}
+  }
 };
 </script>
 <style scoped>
-#home{
+/* #home{
   display: flex;
   flex-direction:row;
 }
@@ -64,7 +78,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
+} */
 /**          TABLET                                   **/
 @media screen and (min-width: 768px) {
   

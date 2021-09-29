@@ -1,7 +1,7 @@
 <template>
   <div  class="section parallax-group" id="about" >
 
-    <div class="content parallax-layer parallax-layer-base">
+    <div class="content parallax-layer parallax-layer-front">
       <div class="img">
         <img src="/enkicsi.png" alt="" class="" >
       </div>
@@ -42,7 +42,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#about .content{
+/* #about .content{
    display: flex;
    flex-direction: column;
    align-items: flex-start;
@@ -62,10 +62,10 @@ export default {
   .img img{
     background: transparent;
   }
- 
+  */
   /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 992px) {
-#about .content{
+/* #about .content{
    display: flex;
    flex-direction: column;
    align-items: flex-start;
@@ -78,13 +78,13 @@ export default {
 }
 .cont p {
     width: 100%;
-  }
+  } */
 
 }
  
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
- #about .content{
+ /* #about .content{
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -106,7 +106,7 @@ export default {
   }
   .img img{
    padding: 1rem;
-  }
+  } */
   
 }
 </style>
