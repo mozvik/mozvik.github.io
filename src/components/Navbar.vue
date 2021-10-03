@@ -277,6 +277,17 @@ nav a {
   z-index: -1;
   opacity: .5;
 }
+.navbar-bg {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200vw;
+  background: var(--background);
+  z-index: -1;
+  opacity: .5;
+}
 
 .fade-enter-active,
 .fade-leave-active {

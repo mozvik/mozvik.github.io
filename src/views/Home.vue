@@ -44,7 +44,6 @@
 <script>
 
 import SplitTitle from "@/components/SplitTitle.vue"
-
 import MouseScrollDown from "@/components/MouseScrollDown.vue"
 import { inject, reactive } from "vue"
 export default {
@@ -109,7 +108,6 @@ export default {
   padding-left: .5rem;
   display: inline-block;
 }
-
 } 
 /****************************************************** */
 /**          DESKTOP                                   **/
