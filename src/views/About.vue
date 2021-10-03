@@ -1,7 +1,7 @@
 <template>
   <div  class="section parallax-group" id="about" >
 
-    <div class="content parallax-layer parallax-layer-front">
+    <div class="content parallax-layer parallax-layer-base">
       <div class="img">
         <img src="/enkicsi.png" alt="" class="" >
       </div>

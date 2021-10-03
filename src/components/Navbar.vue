@@ -57,10 +57,25 @@
       </div>
       
       <div class="social">
-              <div class="social-icon "><i class="lni lni-facebook"></i></div>
-              <div class="social-icon"><i class="lni lni-linkedin"></i></div>
-              <div class="social-icon"><i class="lni lni-github"></i></div>
+        <div class="social-icons">
+          <div class="social-icon "><i class="lni lni-facebook"></i></div>
+          <div class="social-icon"><i class="lni lni-linkedin"></i></div>
+          <div class="social-icon"><i class="lni lni-github"></i></div>
+        </div>
+        <div class="switch-line">
+          <div>
+
+            <Toggle :options="toggleLanguage" @selectedButton="setLanguage"></Toggle>
+          </div>
+          <div>
+            <Toggle :options="toggleDarkMode"
+            @selectedButton="setScreenMode"></Toggle>
+          </div>
+          <!-- <p>lang {{language.selected}} </p>
+          <p>dark mode {{activeMenuItem}}</p> -->
+        </div>
       </div>
+      
       <div class="navbar-bg" @click="menuActive = !menuActive"></div>
       
 
@@ -70,21 +85,50 @@
 </template>
 
 <script>
-import { ref } from "vue"
+import { ref, reactive } from "vue"
 import Languages from "@/components/Languages.vue"
+import Toggle from "@/components/Toggle.vue"
 export default {
   name: "Navbar",
+  components: {Toggle},
   props: {
     navItems: Object,
     displaySize: Number,
     activeMenuItem: String,
+    lang: String,
   },
   emits: ["selectedMenuItem"],
   setup(){
     const menuActive = ref(false)
+    const toggleLanguage = reactive( {
+            text1: "HU",
+            text2: "EN",
+            icon1: "bi:moon-stars",
+            icon2: "ic:outline-light-mode",
+          })
+    const toggleDarkMode = reactive( {
+            text1: "Dark",
+            text2: "Light",
+            icon1: "bi:moon-stars",
+            icon2: "ic:outline-light-mode",
+          })
+    // const lang = inject('language')
     const { language, languageData } = Languages()
-    
-    return {menuActive,language, languageData
+  
+    function setLanguage(btn) {
+      if (btn === 'left') {
+        console.log('hu :>> ', 'hu');
+      } else console.log('en :>> ', 'en');
+      
+    }
+    function setScreenMode(btn) {
+      if (btn === 'left') {
+        console.log('sötét');  
+      } else console.log('világos');  
+      
+    }
+
+    return {menuActive,language, languageData, toggleLanguage, toggleDarkMode, setLanguage, setScreenMode 
      }
     
   },
@@ -95,20 +139,17 @@ export default {
 <style scoped>
 nav {
   background: var(--background);
-   overflow: hidden;
+  overflow: hidden;
 }
 nav a {
   font-weight: bold;
   color: var(--light);
-
 }
 
 .nav-mobile i {
   display: block;
 }
-.nav-mobile i:hover {
-  cursor: pointer;
-} 
+ 
 .mobile-bar {
   display: flex;
   flex-direction: row;
@@ -124,21 +165,15 @@ nav a {
 }
 .nav-items {
   width: 100%;
-
 }
 .nav-items > ul{
   margin: 0;
   padding: 0;
-
 }
 .nav-items > ul > li > a {
   text-decoration: none;
-  
 }
-.nav-items a {
-  color: var(--light300);
-  transition: all .4s ease-out;
-}
+
 .nav-items > ul > li {
   padding: .60rem 3rem;
   font-size: 20px;
@@ -146,37 +181,12 @@ nav a {
   list-style: none;
   position: relative;
   z-index: 0;
- 
 }
 
-.nav-desktop .nav-items li:hover::after{
-  width: 100%;
-    transition: all .4s ease-out;
-}
-.nav-items > ul > li:hover a{
-  color: var(--background);
-  opacity: .9;
-  transition: all .4s ease-out;
+.nav-items > ul > li:hover, .nav-mobile i:hover{
+  cursor: pointer;
 }
 
-.nav-items > ul > li:hover{
-      cursor: pointer;
-      
-}
-
-.nav-desktop .nav-items li::after{
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  height: 95%;
-  width: 0;
-  z-index: -1;
-  background: var(--primary400);
-  opacity: .3;
-  
-  transition: all .4s ease-out;
-}
  .active-menu-item{
   background: var(--primary);
   transition: all .4s ease-out;
@@ -193,7 +203,6 @@ nav a {
 .nav-items > ul > .active-menu-item::after{
   width: 100%;
   background: var(--primary);
-
 }
 .logo {
   text-align: center;
@@ -210,15 +219,7 @@ nav a {
   position: relative;
   transition: all .4s ease-out;
 }
-.social-icon:hover {
-  border: 2px solid var(--primary-dark);
-  transition: all .4s ease-out;
-  cursor: pointer;
-}
-.social-icon:hover i{
-  color: var(--primary-light);
-  transition: all .4s ease-out;
-}
+
 .social-icon i{
   position: absolute;
   top: 50%;
@@ -228,24 +229,42 @@ nav a {
   font-size: 1.5rem;
   transition: all .4s ease-out;
 }
-.nav-mobile .social,.nav-desktop .social{
+.social{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 0rem;
+}
+.social .social-icons{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
-
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.social-icon{
+  margin-right: .5rem;
+}
+.switch-line div{
+  margin-right: 1.5rem;
+}
+.switch-line{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .navbar {
   position:fixed;
   top: 70px;
   left: 0;
-    display: grid;
-    grid-template-rows: 3fr 1fr;
-    align-items: start;
-    width: 60%;
-    height: 100vh;
-    z-index: 2;
-    background: var(--background);
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  align-items: start;
+  width: 60%;
+  height: 100%;
+  z-index: 2;
+  background: var(--background);
 }
 .navbar-bg {
   content: "";
@@ -304,6 +323,41 @@ nav a {
   width: auto;
   top: 0;
 }
+.nav-items a {
+  color: var(--light300);
+  transition: all .4s ease-out;
+}
+.nav-desktop .nav-items li:hover::after{
+  width: 100%;
+    transition: all .4s ease-out;
+}
+.nav-items > ul > li:hover a{
+  color: var(--background);
+  opacity: .9;
+  transition: all .4s ease-out;
+}
 
+.nav-desktop .nav-items li::after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 95%;
+  width: 0;
+  z-index: -1;
+  background: var(--primary400);
+  opacity: .3;
+  
+  transition: all .4s ease-out;
+}
+.social-icon:hover {
+  border: 2px solid var(--primary-dark);
+  transition: all .4s ease-out;
+  cursor: pointer;
+}
+.social-icon:hover i{
+  color: var(--primary-light);
+  transition: all .4s ease-out;
+}
 }
 </style>

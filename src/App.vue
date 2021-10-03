@@ -3,11 +3,14 @@
     :navItems="navItems"
     :displaySize="displaySize"
     :activeMenuItem="activeMenuItem"
+    :lang="language.selected"
     @selectedMenuItem="goToSection"
+    @selectedLanguage="setLanguage"
   ></Navbar>
 
   <!-- <router-view/> -->
-  <div @scroll="globalScroll" id="main" class="scroll-snap-container parallax">
+  <div @scroll="globalScroll" id="main" class="parallax"
+  :class="displaySize < 3 ? '':'scroll-snap-container'">      
     <Home></Home>
     <About></About>
     <Skills></Skills>
@@ -84,7 +87,7 @@ export default {
     const sections = computed(() => document.querySelectorAll(".section"));
     const mySkills = computed(() => document.querySelectorAll(".my-skills"));
     const sectionContainer = computed(() =>
-      document.querySelector(".scroll-snap-container")
+      document.querySelector("#main")
     );
 
     provide(
@@ -166,6 +169,7 @@ export default {
       }, options);
     }
     function goToSection(sectionName) {
+      console.log('sectionName :>> ', sectionName);
       sectionContainer.value.scrollTo({
         top: document.getElementById(sectionName).offsetTop - 100,
         left: 0,
@@ -185,6 +189,7 @@ export default {
       goToSection,
       globalScroll,
       navItems,
+      language,
     };
   },
 };
@@ -192,20 +197,19 @@ export default {
 
 <style>
 :root {
-  /* material black #121212*/
-  
   --background: rgb(18, 18, 18, 1);
   --background800: rgb(59, 59, 59, 1);
   --background700: rgb(81, 81, 81, 1);
   --background600: rgb(98, 98, 98, 1);
   --background500: rgb(126, 126, 126, 1);
-  
-  --primary: #FA7D09;
-  --primary: #FA7D09;
+
+  --primary: #fa7d09;
+  --primary: #fa7d09;
   --primary400: #fb9637;
-  --primary900: #FA7D09;
+  --primary900: #fa7d09;
   --primary-dark: #c86407;
   --primary-light: #fb973a;
+
   /* blue gray #102a43*/
   /* --background: rgb(16, 42, 67, 1);
   --background800: rgb(36, 59, 83, 1);
@@ -213,7 +217,7 @@ export default {
   --background600: rgb(72, 101, 129, 1);
   --background500: rgb(98, 125, 152, 1);
     */
-  
+
   /* cool gray #102a43*/
   /* --background: rgb(31, 41, 51, 1);
   --background800: rgb(50, 63, 75, 1);
@@ -221,99 +225,90 @@ export default {
   --background600: rgb(82, 96, 109, 1);
   --background500: rgb(97, 110, 124, 1);
    */
-/* warm gray #102a43*/
+
+  /* warm gray #102a43*/
   /* --background: #27241d;
   --background800: #423d33;
   --background700: #504a40;
   --background600: #625d52;
   --background500: #857f72;
    */
---light: #f7f7f7; 
---light100: #e1e1e1; 
---light200: #cfcfcf; 
---light300: #b1b1b1; 
-  
+
+  --light: #f7f7f7;
+  --light100: #e1e1e1;
+  --light200: #cfcfcf;
+  --light300: #b1b1b1;
+
   --orange-red: #c62b28;
-  
-  
-  
+
   --lightgrey: #9a9a9a;
   --background700: #8a8a8a;
-  
 }
-* { 
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    background: transparent;
-    /* scroll-behavior: smooth; */
-    /* font-size: 16px; */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: transparent;
+  background: transparent;
 }
-html, body{
-   overflow: hidden;
-   color: var(--light300);
-   height: 100%;
-   
-}
-main{
-  width: 100%;
-}
-.section{
-   height: 100vh;
-   background: linear-gradient(90deg, var(--background) 30%,var(--background800) ); 
-   user-select: none;
-   padding-top: 75px;
-   padding: 1rem;
+html,
+body {
+  overflow: hidden; 
+  color: var(--light300);
+  height: 100%;
 }
 #app {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   display: grid;
   grid-template-rows: 70px 1fr;
-height: 100%; 
+  height: 100%;
 }
- /* img {
-    height: auto;
-    max-width: 100%;
-    display: block;
-    margin: auto;
-}  */
+
 .scroll-snap-container {
-    scroll-snap-destination: 0 100px;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    height: 100vh; 
- 
+  scroll-snap-destination: 0 100px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  height: 100vh;
 }
-.scroll-snap-container .section {
-    min-height: 100vh;
-    overflow: hidden;
-    position: relative;
-    font-weight: bold;
-    scroll-snap-align: center;
-    z-index: 0;
-} 
-h1, h1 span, .title{
-  font-family: 'Oswald', sans-serif;
+.section {
+  height: 100vh;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(
+    90deg,
+    var(--background) 30%,
+    var(--background800)
+  );
+  position: relative;
+  font-weight: bold;
+  scroll-snap-align: center;
+  z-index: 0;
+  user-select: none;
+
+}
+h1,
+h1 span,
+.title {
+  font-family: "Oswald", sans-serif;
   font-size: 30px;
   font-weight: 600;
   text-transform: uppercase;
 }
-h3{
-    font-size: 18px;
-    text-transform: uppercase;
-  }
-p{
-  padding: .5rem 0;
+h3 {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+p {
+  padding: 0.5rem 0;
   font-size: 18px;
 }
 .light-stroke span{
   color: transparent;
  -webkit-text-stroke: 1px var(--light);
 }
-/* COLORS */
 .primary{
   color: var(--primary);
 }
@@ -355,66 +350,67 @@ p{
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    perspective: .55cm;
-    perspective-origin: center;
+    perspective: 1px;
+    perspective-origin: 49.5% 47.5%;
     
   }
   .parallax-group {
     width: 100%;
     position: relative;
-    height: 500px; /* fallback régi browserek miatt */
+    height: 500px; 
     height: 100vh;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    overflow: hidden;
+    border: 1px solid green;
   } 
-.parallax-layer {
+  .parallax-layer {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+  } 
+  .parallax-layer-front {
+    transform: translateZ(0.7px) scale(.30);
+    z-index: 4;
+    border: 1px solid white;
+    /* background: transparent; */
   }
   .parallax-layer-base {
-    -webkit-transform: translateZ(0cm);
-    transform: translateZ(0cm);
+    transform: translateZ(0.5px) scale(.49);
     font-size:56px;
-    /* font-family: Arial, Helvetica, sans-serif; */
     z-index: 5;
+    border: 1px solid red;
+
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
   }
-  .parallax-layer-back {
-    -webkit-transform: translateZ(-0.1cm) scale(1.16);
-    transform: translateZ(-0.1cm) scale(1.16);
-    z-index: 4;
-  }
+ 
   .parallax-layer-deep {
-    -webkit-transform: translateZ(-.2cm) scale(1.3);
-    transform: translateZ(-.2cm) scale(1.3);
+    transform: translateZ(0.3px) scale(0.7);
     z-index: 3;
-    background-repeat: no-repeat;
-    background-size: 300px auto;
-    background-position: center right;
+    border: 1px solid gold;
+    
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
   }
   .parallax-layer-deepest {
-    -webkit-transform: translateZ(-0.3cm) scale(1.3);
-    transform: translateZ(-0.3cm) scale(1.3);
+    transform: translateZ(0.1px) scale(0.9);
     z-index: 2;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    border: 1px solid blue;
+  }
+  .mouse-scroll-down{
+    display: none;
   }
   .back-title{
-    margin-bottom: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  .mouse-scroll-down{
-    display: none;
-  }
+  
   .back-title h1 {
-    font-size: 300px;
+    font-size: 150px;
     color: var(--background700);
     opacity: .1;
   }
@@ -422,7 +418,10 @@ p{
   color: var(--primary);
   }
   .vueperslides__arrow svg {stroke-width: 3;
-  font-size: 10px;}
+  font-size: 10px;} 
+  
+  
+
 /****************************************************** */
 /**          TABLET                                   **/
 /* @media screen and (min-width: 768px) {
@@ -431,46 +430,49 @@ p{
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
-  h1, h1 span, .title {
+  h1,
+  h1 span,
+  .title {
     font-size: 48px;
   }
-  h3{
+  h3 {
     font-size: 24px;
     text-transform: uppercase;
   }
-  
-  #app{
-   
+
+  #app {
     grid-template-columns: minmax(auto, 250px) 8fr;
   }
- .mouse-scroll-down{
+  .mouse-scroll-down {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding-bottom: 0rem;
+    padding-bottom: 5rem;
   }
 }
 /****************************************************** */
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-  html, body{
-   /* overflow: hidden; */
-   width: 100%; 
-   width: 100vw;
-   padding: relative;
-}
-  h1, h1 span, .title {
+  /* html,
+  body {
+    overflow: hidden; 
+    width: 100%;
+    width: 100vw;
+    padding: relative;
+  } */
+  h1,
+  h1 span,
+  .title {
     font-size: 48px;
   }
-  h3{
+  h3 {
     font-size: 24px;
     text-transform: uppercase;
   }
-  section {
+  /* section {
     padding: 0;
     perspective: 2px;
-  }
- 
+  } */
 }
 </style>

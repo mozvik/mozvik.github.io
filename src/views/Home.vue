@@ -2,34 +2,37 @@
   
   <div class="section parallax-group" id="home" ref="home"
   @scroll="mScroll">
-     <div class="switch-line">
-        <Toggle :options="toggleLanguage"></Toggle>
-      <p>language {{language.selected}}</p>
-      <p>dark mode</p>
-    </div>
-     <div class="parallax-layer parallax-layer-front title">
-        
-        <div class="title-home">
-          <div class="title to-right">
-            <SplitTitle animation="randomfadein" letterKick=true :animationDelay=2110>
-              <h1 class=" light-stroke">Hello,&nbsp;I'm </h1>
-            </SplitTitle>
+     
+     <div class="parallax-layer parallax-layer-base title">
+        <div></div>
+        <div>
+          <div class="title-home">
+            <div class="title to-right">
+              <SplitTitle animation="randomfadein" letterKick=true :animationDelay=2110>
+                <h1 class=" light-stroke">Hello,&nbsp;I'm </h1>
+              </SplitTitle>
           
-          </div>
-          <div class="title to-left light">
-            <SplitTitle animation="randomfadein" 
-            letterKick=true :animationDelay=2100>
-                <h1>Attila&nbsp;Mozvik</h1>
-            </SplitTitle>
+            </div>
+            <div class="title to-left light">
+              <SplitTitle animation="randomfadein"
+              letterKick=true :animationDelay=2100>
+                  <h1>Attila&nbsp;Mozvik</h1>
+              </SplitTitle>
+              
+            </div>
           </div>
         </div>
+        <div></div>
         
       </div>
-      <div class="parallax-layer parallax-layer-deep subtitle">
-        <SplitTitle animation="randomfadein" :animationDelay=2100>
-            <h3>Web&nbsp;&amp;&nbsp;Software&nbsp;Developer</h3>
-        </SplitTitle>
-        
+      <div class="parallax-layer parallax-layer-deep">
+        <div></div>
+        <div class="subtitle">
+          <SplitTitle animation="randomfadein" :animationDelay=2100>
+              <h3>Web&nbsp;&amp;&nbsp;Software&nbsp;Developer</h3>
+          </SplitTitle>
+        </div>
+        <div></div>
       </div>
       <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
         
@@ -41,12 +44,12 @@
 <script>
 
 import SplitTitle from "@/components/SplitTitle.vue"
-import Toggle from "@/components/Toggle.vue"
+
 import MouseScrollDown from "@/components/MouseScrollDown.vue"
 import { inject, reactive } from "vue"
 export default {
   name: "Home",
-  components: {SplitTitle, MouseScrollDown, Toggle},
+  components: {SplitTitle, MouseScrollDown},
   setup(){
     const toggleLanguage = reactive( {
             text1: "",
@@ -79,6 +82,17 @@ export default {
   align-items: center;
   justify-content: center;
 } */
+.title-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
 /**          TABLET                                   **/
 @media screen and (min-width: 768px) {
   
@@ -95,11 +109,7 @@ export default {
   padding-left: .5rem;
   display: inline-block;
 }
-.switch-line{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 } 
 /****************************************************** */
 /**          DESKTOP                                   **/
