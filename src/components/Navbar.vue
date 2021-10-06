@@ -45,7 +45,7 @@
       <div class="nav-items" >
         <ul>
           <li
-            v-for="item in languageData.navItems"
+            v-for="item in currentLanguageData.navItems"
             class
             :key="item"
             :class="{ 'active-menu-item': item.id == activeMenuItem }"
@@ -65,7 +65,7 @@
         <div class="switch-line">
           <div>
 
-            <Toggle :options="toggleLanguage" @selectedButton="setLanguage"></Toggle>
+            <Toggle :options="toggleLanguage" @selectedButton="$emit('lang', $event)"></Toggle>
           </div>
           <div>
             <Toggle :options="toggleDarkMode"
@@ -86,41 +86,40 @@
 
 <script>
 import { ref, reactive } from "vue"
-import Languages from "@/components/Languages.vue"
 import Toggle from "@/components/Toggle.vue"
 export default {
   name: "Navbar",
   components: {Toggle},
+  
   props: {
-    navItems: Object,
     displaySize: Number,
     activeMenuItem: String,
-    lang: String,
+    currentLanguageData: Object,
   },
-  emits: ["selectedMenuItem"],
+  emits: ["lang","selectedMenuItem"],
   setup(){
     const menuActive = ref(false)
     const toggleLanguage = reactive( {
-            text1: "HU",
-            text2: "EN",
-            icon1: "bi:moon-stars",
-            icon2: "ic:outline-light-mode",
+            text1: "EN",
+            text2: "HU",
+            icon1: "emojione:flag-for-united-kingdom",
+            icon1Width:
+            "34",
+            icon2: "emojione:flag-for-hungary",
+            icon2Width:
+            "34",
           })
     const toggleDarkMode = reactive( {
-            text1: "Dark",
-            text2: "Light",
+            text1: "",
+            text2: "",
             icon1: "bi:moon-stars",
+            icon1Width:
+            "20",
             icon2: "ic:outline-light-mode",
+            icon2Width:
+            "20",
           })
-    // const lang = inject('language')
-    const { language, languageData } = Languages()
-  
-    function setLanguage(btn) {
-      if (btn === 'left') {
-        console.log('hu :>> ', 'hu');
-      } else console.log('en :>> ', 'en');
-      
-    }
+
     function setScreenMode(btn) {
       if (btn === 'left') {
         console.log('sötét');  
@@ -128,7 +127,7 @@ export default {
       
     }
 
-    return {menuActive,language, languageData, toggleLanguage, toggleDarkMode, setLanguage, setScreenMode 
+    return {menuActive, toggleLanguage, toggleDarkMode, setScreenMode 
      }
     
   },
@@ -162,9 +161,11 @@ nav a {
   font-size: 2.5rem;
   background: var(--background);
   color: var(--light100);
+
 }
 .nav-items {
-  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 .nav-items > ul{
   margin: 0;
@@ -201,7 +202,6 @@ nav a {
   opacity: 1;
 }
 .nav-items > ul > .active-menu-item::after{
-  width: 100%;
   background: var(--primary);
 }
 .logo {
@@ -262,20 +262,11 @@ nav a {
   grid-template-rows: 3fr 1fr;
   align-items: start;
   width: 60%;
+  min-width: 280px;
   height: 100%;
   z-index: 2;
   background: var(--background);
-}
-.navbar-bg {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 200vw;
-  background: var(--background);
-  z-index: -1;
-  opacity: .5;
+  overflow: scroll;
 }
 .navbar-bg {
   content: "";

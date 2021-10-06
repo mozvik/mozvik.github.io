@@ -45,19 +45,19 @@
 
 import SplitTitle from "@/components/SplitTitle.vue"
 import MouseScrollDown from "@/components/MouseScrollDown.vue"
-import { inject, reactive } from "vue"
+// import { reactive } from "vue"
 export default {
   name: "Home",
   components: {SplitTitle, MouseScrollDown},
   setup(){
-    const toggleLanguage = reactive( {
-            text1: "",
-            text2: "",
-            icon1: "bi:moon-stars",
-            icon2: "ic:outline-light-mode",
-          })
-    const language = inject('language')
-    return {language, toggleLanguage}
+    // const toggleLanguage = reactive( {
+    //         text1: "",
+    //         text2: "",
+    //         icon1: "bi:moon-stars",
+    //         icon2: "ic:outline-light-mode",
+    //       })
+    // const language = inject('language')
+    // return {language, toggleLanguage}
   }
 };
 </script>

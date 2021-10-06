@@ -1,16 +1,16 @@
 <template>
   <Navbar
-    :navItems="navItems"
     :displaySize="displaySize"
     :activeMenuItem="activeMenuItem"
-    :lang="language.selected"
-    @selectedMenuItem="goToSection"
-    @selectedLanguage="setLanguage"
-  ></Navbar>
+    :currentLanguageData="currentLanguageData"
+    @lang='setLanguage'
+    @selectedMenuItem="goToSection" ></Navbar>
 
-  <!-- <router-view/> -->
-  <div @scroll="globalScroll" id="main" class="parallax"
-  :class="displaySize < 3 ? '':'scroll-snap-container'">      
+  <div     
+    id="main" 
+    class="parallax"
+    :class="displaySize < 3 ? '':'scroll-snap-container'"
+    @scroll="globalScroll" >      
     <Home></Home>
     <About></About>
     <Skills></Skills>
@@ -20,10 +20,7 @@
 </template>
 
 <script>
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// gsap.registerPlugin(ScrollTrigger);
 import { computed, provide, reactive, onMounted, ref } from "vue";
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
@@ -45,31 +42,75 @@ export default {
       ypos: 0,
       activeSection: 0,
     });
-    const language = reactive({
-      selected: "hu",
-    });
-    const navItems = reactive({
-      home: {
-        name: "Home",
-        id: "home",
+    const languageData = reactive({
+    en: {
+      navItems:{ 
+        home: {
+          name: "Home",
+          id: "home",
+          },
+        about: {
+          name:"About",
+          id: "about",
+        },
+        skills: {
+          name: "Skills",
+          id: "skills",
+        },
+        portfolio: {
+          name: "Portfolio",
+          id: "portfolio",
+        },
+        contact: {
+          name: "Contact",
+          id: "contact",
+        },
       },
-      about: {
-        name: "About",
-        id: "about",
+      switchLanguage: {
+        en: "EN",
+        hu: "HU",
       },
-      skills: {
-        name: "Skills",
-        id: "skills",
+      switchTheme: {
+        darkMode: "Dark mode",
+        lightMode: "Light mode"
+      } 
+    },
+    hu: {
+      navItems:{ 
+        home: {
+          name: "Kezdőlap",
+          id: "home",
+          },
+        about: {
+          name:"Rólam",
+          id: "about",
+        },
+        skills: {
+          name: "Mit csinálok",
+          id: "skills",
+        },
+        portfolio: {
+          name: "Portfólióm",
+          id: "portfolio",
+        },
+        contact: {
+          name: "Kapcsolat",
+          id: "contact",
+        },
       },
-      portfolio: {
-        name: "Portfolio",
-        id: "portfolio",
+      switchLanguage: {
+        en: "EN",
+        hu: "HU",
       },
-      contact: {
-        name: "Contact",
-        id: "contact",
-      },
-    });
+      switchTheme: {
+        darkMode: "Sötét mód",
+        lightMode: "Világos mód"
+      } 
+    }      
+  })
+    const currentLanguageData = ref(
+      languageData.en
+    )
     const displaySize = ref(null);
     const activeMenuItem = ref(null);
     const sectionObserver = ref(null);
@@ -82,7 +123,7 @@ export default {
       initSkillObserver();
       observeSections();
       observeMySkills();
-    });
+    })
 
     const sections = computed(() => document.querySelectorAll(".section"));
     const mySkills = computed(() => document.querySelectorAll(".my-skills"));
@@ -94,11 +135,17 @@ export default {
       "scrollState",
       computed(() => scrollState)
     );
-    provide(
-      "language",
-      computed(() => language)
-    );
-
+    // provide(
+    //   "language",
+    //   computed(() => language)
+    // );
+    function setLanguage(btn) {
+      if (btn === 'right') {
+        currentLanguageData.value = languageData.hu
+      } else {
+        currentLanguageData.value = languageData.en
+      }
+    }
     function onResize() {
       const ua = navigator.userAgent;
       if (
@@ -178,7 +225,7 @@ export default {
     }
     function globalScroll(e) {
       scrollState.ypos = e.target.scrollTop;
-      scrollState.activeSection = Object.keys(navItems).indexOf(
+      scrollState.activeSection = Object.keys(currentLanguageData.value.navItems).indexOf(
         activeMenuItem.value
       );
     }
@@ -188,8 +235,8 @@ export default {
       activeMenuItem,
       goToSection,
       globalScroll,
-      navItems,
-      language,
+      setLanguage,
+      currentLanguageData
     };
   },
 };
