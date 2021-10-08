@@ -2,8 +2,6 @@
   <Navbar
     :displaySize="displaySize"
     :activeMenuItem="activeMenuItem"
-    :currentLanguageData="currentLanguageData"
-    @lang='setLanguage'
     @selectedMenuItem="goToSection" ></Navbar>
 
   <div     
@@ -28,6 +26,7 @@ import Skills from "@/views/Skills.vue";
 import Portfolio from "@/views/Portfolio.vue";
 import Contact from "@/views/Contact.vue";
 import Navbar from "@/components/Navbar.vue";
+import Locale from "@/composables/Locale.js"
 export default {
   components: {
     Home,
@@ -42,75 +41,7 @@ export default {
       ypos: 0,
       activeSection: 0,
     });
-    const languageData = reactive({
-    en: {
-      navItems:{ 
-        home: {
-          name: "Home",
-          id: "home",
-          },
-        about: {
-          name:"About",
-          id: "about",
-        },
-        skills: {
-          name: "Skills",
-          id: "skills",
-        },
-        portfolio: {
-          name: "Portfolio",
-          id: "portfolio",
-        },
-        contact: {
-          name: "Contact",
-          id: "contact",
-        },
-      },
-      switchLanguage: {
-        en: "EN",
-        hu: "HU",
-      },
-      switchTheme: {
-        darkMode: "Dark mode",
-        lightMode: "Light mode"
-      } 
-    },
-    hu: {
-      navItems:{ 
-        home: {
-          name: "Kezdőlap",
-          id: "home",
-          },
-        about: {
-          name:"Rólam",
-          id: "about",
-        },
-        skills: {
-          name: "Mit csinálok",
-          id: "skills",
-        },
-        portfolio: {
-          name: "Portfólióm",
-          id: "portfolio",
-        },
-        contact: {
-          name: "Kapcsolat",
-          id: "contact",
-        },
-      },
-      switchLanguage: {
-        en: "EN",
-        hu: "HU",
-      },
-      switchTheme: {
-        darkMode: "Sötét mód",
-        lightMode: "Világos mód"
-      } 
-    }      
-  })
-    const currentLanguageData = ref(
-      languageData.en
-    )
+
     const displaySize = ref(null);
     const activeMenuItem = ref(null);
     const sectionObserver = ref(null);
@@ -131,21 +62,9 @@ export default {
       document.querySelector("#main")
     );
 
-    provide(
-      "scrollState",
-      computed(() => scrollState)
-    );
-    // provide(
-    //   "language",
-    //   computed(() => language)
-    // );
-    function setLanguage(btn) {
-      if (btn === 'right') {
-        currentLanguageData.value = languageData.hu
-      } else {
-        currentLanguageData.value = languageData.en
-      }
-    }
+    provide( "scrollState", computed(() => scrollState))
+    provide( "Locale", Locale )
+    
     function onResize() {
       const ua = navigator.userAgent;
       if (
@@ -225,7 +144,7 @@ export default {
     }
     function globalScroll(e) {
       scrollState.ypos = e.target.scrollTop;
-      scrollState.activeSection = Object.keys(currentLanguageData.value.navItems).indexOf(
+      scrollState.activeSection = Object.keys(Locale.state.langData.en.navItems).indexOf(
         activeMenuItem.value
       );
     }
@@ -235,8 +154,6 @@ export default {
       activeMenuItem,
       goToSection,
       globalScroll,
-      setLanguage,
-      currentLanguageData
     };
   },
 };
@@ -398,7 +315,8 @@ p {
     overflow-x: hidden;
     overflow-y: auto;
     perspective: 1px;
-    perspective-origin: 49.5% 47.5%;
+    /* perspective-origin: 49.5% 47.5%; */
+    perspective-origin: center;
     
   }
   .parallax-group {
@@ -424,7 +342,7 @@ p {
     /* background: transparent; */
   }
   .parallax-layer-base {
-    transform: translateZ(0.5px) scale(.49);
+    transform: translateZ(0.5px) scale(.475);
     font-size:56px;
     z-index: 5;
     border: 1px solid red;
@@ -434,7 +352,7 @@ p {
   }
  
   .parallax-layer-deep {
-    transform: translateZ(0.3px) scale(0.7);
+    transform: translateZ(0.3px) scale(0.67);
     z-index: 3;
     border: 1px solid gold;
     
@@ -442,31 +360,30 @@ p {
     grid-template-rows: 1fr 2fr 1fr;
   }
   .parallax-layer-deepest {
-    transform: translateZ(0.1px) scale(0.9);
+    transform: translateZ(0.1px) scale(0.86);
     z-index: 2;
     border: 1px solid blue;
   }
-  .mouse-scroll-down{
-    display: none;
-  }
+ 
   .back-title{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
   
   .back-title h1 {
     font-size: 150px;
     color: var(--background700);
     opacity: .1;
+    /* text-shadow: -10px 0px black; */
   }
   .vueperslides__arrow {
   color: var(--primary);
   }
   .vueperslides__arrow svg {stroke-width: 3;
   font-size: 10px;} 
-  
+ 
   
 
 /****************************************************** */
@@ -490,13 +407,7 @@ p {
   #app {
     grid-template-columns: minmax(auto, 250px) 8fr;
   }
-  .mouse-scroll-down {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 5rem;
-  }
+  
 }
 /****************************************************** */
 /**          LARGE DESKTOP                                   **/

@@ -65,7 +65,7 @@
         <div class="switch-line">
           <div>
 
-            <Toggle :options="toggleLanguage" @selectedButton="$emit('lang', $event)"></Toggle>
+            <Toggle :options="toggleLanguage" @selectedButton="setLanguage"></Toggle>
           </div>
           <div>
             <Toggle :options="toggleDarkMode"
@@ -85,8 +85,9 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue"
+import { ref, reactive, inject, onMounted } from "vue"
 import Toggle from "@/components/Toggle.vue"
+
 export default {
   name: "Navbar",
   components: {Toggle},
@@ -94,9 +95,8 @@ export default {
   props: {
     displaySize: Number,
     activeMenuItem: String,
-    currentLanguageData: Object,
   },
-  emits: ["lang","selectedMenuItem"],
+  emits: ["selectedMenuItem"],
   setup(){
     const menuActive = ref(false)
     const toggleLanguage = reactive( {
@@ -120,14 +120,27 @@ export default {
             "20",
           })
 
-    function setScreenMode(btn) {
-      if (btn === 'left') {
-        console.log('sötét');  
-      } else console.log('világos');  
-      
+    const languageData = inject("Locale")
+    const currentLanguageData = ref(null)
+    onMounted(() => {
+      currentLanguageData.value = languageData.computed.setLang("en")
+    })
+
+    function setLanguage(btn){
+       if (btn === 'left') {
+        currentLanguageData.value = languageData.computed.setLang("en")  
+      } else  currentLanguageData.value = languageData.computed.setLang("hu")  
     }
 
-    return {menuActive, toggleLanguage, toggleDarkMode, setScreenMode 
+    function setScreenMode(btn) {
+      if (btn === 'left') {
+        // currentLanguageData.value = languageData.computed.setLang("en")  
+      } else { 
+        // currentLanguageData.value = languageData.computed.setLang("hu")
+      }  
+    }
+
+    return {menuActive, toggleLanguage, toggleDarkMode, setScreenMode, currentLanguageData, setLanguage
      }
     
   },
@@ -259,10 +272,10 @@ nav a {
   top: 70px;
   left: 0;
   display: grid;
+  grid-template-columns: 100%;
   grid-template-rows: 3fr 1fr;
   align-items: start;
   width: 60%;
-  min-width: 280px;
   height: 100%;
   z-index: 2;
   background: var(--background);
