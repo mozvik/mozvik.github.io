@@ -1,7 +1,7 @@
 <template>
   <div class="section parallax-group" id="skills">
     <div class="content parallax-layer parallax-layer-base">
-      <div class="cont">
+      <div class="">
         <h1 class="title light">Skills</h1>
         <p>
           My main area of expertise is front-end development,
@@ -15,12 +15,12 @@
       </div> 
        
     </div>
-    <div class="parallax-layer parallax-layer-deep back-title">
+    <div class="parallax-layer parallax-layer-deepest back-title">
       <h1>SKILLS</h1>
     </div>    
         
         
-    <div class="parallax-layer parallax-layer-back " id="skillbox">
+    <div class="parallax-layer parallax-layer-deep" id="skillbox">
       <div class="skillbox-container">
         <div class="skill-list">
           
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <MouseScrollDown></MouseScrollDown>
+      
     </div>
   </div>
     
@@ -42,11 +42,10 @@
 
 <script>
 import { reactive } from "vue";
-import MouseScrollDown from "@/components/MouseScrollDown.vue";
+
 export default {
   name: "Skills",
   components: {
-    MouseScrollDown
   },
   setup(){
     const skillData = reactive([
@@ -68,7 +67,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#skills .content{
+.content{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -83,12 +82,13 @@ export default {
   grid-template-rows: 1fr;
   justify-content: flex-start;
   align-items: end;
-  padding-bottom: 10rem;
+  padding-bottom: 15vh;
   padding-left: 1rem;
   padding-right: 1rem;
   height: 100vh;
   
 }
+
 .my-skills{
  
   border-bottom: 2px solid var(--primary);
@@ -108,17 +108,17 @@ export default {
 }
 /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 992px) {
-  #skills .content{
+  /* #skills .content{
     margin-top: 10vh;
   }
   #skillbox ul{
   
   width: 25vw;
-}
+} */
 }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-#skills .content{
+/* #skills .content{
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -165,7 +165,7 @@ export default {
   opacity: 1;
   transition: opacity .5s;
   
-}
+} */
 .my-skills-animated{
   
   opacity: 0;

@@ -36,7 +36,7 @@
       </div>
       <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
         
-      <MouseScrollDown></MouseScrollDown>
+      <!-- <MouseScrollDown></MouseScrollDown> -->
       </div>
     </div>
 </template>
@@ -44,11 +44,11 @@
 <script>
 
 import SplitTitle from "@/components/SplitTitle.vue"
-import MouseScrollDown from "@/components/MouseScrollDown.vue"
+// import MouseScrollDown from "@/components/MouseScrollDown.vue"
 // import { reactive } from "vue"
 export default {
   name: "Home",
-  components: {SplitTitle, MouseScrollDown},
+  components: {SplitTitle},
   setup(){
     // const toggleLanguage = reactive( {
     //         text1: "",

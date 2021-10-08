@@ -5,7 +5,6 @@
     :breakpoints="breakpoints"
     fade
     bullets-outside
-    
   >
     <vueper-slide
       v-for="(card, i) in cards"
@@ -65,10 +64,10 @@ export default {
           fixedHeight: "400px",
         },
         1200: {
-          fixedHeight: "400px",
+          slideRatio: 2/3,
         },
         992: {
-          fixedHeight: "400px",
+          slideRatio: 2/3,
           bulletsOutside: true,
         },
         600: {

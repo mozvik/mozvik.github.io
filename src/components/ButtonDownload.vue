@@ -1,6 +1,6 @@
 <template>
   <button>
-    <span class="dlbtn-icon"><Icon icon="uiw:login" width="30" /></span>
+    <span class="dlbtn-icon"><Icon icon="bx:bx-download" width="30" /></span>
     <span class="dlbtn-text" data-color="">
       <slot></slot>
     </span>

@@ -1,13 +1,20 @@
 <template>
  <div class="section parallax-group" id="contact">
     <div class="content parallax-layer parallax-layer-base">
-      <div class="cont">
+      <div class="">
         <h1 class="title light">Contact</h1>
         
       </div> 
-      <div class="c-form"><h3>
-          Get In Touch
-        </h3>
+      
+    </div>
+    <div class="parallax-layer parallax-layer-deep back-title">
+      <h1>CONTACT</h1>
+    </div>    
+        
+        
+    <div class="parallax-layer parallax-layer-deep" id="contactbox">
+     <div class="c-form">
+        <h3>Get In Touch</h3>
         <form action="">
             <label for="name">
               <span><Icon  icon="fa-regular:user" width="20" /></span>
@@ -19,20 +26,12 @@
             <label for="message">
               <span><Icon  icon="fa-solid:pencil-alt" width="20" /></span>
               <textarea  id="message" placeholder="Message"
-              rows="4"></textarea>
+              rows="3"></textarea>
             </label>
             <div><Button :options='options'></Button></div>
             
         </form>
       </div>
-    </div>
-    <div class="parallax-layer parallax-layer-deep back-title">
-      <h1>CONTACT</h1>
-    </div>    
-        
-        
-    <div class="parallax-layer parallax-layer-back ">
-     
     </div>
     <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
       <!-- <div>eger-scroll down</div> -->
@@ -63,7 +62,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#contact .content{
+.content{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -71,9 +70,27 @@ export default {
     padding-left: 1rem;
     padding-right: 1rem;
     height: 100vh;
+    pointer-events: none;
+  }
+  #contactbox{
+  
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-content: flex-start;
+  align-items: end;
+  padding-bottom: 15vh;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 100vh;
+  
+}
+  .c-form{
+    flex-grow: 1;
+    padding-bottom: 5rem;
+    padding-top: 2.5rem;
   }
   .c-form h3{
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   form{
     margin-top: 3rem;
@@ -90,7 +107,7 @@ export default {
     font-size: 18px;
   }
   label{
-    margin: 1.0rem auto;
+    margin: .75rem auto;
     position: relative;
   }
   textarea{
@@ -107,28 +124,19 @@ export default {
     padding: .5rem;
     position: absolute;
     display: block;
+    color: var(--primary);
   }
   label>span>input{
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0; */
+
   }
   textarea{
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 8rem;
-    padding-left: 2.5rem; */
+    
     padding-left: 2.5rem;
 
   }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-#contact .content{
+/* #contact .content{
    display: flex;
    flex-direction: column;
    align-items: start;
@@ -142,6 +150,6 @@ export default {
     margin-bottom: 4.25rem;
     width: 40vw;
     max-width: 800px;
-  }
+  } */
 }
 </style>

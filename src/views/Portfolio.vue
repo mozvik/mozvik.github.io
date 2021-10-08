@@ -20,18 +20,18 @@
     </div>  
    
     <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <MouseScrollDown></MouseScrollDown>
+      
     </div>
   </div>
 </template>
 
 <script>
 import Slider from "@/components/Slider.vue";
-import MouseScrollDown from "@/components/MouseScrollDown.vue";
+
 export default {
   name: "Portfolio",
    components:{
-    Slider, MouseScrollDown
+    Slider
    },
   props: {
      displaySize: Number,
@@ -95,7 +95,7 @@ export default {
   
   #portfolio .content .projects-container, .card-item{
     width: 100%;
-    max-width: 800px;
+    max-width: 1400px;
     /* margin: 0 auto; */
   }
 }

@@ -57,23 +57,21 @@
       </div>
       
       <div class="social">
-        <div class="social-icons">
-          <div class="social-icon "><i class="lni lni-facebook"></i></div>
-          <div class="social-icon"><i class="lni lni-linkedin"></i></div>
-          <div class="social-icon"><i class="lni lni-github"></i></div>
-        </div>
         <div class="switch-line">
           <div>
-
             <Toggle :options="toggleLanguage" @selectedButton="setLanguage"></Toggle>
           </div>
           <div>
             <Toggle :options="toggleDarkMode"
             @selectedButton="setScreenMode"></Toggle>
           </div>
-          <!-- <p>lang {{language.selected}} </p>
-          <p>dark mode {{activeMenuItem}}</p> -->
         </div>
+        <div class="social-icons">
+          <div class="social-icon "><i class="lni lni-facebook"></i></div>
+          <div class="social-icon"><i class="lni lni-linkedin"></i></div>
+          <div class="social-icon"><i class="lni lni-github"></i></div>
+        </div>
+        
       </div>
       
       <div class="navbar-bg" @click="menuActive = !menuActive"></div>
@@ -247,25 +245,29 @@ nav a {
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   margin-left: 0rem;
+  padding-bottom: 5rem;
 }
 .social .social-icons{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 .social-icon{
   margin-right: .5rem;
 }
 .switch-line div{
-  margin-right: 1.5rem;
+  margin: .25rem;
 }
 .switch-line{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items:flex-start;
+  order: 1;
 }
 .navbar {
   position:fixed;
@@ -329,6 +331,12 @@ nav a {
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
+  .switch-line{
+    flex-direction: column;
+    position: fixed;
+    right: 1rem;
+    order: 0;
+  }
  .nav-desktop{
   height: 100vh;
 }

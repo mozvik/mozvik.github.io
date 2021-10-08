@@ -5,7 +5,7 @@
       <div class="img">
         <img src="/enkicsi.png" alt="" class="" >
       </div>
-      <div class="cont" >
+      <div class="" >
         <h2 class="title light">About</h2>
       
         <p class="light300">
@@ -22,37 +22,37 @@
       
       
     </div>
-    <div class="parallax-layer parallax-layer-deep back-title">
+
+    <div class="parallax-layer parallax-layer-deepest back-title">
       <h1>ABOUT</h1>
     </div>
-     <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <MouseScrollDown></MouseScrollDown>
-    </div>
+     
   </div>
 </template>
 
 <script>
 import ButtonDownload from "@/components/ButtonDownload.vue";
-import MouseScrollDown from "@/components/MouseScrollDown.vue";
+
 export default {
-  components: { ButtonDownload, MouseScrollDown },
+  components: { ButtonDownload },
   name: "About",
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* #about .content{
+ .content{
    display: flex;
    flex-direction: column;
    align-items: flex-start;
    justify-content: space-around;
-     padding-bottom: 10rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    height: 100vh;
+   padding-bottom: 15vh;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   height: 100vh;
   }
-  
+ 
+ /* 
   .cv-button{
     margin-top: 2rem;
   }
