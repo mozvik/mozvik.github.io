@@ -41,13 +41,7 @@ export default {
       for (let index = 0; index < el.textContent.length; index++) {
         let t = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
         spans.value +=
-          "<span id='" +
-          index +
-          "-" +
-          index +
-          "-" +
-          index +
-          "letter' style='--xvar:" +
+          "<span style='--xvar:" +
           index +
           "; --xpos:" +
           (Math.floor(Math.random() * 500) - 250) +
@@ -217,6 +211,7 @@ export default {
 <style>
 .split span {
   display: inline-block;
+  white-space: pre;
 }
 .kick-to-left {
   animation: kick-to-left 0.9s ease 1 forwards;
