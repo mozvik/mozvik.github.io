@@ -7,7 +7,7 @@
     bullets-outside
   >
     <vueper-slide
-      v-for="(card, i) in cards"
+      v-for="(card, i) in languageData.computed.currentLanguageData().portfolioView.cards"
       :key="i"
       :title="card.title"
       :content="card.content"
@@ -37,10 +37,10 @@
 
         <div class="item-buttons">
           <div class="item-demo">
-            <Button :options="card.buttonDemo"></Button>
+            <Button :options="card.buttonDemo">{{card.buttonDemo.text}}</Button>
           </div>
           <div class="item-code">
-            <span></span><Button :options="card.buttonCode"></Button>
+            <span></span><Button :options="card.buttonCode">{{card.buttonCode.text}}</Button>
           </div>
         </div>
       </template>
@@ -53,13 +53,13 @@ import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 import { Icon } from "@iconify/vue";
 import Button from "@/components/Button.vue";
+import { inject } from "vue"
 export default {
   name: "Slider",
   components: { VueperSlides, VueperSlide, Icon, Button },
-
-  data() {
-    return {
-      breakpoints: {
+  setup(){
+    const languageData = inject("Locale")
+    const breakpoints = {
         1980: {
           fixedHeight: "400px",
         },
@@ -75,7 +75,12 @@ export default {
           bulletsOutside: true,
           fixedHeight: "480px",
         },
-      },
+      }
+    return {  languageData, breakpoints }
+  },
+  data() {
+    return {
+     
 
       cards: [
         {

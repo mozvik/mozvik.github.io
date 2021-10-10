@@ -2,9 +2,9 @@
   <button>
     <span class="btn-icon"><Icon :icon="options ? options.icon:''" width="30" /></span>
     
-      <a v-if="options" class="btn-text" :href="options.anchor" target="_blank">{{options.text}}</a>
+      <a v-if="options" class="btn-text" :href="options.anchor" target="_blank">
       <slot ></slot>
-    
+    </a>
   </button>
   <span></span>
 </template>
@@ -21,10 +21,6 @@ export default {
   },
   props: {
       options: {
-        text: {
-          type: String,
-          required: true,
-        },
         icon: {
           type: String,
           required: true,

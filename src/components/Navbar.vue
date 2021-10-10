@@ -45,7 +45,7 @@
       <div class="nav-items" >
         <ul>
           <li
-            v-for="item in currentLanguageData.navItems"
+            v-for="item in languageData.computed.currentLanguageData().navItems"
             class
             :key="item"
             :class="{ 'active-menu-item': item.id == activeMenuItem }"
@@ -119,15 +119,17 @@ export default {
           })
 
     const languageData = inject("Locale")
-    const currentLanguageData = ref(null)
+
     onMounted(() => {
-      currentLanguageData.value = languageData.computed.setLang("en")
+
     })
 
     function setLanguage(btn){
        if (btn === 'left') {
-        currentLanguageData.value = languageData.computed.setLang("en")  
-      } else  currentLanguageData.value = languageData.computed.setLang("hu")  
+        languageData.state.currentLanguage = "en"
+      } else{ 
+        languageData.state.currentLanguage = "hu"
+        }
     }
 
     function setScreenMode(btn) {
@@ -138,7 +140,7 @@ export default {
       }  
     }
 
-    return {menuActive, toggleLanguage, toggleDarkMode, setScreenMode, currentLanguageData, setLanguage
+    return {menuActive, toggleLanguage, toggleDarkMode, setScreenMode, setLanguage, languageData
      }
     
   },
@@ -343,7 +345,7 @@ nav a {
 .navbar {
   grid-template-rows: 3fr 4fr 1fr;
   overflow: hidden;
-  width: auto;
+  width: 250px;
   top: 0;
 }
 .nav-items a {

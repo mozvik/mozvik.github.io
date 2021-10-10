@@ -2,61 +2,60 @@
  <div class="section parallax-group" id="contact">
     <div class="content parallax-layer parallax-layer-base">
       <div class="">
-        <h1 class="title light">Contact</h1>
+        <h1 class="title light">{{languageData.computed.currentLanguageData().contactView.title}}</h1>
         
       </div> 
       
     </div>
-    <div class="parallax-layer parallax-layer-deep back-title">
-      <h1>CONTACT</h1>
+    <div class="parallax-layer parallax-layer-deepest back-title">
+      <h1>{{languageData.computed.currentLanguageData().contactView.backTitle}}</h1>
     </div>    
         
         
     <div class="parallax-layer parallax-layer-deep" id="contactbox">
      <div class="c-form">
-        <h3>Get In Touch</h3>
+        <!-- <h3>Get In Touch</h3> -->
         <form action="">
             <label for="name">
               <span><Icon  icon="fa-regular:user" width="20" /></span>
-              <input type="text" id="name" placeholder="Name"></label>
+              <input type="text" id="name" :placeholder="languageData.computed.currentLanguageData().contactView.name"></label>
             <label for="email">
               <span><Icon  icon="fa-regular:envelope" width="20" /></span>
-              <input type="email" id="email" placeholder="E-mail"></label>
+              <input type="email" id="email" :placeholder="languageData.computed.currentLanguageData().contactView.email"></label>
             
             <label for="message">
               <span><Icon  icon="fa-solid:pencil-alt" width="20" /></span>
-              <textarea  id="message" placeholder="Message"
+              <textarea  id="message" :placeholder="languageData.computed.currentLanguageData().contactView.message"
               rows="3"></textarea>
             </label>
-            <div><Button :options='options'></Button></div>
+            <div><Button :options='options'>{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
             
         </form>
       </div>
     </div>
-    <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      <!-- <div>eger-scroll down</div> -->
-    </div>
+   
   </div>
 </template>
 
 <script>
 import { Icon } from "@iconify/vue";
 import Button from "@/components/Button.vue";
+import { inject, ref } from "vue"
 export default {
   name: "Contact",
   components:{
     Icon,
      Button
   },
-  data() {
-    return {
-       options: {
-        text: 'Send',
+   setup(){
+    const languageData = inject("Locale")
+    const options = ref({
         icon: 'icon-park-outline:send-email',
         anchor: '',
-      },
-    };
-  },  
+      })
+    
+    return { languageData, options }
+  },
 };
 </script>
 
@@ -126,30 +125,40 @@ export default {
     display: block;
     color: var(--primary);
   }
-  label>span>input{
 
-  }
   textarea{
-    
-    padding-left: 2.5rem;
+      padding-left: 2.5rem;
+  }
+  @media screen and (min-width: 992px) {
+form{
+
+    width: 50vw;
+  }
 
   }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-/* #contact .content{
-   display: flex;
-   flex-direction: column;
-   align-items: start;
-   justify-content: space-between;
-   height: 100vh;
-   padding-left: 5.5rem;
-   padding-right: 5.5rem;
+.content{
+    justify-content: flex-start;
+    padding-top: 6rem;
+    padding-left: 5rem;
+    pointer-events: none;
+  }
+  
+  .c-form{
+    margin-left: 4rem;
+    justify-content: flex-end;
+    /* flex-grow: 0;
+    margin-top: 12rem;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+     */
   }
   form{
-    margin-top: 0;
-    margin-bottom: 4.25rem;
+
     width: 40vw;
-    max-width: 800px;
-  } */
+  }
 }
 </style>

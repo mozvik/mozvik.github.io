@@ -1,22 +1,19 @@
 <template>
   <div class="section parallax-group" id="skills">
     <div class="content parallax-layer parallax-layer-base">
-      <div class="">
-        <h1 class="title light">Skills</h1>
-        <p>
-          My main area of expertise is front-end development,
-          <span>HTML, CSS, JavaScript</span>. Building small web applications,
-          animations, and interactive layouts.
+      <div class="skill-text">
+        <h1 class="title light">{{languageData.computed.currentLanguageData().skillView.title}}</h1>
+        <p>{{languageData.computed.currentLanguageData().skillView.text1}}{{languageData.computed.currentLanguageData().skillView.text2}}{{languageData.computed.currentLanguageData().skillView.text3}}
+          
         </p>
         <p>
-          I also have back-end knowledge of <span>PHP</span>, and popular
-          <span>WordPress</span> CMS.
+          {{languageData.computed.currentLanguageData().skillView.text4}}{{languageData.computed.currentLanguageData().skillView.text5}}{{languageData.computed.currentLanguageData().skillView.text6}}
         </p>
       </div> 
        
     </div>
     <div class="parallax-layer parallax-layer-deepest back-title">
-      <h1>SKILLS</h1>
+      <h1>{{languageData.computed.currentLanguageData().skillView.backTitle}}</h1>
     </div>    
         
         
@@ -33,15 +30,13 @@
         </div>
       </div>
     </div>
-    <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      
-    </div>
+   
   </div>
     
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, inject } from "vue";
 
 export default {
   name: "Skills",
@@ -49,18 +44,19 @@ export default {
   },
   setup(){
     const skillData = reactive([
-         {stack: 'Vue.js',
+        {stack: 'HTML, CSS',
+        progress: 0,},
+        {stack: 'Vue.js',
         progress: 0,},
         {stack: 'Angular',
         progress: 0,},
-        {stack: 'Php',
+        {stack: 'PHP',
         progress: 0,},
-        {stack: 'WordPress',
-        progress: 0,},
-        {stack: 'C sharp', 
+        {stack: 'C#', 
         progress: 0,},
     ])
-    return {skillData}
+    const languageData = inject("Locale")
+    return {skillData, languageData}
   },  
 };
 </script>
@@ -81,8 +77,8 @@ export default {
   display: grid;
   grid-template-rows: 1fr;
   justify-content: flex-start;
-  align-items: end;
-  padding-bottom: 15vh;
+  align-items: center;
+  padding-top: 17vh;
   padding-left: 1rem;
   padding-right: 1rem;
   height: 100vh;
@@ -106,66 +102,37 @@ export default {
   list-style: none;
   width: 50vw;
 }
+.skill-text{
+  /* white-space: pre; */
+}
 /**          LAPTOP TABLET                                   **/
-@media screen and (min-width: 992px) {
-  /* #skills .content{
-    margin-top: 10vh;
+@media screen and (min-width: 768px) {
+  #skillbox{
+    padding-top: 28vh;
   }
-  #skillbox ul{
-  
-  width: 25vw;
-} */
+}
+@media screen and (min-width: 992px) {
+
 }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-/* #skills .content{
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-between;
-   height: 100vh;
-   margin-top: 0;
+.content{
+    justify-content: center;
+    padding-left: 6rem;
   }
   #skillbox{
-  
-  display: grid;
-  grid-template-rows: 1fr;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding-bottom: 10rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-top: 10%;
+  padding-right: 6rem;
 }
-  #skills .content .cont{
-    margin-left: 4.5rem; 
-  }
-    #skills .content p{
-    width: 45%;
-  }
-
-.skillbox-container{
-  grid-column: 2;
-}
-
-
-
-
-#skillbox ul {
- 
-}
-.skill-list > ul{
-   position: absolute;
-  top: 0;
-  left: 0;
+#skillbox ul{
   width: 25vw;
-  opacity: 0; 
-  
 }
-.skill-list > .skill-list-animated{
-  opacity: 1;
-  transition: opacity .5s;
-  
-} */
+
+  .skill-text{
+    width: 40%;
+  }
 .my-skills-animated{
   
   opacity: 0;

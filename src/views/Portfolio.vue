@@ -1,10 +1,11 @@
 <template>
   <div class="section parallax-group" id="portfolio">
+    
     <div class="content parallax-layer parallax-layer-base">
       <div class="cont">
-        <h1 class="title light">Portfolio</h1>
+        <h1 class="title light">{{languageData.computed.currentLanguageData().portfolioView.title}}</h1>
         <h3>
-          My Recent Projects
+          {{languageData.computed.currentLanguageData().portfolioView.text1}}
         </h3>
         
       </div>
@@ -15,17 +16,15 @@
     <div class="parallax-layer parallax-layer-back back-title">
       
     </div> 
-    <div class="parallax-layer parallax-layer-deep back-title">
-      <h1>PORTFOLIO</h1>
+    <div class="parallax-layer parallax-layer-deepest back-title" v-if="languageData">
+      <h1>{{languageData.computed.currentLanguageData().portfolioView.backTitle}}</h1>
     </div>  
    
-    <div class="parallax-layer parallax-layer-deepest mouse-scroll-down">
-      
-    </div>
   </div>
 </template>
 
 <script>
+import { inject } from "vue"
 import Slider from "@/components/Slider.vue";
 
 export default {
@@ -35,6 +34,10 @@ export default {
    },
   props: {
      displaySize: Number,
+  },
+  setup(){
+    const languageData = inject("Locale")
+    return { languageData }
   }
 };
 </script>
@@ -77,10 +80,7 @@ export default {
    padding: 0 1rem;
    /* padding-bottom: 1rem; */
   }
-  #portfolio .content .projects-container{
-    
 
-  }
 }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {

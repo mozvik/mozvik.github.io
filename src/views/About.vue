@@ -5,26 +5,27 @@
       <div class="img">
         <img src="/enkicsi.png" alt="" class="" >
       </div>
-      <div class="" >
-        <h2 class="title light">About</h2>
+      <div class="about-text" >
+        <h2 class="title light">{{languageData.computed.currentLanguageData().aboutView.title}}</h2>
       
         <p class="light300">
-          I have a serious passion for web development, that provides me the
-          opportunity of both creativity and programming.
+          {{languageData.computed.currentLanguageData().aboutView.text1}}
         </p>
       
         <p class="light300">
-          I love experimenting with UI animations and effects, build something, or
-          just solving problems.
+          {{languageData.computed.currentLanguageData().aboutView.text2}}
         </p>
-        <div class="cv-button"><ButtonDownload >Download CV</ButtonDownload></div>
+         <p class="light300">
+          {{languageData.computed.currentLanguageData().aboutView.text3}}
+        </p>
+        <div class="cv-button"><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}</ButtonDownload></div>
       </div>
       
       
     </div>
 
     <div class="parallax-layer parallax-layer-deepest back-title">
-      <h1>ABOUT</h1>
+      <h1>{{languageData.computed.currentLanguageData().aboutView.backTitle}}</h1>
     </div>
      
   </div>
@@ -32,10 +33,14 @@
 
 <script>
 import ButtonDownload from "@/components/ButtonDownload.vue";
-
+import { inject } from "vue"
 export default {
   components: { ButtonDownload },
   name: "About",
+  setup(){
+    const languageData = inject("Locale")
+    return { languageData }
+  }
 };
 </script>
 
@@ -52,61 +57,31 @@ export default {
    height: 100vh;
   }
  
- /* 
-  .cv-button{
-    margin-top: 2rem;
-  }
-  .img{
-    align-items: center;
-  }
-  .img img{
-    background: transparent;
-  }
-  */
   /**          LAPTOP TABLET                                   **/
-@media screen and (min-width: 992px) {
-/* #about .content{
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   justify-content: center;
-    padding-bottom: 0rem;
-    height: 100vh;
-  }
-.img {
-  padding: 0;
-}
-.cont p {
-    width: 100%;
-  } */
-
-}
- 
-/**          LARGE DESKTOP                                   **/
-@media screen and (min-width: 1200px) {
- /* #about .content{
+@media screen and (min-width: 768px) {
+.content{
    display: flex;
    flex-direction: row;
    align-items: center;
    justify-content: space-around;
-    padding-bottom: 0rem;
-    height: 100vh;
+   padding-bottom: 0vh;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   height: 100vh;
   }
-  .img{
-   
-    margin: 0 3rem;
-    padding: 1.25rem;
+  .img {
+    padding-right: 3rem;
   }
-  .img, .cont{
-    height: 400px;
+  .cv-button{
+    padding-top: 1rem;
   }
-  
-  .cont p {
-    width: 80%;
-  }
-  .img img{
-   padding: 1rem;
-  } */
+}
+ 
+/**          LARGE DESKTOP                                   **/
+@media screen and (min-width: 992px) {
+ .about-text{
+   width: 50%;
+ }
   
 }
 </style>
