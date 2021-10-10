@@ -7,7 +7,7 @@
   <div     
     id="main" 
     class="parallax"
-    :class="displaySize < 3 ? '':'scroll-snap-container'"
+    :class="displaySize < 3 ? 'scroll-snap-container':'scroll-snap-container'"
     @scroll="globalScroll" >      
     <Home></Home>
     <About></About>
@@ -135,7 +135,6 @@ export default {
       }, options);
     }
     function goToSection(sectionName) {
-      console.log('sectionName :>> ', sectionName);
       sectionContainer.value.scrollTo({
         top: document.getElementById(sectionName).offsetTop - 100,
         left: 0,
@@ -232,7 +231,6 @@ body {
 }
 
 .scroll-snap-container {
-  scroll-snap-destination: 0 100px;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   height: 100vh;
@@ -241,14 +239,18 @@ body {
   height: 100vh;
   min-height: 100vh;
   padding: 1rem;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     var(--background) 30%,
     var(--background800)
-  );
+  ); */
+  background: 
+    var(--background)
+  ;
   position: relative;
   font-weight: bold;
   scroll-snap-align: center;
+  scroll-snap-stop: always;
   z-index: 0;
   user-select: none;
 
@@ -257,12 +259,12 @@ h1,
 h1 span,
 .title {
   font-family: "Oswald", sans-serif;
-  font-size: 30px;
+  font-size: 38px;
   font-weight: 600;
   text-transform: uppercase;
 }
 h3 {
-  font-size: 18px;
+  font-size: 22px;
   text-transform: uppercase;
 }
 p {
@@ -326,7 +328,7 @@ p {
     height: 100vh;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    border: 1px solid green;
+    /* border: 1px solid green; */
   } 
   .parallax-layer {
     position: absolute;
@@ -338,23 +340,22 @@ p {
   .parallax-layer-front {
     transform: translateZ(0.7px) scale(.30);
     z-index: 4;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     /* background: transparent; */
   }
   .parallax-layer-base {
-    transform: translateZ(0.5px) scale(.475);
-    font-size:56px;
+    transform: translateZ(0.445px) scale(.475);
     z-index: 5;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
   }
  
   .parallax-layer-deep {
-    transform: translateZ(0.3px) scale(0.67);
+    transform: translateZ(0.2px) scale(0.67);
     z-index: 3;
-    border: 1px solid gold;
+    /* border: 1px solid gold; */
     
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
@@ -362,21 +363,22 @@ p {
   .parallax-layer-deepest {
     transform: translateZ(0.1px) scale(0.86);
     z-index: 2;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
   }
  
   .back-title{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
   }
   
   .back-title h1 {
     font-size: 150px;
     color: var(--background700);
+    /* color: transparent; */
     opacity: .1;
-    /* text-shadow: -10px 0px black; */
+    /* -webkit-text-stroke: 5px var(--light); */
   }
   .vueperslides__arrow {
   color: var(--primary);
@@ -412,25 +414,18 @@ p {
 /****************************************************** */
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-  /* html,
-  body {
-    overflow: hidden; 
-    width: 100%;
-    width: 100vw;
-    padding: relative;
-  } */
+  
   h1,
   h1 span,
   .title {
-    font-size: 48px;
+    font-size: 60px;
   }
   h3 {
-    font-size: 24px;
+    font-size: 32px;
     text-transform: uppercase;
   }
-  /* section {
-    padding: 0;
-    perspective: 2px;
-  } */
+  .back-title h1 {
+    font-size: 300px;
+  }
 }
 </style>
