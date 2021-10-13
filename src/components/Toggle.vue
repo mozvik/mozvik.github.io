@@ -66,7 +66,7 @@ export default {
   width: 5.6rem;
   height: 2.8rem;
   z-index: 8;
-  background: var(--light100);
+  background: var(--secondary);
   border-radius: 1.4rem;
   margin-bottom: 1rem;
 }
@@ -81,7 +81,7 @@ export default {
   width: 40%;
   height: 80%;
   z-index: -1;
-  background: var(--background600);
+  background: var(--background800);
   transition: .25s all ease;
   border-radius: 50%;
   
@@ -100,7 +100,7 @@ button.left, button.right{
 }
 button.active{
   opacity: 1;
-  color: var(--light100);
+  color: var(--light);
   transition: .5s all ease;
 }
 button{
