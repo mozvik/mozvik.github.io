@@ -3,11 +3,11 @@
     <div class="mobile-bar" v-if="displaySize < 3">
       <div class="logo">
         <div>
-          <img class=""
-            src="/logo-full-en-white.svg"
+          <img class="svg"
+            src="/logo-spinner-white.svg"
             alt="logo"
-            width="140"
-            height="40"
+            width="50"
+            height="50"
           />
         </div>
       </div>
@@ -33,10 +33,10 @@
 
       <div class="logo" v-if="displaySize >= 3">
         <div>
-          <img class=""
-            src="/logo-full-en-white.svg"
+          <img class="svg"
+            :src="colors.state.currentColorMode == 'dark' ? '/logo-full-en-white.svg':'/logo-full-en-black.svg'"
             alt="logo"
-            width="180"
+            width="150"
             height="250"
           />
         </div>
@@ -74,7 +74,7 @@
         
       </div>
       
-      <div class="navbar-bg" @click="menuActive = !menuActive"></div>
+      <!-- <div class="navbar-bg" @click="menuActive = !menuActive"></div> -->
       
 
     </div>
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { ref, reactive, inject, onMounted } from "vue"
+import { ref, reactive, inject } from "vue"
 import Toggle from "@/components/Toggle.vue"
 
 export default {
@@ -119,10 +119,7 @@ export default {
           })
 
     const languageData = inject("Locale")
-
-    onMounted(() => {
-
-    })
+    const colors = inject("Colors")
 
     function setLanguage(btn){
        if (btn === 'left') {
@@ -134,13 +131,13 @@ export default {
 
     function setScreenMode(btn) {
       if (btn === 'left') {
-        // currentLanguageData.value = languageData.computed.setLang("en")  
+        colors.methods.setColorTheme('dark')  
       } else { 
-        // currentLanguageData.value = languageData.computed.setLang("hu")
+        colors.methods.setColorTheme('light')
       }  
     }
 
-    return {menuActive, toggleLanguage, toggleDarkMode, setScreenMode, setLanguage, languageData
+    return {menuActive, toggleLanguage, toggleDarkMode, setScreenMode, setLanguage, languageData, colors
      }
     
   },
@@ -161,20 +158,21 @@ nav a {
 .nav-mobile i {
   display: block;
 }
- 
+.svg{
+  fill: var(--background);
+}
 .mobile-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  z-index: 2;
   width: 100%;
   height: 70px;
   font-size: 2.5rem;
-  background: var(--background);
-  color: var(--light100);
-
+  background: var(--background800);
+  color: var(--light);
+  border-bottom: 1px solid var(--primary);
 }
 .nav-items {
   max-width: 100%;
@@ -212,10 +210,10 @@ nav a {
 }
 .nav-items .active-menu-item:hover > a{
   color: var(--light);
-  opacity: 1;
+  opacity: 1; 
 }
 .nav-items > ul > .active-menu-item::after{
-  background: var(--primary);
+  /* background: var(--primary); */
 }
 .logo {
   text-align: center;
@@ -226,7 +224,7 @@ nav a {
 .social-icon{
   height: 2.8rem;
   width: 2.8rem;
-  border: 2px solid var(--light300);
+  border: 2px solid var(--light);
   opacity: .7;
   border-radius: 50%;
   position: relative;
@@ -282,7 +280,8 @@ nav a {
   width: 60%;
   height: 100%;
   z-index: 2;
-  background: var(--background);
+  background: var(--background800);
+  border: 1px solid var(--primary);
   overflow: scroll;
 }
 .navbar-bg {
@@ -306,10 +305,10 @@ nav a {
   opacity: 0;
 }
 .roll-in-enter-active {
-  animation: roll-in .5s ease-out ;
+  animation: roll-in .35s ease-out ;
 }
 .roll-in-leave-active {
-  animation: roll-in .5s ease-out reverse;
+  animation: roll-in .35s ease-out reverse;
 }
 
 @keyframes roll-in {
@@ -349,16 +348,16 @@ nav a {
   top: 0;
 }
 .nav-items a {
-  color: var(--light300);
+  color: var(--light);
   transition: all .4s ease-out;
 }
 .nav-desktop .nav-items li:hover::after{
   width: 100%;
-    transition: all .4s ease-out;
+  transition: all .4s ease-out;
 }
 .nav-items > ul > li:hover a{
-  color: var(--background);
-  opacity: .9;
+  color: var(--secondary);
+  opacity: 1;
   transition: all .4s ease-out;
 }
 
@@ -370,18 +369,17 @@ nav a {
   height: 95%;
   width: 0;
   z-index: -1;
-  background: var(--primary400);
-  opacity: .3;
-  
+  background: var(--primary);
+  opacity: .25;
   transition: all .4s ease-out;
 }
 .social-icon:hover {
-  border: 2px solid var(--primary-dark);
+  border: 2px solid var(--primary);
   transition: all .4s ease-out;
   cursor: pointer;
 }
 .social-icon:hover i{
-  color: var(--primary-light);
+  color: var(--primary);
   transition: all .4s ease-out;
 }
 }
