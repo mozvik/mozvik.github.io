@@ -40,7 +40,7 @@ const state = reactive({
         skillView: {
           title: "SKILLS", 
           text1: "My main area of expertise is front-end development, ",
-          text2: "HTML, CSS, JavaScript",
+          text2: "HTML, CSS, JavaScript,",
           text3: " Building small web applications, animations, and interactive layouts.",
           text4: "I also have back-end knowledge of ",
           text5: "PHP",
@@ -263,8 +263,8 @@ const state = reactive({
         },
         aboutView: {
           title: "RÓLAM", 
-          text1: "Szenvedélyemmé vált a webfejlesztés, amiben ki tudom fejezni a kreativitásomat és a programozói tudásomat is.",
-          text2: "Szeretek alkotni, látni amikor egy projekt általam kel életre.",
+          text1: "Szenvedélyemmé vált a webfejlesztés, ahol egyrészt ki tudom fejezni a kreativitásomat, másrészt meg tudom mutatni a programozói tudásomat is.",
+          text2: "Szeretek alkotni és látni, ahogy egy projekt általam kel életre.",
           text3: "Szeretek foglalkozni animációk és különféle effektusok készítésével, vagy csupán egy problémára megoldást találni.",
           dlText: "Önéletrajz",
           backTitle: "RÓLAM"
@@ -272,7 +272,7 @@ const state = reactive({
         skillView: {
           title: "KÉSZSÉGEK", 
           text1: "Fő szakterületem a front-end fejlesztés, ",
-          text2: "HTML, CSS, JavaScript",
+          text2: "HTML, CSS, JavaScript.",
           text3: " Kisebb, reszponzív web alkalmazásokat, és interaktív felületeket készítek.",
           text4: "Ezen felül rendelkezem szerveroldali ",
           text5: "PHP",
