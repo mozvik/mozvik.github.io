@@ -43,8 +43,8 @@ button {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   /* font-size: 18px; */
-  border-radius: 3px;
-  border: 3px solid var(--primary);
+  border-radius: 5px;
+  border: 3px solid var(--light);
   overflow: hidden;
   transition: color 300ms ease-in-out;
   padding: 0.25em 2em;
@@ -55,13 +55,12 @@ button {
   align-items: center;
   transition: all 300ms ease-in-out;
   width: calc(100% - 1rem); 
-  
+  background:  var(--background800);
   height: auto;
 }
 
 
 button > .btn-icon {
-  color: var(--primary);
   transform: translate(-0.5rem, 7rem);
   display: inline-block;
   text-align: left;
@@ -71,7 +70,7 @@ button > .btn-icon {
 button:hover > .btn-icon {
   margin: 0;
   padding: 0;
-  color: var(--primary);
+  color: var(--background800);
   transform: translate(-0.5rem, 0.19rem);
   transition: all 300ms ease-in-out;
 }
@@ -84,7 +83,7 @@ button > .btn-text {
   
 }
 button:hover > .btn-text {
-  color: var(--primary);
+  color: var(--background800);
   transform: translate(1rem, 0);
   transition: all 300ms ease-in-out;
 }

@@ -25,8 +25,8 @@ button {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 18px;
-  border-radius: 3px;
-  border: 3px solid var(--primary);
+  border-radius: 5px;
+  border: 3px solid var(--light);
   overflow: hidden;
   transition: color 300ms ease-in-out;
   padding: 0.5em 2em;
@@ -36,7 +36,7 @@ button {
   align-items: center;
   transition: all 300ms ease-in-out;
   width: 300px; 
-  
+  background:  var(--background800);
   height: auto;
 }
 
@@ -52,7 +52,7 @@ button > .dlbtn-icon {
 button:hover > .dlbtn-icon {
   margin: 0;
   padding: 0;
-  color: var(--primary);
+  color: var(--background800);
   transform: translate(-0.5rem, 0);
   transition: all 300ms ease-in-out;
 }
@@ -65,7 +65,7 @@ button > .dlbtn-text {
   
 }
 button:hover > .dlbtn-text {
-  color: var(--primary);
+  color: var(--background800);
   transform: translate(1rem, 0);
   transition: all 300ms ease-in-out;
 }
