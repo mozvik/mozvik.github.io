@@ -8,14 +8,14 @@
       <div class="about-text" >
         <h2 class="title light">{{languageData.computed.currentLanguageData().aboutView.title}}</h2>
       
-        <p class="light300">
+        <p class="light100">
           {{languageData.computed.currentLanguageData().aboutView.text1}}
         </p>
       
-        <p class="light300">
+        <p class="light100">
           {{languageData.computed.currentLanguageData().aboutView.text2}}
         </p>
-         <p class="light300">
+         <p class="light100">
           {{languageData.computed.currentLanguageData().aboutView.text3}}
         </p>
         <div class="cv-button"><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}</ButtonDownload></div>
