@@ -2,7 +2,7 @@
   <div class="section parallax-group" id="portfolio">
     
     <div class="content parallax-layer parallax-layer-base">
-      <div class="cont">
+      <div class="">
         <h1 class="title light">{{languageData.computed.currentLanguageData().portfolioView.title}}</h1>
         <h3>
           {{languageData.computed.currentLanguageData().portfolioView.text1}}
@@ -13,9 +13,7 @@
         <Slider :displaySize="displaySize"></Slider>
       </div>
     </div>
-    <div class="parallax-layer parallax-layer-back back-title">
-      
-    </div> 
+    
     <div class="parallax-layer parallax-layer-deepest back-title" v-if="languageData">
       <h1>{{languageData.computed.currentLanguageData().portfolioView.backTitle}}</h1>
     </div>  
@@ -69,12 +67,10 @@ export default {
   /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 992px) {
 #portfolio .content{
-  width: calc(100vw - 250px - 1rem);
-  }#portfolio .content{
     
    display: flex;
    flex-direction: column;
-   align-items: start;
+   align-items: flex-start;
    justify-content: center;
    height: 100vh;
    padding: 0 1rem;
@@ -95,8 +91,8 @@ export default {
   
   #portfolio .content .projects-container, .card-item{
     width: 100%;
-    max-width: 1400px;
-    /* margin: 0 auto; */
+    max-width: 1220px;
+    margin: 0 auto;
   }
 }
 </style>
