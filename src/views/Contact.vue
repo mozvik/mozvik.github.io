@@ -109,15 +109,23 @@ export default {
     margin: .75rem auto;
     position: relative;
   }
+  ::placeholder { 
+  color: var(--light);
+  font-style: italic;
+  text-transform: uppercase;
+  opacity: .7; 
+}
   textarea{
     resize: vertical;
     padding: .5rem 0;
+    border: 1px solid var(--light);
+    resize: none;
   }
   input{
     padding: .5rem 0;
     padding-left: 2.5rem;
     border: none;
-    border-bottom: 1px solid var(--light300);
+    border-bottom: 1px solid var(--light);
   }
   label>span{
     padding: .5rem;
@@ -131,7 +139,7 @@ export default {
   }
   @media screen and (min-width: 992px) {
 form{
-
+    max-width: 500px;
     width: 50vw;
   }
 
@@ -148,17 +156,7 @@ form{
   .c-form{
     margin-left: 4rem;
     justify-content: flex-end;
-    /* flex-grow: 0;
-    margin-top: 12rem;
-    
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-     */
   }
-  form{
-
-    width: 40vw;
-  }
+  
 }
 </style>
