@@ -64,6 +64,7 @@ export default {
           fixedHeight: "400px",
         },
         1200: {
+
           slideRatio: 2/3,
         },
         992: {
@@ -82,170 +83,170 @@ export default {
     return {
      
 
-      cards: [
-        {
-          title: "Quiz Application",
-          imageMobile: "quiz-m.jpg",
-          imageDesktop: "https://via.placeholder.com/300x400.jpg",
-          tech: "Vue, Vuex, Ajax",
-          brief:
-            "Simple Quiz Application made with Vue.js & Vuex state management",
-          description:
-            "This application gets JSON data from the Open Trivia Database API (https://opentdb.com/api_config.php) using Ajax requests and saves the user's high scores to the local storage.",
-          technology: [
-            {
-              icon: "logos:html-5",
-              width: 24,
-            },
-            {
-              icon: "logos:css-3",
-              width: 24,
-            },
-            {
-              icon: "logos:vue",
-              width: 30,
-            },
-          ],
-          buttonDemo: {
-            text: "View Demo",
-            icon: "healthicons:eye",
-            anchor: "https://mozvik.github.io/vue-quiz/",
-          },
-          buttonCode: {
-            text: "Github Repository",
-            icon: "akar-icons:github-outline-fill",
-            anchor: "https://github.com/mozvik/vue-quiz",
-          },
-        },
-        {
-          title: "Puzzle Slider",
-          imageMobile: "https://picsum.photos/360/300/?rnd=2",
-          imageDesktop: "https://via.placeholder.com/300x400.jpg",
-          tech: "Vue, Vuex, Ajax",
-          brief:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
-          description:
-            "Dolorum qui minima consectetur accusantium quisquam cum numquam dolor ex, earum, fugiat temporibus natus dignissimos aut reprehenderit nihil! ",
-          technology: [
-            {
-              icon: "logos:html-5",
-              width: 24,
-            },
-            {
-              icon: "logos:css-3",
-              width: 24,
-            },
-            {
-              icon: "logos:vue",
-              width: 30,
-            },
-          ],
-          buttonDemo: {
-            text: "View Demo",
-            icon: "healthicons:eye",
-            anchor: "https://mozvik.github.io/vue-quiz/",
-          },
-          buttonCode: {
-            text: "Github Repository",
-            icon: "akar-icons:github-outline-fill",
-            anchor: "https://github.com/mozvik/vue-quiz",
-          },
-        },
-        {
-          title: "Movie Database App",
-          imageMobile: "https://picsum.photos/360/300/?rnd=3",
-          imageDesktop: "https://via.placeholder.com/300x400.jpg",
-          tech: "React",
-          brief:
-            "Fuga voluptas consectetur nemo corporis temporibus velit atque ipsa, rem excepturi quas mollitia modi quos.",
-          description:
-            "Cumque debitis, natus consequuntur facilis, reprehenderit reiciendis quas facere voluptates ut adipisci repudiandae quasi error rerum sunt, eum expedita qui nam aliquam est perspiciatis ullam voluptatem quibusdam voluptas hic.",
-          technology: [
-            {
-              icon: "logos:html-5",
-              width: 24,
-            },
-            {
-              icon: "logos:css-3",
-              width: 24,
-            },
-            {
-              icon: "logos:react",
-              width: 28,
-            },
-          ],
-          buttonDemo: {
-            text: "View Demo",
-            icon: "healthicons:eye",
-            anchor: "https://mozvik.github.io/vue-quiz/",
-          },
-          buttonCode: {
-            text: "Github Repository",
-            icon: "akar-icons:github-outline-fill",
-            anchor: "https://github.com/mozvik/vue-quiz",
-          },
-        },
-        {
-          title: "Recipe Book App",
-          imageMobile: "https://picsum.photos/360/300/?rnd=4",
-          imageDesktop: "https://via.placeholder.com/300x400.jpg",
-          tech: "Angular",
-          brief:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
-          technology: [
-            {
-              icon: "logos:angular-icon",
-              width: 26,
-            },
-            {
-              icon: "logos:php",
-              width: 50,
-            },
-          ],
-          buttonDemo: {
-            text: "View Demo",
-            icon: "healthicons:eye",
-            anchor: "https://mozvik.github.io/vue-quiz/",
-          },
-          buttonCode: {
-            text: "Github Repository",
-            icon: "akar-icons:github-outline-fill",
-            anchor: "https://github.com/mozvik/vue-quiz",
-          },
-        },
-        {
-          title: "EsoGuides - Gaming Website",
-          imageMobile: "https://picsum.photos/360/300/?rnd=5",
-          imageDesktop: "https://via.placeholder.com/300x400.jpg",
-          tech: "React",
-          brief:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
-          technology: [
-            {
-              icon: "logos:react",
-              width: 26,
-            },
-            {
-              icon: "logos:php",
-              width: 50,
-            },
-          ],
-          buttonDemo: {
-            text: "View Demo",
-            icon: "healthicons:eye",
-            anchor: "https://mozvik.github.io/vue-quiz/",
-          },
-          buttonCode: {
-            text: "Github Repository",
-            icon: "akar-icons:github-outline-fill",
-            anchor: "https://github.com/mozvik/vue-quiz",
-          },
-        },
-      ],
+      // cards: [
+      //   {
+      //     title: "Quiz Application",
+      //     imageMobile: "quiz-m.jpg",
+      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
+      //     tech: "Vue, Vuex, Ajax",
+      //     brief:
+      //       "Simple Quiz Application made with Vue.js & Vuex state management",
+      //     description:
+      //       "This application gets JSON data from the Open Trivia Database API (https://opentdb.com/api_config.php) using Ajax requests and saves the user's high scores to the local storage.",
+      //     technology: [
+      //       {
+      //         icon: "logos:html-5",
+      //         width: 24,
+      //       },
+      //       {
+      //         icon: "logos:css-3",
+      //         width: 24,
+      //       },
+      //       {
+      //         icon: "logos:vue",
+      //         width: 30,
+      //       },
+      //     ],
+      //     buttonDemo: {
+      //       text: "View Demo",
+      //       icon: "healthicons:eye",
+      //       anchor: "https://mozvik.github.io/vue-quiz/",
+      //     },
+      //     buttonCode: {
+      //       text: "Github Repository",
+      //       icon: "akar-icons:github-outline-fill",
+      //       anchor: "https://github.com/mozvik/vue-quiz",
+      //     },
+      //   },
+      //   {
+      //     title: "Puzzle Slider",
+      //     imageMobile: "https://picsum.photos/360/300/?rnd=2",
+      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
+      //     tech: "Vue, Vuex, Ajax",
+      //     brief:
+      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
+      //     description:
+      //       "Dolorum qui minima consectetur accusantium quisquam cum numquam dolor ex, earum, fugiat temporibus natus dignissimos aut reprehenderit nihil! ",
+      //     technology: [
+      //       {
+      //         icon: "logos:html-5",
+      //         width: 24,
+      //       },
+      //       {
+      //         icon: "logos:css-3",
+      //         width: 24,
+      //       },
+      //       {
+      //         icon: "logos:vue",
+      //         width: 30,
+      //       },
+      //     ],
+      //     buttonDemo: {
+      //       text: "View Demo",
+      //       icon: "healthicons:eye",
+      //       anchor: "https://mozvik.github.io/vue-quiz/",
+      //     },
+      //     buttonCode: {
+      //       text: "Github Repository",
+      //       icon: "akar-icons:github-outline-fill",
+      //       anchor: "https://github.com/mozvik/vue-quiz",
+      //     },
+      //   },
+      //   {
+      //     title: "Movie Database App",
+      //     imageMobile: "https://picsum.photos/360/300/?rnd=3",
+      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
+      //     tech: "React",
+      //     brief:
+      //       "Fuga voluptas consectetur nemo corporis temporibus velit atque ipsa, rem excepturi quas mollitia modi quos.",
+      //     description:
+      //       "Cumque debitis, natus consequuntur facilis, reprehenderit reiciendis quas facere voluptates ut adipisci repudiandae quasi error rerum sunt, eum expedita qui nam aliquam est perspiciatis ullam voluptatem quibusdam voluptas hic.",
+      //     technology: [
+      //       {
+      //         icon: "logos:html-5",
+      //         width: 24,
+      //       },
+      //       {
+      //         icon: "logos:css-3",
+      //         width: 24,
+      //       },
+      //       {
+      //         icon: "logos:react",
+      //         width: 28,
+      //       },
+      //     ],
+      //     buttonDemo: {
+      //       text: "View Demo",
+      //       icon: "healthicons:eye",
+      //       anchor: "https://mozvik.github.io/vue-quiz/",
+      //     },
+      //     buttonCode: {
+      //       text: "Github Repository",
+      //       icon: "akar-icons:github-outline-fill",
+      //       anchor: "https://github.com/mozvik/vue-quiz",
+      //     },
+      //   },
+      //   {
+      //     title: "Recipe Book App",
+      //     imageMobile: "https://picsum.photos/360/300/?rnd=4",
+      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
+      //     tech: "Angular",
+      //     brief:
+      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
+      //     description:
+      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
+      //     technology: [
+      //       {
+      //         icon: "logos:angular-icon",
+      //         width: 26,
+      //       },
+      //       {
+      //         icon: "logos:php",
+      //         width: 50,
+      //       },
+      //     ],
+      //     buttonDemo: {
+      //       text: "View Demo",
+      //       icon: "healthicons:eye",
+      //       anchor: "https://mozvik.github.io/vue-quiz/",
+      //     },
+      //     buttonCode: {
+      //       text: "Github Repository",
+      //       icon: "akar-icons:github-outline-fill",
+      //       anchor: "https://github.com/mozvik/vue-quiz",
+      //     },
+      //   },
+      //   {
+      //     title: "EsoGuides - Gaming Website",
+      //     imageMobile: "https://picsum.photos/360/300/?rnd=5",
+      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
+      //     tech: "React",
+      //     brief:
+      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
+      //     description:
+      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
+      //     technology: [
+      //       {
+      //         icon: "logos:react",
+      //         width: 26,
+      //       },
+      //       {
+      //         icon: "logos:php",
+      //         width: 50,
+      //       },
+      //     ],
+      //     buttonDemo: {
+      //       text: "View Demo",
+      //       icon: "healthicons:eye",
+      //       anchor: "https://mozvik.github.io/vue-quiz/",
+      //     },
+      //     buttonCode: {
+      //       text: "Github Repository",
+      //       icon: "akar-icons:github-outline-fill",
+      //       anchor: "https://github.com/mozvik/vue-quiz",
+      //     },
+      //   },
+      // ],
     };
   },
   props: {
@@ -266,6 +267,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
 }
 .card-item:hover .item-title {
   color: var(--light);
@@ -275,9 +277,9 @@ export default {
   width: 100%;
 }
 .item-title {
-  background: var(--background);
+  /* background: var(--secondary); */
   font-family: "Oswald", Helvetica, sans-serif;
-  color: var(--light100);
+  color: var(--light);
   font-size: 1.4rem;
   padding: 0.5rem 0;
   text-transform: uppercase;
@@ -294,17 +296,18 @@ export default {
   font-size: 1.1rem;
   padding: 0 0.5rem;
   /* background: var(--background800); */
+  background: var(--primary);
+}
+.item-buttons {
+  background: var(--primary);
 }
 .item-brief {
   opacity: .9;
   /* background: var(--background800); */
-  color: var(--light200);
   padding: 1rem 0;
 }
 .item-description {
-  color: var(--light300);
   opacity: .8;
-  /* background: var(--background800); */
   padding: 1rem 0;
 }
 .item-tech-icons {
