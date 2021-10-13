@@ -20,13 +20,14 @@
 <script>
 
 import { computed, provide, reactive, onMounted, ref } from "vue";
-import Home from "@/views/Home.vue";
-import About from "@/views/About.vue";
-import Skills from "@/views/Skills.vue";
-import Portfolio from "@/views/Portfolio.vue";
-import Contact from "@/views/Contact.vue";
-import Navbar from "@/components/Navbar.vue";
+import Home from "@/views/Home.vue"
+import About from "@/views/About.vue"
+import Skills from "@/views/Skills.vue"
+import Portfolio from "@/views/Portfolio.vue"
+import Contact from "@/views/Contact.vue"
+import Navbar from "@/components/Navbar.vue"
 import Locale from "@/composables/Locale.js"
+import Colors from "@/composables/Colors.js"
 export default {
   components: {
     Home,
@@ -42,10 +43,10 @@ export default {
       activeSection: 0,
     });
 
-    const displaySize = ref(null);
-    const activeMenuItem = ref(null);
-    const sectionObserver = ref(null);
-    const skillObserver = ref(null);
+    const displaySize = ref(null)
+    const activeMenuItem = ref(null)
+    const sectionObserver = ref(null)
+    const skillObserver = ref(null)
 
     onMounted(() => {
       onResize();
@@ -54,6 +55,7 @@ export default {
       initSkillObserver();
       observeSections();
       observeMySkills();
+      Colors.methods.setColorTheme('dark')
     })
 
     const sections = computed(() => document.querySelectorAll(".section"));
@@ -64,6 +66,7 @@ export default {
 
     provide( "scrollState", computed(() => scrollState))
     provide( "Locale", Locale )
+    provide( "Colors", Colors )
     
     function onResize() {
       const ua = navigator.userAgent;
@@ -160,66 +163,43 @@ export default {
 
 <style>
 :root {
-  --background: rgb(18, 18, 18, 1);
+  /* --background: rgb(18, 18, 18, 1);
   --background800: rgb(59, 59, 59, 1);
-  --background700: rgb(81, 81, 81, 1);
-  --background600: rgb(98, 98, 98, 1);
-  --background500: rgb(126, 126, 126, 1);
-
-  --primary: #fa7d09;
-  --primary: #fa7d09;
-  --primary400: #fb9637;
-  --primary900: #fa7d09;
-  --primary-dark: #c86407;
-  --primary-light: #fb973a;
+   */
 
   /* blue gray #102a43*/
-  /* --background: rgb(16, 42, 67, 1);
-  --background800: rgb(36, 59, 83, 1);
-  --background700: rgb(51, 78, 104, 1);
-  --background600: rgb(72, 101, 129, 1);
-  --background500: rgb(98, 125, 152, 1);
-    */
+  /* --background: #102a43;
+   --background800: rgb(36, 59, 83, 1);
+  
+     */
+/*TERRA https://www.colourlovers.com/palette/292482/Terra
+*/
+
 
   /* cool gray #102a43*/
   /* --background: rgb(31, 41, 51, 1);
   --background800: rgb(50, 63, 75, 1);
-  --background700: rgb(62, 76, 89, 1);
-  --background600: rgb(82, 96, 109, 1);
-  --background500: rgb(97, 110, 124, 1);
+  -
    */
 
   /* warm gray #102a43*/
   /* --background: #27241d;
-  --background800: #423d33;
-  --background700: #504a40;
-  --background600: #625d52;
-  --background500: #857f72;
-   */
-
-  --light: #f7f7f7;
-  --light100: #e1e1e1;
-  --light200: #cfcfcf;
-  --light300: #b1b1b1;
-
-  --orange-red: #c62b28;
-
-  --lightgrey: #9a9a9a;
-  --background700: #8a8a8a;
+     */
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   background: transparent;
-  background: transparent;
 }
 html,
 body {
   overflow: hidden; 
-  color: var(--light300);
+  color: var(--light); 
   height: 100%;
+  scroll-behavior: smooth;
 }
+
 #app {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -228,12 +208,15 @@ body {
   display: grid;
   grid-template-rows: 70px 1fr;
   height: 100%;
+  background: var(--background);
 }
 
 .scroll-snap-container {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+  
   height: 100vh;
+  
 }
 .section {
   height: 100vh;
@@ -244,13 +227,11 @@ body {
     var(--background) 30%,
     var(--background800)
   ); */
-  background: 
-    var(--background)
-  ;
+  background: var(--background);
   position: relative;
   font-weight: bold;
   scroll-snap-align: center;
-  scroll-snap-stop: always;
+  /* scroll-snap-stop: always; */
   z-index: 0;
   user-select: none;
 
@@ -275,30 +256,11 @@ p {
   color: transparent;
  -webkit-text-stroke: 1px var(--light);
 }
-.primary{
-  color: var(--primary);
-}
-.primary-dark{
-  color: var(--primary-dark);
-}
-.primary-light{
-  color: var(--primary-light);
-}
+
 .light{
   color: var(--light);
 }
-.light100{
-  color: var(--light100);
-}
-.light200{
-  color: var(--light200);
-}
-.light300{
-  color: var(--light300);
-}
-.title-green{
-  color: var(--primary); 
-}
+
 .title{
   margin-bottom: 2rem;
 }
@@ -319,10 +281,10 @@ p {
     perspective: 1px;
     /* perspective-origin: 49.5% 47.5%; */
     perspective-origin: center;
-    
   }
   .parallax-group {
-    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     position: relative;
     height: 500px; 
     height: 100vh;
@@ -375,15 +337,18 @@ p {
   
   .back-title h1 {
     font-size: 150px;
-    color: var(--background700);
+    color: var(--light);
+    /* color: rgb(51, 78, 104, 1); */
     /* color: transparent; */
-    opacity: .1;
+    opacity: .05;
     /* -webkit-text-stroke: 5px var(--light); */
   }
   .vueperslides__arrow {
-  color: var(--primary);
+  color: var(--secondary);
+
   }
-  .vueperslides__arrow svg {stroke-width: 3;
+  .vueperslides__arrow svg {
+  stroke-width: 3;
   font-size: 10px;} 
  
   
@@ -427,5 +392,8 @@ p {
   .back-title h1 {
     font-size: 300px;
   }
+  .vueperslides__arrow svg {
+  padding-top: 28rem;
+  } 
 }
 </style>
