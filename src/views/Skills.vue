@@ -94,7 +94,7 @@ export default {
 .skill-list{
  
     color: var(--light);
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Roboto', Helvetica, sans-serif;
     position: relative;
 }

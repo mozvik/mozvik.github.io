@@ -127,6 +127,9 @@ export default {
     border: none;
     border-bottom: 1px solid var(--light);
   }
+  input:focus{
+    outline: none;
+  }
   label>span{
     padding: .5rem;
     position: absolute;

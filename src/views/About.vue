@@ -3,7 +3,7 @@
 
     <div class="content parallax-layer parallax-layer-base">
       <div class="img">
-        <img src="/enkicsi.png" alt="" class="" >
+        <img src="/minime.jpg" alt="" class="" >
       </div>
       <div class="about-text" >
         <h2 class="title light">{{languageData.computed.currentLanguageData().aboutView.title}}</h2>
@@ -56,10 +56,34 @@ export default {
    padding-right: 1rem;
    height: 100vh;
   }
+  .img {
+    margin: 0 auto;
+    border: 4px solid var(--light);
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    /* max-width: 300px;
+    min-width: 250px;
+    background: var(--light); */
+    overflow: hidden;
+  }
+  .img img{
+    /* width: auto;
+    height: 100%; */
+  }
  
   /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 768px) {
-.content{
+
+  
+  .cv-button{
+    padding-top: 1rem;
+  }
+}
+ 
+/**          LARGE DESKTOP                                   **/
+@media screen and (min-width: 992px) {
+  .content{
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -69,16 +93,6 @@ export default {
    padding-right: 1rem;
    height: 100vh;
   }
-  .img {
-    padding-right: 3rem;
-  }
-  .cv-button{
-    padding-top: 1rem;
-  }
-}
- 
-/**          LARGE DESKTOP                                   **/
-@media screen and (min-width: 992px) {
  .about-text{
    width: 50%;
  }

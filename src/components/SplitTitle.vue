@@ -72,11 +72,12 @@ export default {
       });
     }
     function direction(e) {
-      if (e.pageY == mouseY.value) mouseDirectionY.value = "";
-      else if (e.pageY < mouseY.value) mouseDirectionY.value = "top";
-      else mouseDirectionY.value = "bottom";
+      if (e.pageY == mouseY.value) 
+      mouseDirectionY.value = (Math.random()>0.5)? 'top' : 'bottom'
+      else if (e.pageY < mouseY.value) mouseDirectionY.value = "top"
+      else mouseDirectionY.value = "bottom"
 
-      if (e.pageX == mouseX.value) mouseDirectionX.value = "";
+      if (e.pageX == mouseX.value) mouseDirectionX.value = (Math.random()>0.5)? 'left' : 'right'
       else if (e.pageX < mouseX.value) mouseDirectionX.value = "left";
       else mouseDirectionX.value = "right";
 
@@ -112,10 +113,10 @@ export default {
         ) {
           e.target.style =
             " --xm: " +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px;" +
             " --ym: " +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px; --angle: " +
             (Math.floor(Math.random() * 40) + 160) +
             "deg; --speed: " +
@@ -129,10 +130,10 @@ export default {
         ) {
           e.target.style =
             " --xm: -" +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px;" +
             " --ym: " +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px; --angle: -" +
             (Math.floor(Math.random() * 40) + 160) +
             "deg; --speed: " +
@@ -146,10 +147,10 @@ export default {
         ) {
           e.target.style =
             " --xm: " +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px;" +
             " --ym: -" +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px; --angle: " +
             (Math.floor(Math.random() * 40) + 160) +
             "deg; --speed: " +
@@ -163,10 +164,10 @@ export default {
         ) {
           e.target.style =
             " --xm: -" +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px;" +
             " --ym: -" +
-            (Math.floor(Math.random() * 35) + 35) +
+            (Math.floor(Math.random() * 55) + 55) +
             "px; --angle: -" +
             (Math.floor(Math.random() * 40) + 160) +
             "deg; --speed: " +
@@ -249,7 +250,7 @@ export default {
     transform: translateX(0px) translateY(0px);
   }
   50% {
-    transform: translateX(var(--xm)) translateY(var(--ym)) rotate(var(--angle));
+    transform: translateX(var(--xm)) translateY(var(--ym)) rotate(var(--angle)); 
   }
   100% {
     transform: translateX(0px) translateY(0px) rotate(360deg);

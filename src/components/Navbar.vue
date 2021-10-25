@@ -4,10 +4,11 @@
       <div class="logo">
         <div>
           <img class="svg"
-            src="/logo-spinner-white.svg"
+            :src="colors.state.currentColorMode == 'dark' ? '/logo-spinner-white.svg':'/logo-spinner-black.svg'"
             alt="logo"
             width="50"
             height="50"
+            @click="$emit('selectedMenuItem', 'home')"
           />
         </div>
       </div>
@@ -38,6 +39,7 @@
             alt="logo"
             width="150"
             height="250"
+            @click="$emit('selectedMenuItem', 'home')"
           />
         </div>
       </div>
@@ -160,6 +162,9 @@ nav a {
 }
 .svg{
   fill: var(--background);
+}
+.svg:hover{
+  cursor: pointer;
 }
 .mobile-bar {
   display: flex;

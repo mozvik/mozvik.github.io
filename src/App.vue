@@ -4,11 +4,12 @@
     :activeMenuItem="activeMenuItem"
     @selectedMenuItem="goToSection" ></Navbar>
 
-  <div     
+  <div 
+        
     id="main" 
-    class="parallax"
-    :class="displaySize < 3 ? 'scroll-snap-container':'scroll-snap-container'"
-    @scroll="globalScroll" >      
+    class="parallax scroll-snap-container"
+    @scroll="globalScroll"
+    >
     <Home></Home>
     <About></About>
     <Skills></Skills>
@@ -20,6 +21,7 @@
 <script>
 
 import { computed, provide, reactive, onMounted, ref } from "vue";
+
 import Home from "@/views/Home.vue"
 import About from "@/views/About.vue"
 import Skills from "@/views/Skills.vue"
@@ -28,6 +30,7 @@ import Contact from "@/views/Contact.vue"
 import Navbar from "@/components/Navbar.vue"
 import Locale from "@/composables/Locale.js"
 import Colors from "@/composables/Colors.js"
+
 export default {
   components: {
     Home,
@@ -36,6 +39,7 @@ export default {
     Portfolio,
     Contact,
     Navbar,
+   
   },
   setup() {
     const scrollState = reactive({
@@ -47,7 +51,9 @@ export default {
     const activeMenuItem = ref(null)
     const sectionObserver = ref(null)
     const skillObserver = ref(null)
-
+    const canScroll = ref(true)
+    const scrollContainer = ref(document.querySelector('html'))
+    
     onMounted(() => {
       onResize();
       window.addEventListener("resize", onResize);
@@ -141,14 +147,31 @@ export default {
       sectionContainer.value.scrollTo({
         top: document.getElementById(sectionName).offsetTop - 100,
         left: 0,
-        behavior: "auto",
+        behavior: "smooth",
       });
     }
     function globalScroll(e) {
       scrollState.ypos = e.target.scrollTop;
-      scrollState.activeSection = Object.keys(Locale.state.langData.en.navItems).indexOf(
-        activeMenuItem.value
-      );
+      scrollState.activeSection = Object.keys(Locale.state.langData.en.navItems).indexOf(activeMenuItem.value)
+    }
+    function snapFix(e) {
+      console.log('e :>> ', canScroll.value);
+      if (canScroll.value) {
+        scrollContainer.value.scrollBy({
+          top: 0,
+          left: e.deltaY,
+          behavior: 'smooth'})
+        canScroll.value = false
+        
+        setTimeout(() => {
+            canScroll.value = true;
+        }, 600)
+      }
+      else {
+        e.preventDefault()
+      }
+    
+    
     }
     return {
       scrollState,
@@ -156,6 +179,7 @@ export default {
       activeMenuItem,
       goToSection,
       globalScroll,
+      snapFix,
     };
   },
 };
@@ -190,48 +214,44 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background: transparent;
+
 }
 html,
 body {
   overflow: hidden; 
   color: var(--light); 
-  height: 100%;
   scroll-behavior: smooth;
+
 }
 
 #app {
   font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
   position: relative;
   display: grid;
   grid-template-rows: 70px 1fr;
-  height: 100%;
+  height: 100vh;
   background: var(--background);
 }
 
 .scroll-snap-container {
   overflow-y: scroll;
+  overflow-x: hidden;
   scroll-snap-type: y mandatory;
-  
-  height: 100vh;
-  
-}
+  scroll-behavior: smooth;
+  -ms-scroll-snap-type: mandatory;
+  width: 100%;
+  height: 100vh; 
+  margin: 0 auto;
+}  
 .section {
-  height: 100vh;
+  /* height: 100vh; */
   min-height: 100vh;
   padding: 1rem;
-  /* background: linear-gradient(
-    90deg,
-    var(--background) 30%,
-    var(--background800)
-  ); */
-  background: var(--background);
   position: relative;
-  font-weight: bold;
-  scroll-snap-align: center;
-  /* scroll-snap-stop: always; */
+  /* font-weight: bold; */
+  scroll-snap-align: start;
   z-index: 0;
   user-select: none;
 
@@ -250,7 +270,7 @@ h3 {
 }
 p {
   padding: 0.5rem 0;
-  font-size: 18px;
+  font-size: 20px;
 }
 .light-stroke span{
   color: transparent;
@@ -281,6 +301,7 @@ p {
     perspective: 1px;
     /* perspective-origin: 49.5% 47.5%; */
     perspective-origin: center;
+    
   }
   .parallax-group {
     max-width: 1400px;
@@ -288,8 +309,8 @@ p {
     position: relative;
     height: 500px; 
     height: 100vh;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
+   /* -webkit-transform-style: preserve-3d; */
+     transform-style: preserve-3d;  
     /* border: 1px solid green; */
   } 
   .parallax-layer {
@@ -298,14 +319,17 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
+    
   } 
   .parallax-layer-front {
+    
     transform: translateZ(0.7px) scale(.30);
     z-index: 4;
     /* border: 1px solid white; */
     /* background: transparent; */
   }
   .parallax-layer-base {
+    
     transform: translateZ(0.445px) scale(.475);
     z-index: 5;
     /* border: 1px solid red; */
@@ -315,6 +339,7 @@ p {
   }
  
   .parallax-layer-deep {
+    
     transform: translateZ(0.2px) scale(0.67);
     z-index: 3;
     /* border: 1px solid gold; */
@@ -323,6 +348,7 @@ p {
     grid-template-rows: 1fr 2fr 1fr;
   }
   .parallax-layer-deepest {
+    
     transform: translateZ(0.1px) scale(0.86);
     z-index: 2;
     /* border: 1px solid blue; */
