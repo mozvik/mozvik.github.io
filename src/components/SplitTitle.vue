@@ -13,83 +13,151 @@ export default {
   props: {
     animation: String,
     animationDelay: {
-      type: Number,
+      type:  String,
       required: false,
-      default: 1000,
+      default: '1000ms',
     },
     letterKick: {
       type: [Boolean, String],
       required: false,
       default: false,
     },
+    smoke: {
+      type: [Boolean, String],
+      required: false,
+      default: false,
+    }
   },
   setup(props) {
-    const split = ref(null);
-    const mouseY = ref(0);
-    const mouseX = ref(0);
-    const mouseDirectionY = ref("");
-    const mouseDirectionX = ref("");
-    const spans = ref("");
+    const split = ref(null)
+    const mouseY = ref(0)
+    const mouseX = ref(0)
+    const mouseDirectionY = ref("")
+    const mouseDirectionX = ref("")
+    const spans = ref("")
+    const spanContainer = ref([])
     onMounted(() => {
-      splitContent(split.value);
-      if (props.animation === "randomfadein") randomFadeIn();
-      document.addEventListener("mousemove", direction);
-      if (props.letterKick) setupKickableSpans(split.value);
-    });
+      splitContent(split.value)
+      
+      if (props.animation === "randomfadein") randomFadeIn()
+      document.addEventListener("mousemove", direction)
+      if (props.letterKick) setupKickableSpans(split.value)
+      if (props.smoke){ 
+          setupSmokeSpans()
+      }
+    })
+    
     function splitContent(ele) {
       let el = ele.querySelector("h1,h3");
       for (let index = 0; index < el.textContent.length; index++) {
-        let t = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
-        spans.value +=
-          "<span style='--xvar:" +
-          index +
-          "; --xpos:" +
-          (Math.floor(Math.random() * 500) - 250) +
-          "px; --ypos:" +
-          (Math.floor(Math.random() * 450) - 400) +
-          "px; --angle:" +
-          (Math.floor(Math.random() * 300) + 60) +
-          "deg; --mtp:" +
-          t +
-          "; --scale:" +
-          Math.random() +
-          ";'>" +
-          el.textContent[index] +
-          "</span>";
+        spans.value += "<span>" + el.textContent[index] +
+           "</span>"
+        
       }
       el.innerHTML = spans.value;
+      spanContainer.value = el.querySelectorAll("span")
     }
     function randomFadeIn() {
       let array = split.value.querySelectorAll("span");
+  
       array.forEach((element) => {
         element.style =
           "--rnd: " +
-          (Math.floor(Math.random() * props.animationDelay) + 1042) +
+          (Math.floor(Math.random() * 2000) + 1000 ) +
           "ms; --rnda: " +
           (Math.floor(Math.random() * 2000) + 1042) +
           "ms";
         element.classList.add(props.animation);
+        element.addEventListener("animationend", animEndFadeIn);
       });
+
     }
+    function smokeReveal( ele ) {
+
+      if (ele === undefined || ele == 'randomfadein') {
+        
+        for (let index = 0; index < spanContainer.value.length; index++) {
+          const element = spanContainer.value[index]
+          element.className = ''
+          setSmokeStyle(element, true)
+          element.classList.add("opa-zero")
+          element.classList.add("reverse")
+          element.classList.add("easein")
+          element.classList.add("smoke-animation")
+          element.state = "init"
+        }
+      }else{
+          setSmokeStyle(ele, true)
+          ele.classList.add("opa-zero")
+          ele.classList.add("reverse")
+          ele.classList.add("easein")
+          ele.classList.add("smoke-animation")
+          ele.state = "init"
+      }
+    }
+    function setSmokeStyle(element, isReverse){
+      const xMovement = Math.floor(Math.random() * 10) + 5
+      const yMovement = Math.floor(Math.random() * 15) + 3
+      const skew = Math.floor(Math.random() * 50) 
+      const rotate = Math.floor(Math.random() * 100)
+      const delay = Math.floor(Math.random() * 300)
+
+      if(isReverse) setRandomDirection()
+      
+       element.style =
+        '--xm: ' + 
+        (mouseDirectionX.value == 'left' ? xMovement * -1:xMovement) + 'rem;' + 
+        '--ym: ' + 
+        (mouseDirectionY.value == 'top' ? yMovement:yMovement * -1) + 'rem;' + 
+        '--sk: ' + skew + 'deg;' + 
+        '--rt: ' + rotate + 'deg;' + 
+        '--delay: ' + delay + 'ms;'
+    }
+    function setRandomDirection(){
+      switch (Math.floor(Math.random() * 2)) {
+        case 0:
+          mouseDirectionX.value = 'left'
+          break;
+        default:
+          mouseDirectionX.value = 'right'
+          break;
+      }
+      switch (Math.floor(Math.random() * 2)) {
+        case 0:
+          mouseDirectionY.value = 'top'
+          break;
+        default:
+          mouseDirectionY.value = 'bottom'
+          break;
+      }
+    }
+  
     function direction(e) {
-      if (e.pageY == mouseY.value) 
-      mouseDirectionY.value = (Math.random()>0.5)? 'top' : 'bottom'
-      else if (e.pageY < mouseY.value) mouseDirectionY.value = "top"
+      if (e.pageY > mouseY.value) mouseDirectionY.value = 'top'
       else mouseDirectionY.value = "bottom"
 
-      if (e.pageX == mouseX.value) mouseDirectionX.value = (Math.random()>0.5)? 'left' : 'right'
-      else if (e.pageX < mouseX.value) mouseDirectionX.value = "left";
-      else mouseDirectionX.value = "right";
+      if (e.pageX < mouseX.value) mouseDirectionX.value = 'left'      
+      else mouseDirectionX.value = "right"
 
-      mouseY.value = e.pageY;
-      mouseX.value = e.pageX;
+      
+      mouseY.value = e.pageY
+      mouseX.value = e.pageX
     }
     function setupKickableSpans(spanContainer) {
       let elements = spanContainer.querySelectorAll("span");
       elements.forEach((element) => {
-        element.addEventListener("animationend", animEnd);
+        element.addEventListener("animationend", animEndKick);
       });
     }
+    function setupSmokeSpans() {
+      spanContainer.value.forEach((element) => {
+         element.addEventListener("animationend", animEndSmoke);
+
+         });
+    }
+   
+    
+    
     function mouseEnter(e) {
       if (!e.target.classList.contains("kick")) {
         if (mouseDirectionX.value === "left" && mouseDirectionY.value === "") {
@@ -177,32 +245,44 @@ export default {
         }
       }
     }
-    function animEnd(e) {
+    function mouseEnterSmoke(e) {
+      
+      if (e.target.state === 'idle') {
+        setSmokeStyle(e.target, false)
+        e.target.classList.add("forwards")
+        e.target.classList.add("easein")
+        e.target.classList.add("opa-zero")
+        e.target.classList.add("smoke-animation")
+        e.target.state = 'smoking' 
+      }
+     
+    }
+   
+    function animEndKick(e) {
       if (e.animationName.includes("fadein")) {
         e.target.classList.remove("randomfadein");
         e.target.addEventListener("mouseenter", mouseEnter);
         return;
       }
-      let arr = [];
-      for (let index = 0; index < e.target.classList.length; index++) {
-        arr[index] = e.target.classList[index];
+       if(e.target.className.indexOf("kick") != -1 ) e.target.className = ""
+    }
+    function animEndSmoke(e) {
+      e.target.addEventListener("mouseenter", mouseEnterSmoke)
+      if (e.target.state === 'init') {
+        e.target.state = 'idle'
+        e.target.className = ""
       }
+      if (e.target.state === 'smoking') smokeReveal(e.target)       
+    }
+    function animEndFadeIn(e) {
 
-      arr
-        .filter((x) => x.includes("kick"))
-        .forEach((element) => {
-          e.target.classList.remove(element);
-        });
+      e.target.state='init'
+      e.target.className = ""
+      setSmokeStyle(e.target, true)
+      e.target.removeEventListener("animationend", animEndFadeIn)
     }
     return {
-      // It is important to return the ref,
-      // otherwise it won't work.
-      split,
-      spans,
-      mouseY,
-      mouseX,
-      mouseDirectionY,
-      mouseDirectionX,
+       split,
     };
   },
 };
@@ -210,10 +290,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.split span[class*="smoke"], .split span[class*="kick"]{
+   pointer-events: none;
+}
+
 .split span {
   display: inline-block;
   white-space: pre;
 }
+
+
 .kick-to-left {
   animation: kick-to-left 0.9s ease 1 forwards;
 }
@@ -325,5 +411,53 @@ export default {
   100% {
     transform: translateY(0px);
   }
+}
+
+.smoke-animation{
+  animation: smoke-animation 1;
+  animation-duration: calc(500ms + var(--delay));
+}
+@keyframes smoke-animation {
+  0%{
+      transform: translateX(0px);
+      opacity: 1;
+  }
+  20%{
+      text-shadow: 0 0 5px whitesmoke;
+      opacity: 1;
+  }
+  70%{
+      transform: translate3d(var(--xm),var(--ym),20px) skewX(var(--sk)) scale(1.5) rotate3d(1,1,1,var(--rt)) perspective(30px); 
+      /* transform: translate3d(15rem,-8rem,0) skewX(var(--sk)) scale(1.5) rotate3d(1,1,1,var(--rt)) perspective(30px);  */
+      filter: blur(8px);
+      text-shadow: 0 0 20px whitesmoke;
+      opacity: 0.1;
+  }
+  80%{
+    transform: translate3d(var(--xm),var(--ym),20px) skewX(var(--sk)) scale(4) rotate3d(1,1,1,var(--rt)) perspective(30px); 
+     opacity: 0;
+  }
+  100%{
+      opacity: 0;
+  }
+}
+.opa-zero {
+  opacity: 0;
+}
+
+.reverse{
+  animation-direction: reverse;
+  animation-delay: v-bind("animationDelay");
+  animation-duration: 2s;
+}
+.forwards{
+  animation-direction: forwards;
+  animation-duration: 5s;
+}
+.easein{
+  animation-timing-function: ease-in;
+}
+.easeout{
+  animation-timing-function: ease-out;
 }
 </style>
