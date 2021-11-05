@@ -1,10 +1,11 @@
 <template>
   <vueper-slides
     class="no-shadow"
-    :dragging-distance="50"
+    :dragging-distance="20"
     :breakpoints="breakpoints"
-    fade
-    bullets-outside
+    :infinite="false"
+    :alwaysRefreshClones="true"
+    :bulletsOutside="true"
   >
     <vueper-slide
       v-for="(card, i) in languageData.computed.currentLanguageData().portfolioView.cards"
@@ -70,6 +71,7 @@ export default {
         992: {
           slideRatio: 2/3,
           bulletsOutside: true,
+          fixedHeight: "480px",
         },
         600: {
           arrows: true,
@@ -81,172 +83,7 @@ export default {
   },
   data() {
     return {
-     
 
-      // cards: [
-      //   {
-      //     title: "Quiz Application",
-      //     imageMobile: "quiz-m.jpg",
-      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
-      //     tech: "Vue, Vuex, Ajax",
-      //     brief:
-      //       "Simple Quiz Application made with Vue.js & Vuex state management",
-      //     description:
-      //       "This application gets JSON data from the Open Trivia Database API (https://opentdb.com/api_config.php) using Ajax requests and saves the user's high scores to the local storage.",
-      //     technology: [
-      //       {
-      //         icon: "logos:html-5",
-      //         width: 24,
-      //       },
-      //       {
-      //         icon: "logos:css-3",
-      //         width: 24,
-      //       },
-      //       {
-      //         icon: "logos:vue",
-      //         width: 30,
-      //       },
-      //     ],
-      //     buttonDemo: {
-      //       text: "View Demo",
-      //       icon: "healthicons:eye",
-      //       anchor: "https://mozvik.github.io/vue-quiz/",
-      //     },
-      //     buttonCode: {
-      //       text: "Github Repository",
-      //       icon: "akar-icons:github-outline-fill",
-      //       anchor: "https://github.com/mozvik/vue-quiz",
-      //     },
-      //   },
-      //   {
-      //     title: "Puzzle Slider",
-      //     imageMobile: "https://picsum.photos/360/300/?rnd=2",
-      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
-      //     tech: "Vue, Vuex, Ajax",
-      //     brief:
-      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
-      //     description:
-      //       "Dolorum qui minima consectetur accusantium quisquam cum numquam dolor ex, earum, fugiat temporibus natus dignissimos aut reprehenderit nihil! ",
-      //     technology: [
-      //       {
-      //         icon: "logos:html-5",
-      //         width: 24,
-      //       },
-      //       {
-      //         icon: "logos:css-3",
-      //         width: 24,
-      //       },
-      //       {
-      //         icon: "logos:vue",
-      //         width: 30,
-      //       },
-      //     ],
-      //     buttonDemo: {
-      //       text: "View Demo",
-      //       icon: "healthicons:eye",
-      //       anchor: "https://mozvik.github.io/vue-quiz/",
-      //     },
-      //     buttonCode: {
-      //       text: "Github Repository",
-      //       icon: "akar-icons:github-outline-fill",
-      //       anchor: "https://github.com/mozvik/vue-quiz",
-      //     },
-      //   },
-      //   {
-      //     title: "Movie Database App",
-      //     imageMobile: "https://picsum.photos/360/300/?rnd=3",
-      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
-      //     tech: "React",
-      //     brief:
-      //       "Fuga voluptas consectetur nemo corporis temporibus velit atque ipsa, rem excepturi quas mollitia modi quos.",
-      //     description:
-      //       "Cumque debitis, natus consequuntur facilis, reprehenderit reiciendis quas facere voluptates ut adipisci repudiandae quasi error rerum sunt, eum expedita qui nam aliquam est perspiciatis ullam voluptatem quibusdam voluptas hic.",
-      //     technology: [
-      //       {
-      //         icon: "logos:html-5",
-      //         width: 24,
-      //       },
-      //       {
-      //         icon: "logos:css-3",
-      //         width: 24,
-      //       },
-      //       {
-      //         icon: "logos:react",
-      //         width: 28,
-      //       },
-      //     ],
-      //     buttonDemo: {
-      //       text: "View Demo",
-      //       icon: "healthicons:eye",
-      //       anchor: "https://mozvik.github.io/vue-quiz/",
-      //     },
-      //     buttonCode: {
-      //       text: "Github Repository",
-      //       icon: "akar-icons:github-outline-fill",
-      //       anchor: "https://github.com/mozvik/vue-quiz",
-      //     },
-      //   },
-      //   {
-      //     title: "Recipe Book App",
-      //     imageMobile: "https://picsum.photos/360/300/?rnd=4",
-      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
-      //     tech: "Angular",
-      //     brief:
-      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
-      //     description:
-      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
-      //     technology: [
-      //       {
-      //         icon: "logos:angular-icon",
-      //         width: 26,
-      //       },
-      //       {
-      //         icon: "logos:php",
-      //         width: 50,
-      //       },
-      //     ],
-      //     buttonDemo: {
-      //       text: "View Demo",
-      //       icon: "healthicons:eye",
-      //       anchor: "https://mozvik.github.io/vue-quiz/",
-      //     },
-      //     buttonCode: {
-      //       text: "Github Repository",
-      //       icon: "akar-icons:github-outline-fill",
-      //       anchor: "https://github.com/mozvik/vue-quiz",
-      //     },
-      //   },
-      //   {
-      //     title: "EsoGuides - Gaming Website",
-      //     imageMobile: "https://picsum.photos/360/300/?rnd=5",
-      //     imageDesktop: "https://via.placeholder.com/300x400.jpg",
-      //     tech: "React",
-      //     brief:
-      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
-      //     description:
-      //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
-      //     technology: [
-      //       {
-      //         icon: "logos:react",
-      //         width: 26,
-      //       },
-      //       {
-      //         icon: "logos:php",
-      //         width: 50,
-      //       },
-      //     ],
-      //     buttonDemo: {
-      //       text: "View Demo",
-      //       icon: "healthicons:eye",
-      //       anchor: "https://mozvik.github.io/vue-quiz/",
-      //     },
-      //     buttonCode: {
-      //       text: "Github Repository",
-      //       icon: "akar-icons:github-outline-fill",
-      //       anchor: "https://github.com/mozvik/vue-quiz",
-      //     },
-      //   },
-      // ],
     };
   },
   props: {
@@ -262,7 +99,10 @@ export default {
 .item-image {
   display: none;
 }
-
+.vueperslides{
+  border: 1px solid var(--light);
+  /* overflow: hidden; */
+}
 .card-item {
   display: flex;
   flex-direction: column;
@@ -273,8 +113,9 @@ export default {
   color: var(--light);
   transition: color 0.4s ease-out;
 }
-.item-buttons button {
-  width: 100%;
+.item-buttons div{
+  /* width: 100%; */
+  margin: .5rem;
 }
 .item-title {
   /* background: var(--secondary); */
@@ -297,9 +138,11 @@ export default {
   padding: 0 0.5rem;
   /* background: var(--background800); */
   background: var(--primary);
+   flex-grow: 1;
 }
 .item-buttons {
   background: var(--primary);
+  border-bottom: 1px solid var(--light);
 }
 .item-brief {
   opacity: .9;
@@ -314,8 +157,8 @@ export default {
   display: inline-block;
   padding: 0 0.2rem;
 }
-.item-buttons {
-  /* border: 1px solid var(--light); */
+.item-brief {
+ 
 }
 
 /****************************************************** */
@@ -338,19 +181,19 @@ export default {
 }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-  .item-image {
+  .item-image {width: 100%;
     display: block;
   }
   .item-image img {
     height: auto;
-    max-width: 300px;
+    
     display: block;
     margin-right: auto;
   }
 
   .card-item {
     display: grid;
-    grid-auto-columns: 1fr auto;
+    grid-auto-columns: 300px 1fr;
     grid-auto-rows: 1fr auto;
   }
   .item-image {
@@ -360,6 +203,8 @@ export default {
   .item-body {
     grid-row: 1;
     grid-column: 2;
+
+    width: 100%;
   }
   .item-buttons {
     grid-row: 2;
