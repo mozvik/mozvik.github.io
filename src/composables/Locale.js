@@ -48,8 +48,8 @@ const state = reactive({
           backTitle: "SKILLS"
         },
         portfolioView: {
-          title: "PORTFOLIO", 
-          text1: "My Recent Projects",
+          title: "My Recent Projects", 
+          text1: "",
           cards: [
             {
               title: "Quiz Application",
@@ -59,7 +59,7 @@ const state = reactive({
               brief:
                 "Simple Quiz Application made with Vue.js & Vuex state management",
               description:
-                "This application gets JSON data from the Open Trivia Database API (https://opentdb.com/api_config.php) using Ajax requests and saves the user's high scores to the local storage.",
+                "",
               technology: [
                 {
                   icon: "logos:html-5",
@@ -93,7 +93,7 @@ const state = reactive({
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
               description:
-                "Dolorum qui minima consectetur accusantium quisquam cum numquam dolor ex, earum, fugiat temporibus natus dignissimos aut reprehenderit nihil! ",
+                "",
               technology: [
                 {
                   icon: "logos:html-5",
@@ -127,7 +127,7 @@ const state = reactive({
               brief:
                 "Fuga voluptas consectetur nemo corporis temporibus velit atque ipsa, rem excepturi quas mollitia modi quos.",
               description:
-                "Cumque debitis, natus consequuntur facilis, reprehenderit reiciendis quas facere voluptates ut adipisci repudiandae quasi error rerum sunt, eum expedita qui nam aliquam est perspiciatis ullam voluptatem quibusdam voluptas hic.",
+                "",
               technology: [
                 {
                   icon: "logos:html-5",
@@ -161,7 +161,7 @@ const state = reactive({
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
+                "",
               technology: [
                 {
                   icon: "logos:angular-icon",
@@ -191,7 +191,7 @@ const state = reactive({
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
+                "",
               technology: [
                 {
                   icon: "logos:react",
@@ -248,7 +248,7 @@ const state = reactive({
             id: "skills",
           },
           portfolio: {
-            name: "Portfólió",
+            name: "Munkáim",
             id: "portfolio",
           },
           contact: {
@@ -280,8 +280,8 @@ const state = reactive({
           backTitle: "KÉSZSÉGEK"
         },
         portfolioView: {
-          title: "PORTFÓLIÓ", 
-          text1: "Munkáim",
+          title: "Munkáim", 
+          text1: "",
           cards: [
             {
               title: "Kvíz Alkalmazás",
@@ -291,7 +291,7 @@ const state = reactive({
               brief:
                 "Egyszerű kvíz alkalmazás Vue.js és Vuex által készítve.",
               description:
-                "Az alkalmazás kérdéssorokat tölt le AJAX kérésekkel az Open Trivia Database API-t (https://opentdb.com/api_config.php) használva. A felhasználó adatait és pontszámait a local storage-ben tárolja.",
+                "",
               technology: [
                 {
                   icon: "logos:html-5",
@@ -325,7 +325,7 @@ const state = reactive({
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
               description:
-                "Dolorum qui minima consectetur accusantium quisquam cum numquam dolor ex, earum, fugiat temporibus natus dignissimos aut reprehenderit nihil! ",
+                "",
               technology: [
                 {
                   icon: "logos:html-5",
@@ -359,7 +359,7 @@ const state = reactive({
               brief:
                 "Fuga voluptas consectetur nemo corporis temporibus velit atque ipsa, rem excepturi quas mollitia modi quos.",
               description:
-                "Cumque debitis, natus consequuntur facilis, reprehenderit reiciendis quas facere voluptates ut adipisci repudiandae quasi error rerum sunt, eum expedita qui nam aliquam est perspiciatis ullam voluptatem quibusdam voluptas hic.",
+                "",
               technology: [
                 {
                   icon: "logos:html-5",
@@ -393,7 +393,7 @@ const state = reactive({
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
+                "",
               technology: [
                 {
                   icon: "logos:angular-icon",
@@ -423,7 +423,7 @@ const state = reactive({
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor possimus a totam earum. Beatae veritatis quia explicabo deserunt. Minima hic quasi eius.",
+                "",
               technology: [
                 {
                   icon: "logos:react",
