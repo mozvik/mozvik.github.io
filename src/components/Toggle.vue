@@ -31,8 +31,9 @@ export default {
   components: {
     Icon,
   },  
-   setup(){
-    const activeButton = ref('left')
+   setup(props){
+    const activeButton = ref(props.buttonState)
+
     return {activeButton}
   },
   emits: ["selectedButton"],
@@ -55,6 +56,11 @@ export default {
           required: true,
         },
       },
+      buttonState: {
+        String,
+        required: true,
+      }
+      
     },  
 };
 </script>
