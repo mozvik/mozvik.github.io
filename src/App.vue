@@ -7,8 +7,9 @@
   <div 
         
     id="main" 
-    class="parallax scroll-snap-container"
+    class="scroll-snap-container"
     @scroll="globalScroll"
+    
     >
     <Home></Home>
     <About></About>
@@ -51,8 +52,6 @@ export default {
     const activeMenuItem = ref(null)
     const sectionObserver = ref(null)
     const skillObserver = ref(null)
-    const canScroll = ref(true)
-    const scrollContainer = ref(document.querySelector('html'))
     
     onMounted(() => {
       onResize();
@@ -112,13 +111,33 @@ export default {
     }
     function initSectionObserver() {
       const options = {
-        threshold: [0.5],
+        threshold: [.05],
       };
       sectionObserver.value = new IntersectionObserver((entries) => {
-        const active = entries.filter((e) => e.isIntersecting); //entry.intersectionRatio
-        if (active.length) {
-          activeMenuItem.value = active[0].target.id;
+        const active = entries.filter((e) => e.isIntersecting ); 
+        const inActive = entries.filter((e) => !e.isIntersecting ); 
+         if (inActive.length) {
+          const backTitle = document.querySelector('#' + inActive[0].target.id + ' .back-title > h1')
+          if (backTitle) {
+            backTitle.classList.remove("btitle-float-up")
+            backTitle.classList.remove("btitle-float-down")
+          }
+           
         }
+        if (active.length) {
+          activeMenuItem.value = active[0].target.id
+          const backTitle = document.querySelector('#' + active[0].target.id + ' .back-title > h1')
+
+          if(backTitle) {
+            if(active[0].boundingClientRect.y >= 0){
+              replaceClass(backTitle,"btitle-float-down","btitle-float-up")
+            }
+            else if(active[0].boundingClientRect.y < 0 ||  active[0].target.id == 'contact') {
+              replaceClass(backTitle,"btitle-float-up","btitle-float-down")
+            }
+          }
+        }
+       
       }, options);
     }
     function initSkillObserver() {
@@ -154,32 +173,17 @@ export default {
       scrollState.ypos = e.target.scrollTop;
       scrollState.activeSection = Object.keys(Locale.state.langData.en.navItems).indexOf(activeMenuItem.value)
     }
-    function snapFix(e) {
-      console.log('e :>> ', canScroll.value);
-      if (canScroll.value) {
-        scrollContainer.value.scrollBy({
-          top: 0,
-          left: e.deltaY,
-          behavior: 'smooth'})
-        canScroll.value = false
-        
-        setTimeout(() => {
-            canScroll.value = true;
-        }, 600)
-      }
-      else {
-        e.preventDefault()
-      }
-    
-    
+    function replaceClass(element, delClass, insClass){
+      element.classList.remove(delClass)
+      element.classList.add(insClass)
     }
+   
     return {
       scrollState,
       displaySize,
       activeMenuItem,
       goToSection,
       globalScroll,
-      snapFix,
     };
   },
 };
@@ -187,28 +191,7 @@ export default {
 
 <style>
 :root {
-  /* --background: rgb(18, 18, 18, 1);
-  --background800: rgb(59, 59, 59, 1);
-   */
-
-  /* blue gray #102a43*/
-  /* --background: #102a43;
-   --background800: rgb(36, 59, 83, 1);
   
-     */
-/*TERRA https://www.colourlovers.com/palette/292482/Terra
-*/
-
-
-  /* cool gray #102a43*/
-  /* --background: rgb(31, 41, 51, 1);
-  --background800: rgb(50, 63, 75, 1);
-  -
-   */
-
-  /* warm gray #102a43*/
-  /* --background: #27241d;
-     */
 }
 * {
   padding: 0;
@@ -216,21 +199,29 @@ export default {
   box-sizing: border-box;
 
 }
+
 html,
 body {
-  overflow: hidden; 
+  font-size: 18px;
   color: var(--light); 
   scroll-behavior: smooth;
-
+  background: var(--background);
+  height: 100vh;
+  overflow: hidden;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 #app {
   font-family: "Roboto", sans-serif;
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
   position: relative;
   display: grid;
+ 
   grid-template-rows: 70px 1fr;
+  width: 100vw;
   height: 100vh;
   background: var(--background);
 }
@@ -239,42 +230,41 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  -ms-scroll-snap-type: mandatory;
-  width: 100%;
-  height: 100vh; 
+  /* scroll-padding-top: 50px; */
+  
+  height: 100vh;
   margin: 0 auto;
+
 }  
+ 
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+} 
 .section {
-  /* height: 100vh; */
-  min-height: 100vh;
-  padding: 1rem;
   position: relative;
-  /* font-weight: bold; */
-  scroll-snap-align: start;
-  z-index: 0;
+  scroll-snap-align: end;
+  scroll-snap-stop: always;
+  height: 100vh;  
   user-select: none;
+  z-index: 1;
 
 }
 h1,
 h1 span,
 .title {
   font-family: "Oswald", sans-serif;
-  font-size: 38px;
+  font-size: 2rem;
   font-weight: 600;
   text-transform: uppercase;
 }
 h3 {
-  font-size: 22px;
+  font-size: 1.15rem;
   text-transform: uppercase;
 }
 p {
   padding: 0.5rem 0;
   font-size: 20px;
-}
-.light-stroke span{
-  color: transparent;
- -webkit-text-stroke: 1px var(--light);
 }
 
 .light{
@@ -282,7 +272,7 @@ p {
 }
 
 .title{
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 .randomfadein {
   opacity: 0;
@@ -292,88 +282,63 @@ p {
   0% {opacity:0}
   100% {opacity:1}
 }
-.parallax {
-    margin: 0 auto;
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    perspective: 1px;
-    /* perspective-origin: 49.5% 47.5%; */
-    perspective-origin: center;
-    
-  }
-  .parallax-group {
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-    height: 500px; 
-    height: 100vh;
-   /* -webkit-transform-style: preserve-3d; */
-     transform-style: preserve-3d;  
-    /* border: 1px solid green; */
-  } 
-  .parallax-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    
-  } 
-  .parallax-layer-front {
-    
-    transform: translateZ(0.7px) scale(.30);
-    z-index: 4;
-    /* border: 1px solid white; */
-    /* background: transparent; */
-  }
-  .parallax-layer-base {
-    
-    transform: translateZ(0.445px) scale(.475);
-    z-index: 5;
-    /* border: 1px solid red; */
 
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-  }
- 
-  .parallax-layer-deep {
-    
-    transform: translateZ(0.2px) scale(0.67);
-    z-index: 3;
-    /* border: 1px solid gold; */
-    
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-  }
-  .parallax-layer-deepest {
-    
-    transform: translateZ(0.1px) scale(0.86);
-    z-index: 2;
-    /* border: 1px solid blue; */
-  }
- 
   .back-title{
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-end; 
+    pointer-events: none;
+    z-index: -2;
   }
   
   .back-title h1 {
     font-size: 150px;
     color: var(--light);
-    /* color: rgb(51, 78, 104, 1); */
-    /* color: transparent; */
+    opacity: 0.05;
+  }
+  /* .btitle-hide{
+    opacity: 0;
+  }
+  .btitle-show{
+    opacity: 0.05;
+  } */
+  .btitle-float-up{
+    /* transform: translateY(-50px);
     opacity: .05;
-    /* -webkit-text-stroke: 5px var(--light); */
+    transition: all 2s ease-in-out; */
+    animation: btitlefloatup 1.5s ease-in-out forwards;
+  }
+  .btitle-float-down{
+    animation: btitlefloatdown 1.5s ease-in-out forwards;
+    /* transform: translateY(50px);
+    transition: transform 2s ease-in-out; */
+  }
+  @keyframes btitlefloatup {
+  0% {opacity:0; transform: translateY(25px)}
+  35% {opacity:0; transform: translateY(25px)}
+  75% {opacity:.05; transform: translateY(-25px)}
+  100% {opacity:.05; transform: translateY(-25px)}
+  }
+  @keyframes btitlefloatdown {
+  0% {opacity:0; transform: translateY(-125px)}
+  25% {opacity:0; transform: translateY(-125px)}
+  75% {opacity:.05; transform: translateY(25px)}
+  100% {opacity:.05; transform: translateY(25px)}
   }
   .vueperslides__arrow {
   color: var(--secondary);
-
+  /* transform: translateY(calc(-100% - 100px)); */
   }
-  .vueperslides__arrow svg {
+  .vueperslides__arrow:hover {
+  color: var(--light);
+  /* transform: translateY(calc(-100% - 100px)); */
+  }
+  .vueperslides__arrow svg, .vueperslides__arrow svg:hover {
   stroke-width: 3;
   font-size: 10px;} 
  
@@ -381,26 +346,40 @@ p {
 
 /****************************************************** */
 /**          TABLET                                   **/
-/* @media screen and (min-width: 768px) {
-  
-} */
+@media screen and (min-width: 768px) {
+ #main{
+    width: calc(100% );
+ } 
+ .section{
+    width: 100%;
+    max-width: 960px;
+ }
+}
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
   h1,
   h1 span,
   .title {
-    font-size: 48px;
+    font-size: 3rem;
   }
   h3 {
-    font-size: 24px;
+    padding-top: 1rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
   }
 
   #app {
     grid-template-columns: minmax(auto, 250px) 8fr;
   }
-  
+  .section {
+    /* width: calc(100% - 250px); */
+  }
+  .back-title{
+   
+    bottom: 0%;
+    
+  }
 }
 /****************************************************** */
 /**          LARGE DESKTOP                                   **/
@@ -414,6 +393,10 @@ p {
   h3 {
     font-size: 32px;
     text-transform: uppercase;
+  }
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
   }
   .back-title h1 {
     font-size: 300px;
