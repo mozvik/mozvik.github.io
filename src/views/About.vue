@@ -1,33 +1,34 @@
 <template>
-  <div  class="section parallax-group" id="about" >
+  <div  class="section" id="about" >
 
-    <div class="content parallax-layer parallax-layer-base">
-      <div class="img">
-        <img src="/minime.jpg" alt="" class="" >
-      </div>
-      <div class="about-text" >
+    <div class="content">
+      <div class="section-title">
         <h2 class="title light">{{languageData.computed.currentLanguageData().aboutView.title}}</h2>
-      
-        <p class="light100">
-          {{languageData.computed.currentLanguageData().aboutView.text1}}
-        </p>
-      
-        <p class="light100">
-          {{languageData.computed.currentLanguageData().aboutView.text2}}
-        </p>
-         <p class="light100">
-          {{languageData.computed.currentLanguageData().aboutView.text3}}
-        </p>
-        <div class="cv-button"><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}</ButtonDownload></div>
       </div>
-      
-      
-    </div>
+      <div class="section-text">
+        <div class="img">
+          <img src="/minime.jpg" alt="" class="" >
+        </div>
+        <div class="about-text" >
+          <p class="light100">
+            {{languageData.computed.currentLanguageData().aboutView.text1}}
+          </p>
+        
+          <p class="light100">
+            {{languageData.computed.currentLanguageData().aboutView.text2}}
+          </p>
+           <p class="light100">
+            {{languageData.computed.currentLanguageData().aboutView.text3}}
+          </p>
+          <div class="cv-button"><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}</ButtonDownload></div>
+        </div>
+      </div>
 
-    <div class="parallax-layer parallax-layer-deepest back-title">
-      <h1>{{languageData.computed.currentLanguageData().aboutView.backTitle}}</h1>
-    </div>
-     
+    
+      <div class="back-title">
+        <h1>{{languageData.computed.currentLanguageData().aboutView.backTitle}}</h1>
+      </div>
+    </div> 
   </div>
 </template>
 
@@ -47,55 +48,106 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
  .content{
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   justify-content: space-around;
-   padding-bottom: 15vh;
-   padding-left: 1rem;
-   padding-right: 1rem;
-   height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: justify;
+    width: 100%;
+    height: 100vh; 
+    padding: 0 1rem;
+    
+  }
+  .about-text{
+    /* align-items: flex-start; */
+  }
+  .img img {
+    border: 4px solid var(--light);
+    border-radius: 50%;
   }
   .img {
     margin: 0 auto;
-    border: 4px solid var(--light);
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    /* max-width: 300px;
-    min-width: 250px;
-    background: var(--light); */
+    flex-basis: 50%;
+    
+    width: 220px;
+    height: 220px;
+    /* max-width:200px; */
     overflow: hidden;
+    flex-shrink: 0;
+    text-align: center;
   }
-  .img img{
-    /* width: auto;
-    height: 100%; */
+  .cv-button{
+    width: 100%; 
   }
  
   /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 768px) {
+  .section-title{
+    /* align-self: flex-start; */
 
-  
-  .cv-button{
-    padding-top: 1rem;
+    /* padding-left: 4.5rem; */
   }
+  .section-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .img {
+    margin: 0;
+    flex-basis: 50%;
+    margin-right: 2rem;
+    max-width: 50%;
+    max-height: 450px;
+    text-align:unset;
+  }
+  .about-text{
+    flex-basis: 50%;
+    margin-left: 2rem;
+    max-width: 50%;
+    max-height: 450px;
+  }
+  .content{
+    
+    /* display: grid;
+    grid-template-rows: 15% 50%;
+    grid-template-columns: 40% 60%;
+    align-items: start;
+    justify-items: center;
+     */
+  }
+  /* .content title{
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
+  .content .img {
+    grid-row: 2/3;
+    grid-column: 1/2;
+   }
+  .content .about-text {
+    grid-row: 2/3;
+  } */
+  
 }
- 
+
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 992px) {
   .content{
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-around;
-   padding-bottom: 0vh;
-   padding-left: 1rem;
-   padding-right: 1rem;
-   height: 100vh;
+    /* justify-content: space-around; */
+    
+    padding-top: 5rem;
+     
   }
- .about-text{
-   width: 50%;
- }
+  .section-text{
+    justify-content: flex-start;
+    padding-top: 10rem;
+  }
   
 }
+@media screen and (min-width: 1200px) {
+  .content{
+    
+  }
+  
+  }
 </style>

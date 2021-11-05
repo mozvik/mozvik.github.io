@@ -1,19 +1,7 @@
 <template>
- <div class="section parallax-group" id="contact">
-    <div class="content parallax-layer parallax-layer-base">
-      <div class="">
-        <h1 class="title light">{{languageData.computed.currentLanguageData().contactView.title}}</h1>
-        
-      </div> 
-      
-    </div>
-    <div class="parallax-layer parallax-layer-deepest back-title">
-      <h1>{{languageData.computed.currentLanguageData().contactView.backTitle}}</h1>
-    </div>    
-        
-        
-    <div class="parallax-layer parallax-layer-deep" id="contactbox">
-     <div class="c-form">
+ <div class="section" id="contact">
+    <h1 class="title light">{{languageData.computed.currentLanguageData().contactView.title}}</h1>
+    <div class="c-form">
         <!-- <h3>Get In Touch</h3> -->
         <form action="">
             <label for="name">
@@ -28,12 +16,14 @@
               <textarea  id="message" :placeholder="languageData.computed.currentLanguageData().contactView.message"
               rows="3"></textarea>
             </label>
-            <div><Button :options='options'>{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
+            <div class="s-button"><Button :options='options'>{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
             
         </form>
-      </div>
     </div>
-   
+
+    <div class="back-title">
+      <h1>{{languageData.computed.currentLanguageData().contactView.backTitle}}</h1>
+    </div>   
   </div>
 </template>
 
@@ -61,15 +51,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.content{
+  #contact{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
     height: 100vh;
-    pointer-events: none;
+    /* overflow: hidden; */
   }
   #contactbox{
   
@@ -77,12 +66,12 @@ export default {
   grid-template-rows: 1fr;
   justify-content: flex-start;
   align-items: end;
-  padding-bottom: 15vh;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 100vh;
-  
+   
 }
+.s-button{
+    /* width: 100%;  */
+ 
+  }
   .c-form{
     flex-grow: 1;
     padding-bottom: 5rem;
@@ -92,25 +81,28 @@ export default {
     margin-bottom: 3rem;
   }
   form{
-    margin-top: 3rem;
+    padding: 0 1rem 0 1rem;
     display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: 100vw;
     
   }
 
   form>label, form input, form textarea{
     width: 100%;
-    color: var(--light);
+    color: var(--background);
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 18px;
   }
   label{
-    margin: .75rem auto;
+    margin: .5rem auto;
     position: relative;
   }
+  input:focus, textarea:focus{
+    outline: var(--background) auto 1px;
+  }
   ::placeholder { 
-  color: var(--light);
+  color: var(--secondary);
   font-style: italic;
   text-transform: uppercase;
   opacity: .7; 
@@ -125,11 +117,11 @@ export default {
     padding: .5rem 0;
     padding-left: 2.5rem;
     border: none;
-    border-bottom: 1px solid var(--light);
+    border-bottom: 1px solid var(--background);
   }
-  input:focus{
+  /* input:focus{
     outline: none;
-  }
+  } */
   label>span{
     padding: .5rem;
     position: absolute;
@@ -142,8 +134,13 @@ export default {
   }
   @media screen and (min-width: 992px) {
 form{
-    max-width: 500px;
-    width: 50vw;
+    padding-top: 7rem;
+    width: calc(100vw - 250px);
+  }
+  .title {
+    align-self: flex-start;
+    padding-left: 1rem;
+    padding-top: 5rem;
   }
 
   }
@@ -151,13 +148,14 @@ form{
 @media screen and (min-width: 1200px) {
 .content{
     justify-content: flex-start;
-    padding-top: 6rem;
-    padding-left: 5rem;
-    pointer-events: none;
+    
+    /* pointer-events: none; */
   }
-  
+  form {
+    width: 1000px;
+  }
   .c-form{
-    margin-left: 4rem;
+    /* width: 1000px; */
     justify-content: flex-end;
   }
   

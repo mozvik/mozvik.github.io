@@ -1,7 +1,7 @@
 <template>
-  <div class="section parallax-group" id="portfolio">
+  <div class="section" id="portfolio">
     
-    <div class="content parallax-layer parallax-layer-base">
+    <div class="content">
       <div class="">
         <h1 class="title light">{{languageData.computed.currentLanguageData().portfolioView.title}}</h1>
         <h3>
@@ -14,7 +14,7 @@
       </div>
     </div>
     
-    <div class="parallax-layer parallax-layer-deepest back-title" v-if="languageData">
+    <div class="back-title" v-if="languageData">
       <h1>{{languageData.computed.currentLanguageData().portfolioView.backTitle}}</h1>
     </div>  
    
@@ -51,11 +51,10 @@ export default {
 #portfolio .content{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    /* height: 100vh; */
+   
+    margin: 0 1rem;
     }
   .projects-container{
     width: 100%;
@@ -64,6 +63,7 @@ export default {
     
     }
     
+    
   /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 992px) {
 #portfolio .content{
@@ -71,10 +71,13 @@ export default {
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   justify-content: center;
+   justify-content: flex-start;
    height: 100vh;
-   padding: 0 1rem;
+   /* padding: 0 1rem; */
    /* padding-bottom: 1rem; */
+  }
+  .title{
+    padding-top: 5rem;
   }
 
 }
@@ -85,14 +88,17 @@ export default {
 }
    #portfolio .content{
     
-     padding-left: 5.5rem;
-     padding-right: 5.5rem;
+     /* padding-left: 5.5rem;
+     padding-right: 5.5rem; */
    }
   
   #portfolio .content .projects-container, .card-item{
     width: 100%;
-    max-width: 1220px;
+    max-width: 950px;
     margin: 0 auto;
+  }
+  .projects-container{
+    padding-top: 10rem;
   }
 }
 </style>

@@ -1,35 +1,40 @@
 <template>
-  <div class="section parallax-group" id="skills">
-    <div class="content parallax-layer parallax-layer-base">
-      <div class="skill-text">
+  <div class="section" id="skills">
+    <div class="content">
+      <div class="section-title">
         <h1 class="title light">{{languageData.computed.currentLanguageData().skillView.title}}</h1>
+      </div>
+      <div class="section-text">
+        <div class="skill-text">
+        
         <p>{{languageData.computed.currentLanguageData().skillView.text1}}{{languageData.computed.currentLanguageData().skillView.text2}}{{languageData.computed.currentLanguageData().skillView.text3}}
           
         </p>
         <p>
           {{languageData.computed.currentLanguageData().skillView.text4}}{{languageData.computed.currentLanguageData().skillView.text5}}{{languageData.computed.currentLanguageData().skillView.text6}}
         </p>
-      </div> 
-       
+        </div> 
+        <div id="skillbox">
+          <div class="skillbox-container">
+            <div class="skill-list">
+            
+            <ul>
+              <li v-for="(item, index) in skillData" :key="item.stack" class="my-skills"
+              :style="{ '--delay': ( index * 200 ) + 300 + 'ms' }">
+                {{item.stack}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        </div>
+    </div> 
     </div>
-    <div class="parallax-layer parallax-layer-deepest back-title">
+    <div class="back-title">
       <h1>{{languageData.computed.currentLanguageData().skillView.backTitle}}</h1>
     </div>    
         
         
-    <div class="parallax-layer parallax-layer-deep" id="skillbox">
-      <div class="skillbox-container">
-        <div class="skill-list">
-          
-          <ul>
-            <li v-for="(item, index) in skillData" :key="item.stack" class="my-skills"
-            :style="{ '--delay': ( index * 200 ) + 300 + 'ms' }">
-              {{item.stack}}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+   
    
   </div>
     
@@ -63,10 +68,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.content{
+.content, .section-text{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -78,7 +83,7 @@ export default {
   grid-template-rows: 1fr;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 17vh;
+  padding-bottom: 10vh;
   padding-left: 1rem;
   padding-right: 1rem;
   height: 100vh;
@@ -102,36 +107,47 @@ export default {
   list-style: none;
   width: 50vw;
 }
-.skill-text{
-  /* white-space: pre; */
+.skill-text .title{
+  text-align: center;
 }
 /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 768px) {
-  #skillbox{
-    padding-top: 28vh;
+  .section-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .skill-text{
+    padding-top: 1rem;
+  }
+  #skillbox {
+    align-items: unset;
   }
 }
 @media screen and (min-width: 992px) {
-
-}
-/**          LARGE DESKTOP                                   **/
-@media screen and (min-width: 1200px) {
 .content{
-    justify-content: center;
-    padding-left: 6rem;
+  padding-top: 5rem;
   }
   #skillbox{
   justify-content: flex-end;
-  align-items: center;
-  padding-top: 10%;
-  padding-right: 6rem;
+  align-items: flex-start;
+  flex-basis: 40%;
+  padding-top: 2rem;
+  /* padding-top: 10%;
+  padding-right: 6rem; */
 }
 #skillbox ul{
-  width: 25vw;
+  max-width: 400px;
 }
+.section-text{
+    justify-content: space-between;
+    padding: 10rem 0 0 0;
 
+  }
   .skill-text{
-    width: 40%;
+    padding: 0;
+    flex-basis: 40%;
   }
 .my-skills-animated{
   
@@ -145,5 +161,9 @@ export default {
         transform: translateY(-3rem);
         }
 }
+}
+/**          LARGE DESKTOP                                   **/
+@media screen and (min-width: 1200px) {
+
 }
 </style> 
