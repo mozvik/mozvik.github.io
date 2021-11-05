@@ -35,7 +35,7 @@ button {
   justify-content: center;
   align-items: center;
   transition: all 300ms ease-in-out;
-  width: 300px; 
+  width: 100%; 
   background:  var(--background800);
   height: auto;
 }

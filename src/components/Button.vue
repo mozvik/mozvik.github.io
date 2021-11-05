@@ -42,21 +42,23 @@ button {
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  /* font-size: 18px; */
+  position: relative;
+  z-index: 2;
   border-radius: 5px;
   border: 3px solid var(--light);
   overflow: hidden;
   transition: color 300ms ease-in-out;
   padding: 0.25em 2em;
-  margin: .5rem;
+  /* margin: .5rem; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   transition: all 300ms ease-in-out;
-  width: calc(100% - 1rem); 
+  width: 100%; 
   background:  var(--background800);
   height: auto;
+  
 }
 
 
