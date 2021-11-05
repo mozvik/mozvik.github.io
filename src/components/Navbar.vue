@@ -61,10 +61,14 @@
       <div class="social">
         <div class="switch-line">
           <div>
-            <Toggle :options="toggleLanguage" @selectedButton="setLanguage"></Toggle>
+            <Toggle 
+            :buttonState="languageData.state.currentLanguage === 'en' ?'left':'right'"
+            :options="toggleLanguage" @selectedButton="setLanguage"></Toggle>
           </div>
           <div>
-            <Toggle :options="toggleDarkMode"
+            <Toggle 
+            :buttonState="colors.state.currentColorMode === 'dark' ?'left':'right'"
+            :options="toggleDarkMode"
             @selectedButton="setScreenMode"></Toggle>
           </div>
         </div>
@@ -125,7 +129,7 @@ export default {
 
     function setLanguage(btn){
        if (btn === 'left') {
-        languageData.state.currentLanguage = "en"
+         languageData.state.currentLanguage = "en"
       } else{ 
         languageData.state.currentLanguage = "hu"
         }
@@ -150,7 +154,6 @@ export default {
 <style scoped>
 nav {
   background: var(--background);
-  overflow: hidden;
 }
 nav a {
   font-weight: bold;
@@ -167,6 +170,7 @@ nav a {
   cursor: pointer;
 }
 .mobile-bar {
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -178,6 +182,7 @@ nav a {
   background: var(--background800);
   color: var(--light);
   border-bottom: 1px solid var(--primary);
+  z-index: 2;
 }
 .nav-items {
   max-width: 100%;
@@ -284,6 +289,7 @@ nav a {
   align-items: start;
   width: 60%;
   height: 100%;
+  height: 100vh;
   z-index: 2;
   background: var(--background800);
   border: 1px solid var(--primary);
