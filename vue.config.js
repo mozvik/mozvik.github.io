@@ -1,3 +1,4 @@
 module.exports = {
-    publicPath: '/mozvik.github.io/'
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/mozvik.github.io/' : '/'
 }
