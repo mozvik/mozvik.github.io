@@ -1,5 +1,6 @@
 <template>
-  <vueper-slides
+
+  <!-- <vueper-slides
     class="no-shadow"
     :dragging-distance="20"
     :breakpoints="breakpoints"
@@ -46,45 +47,99 @@
         </div>
       </template>
     </vueper-slide>
-  </vueper-slides>
+  </vueper-slides> -->
+  <div id="project-outer">
+    <div id="project-prev" v-if="displaySize > 2">
+      <div>{{activeProject.prev.title}}</div>
+      <div>{{activeProject.prev.brief}}</div>
+    </div>
+    <div id="project-inner">
+      <div>{{activeProject.current.title}}</div>
+      <div>{{activeProject.current.brief}}</div>
+    </div>
+    <div id="project-next" v-if="displaySize > 2">
+      <div>{{activeProject.next.title}}</div>
+      <div>{{activeProject.next.brief}}</div>
+    </div>
+    <div id="arrows" >
+      <div id="arrow-prev">
+        <Icon icon="carbon:previous-filled" width="60" @click="prevProject"/>
+      </div>
+
+      <div id="arrow-next">
+        <Icon icon="carbon:next-filled" width="60" @click="nextProject"/>
+      </div>
+
+    </div>
+  </div>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from "vueperslides";
-import "vueperslides/dist/vueperslides.css";
+// import { VueperSlides, VueperSlide } from "vueperslides";
+// import "vueperslides/dist/vueperslides.css";
 import { Icon } from "@iconify/vue";
-import Button from "@/components/Button.vue";
-import { inject } from "vue"
+// import Button from "@/components/Button.vue";
+import { inject, reactive, computed } from "vue"
 export default {
   name: "Slider",
-  components: { VueperSlides, VueperSlide, Icon, Button },
+  components: { 
+    // VueperSlides, 
+    // VueperSlide, 
+     Icon,
+    // Button 
+    },
   setup(){
     const languageData = inject("Locale")
-    const breakpoints = {
-        1980: {
-          fixedHeight: "400px",
-        },
-        1200: {
+    // const breakpoints = {
+    //     1980: {
+    //       fixedHeight: "400px",
+    //     },
+    //     1200: {
 
-          slideRatio: 2/3,
-        },
-        992: {
-          slideRatio: 2/3,
-          bulletsOutside: true,
-          fixedHeight: "480px",
-        },
-        600: {
-          arrows: true,
-          bulletsOutside: true,
-          fixedHeight: "480px",
-        },
+    //       slideRatio: 2/3,
+    //     },
+    //     992: {
+    //       slideRatio: 2/3,
+    //       bulletsOutside: true,
+    //       fixedHeight: "480px",
+    //     },
+    //     600: {
+    //       arrows: true,
+    //       bulletsOutside: true,
+    //       fixedHeight: "480px",
+    //     },
+    //   }
+    const activeProject = reactive({
+      index: 0,
+      current: computed(() => { return languageData.computed.currentLanguageData().portfolioView.cards[activeProject.index]}
+      ),
+      prev: computed(() => { 
+        if(activeProject.index <= 0){
+          return languageData.computed.currentLanguageData().portfolioView.cards[languageData.computed.currentLanguageData().portfolioView.cards.length - 1]}
+        else return languageData.computed.currentLanguageData().portfolioView.cards[activeProject.index - 1]
+      }),
+      next: computed(() => { 
+        if((activeProject.index + 1 >= languageData.computed.currentLanguageData().portfolioView.cards.length)){
+          return languageData.computed.currentLanguageData().portfolioView.cards[0]}
+        else return languageData.computed.currentLanguageData().portfolioView.cards[activeProject.index + 1]
+      })
+    })
+
+    function nextProject(){
+      if((activeProject.index + 1) >= languageData.computed.currentLanguageData().portfolioView.cards.length){
+        activeProject.index = 0
       }
-    return {  languageData, breakpoints }
-  },
-  data() {
-    return {
+      else activeProject.index++
+    }
+    function prevProject(){
+      if(activeProject.index <= 0){
+        activeProject.index = languageData.computed.currentLanguageData().portfolioView.cards.length - 1
+      }
+      else activeProject.index--
+    }
 
-    };
+    // console.log('activeProject.value :>> ', activeProject.data);
+    return {  languageData, activeProject, nextProject, prevProject }
   },
   props: {
     displaySize: {
@@ -96,122 +151,63 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.item-image {
-  display: none;
-}
-.vueperslides{
-  border: 1px solid var(--light);
-  /* overflow: hidden; */
-}
-.card-item {
+#project-outer{
+  border: 1px solid white;
+  width: 100%;
+  height: 50vh;
+  overflow-y: scroll;
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
-.card-item:hover .item-title {
-  color: var(--light);
-  transition: color 0.4s ease-out;
+#project-inner{
+  border: 1px solid red;
+  width: 100%;
+  height: auto;
 }
-.item-buttons div{
-  /* width: 100%; */
-  margin: .5rem;
-}
-.item-title {
-  /* background: var(--secondary); */
-  font-family: "Oswald", Helvetica, sans-serif;
-  color: var(--light);
-  font-size: 1.4rem;
-  padding: 0.5rem 0;
-  text-transform: uppercase;
-  transition: color 0.4s ease-out;
+#arrows{
+  border: 1px solid green;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
-.item-body {
-  font-family: "Roboto", Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  font-size: 1.1rem;
-  padding: 0 0.5rem;
-  /* background: var(--background800); */
-  background: var(--primary);
-   flex-grow: 1;
+#arrows div:hover{
+  cursor: pointer;
 }
-.item-buttons {
-  background: var(--primary);
-  border-bottom: 1px solid var(--light);
-}
-.item-brief {
-  opacity: .9;
-  /* background: var(--background800); */
-  padding: 1rem 0;
-}
-.item-description {
-  opacity: .8;
-  padding: 1rem 0;
-}
-.item-tech-icons {
-  display: inline-block;
-  padding: 0 0.2rem;
-}
-.item-brief {
- 
-}
-
 /****************************************************** */
 /**          TABLET                                   **/
 @media screen and (min-width: 768px) {
-  .item-image img {
-    display: none;
-  }
+  
 }
 /****************************************************** */
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
-  .item-buttons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-  
+ #project-outer{
+   position: relative;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+ }
+ #project-inner{
+   width: 300px;
+   height: 100%;
+   /* margin: 0 auto; */
+   flex-basis: 300px;
+ }
+ #arrows{
+   position: absolute;
+   width: 100%;
+   bottom: 0;
+ }
+ #project-prev, #project-next{
+   border: 1px solid yellow;
+   width: 150px;
+   height: 50%;
+ }
 }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-  .item-image {width: 100%;
-    display: block;
-  }
-  .item-image img {
-    height: auto;
-    
-    display: block;
-    margin-right: auto;
-  }
-
-  .card-item {
-    display: grid;
-    grid-auto-columns: 300px 1fr;
-    grid-auto-rows: 1fr auto;
-  }
-  .item-image {
-    grid-row: 1/3;
-    grid-column: 1;
-  }
-  .item-body {
-    grid-row: 1;
-    grid-column: 2;
-
-    width: 100%;
-  }
-  .item-buttons {
-    grid-row: 2;
-    grid-column: 2;
-  }
-  .item-title{
-    font-size: 1.5rem;
-  }
+  
 }
 </style>
