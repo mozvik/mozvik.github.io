@@ -149,6 +149,10 @@ export default {
     padding: 0;
     flex-basis: 40%;
   }
+  .section-title{
+    align-self: flex-start;
+
+  }
 .my-skills-animated{
   
   opacity: 0;

@@ -98,7 +98,7 @@ export default {
     function setSmokeStyle(element, isReverse){
       const xMovement = Math.floor(Math.random() * 10) + 5
       const yMovement = Math.floor(Math.random() * 15) + 3
-      const skew = Math.floor(Math.random() * 50) 
+      const skew = Math.floor(Math.random() * 40) 
       const rotate = Math.floor(Math.random() * 100)
       const delay = Math.floor(Math.random() * 300)
 
@@ -423,18 +423,19 @@ export default {
       opacity: 1;
   }
   20%{
-      text-shadow: 0 0 5px whitesmoke;
+      text-shadow: 0 0 5px currentColor;
       opacity: 1;
   }
   70%{
       transform: translate3d(var(--xm),var(--ym),20px) skewX(var(--sk)) scale(1.5) rotate3d(1,1,1,var(--rt)) perspective(30px); 
       /* transform: translate3d(15rem,-8rem,0) skewX(var(--sk)) scale(1.5) rotate3d(1,1,1,var(--rt)) perspective(30px);  */
       filter: blur(8px);
-      text-shadow: 0 0 20px whitesmoke;
+      text-shadow: 0 0 14px currentColor;
       opacity: 0.1;
   }
   80%{
     transform: translate3d(var(--xm),var(--ym),20px) skewX(var(--sk)) scale(4) rotate3d(1,1,1,var(--rt)) perspective(30px); 
+    text-shadow: 0 0 20px currentColor;
      opacity: 0;
   }
   100%{

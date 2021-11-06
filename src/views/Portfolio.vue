@@ -97,8 +97,8 @@ export default {
     max-width: 950px;
     margin: 0 auto;
   }
-  .projects-container{
+  /* .projects-container{
     padding-top: 10rem;
-  }
+  } */
 }
 </style>
