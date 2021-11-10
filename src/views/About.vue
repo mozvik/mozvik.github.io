@@ -9,19 +9,22 @@
         <div class="img">
           <img src="/minime.jpg" alt="" class="" >
         </div>
-        <div class="about-text" >
-          <p class="light100">
-            {{languageData.computed.currentLanguageData().aboutView.text1}}
-          </p>
-        
-          <p class="light100">
-            {{languageData.computed.currentLanguageData().aboutView.text2}}
-          </p>
-           <p class="light100">
-            {{languageData.computed.currentLanguageData().aboutView.text3}}
-          </p>
-          <div class="cv-button"><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}</ButtonDownload></div>
-        </div>
+
+       
+          <div class="about-text" > 
+          <Frame>
+              <p class="light100">
+                {{languageData.computed.currentLanguageData().aboutView.text1}}
+              </p>
+              <p class="light100">
+                {{languageData.computed.currentLanguageData().aboutView.text2}}
+              </p>
+               <p class="light100">
+                {{languageData.computed.currentLanguageData().aboutView.text3}}
+              </p>
+              <div class="cv-button"><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}</ButtonDownload></div> </Frame>
+          </div>
+       
       </div>
 
     
@@ -34,10 +37,12 @@
 
 <script>
 import ButtonDownload from "@/components/ButtonDownload.vue";
+import Frame from "@/components/Frame.vue";
 import { inject } from "vue"
 export default {
-  components: { ButtonDownload },
+  components: { ButtonDownload, Frame },
   name: "About",
+  
   setup(){
     const languageData = inject("Locale")
     return { languageData }
@@ -107,47 +112,48 @@ export default {
     max-width: 50%;
     max-height: 450px;
   }
-  .content{
-    
-    /* display: grid;
-    grid-template-rows: 15% 50%;
-    grid-template-columns: 40% 60%;
-    align-items: start;
-    justify-items: center;
-     */
-  }
-  /* .content title{
-    grid-row: 1/2;
-    grid-column: 1/2;
-  }
-  .content .img {
-    grid-row: 2/3;
-    grid-column: 1/2;
-   }
-  .content .about-text {
-    grid-row: 2/3;
-  } */
-  
+   
 }
 
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 992px) {
   .content{
-    /* justify-content: space-around; */
-    
     padding-top: 5rem;
-     
+    /* align-items: flex-start; */
   }
+  
   .section-text{
-    justify-content: flex-start;
-    padding-top: 10rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 5rem;
+  }
+  .img { 
+    margin: 0;
+    flex-basis: auto; 
+    text-align:unset;
+    margin-bottom: 5rem;
+  }
+  .about-text{
+    margin: 0;
+    flex-basis: auto;
+    max-width: 650px; 
+    max-height: 450px;
+    
   }
   
 }
 @media screen and (min-width: 1200px) {
+  .section-text{
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 10rem;
+  }
+  .section-title{
+    align-self: flex-start;
+  }
   .content{
     
-  }
-  
+  }  
   }
 </style>
