@@ -269,6 +269,7 @@ p {
 
 .light{
   color: var(--light);
+  filter: sepia(.4);
 }
 
 .title{
