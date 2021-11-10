@@ -54,7 +54,7 @@ const state = reactive({
             {
               title: "Quiz Application",
               imageMobile: "quiz-m.jpg",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageDesktop: "quiz.jpg",
               tech: "Vue, Vuex, Ajax",
               brief:
                 "Simple Quiz Application made with Vue.js & Vuex state management",
@@ -87,8 +87,8 @@ const state = reactive({
             },
             {
               title: "Puzzle Slider",
-              imageMobile: "https://picsum.photos/360/300/?rnd=2",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageMobile: "https://picsum.photos/300/435/?rnd=2",
+              imageDesktop: "https://picsum.photos/300/435/?rnd=2",
               tech: "Vue, Vuex, Ajax",
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
@@ -119,44 +119,11 @@ const state = reactive({
                 anchor: "https://github.com/mozvik/vue-quiz",
               },
             },
-            {
-              title: "Movie Database App",
-              imageMobile: "https://picsum.photos/360/300/?rnd=3",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
-              tech: "React",
-              brief:
-                "Fuga voluptas consectetur nemo corporis temporibus velit atque ipsa, rem excepturi quas mollitia modi quos.",
-              description:
-                "",
-              technology: [
-                {
-                  icon: "logos:html-5",
-                  width: 24,
-                },
-                {
-                  icon: "logos:css-3",
-                  width: 24,
-                },
-                {
-                  icon: "logos:react",
-                  width: 28,
-                },
-              ],
-              buttonDemo: {
-                text: "View Demo",
-                icon: "healthicons:eye",
-                anchor: "https://mozvik.github.io/vue-quiz/",
-              },
-              buttonCode: {
-                text: "Github Repository",
-                icon: "akar-icons:github-outline-fill",
-                anchor: "https://github.com/mozvik/vue-quiz",
-              },
-            },
+           
             {
               title: "Recipe Book App",
-              imageMobile: "https://picsum.photos/360/300/?rnd=4",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageMobile: "https://picsum.photos/300/435/?rnd=4",
+              imageDesktop: "https://picsum.photos/300/435/?rnd=4",
               tech: "Angular",
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
@@ -185,8 +152,8 @@ const state = reactive({
             },
             {
               title: "EsoGuides - Gaming Website",
-              imageMobile: "https://picsum.photos/360/300/?rnd=5",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageMobile: "https://picsum.photos/300/435/?rnd=5",
+              imageDesktop: "https://picsum.photos/300/435/?rnd=5",
               tech: "React",
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
@@ -257,7 +224,7 @@ const state = reactive({
           },
         },
         homeView: {
-          title1: "Üdvözletem", 
+          title1: "Üdvözlöm,", 
           title2: "Mozvik Attila vagyok",
           subTitle: "Web és Szoftverfejlesztő"
         },
@@ -286,7 +253,7 @@ const state = reactive({
             {
               title: "Kvíz Alkalmazás",
               imageMobile: "quiz-m.jpg",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageDesktop: "quiz.jpg",
               tech: "Vue, Vuex, Ajax",
               brief:
                 "Egyszerű kvíz alkalmazás Vue.js és Vuex által készítve.",
@@ -319,8 +286,8 @@ const state = reactive({
             },
             {
               title: "Képkirakó játék",
-              imageMobile: "https://picsum.photos/360/300/?rnd=2",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageMobile: "https://picsum.photos/300/435/?rnd=2",
+              imageDesktop: "https://picsum.photos/300/435/?rnd=2",
               tech: "Vue, Vuex, Ajax",
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
@@ -351,44 +318,11 @@ const state = reactive({
                 anchor: "https://github.com/mozvik/vue-quiz",
               },
             },
-            {
-              title: "Movie Database App",
-              imageMobile: "https://picsum.photos/360/300/?rnd=3",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
-              tech: "React",
-              brief:
-                "Fuga voluptas consectetur nemo corporis temporibus velit atque ipsa, rem excepturi quas mollitia modi quos.",
-              description:
-                "",
-              technology: [
-                {
-                  icon: "logos:html-5",
-                  width: 24,
-                },
-                {
-                  icon: "logos:css-3",
-                  width: 24,
-                },
-                {
-                  icon: "logos:react",
-                  width: 28,
-                },
-              ],
-              buttonDemo: {
-                text: "View Demo",
-                icon: "healthicons:eye",
-                anchor: "https://mozvik.github.io/vue-quiz/",
-              },
-              buttonCode: {
-                text: "Github Repository",
-                icon: "akar-icons:github-outline-fill",
-                anchor: "https://github.com/mozvik/vue-quiz",
-              },
-            },
+          
             {
               title: "Recipe Book App",
-              imageMobile: "https://picsum.photos/360/300/?rnd=4",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageMobile: "https://picsum.photos/300/435/?rnd=4",
+              imageDesktop: "https://picsum.photos/300/435/?rnd=4",
               tech: "Angular",
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
@@ -417,8 +351,8 @@ const state = reactive({
             },
             {
               title: "EsoGuides - Gaming Website",
-              imageMobile: "https://picsum.photos/360/300/?rnd=5",
-              imageDesktop: "https://via.placeholder.com/300x400.jpg",
+              imageMobile: "https://picsum.photos/300/435/?rnd=5",
+              imageDesktop: "https://picsum.photos/300/435/?rnd=5",
               tech: "React",
               brief:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
