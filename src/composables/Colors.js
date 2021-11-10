@@ -9,6 +9,7 @@ const state = reactive({
         dark: "#031634",
         background: "#033649",
         background800: "#012431",
+        shadow: "rgba(3, 22, 52 , .5)",
       },
       light: {
         // primary: "#CDB380",
@@ -22,6 +23,7 @@ const state = reactive({
         background: "#C5B59A",
         // background800: "#E8E3CB",
         background800: "#A6916E",
+        shadow: "rgba(1, 36, 49 , .5)",
       }
     },
     currentColorMode: "dark"
@@ -36,6 +38,7 @@ const methods = {
     bodyStyles.setProperty('--dark', state.colorMode[name].dark)
     bodyStyles.setProperty('--background', state.colorMode[name].background)
     bodyStyles.setProperty('--background800', state.colorMode[name].background800)
+    bodyStyles.setProperty('--shadow', state.colorMode[name].shadow)
     state.currentColorMode = name
   }
 }
