@@ -49,18 +49,21 @@
     </vueper-slide>
   </vueper-slides> -->
   <div id="project-outer">
-    <div id="project-prev" v-if="displaySize > 2">
+    <!-- <div id="project-prev" v-if="displaySize > 2">
+      <img :src="activeProject.prev.imageDesktop" alt="" ref="previous">
       <div>{{activeProject.prev.title}}</div>
       <div>{{activeProject.prev.brief}}</div>
-    </div>
-    <div id="project-inner">
+    </div> -->
+    <div id="project-active">
+      <img :src="activeProject.current.imageDesktop" alt="" v-if="displaySize > 2" ref="current" @animationend="animationEnd">
       <div>{{activeProject.current.title}}</div>
       <div>{{activeProject.current.brief}}</div>
     </div>
-    <div id="project-next" v-if="displaySize > 2">
+    <!-- <div id="project-next" v-if="displaySize > 2">
+      <img :src="activeProject.next.imageDesktop" alt="" ref="next">
       <div>{{activeProject.next.title}}</div>
       <div>{{activeProject.next.brief}}</div>
-    </div>
+    </div> -->
     <div id="arrows" >
       <div id="arrow-prev">
         <Icon icon="carbon:previous-filled" width="60" @click="prevProject"/>
@@ -79,7 +82,7 @@
 // import "vueperslides/dist/vueperslides.css";
 import { Icon } from "@iconify/vue";
 // import Button from "@/components/Button.vue";
-import { inject, reactive, computed } from "vue"
+import { inject, ref, reactive, computed } from "vue"
 export default {
   name: "Slider",
   components: { 
@@ -124,12 +127,19 @@ export default {
         else return languageData.computed.currentLanguageData().portfolioView.cards[activeProject.index + 1]
       })
     })
-
+    const activeBgImage = ref('background-image: url(' + activeProject.current.imageDesktop + ')')
+    const current = ref(null)
+    const previous = ref(null)
+    const next = ref(null)
+    const nextButtonActive = ref(true)
+    
     function nextProject(){
       if((activeProject.index + 1) >= languageData.computed.currentLanguageData().portfolioView.cards.length){
         activeProject.index = 0
       }
       else activeProject.index++
+
+      moveToLeft()
     }
     function prevProject(){
       if(activeProject.index <= 0){
@@ -137,9 +147,34 @@ export default {
       }
       else activeProject.index--
     }
-
-    // console.log('activeProject.value :>> ', activeProject.data);
-    return {  languageData, activeProject, nextProject, prevProject }
+    function moveToLeft(){
+      previous.value.classList.add("move-to-left")
+      current.value.classList.add("move-to-left")
+      next.value.classList.add("move-to-left")
+    }
+    function animationEnd(e){
+      if (e.animationName.indexOf('movetoleft') != -1 ) {
+        e.target.classList.remove("move-to-left")
+        e.target.classList.add("moving")
+        e.target.classList.add("move-from-right")
+        previous.value.classList.remove("move-to-left")
+        previous.value.classList.add("moving")
+        previous.value.classList.add("move-from-right")
+        next.value.classList.remove("move-to-left")
+        next.value.classList.add("moving")
+        next.value.classList.add("move-from-right")
+      }
+      if (e.animationName.indexOf('movefromright') != -1 ) {
+        e.target.classList.remove("move-from-right")
+        e.target.classList.remove("moving")
+        previous.value.classList.remove("move-from-right")
+        previous.value.classList.remove("moving")
+        next.value.classList.remove("move-from-right")
+        next.value.classList.remove("moving")
+      }
+      
+    }
+    return { current, previous, next, languageData, activeProject, activeBgImage, nextProject, prevProject, animationEnd, nextButtonActive }
   },
   props: {
     displaySize: {
@@ -161,10 +196,11 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-#project-inner{
+#project-active{
   border: 1px solid red;
   width: 100%;
-  height: auto;
+  height: 100%;
+  
 }
 #arrows{
   border: 1px solid green;
@@ -188,13 +224,43 @@ export default {
    flex-direction: row;
    justify-content: space-around;
    align-items: center;
+   height: auto;
+   min-height:50vh;
  }
- #project-inner{
-   width: 300px;
+ #project-active{
+   width: 80%;
    height: 100%;
-   /* margin: 0 auto; */
-   flex-basis: 300px;
+   min-height:50vh;
+   /* flex-basis: 300px; */
  }
+ #project-active>img{
+   position: absolute;
+   width: auto;
+   height: auto; 
+   object-fit: cover;
+   z-index: -1;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ }
+ #project-prev, #project-next, #project-active {
+   position: relative;
+   overflow: hidden;
+   /* background-repeat: no-repeat;
+   background-position: 10% ;
+   background-size: 300% 100%; */
+ }
+.left-card{
+  
+}
+.center-card{
+
+}
+.right-card{
+
+}
+
+
  #arrows{
    position: absolute;
    width: 100%;
@@ -204,6 +270,41 @@ export default {
    border: 1px solid yellow;
    width: 150px;
    height: 50%;
+ }
+  .moving{
+    opacity: 0;
+  }
+ .move-to-left{
+   animation: movetoleft 300ms 1 ease-in-out;
+ }
+ @keyframes movetoleft {
+   80%{
+    transform: translateX(-100%);
+   }
+   100%{
+     opacity: 0;
+   } 
+   
+ }
+ .move-from-right{
+   opacity: 0;
+   animation: movefromright 300ms 1 ease-in-out;
+ }
+ @keyframes movefromright {
+    0%{
+    transform: translateX(100%);
+    opacity: 0;
+   }
+   30%{
+    transform: translateX(100%);
+    opacity: 0;
+   }
+   70%{
+     transform: translateX(0);
+   }
+   100%{
+     opacity: 1;
+   } 
  }
 }
 /**          LARGE DESKTOP                                   **/
