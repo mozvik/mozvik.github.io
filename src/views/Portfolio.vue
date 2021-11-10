@@ -10,7 +10,8 @@
         
       </div>
       <div class="projects-container">
-        <Slider :displaySize="displaySize"></Slider>
+        <!-- <Slider :displaySize="displaySize"></Slider> -->
+        <FloatingFrame :displaySize="displaySize"></FloatingFrame>
       </div>
     </div>
     
@@ -23,12 +24,12 @@
 
 <script>
 import { inject } from "vue"
-import Slider from "@/components/Slider.vue";
+import FloatingFrame from "@/components/FloatingFrame.vue";
 
 export default {
   name: "Portfolio",
    components:{
-    Slider
+    FloatingFrame
    },
   props: {
      displaySize: Number,
