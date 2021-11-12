@@ -51,20 +51,20 @@ export default {
     const displaySize = ref(null)
     const activeMenuItem = ref(null)
     const sectionObserver = ref(null)
-    const skillObserver = ref(null)
+    // const skillObserver = ref(null)
     
     onMounted(() => {
       onResize();
       window.addEventListener("resize", onResize);
       initSectionObserver();
-      initSkillObserver();
+      // initSkillObserver();
       observeSections();
-      observeMySkills();
+      // observeMySkills();
       Colors.methods.setColorTheme('dark')
     })
 
     const sections = computed(() => document.querySelectorAll(".section"));
-    const mySkills = computed(() => document.querySelectorAll(".my-skills"));
+    // const mySkills = computed(() => document.querySelectorAll(".my-skills"));
     const sectionContainer = computed(() =>
       document.querySelector("#main")
     );
@@ -104,11 +104,11 @@ export default {
         sectionObserver.value.observe(section);
       });
     }
-    function observeMySkills() {
-      mySkills.value.forEach((skills) => {
-        skillObserver.value.observe(skills);
-      });
-    }
+    // function observeMySkills() {
+    //   mySkills.value.forEach((skills) => {
+    //     skillObserver.value.observe(skills);
+    //   });
+    // }
     function initSectionObserver() {
       const options = {
         threshold: [.05],
@@ -140,28 +140,28 @@ export default {
        
       }, options);
     }
-    function initSkillObserver() {
-      const options = {
-        threshold: [0.5],
-      };
-      skillObserver.value = new IntersectionObserver((entries) => {
-        const active = entries.filter((e) => e.isIntersecting); //entry.intersectionRatio
-        if (active.length) {
-          active.forEach((element) => {
-            if (
-              element.target.className.includes("my-skills") &&
-              element.isIntersecting
-            ) {
-              document
-                .querySelector(".skill-list>ul")
-                .classList.add("skill-list-animated");
-              element.target.classList.add("my-skills-animated");
-              skillObserver.value.unobserve(element.target);
-            }
-          });
-        }
-      }, options);
-    }
+    // function initSkillObserver() {
+    //   const options = {
+    //     threshold: [0.5],
+    //   };
+    //   skillObserver.value = new IntersectionObserver((entries) => {
+    //     const active = entries.filter((e) => e.isIntersecting); //entry.intersectionRatio
+    //     if (active.length) {
+    //       active.forEach((element) => {
+    //         if (
+    //           element.target.className.includes("my-skills") &&
+    //           element.isIntersecting
+    //         ) {
+    //           document
+    //             .querySelector(".skill-list>ul")
+    //             .classList.add("skill-list-animated");
+    //           element.target.classList.add("my-skills-animated");
+    //           skillObserver.value.unobserve(element.target);
+    //         }
+    //       });
+    //     }
+    //   }, options);
+    // }
     function goToSection(sectionName) {
       sectionContainer.value.scrollTo({
         top: document.getElementById(sectionName).offsetTop - 100,
@@ -208,11 +208,11 @@ body {
   background: var(--background);
   height: 100vh;
   overflow: hidden;
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0);
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform:  translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
 }
 
 #app {
@@ -243,8 +243,8 @@ body {
 } 
 .section {
   position: relative;
-  scroll-snap-align: end;
-  scroll-snap-stop: always;
+  scroll-snap-align: center;
+  /* scroll-snap-stop: center; */
   height: 100vh;  
   user-select: none;
   z-index: 1;
@@ -272,15 +272,13 @@ p {
   filter: sepia(.4);
 }
 
-.title{
-  /* margin-bottom: 2rem; */
-}
 .randomfadein {
   opacity: 0;
-  animation: fadein var(--rnda) var(--rnd) forwards ease;
+  animation: fadein var(--rnda) var(--rnd) forwards ease-in;
 }
 @keyframes fadein {
-  0% {opacity:0}
+  
+  0% {opacity:0; transform: translateY(var(--rndy)) rotateY(var(--rndd))}
   100% {opacity:1}
 }
 
@@ -363,11 +361,13 @@ p {
   h1 span,
   .title {
     font-size: 3rem;
+    text-shadow: 2px 2px 4px var(--dark);
   }
   h3 {
     padding-top: 1rem;
     font-size: 1.5rem;
     text-transform: uppercase;
+    text-shadow: 2px 2px 4px var(--dark);
   }
 
   #app {
