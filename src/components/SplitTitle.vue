@@ -63,10 +63,14 @@ export default {
       array.forEach((element) => {
         element.style =
           "--rnd: " +
-          (Math.floor(Math.random() * 2000) + 1000 ) +
+          (Math.floor(Math.random() * 2000) + 200 ) +
           "ms; --rnda: " +
           (Math.floor(Math.random() * 2000) + 1042) +
-          "ms";
+          "ms; --rndy: "  +
+          (Math.floor(Math.random() * 500) - 250) +
+          "px; --rndd: "  +
+          (Math.floor(Math.random() * 180) - 90) +
+          "deg;"
         element.classList.add(props.animation);
         element.addEventListener("animationend", animEndFadeIn);
       });
@@ -423,19 +427,19 @@ export default {
       opacity: 1;
   }
   20%{
-      text-shadow: 0 0 5px currentColor;
+      text-shadow: 0px 0px 0px currentColor;
       opacity: 1;
   }
   70%{
       transform: translate3d(var(--xm),var(--ym),20px) skewX(var(--sk)) scale(1.5) rotate3d(1,1,1,var(--rt)) perspective(30px); 
       /* transform: translate3d(15rem,-8rem,0) skewX(var(--sk)) scale(1.5) rotate3d(1,1,1,var(--rt)) perspective(30px);  */
       filter: blur(8px);
-      text-shadow: 0 0 14px currentColor;
-      opacity: 0.1;
+      text-shadow: 0px 0px 14px currentColor;
+      opacity: 0.3;
   }
   80%{
-    transform: translate3d(var(--xm),var(--ym),20px) skewX(var(--sk)) scale(4) rotate3d(1,1,1,var(--rt)) perspective(30px); 
-    text-shadow: 0 0 20px currentColor;
+    transform: translate3d(var(--xm),var(--ym),20px) skewX(var(--sk)) scale(2) rotate3d(1,1,1,var(--rt)) perspective(30px); 
+    text-shadow: 0px 0px 20px currentColor;
      opacity: 0;
   }
   100%{
