@@ -1,10 +1,9 @@
 <template>
-  <transition name="randomfadein" appear>
-    <div id="project-outer" ref="">
-      <div id="project-active" v-if="displaySize < 3">
-        <div class="card-title" >{{ activeProject.current.title }}<hr></div>
+    <div id="project-outer" v-if="displaySize < 3" >
+      <!-- <div id="project-active" v-if="displaySize < 3"> -->
+        <div class="card-title" >{{ activeProject.current.title }}</div>
         <div class="card-brief">{{ activeProject.current.brief }}</div>
-        <div class="item-buttons">
+        <div class="item-buttons" >
             <div class="item-demo">
               <Button :options="activeProject.current.buttonDemo">{{activeProject.current.buttonDemo.text}}</Button>
             </div>
@@ -12,8 +11,8 @@
               <span></span><Button :options="activeProject.current.buttonCode">{{activeProject.current.buttonCode.text}}</Button>
             </div>
         </div>
-      </div>
-      <div id="project-cards" v-if="displaySize > 2">
+    </div>
+    <div id="project-cards" :class="status" v-if="displaySize > 2"  ref="mySelf">
         <div v-for="(card, i) in languageData.computed.currentLanguageData().portfolioView.cards"
         :key="i"
         :title="card.title"
@@ -24,7 +23,7 @@
         activeProject.prevIndex === i ? 'card-out':'',
         activeProject.index === i ? 'card-active':'']"      > 
         <div class="item-wrapper">
-          <div class="card-title" >{{ card.title }}<hr></div>
+          <div class="card-title" >{{ card.title }}</div>
           <div class="card-brief">{{ card.brief }}</div>
           <div class="item-buttons">
             <div class="item-demo">
@@ -47,7 +46,7 @@
       </div>
 
          
-      </div>
+    </div>
       <div id="arrows" v-if="displaySize < 3">
         <div class="arrow-prev">
         <Icon icon="carbon:previous-filled" width="60" @click="activeProject.stepBackward"/>
@@ -56,15 +55,14 @@
         <div class="arrow-next">
           <Icon icon="carbon:next-filled" width="60" @click="activeProject.stepForward"/>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
-  </transition>
 </template>
 
 <script>
 import { Icon } from "@iconify/vue";
 import Button from "@/components/Button.vue";
-import { ref, reactive, computed, inject } from "vue";
+import { ref, reactive, computed, inject, onMounted } from "vue";
 export default {
   name: "FloatingFrame",
   components: { 
@@ -97,16 +95,10 @@ export default {
     const activeProject = reactive({
       index: 0,
       stepForward: function(){
-       
-          
          if((activeProject.index + 1) >= languageData.computed.currentLanguageData().portfolioView.cards.length){
           activeProject.index = 0
           }
           else activeProject.index++
-       
-
-        
-      
       },
       stepBackward: function(){
          if(activeProject.index <= 0){
@@ -140,12 +132,29 @@ export default {
         else return languageData.computed.currentLanguageData().portfolioView.cards[activeProject.index + 1]
       })
     })
-    
-    const nextButtonActive = ref(true)
+    const observer = ref(null)
+    const mySelf = ref(document.getElementById('project-cards'))
+    const status = ref(null)
 
-    
-    
-    return { nextButtonActive, activeProject,  languageData, cardStyle, 
+
+
+    onMounted(() => {
+      observer.value = new IntersectionObserver(intersection, {threshold: [.1]})
+      console.log(' :>> ', document.getElementById('project-cards'));
+      console.log('object :>> ', mySelf.value);
+      // observer.value.observe(mySelf.value.querySelector("#project-cards"))
+     
+    })
+
+    const intersection = (entries) => {
+        const active = entries.filter((e) => e.isIntersecting ); 
+        const inActive = entries.filter((e) => !e.isIntersecting ); 
+        if (inActive.length) status.value = 'base-hidden'
+        if (active.length) status.value = 'base-active' 
+        console.log('status.value :>> ', status.value);
+    }
+
+    return { activeProject,  languageData, cardStyle, mySelf, status
        
     };
   },
@@ -157,10 +166,11 @@ export default {
 #project-outer{
   position: relative;
   /* border: 1px solid white; */
-  width: 100%;
-  height: 60vh;
-  overflow-y: scroll;
-  overflow-x: auto;
+  /* width: 100%;
+  height: 60vh; */
+  /* overflow-y: scroll; */
+  /* overflow-x: auto; */
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -180,7 +190,7 @@ export default {
 #project-active{
    width: 100%;
    height: 100%;
-   min-height:60vh;
+   /* min-height:60vh; */
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -216,13 +226,14 @@ export default {
    flex-direction: row;
    justify-content: space-around;
    align-items: center;
-   height: auto;
-   min-height:50vh;
-   overflow:visible;
+   /* height: auto; */
+   /* min-height:50vh; */
+   /* overflow:hidden;  */
  }
  #project-cards{
    width: 100%;
-   height: 25vh;
+   height: 100%;
+   padding-top: 10rem;
    justify-items: center;
    align-items: center;
    z-index: 10;
@@ -236,14 +247,17 @@ export default {
    color: var(--dark);
    flex-basis: 50%;
    width: 650px;
-   height: 325px;
+   /* height: 325px; */
    position: absolute;
    transition: transform 0.35s ease-in-out;
    transform-origin: top right;
    border-radius: 16px;
    box-shadow: 7px 7px 7px 5px var(--shadow);
 }
+
+
  .card-hidden{
+   /* visibility: hidden;  */
    display: none;
  }
  .arrow-next:hover, .arrow-prev:hover{
@@ -258,70 +272,70 @@ export default {
   transition: all 1.35s ease-in-out;
   }
   .item-wrapper{
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   
  .card-out{
-   z-index: 0;
+   z-index: 3;
    transform: translate(0,0) rotate(-2deg);
    transform-origin: top right;
    animation: cardOut 0.6s cubic-bezier(0.8, 0.2, 0.1, 0.8) 1 forwards;
  }
  @keyframes cardOut{
    0%{
-     z-index: 0;
+     z-index: 5;
      transform: translate(0) rotate(-2deg); 
    }
    50%{ 
-     z-index: 0;
+     z-index: 5;
      transform: translate(110px,-120%) rotate(15deg);
    }
    100%{ 
      transform: translate(50px,-10px) rotate(6deg);
      filter: brightness(.85) blur(.5px);
-     z-index: -10;
+     z-index: 1;
    }
  }
  .card-next{
-   z-index: -3;
+   z-index: 1;
    transform: translate(50px,-10px) rotate(6deg);
    animation: cardNext 0.6s ease 1 forwards; 
  }
  @keyframes cardNext{
    0%{
-     z-index: -3;
+     z-index: 1;
      transform: translate(50px,-10px) rotate(4deg);
    }
-   40%{ 
-     z-index: -2;
+   20%{ 
+     z-index: 3;
      transform: translate(30px,-10px) rotate(4deg);
    }
    100%{ 
      transform: translate(30px,0px) rotate(2deg);
      filter: brightness(.9);
-     z-index: -2;
+     z-index: 3;
    }
  }
  .card-active{
    transform: translate(30px,0px) rotate(3deg);
    animation: cardActive 0.6s ease 1 forwards;
-   z-index: -2;
+   z-index: 4;
  }
  @keyframes cardActive{
    0%{
-     z-index: -2;
+     z-index: 4;
      transform: translate(20px,0px) rotate(3deg); 
    }
    40%{ 
-     z-index: -1;
+     z-index: 4;
      transform: translate(20px,-10px) rotate(3deg); 
    }
    100%{ 
      transform: translate(0) rotate(-2deg); 
-     z-index: -1;
+     z-index: 5;
    }
  }
 
@@ -329,10 +343,24 @@ export default {
   transition: transform 0.35s ease-in-out;
   
 }
+.base-active{
  
- .idle-card{
-   
- }
+ opacity: 0;
+ transition: opacity 1.4s ease-in-out;
+ 
+}
+.base-hidden{
+ opacity: 1;
+ 
+ transition: opacity 1.4s ease-in-out;
+}
+.card-title{
+  border-bottom: 2px solid var(--primary);
+  /* width: 90%; */
+  margin: 0 1rem;
+  /* margin: 0 auto; */
+}
+
 }
  /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
