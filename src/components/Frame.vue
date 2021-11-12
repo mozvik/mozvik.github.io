@@ -3,8 +3,9 @@
     <slot></slot>
   </div> -->
   <div class="frame-desktop" ref="mySelf"
-  :class="status === 'entering' ? 'entering':'leaving'"
-  :style="[myStyle.fromX , myStyle.fromY, myStyle.toX]">
+  :class="[status === 'fromTop' ? 'entering-from-top':'', 
+  status === 'fromBottom' ? 'entering-from-bottom':'']"
+  :style="[myStyle.fromX , myStyle.fromY, myStyle.toX, myStyle.toY]">
   
     <slot></slot>
   </div>
@@ -29,29 +30,31 @@ export default {
     const status = ref(null)
     const myStyle = reactive({
       state: computed(() => {
-        return status.value==='entering' ? 1:-1
-      }),
+        return status.value==='entering-from-top' ? -1:1
+              }),
       xDirection: computed(() => {
-        return props.xDirection==='right' ? 1:-1
+        if (props.xDirection==='right') return 1
+        if (props.xDirection==='left') return -1
+        return props.xDirection==='fade' ? 0:null
       }),
       fromX: computed(() => {
         return '--fromX: ' + Math.floor(Math.random() * 10) * myStyle.xDirection + 'px;'}),
       fromY: computed(() => { 
-        return '--fromY: ' + (Math.floor(Math.random() * 20) + 10) * myStyle.state + 'px;'
+        return '--fromY: ' + (Math.floor(Math.random() * 20) + 30) * myStyle.state + 'px;'
       }),
 
       toX: computed(() => {
-        return '--toX: ' + Math.floor(Math.random() * 10) * myStyle.xDirection + 'px;'}),
-      toY: '',
-      fromDeg: '',
-      toDeg: '',
-      finalX: '',
-      finalY: '',
-      finalDeg: '',
+        return '--toX: ' + (Math.floor(Math.random() * 10) + 20) * myStyle.xDirection + 'px;'}),
+      toY:  computed(() => { 
+        return '--toY: ' + (Math.floor(Math.random() * 5) + 5) * myStyle.state + 'px;'
+      }),
+      deg: computed(() => { 
+        return '--deg: ' + (Math.floor(Math.random() * 3) + 2) * myStyle.xDirection + 'deg;'
+      }),
     })
      onMounted(() => {
       observer.value = new IntersectionObserver(intersection, {
-        threshold: [.05],
+        threshold: [.1],
       })
       observer.value.observe(mySelf.value)
       
@@ -60,9 +63,14 @@ export default {
     const intersection = (entries) => {
         const active = entries.filter((e) => e.isIntersecting ); 
         const inActive = entries.filter((e) => !e.isIntersecting ); 
-        if (inActive.length) status.value = 'leaving'
-       if (active.length) status.value = 'entering'
-       console.log('myStyle :>> ', myStyle, myStyle.fromX);
+        if (inActive.length) status.value = ''
+       if (active.length){ 
+         if(active[0].boundingClientRect.y >= 0){
+           status.value = 'fromTop'
+          }
+          else if(active[0].boundingClientRect.y < 0) status.value = 'fromBottom'
+         
+         }
     }
    
     return { mySelf, status, myStyle
@@ -81,35 +89,38 @@ export default {
    color: var(--dark);
    padding: 1rem;
    width: 100%;
-   
+  opacity: 0;
    height: auto;
    
    transition: transform 0.35s ease-in-out;
-   transform-origin: top right;
+   /* transform-origin: top right; */
+   /* transform-origin: center center; */
    border-radius: 16px;
    box-shadow: 7px 7px 7px 5px var(--shadow);
    }
-   .entering{
-    animation: entering 2.0s linear forwards;
+   .entering-from-top{
+     opacity: 0;
+    animation: entering-from-top 1.5s ease forwards;
     transform-origin: 50% 50% ;
   }
-  .btitle-float-down{
-    animation: btitlefloatdown 0.6s linear forwards;
-    /* transform: translateY(50px);
-    transition: transform 2s ease-in-out; */
+  .entering-from-bottom{
+
+    animation: entering-from-bottom 1.5s ease forwards;
+    transform-origin: 50% 50% ;
   }
-  @keyframes entering {
-  0% {opacity: 0; transform: translate(var(--fromX),var(--fromY)) rotate(0deg)}
-  10% {opacity:1; transform: translate(var(--fromX),0) rotate(2deg)} 
-  20% {opacity:1; transform: translate(var(--toX),-25px) rotate(4deg)}
-  100% {opacity:1; transform: translate(25px,-5px) rotate(3deg)}
+  
+  @keyframes entering-from-top {
+  0% {opacity: 0; transform: translate(var(--fromX),var(--fromY))}
+  15% {opacity: 1;}
+  100% {opacity:1; transform: translate(var(--toX),var(--toY))} 
   }
-  @keyframes btitlefloatdown {
-  0% {opacity:0; transform: translateY(-125px)}
-  25% {opacity:0; transform: translateY(-125px)}
-  75% {opacity:.05; transform: translateY(25px)}
-  100% {opacity:.05; transform: translateY(25px)}
+  @keyframes entering-from-bottom {
+ 
+  0% {opacity:0; transform: translate(var(--toX),var(--toY))} 
+  15% {opacity: 1;}
+  100% {opacity: 1; transform: translate(var(--fromX),var(--fromY))} 
   }
+  
 }
 
 </style>
