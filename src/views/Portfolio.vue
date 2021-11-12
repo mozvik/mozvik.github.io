@@ -11,7 +11,7 @@
       </div>
       <div class="projects-container">
         <!-- <Slider :displaySize="displaySize"></Slider> -->
-        <FloatingFrame :displaySize="displaySize"></FloatingFrame>
+        <FloatingFrame :displaySize="displaySize"></FloatingFrame> 
       </div>
     </div>
     
@@ -59,7 +59,7 @@ export default {
     }
   .projects-container{
     width: 100%;
-    height: auto;
+    height: 100%;
     padding-top: 2.5rem;
     
     }

@@ -7,23 +7,28 @@
       <div class="section-text">
         <div class="skill-text">
         
-        <p>{{languageData.computed.currentLanguageData().skillView.text1}}{{languageData.computed.currentLanguageData().skillView.text2}}{{languageData.computed.currentLanguageData().skillView.text3}}
+    
+        <Frame xDirection="left">
+          <p>{{languageData.computed.currentLanguageData().skillView.text1}}{{languageData.computed.currentLanguageData().skillView.text2}}{{languageData.computed.currentLanguageData().skillView.text3}}
           
-        </p>
-        <p>
-          {{languageData.computed.currentLanguageData().skillView.text4}}{{languageData.computed.currentLanguageData().skillView.text5}}{{languageData.computed.currentLanguageData().skillView.text6}}
-        </p>
+          </p>
+          <p>
+            {{languageData.computed.currentLanguageData().skillView.text4}}{{languageData.computed.currentLanguageData().skillView.text5}}{{languageData.computed.currentLanguageData().skillView.text6}}
+          </p>
+        </Frame>
         </div> 
         <div id="skillbox">
           <div class="skillbox-container">
             <div class="skill-list">
             
-            <ul>
-              <li v-for="(item, index) in skillData" :key="item.stack" class="my-skills"
-              :style="{ '--delay': ( index * 200 ) + 300 + 'ms' }">
-                {{item.stack}}
-              </li>
-            </ul>
+            <Frame>
+              <ul>
+                <li v-for="(item, index) in skillData" :key="item.stack" class="my-skills"
+                :style="{ '--delay': ( index * 200 ) + 300 + 'ms' }">
+                  {{item.stack}}
+                </li>
+              </ul>
+            </Frame>
           </div>
         </div>
         </div>
@@ -41,11 +46,13 @@
 </template>
 
 <script>
+import Frame from "@/components/Frame.vue";
 import { reactive, inject } from "vue";
 
 export default {
   name: "Skills",
   components: {
+    Frame
   },
   setup(){
     const skillData = reactive([
@@ -128,26 +135,29 @@ export default {
 @media screen and (min-width: 992px) {
 .content{
   padding-top: 5rem;
+  
   }
   #skillbox{
   justify-content: flex-end;
   align-items: flex-start;
-  flex-basis: 40%;
+  flex-basis: content;
   padding-top: 2rem;
   /* padding-top: 10%;
   padding-right: 6rem; */
+  
 }
 #skillbox ul{
-  max-width: 400px;
+  width: 600px;
+  /* width: 100%; */
 }
 .section-text{
-    justify-content: space-between;
-    padding: 10rem 0 0 0;
-
+    justify-content: center;
+    /* padding: 10rem 0 0 0; */
+    flex-direction: column;
   }
   .skill-text{
     padding: 0;
-    flex-basis: 40%;
+    /* flex-basis: 40%; */
   }
   .section-title{
     align-self: flex-start;
@@ -165,9 +175,19 @@ export default {
         transform: translateY(-3rem);
         }
 }
+.my-skills{
+  margin: .35rem 0;
+  padding: .35rem;
+  }
 }
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-
+.section-text{
+    
+  }
+  #skillbox{
+  width: 100%;
+  /* width: 100%; */
+}
 }
 </style> 

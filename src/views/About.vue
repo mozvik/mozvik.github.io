@@ -6,9 +6,11 @@
         <h2 class="title light">{{languageData.computed.currentLanguageData().aboutView.title}}</h2>
       </div>
       <div class="section-text">
-        <div class="img">
-          <img src="/minime.jpg" alt="" class="" >
-        </div>
+        
+          <div class="img">
+            <img src="/minime.jpg" alt="" class="" >
+          </div>
+        
 
        
           <div class="about-text" > 
@@ -69,7 +71,7 @@ export default {
   }
   .img img {
     border: 4px solid var(--light);
-    border-radius: 50%;
+    border-radius: 50%;box-shadow: 7px 7px 7px 5px var(--shadow);
   }
   .img {
     margin: 0 auto;
@@ -148,12 +150,13 @@ export default {
     flex-direction: row;
     align-items: flex-start;
     margin-top: 10rem;
+    width: 100%;
   }
   .section-title{
     align-self: flex-start;
   }
-  .content{
-    
+  .img{
+    flex-basis: 30%; 
   }  
   }
 </style>
