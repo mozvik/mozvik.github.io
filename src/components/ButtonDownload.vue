@@ -25,7 +25,7 @@ button {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 18px;
-  border-radius: 5px;
+  border-radius: 16px;
   border: 3px solid var(--light);
   overflow: hidden;
   transition: color 300ms ease-in-out;

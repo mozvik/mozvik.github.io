@@ -44,7 +44,7 @@ button {
   font-weight: 500;
   position: relative;
   z-index: 2;
-  border-radius: 5px;
+  border-radius: 16px;
   border: 3px solid var(--light);
   overflow: hidden;
   transition: color 300ms ease-in-out;
