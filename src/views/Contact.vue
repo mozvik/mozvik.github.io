@@ -4,20 +4,20 @@
     <div class="c-form">
         <!-- <h3>Get In Touch</h3> -->
         <Frame xDirection="center">
-          <form action="">
+          <form action="https://formspree.io/f/mdoyqwew" method="POST">
               <div class="subtitle">{{languageData.computed.currentLanguageData().contactView.subtitle}}</div>
               <label for="name">
                 <span><Icon  icon="fa-regular:user" width="20" /></span>
-                <input type="text" id="name" :placeholder="languageData.computed.currentLanguageData().contactView.name" 
+                <input type="text" id="name" name="name" :placeholder="languageData.computed.currentLanguageData().contactView.name" 
                 >
                 </label>
               <label for="email">
                 <span><Icon  icon="fa-regular:envelope" width="20" /></span>
-                <input type="email" id="email" :placeholder="languageData.computed.currentLanguageData().contactView.email"></label>
+                <input type="email" id="email" name="_replyto" :placeholder="languageData.computed.currentLanguageData().contactView.email"></label>
           
               <label for="message">
                 <span><Icon  icon="fa-solid:pencil-alt" width="20" /></span>
-                <textarea  id="message" :placeholder="languageData.computed.currentLanguageData().contactView.message"
+                <textarea  id="message" name="message" :placeholder="languageData.computed.currentLanguageData().contactView.message"
                 rows="3"></textarea>
               </label>
               <div class="s-button"><Button :options='options'>{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
