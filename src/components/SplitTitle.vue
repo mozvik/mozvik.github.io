@@ -64,7 +64,7 @@ export default {
           status.value = 'animating'
           
         } 
-       console.log('status.value :>> ', status.value, spanContainer.value);
+       
     }
     function stopAnimation(){
       spanContainer.value.forEach((element) =>{
