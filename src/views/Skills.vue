@@ -152,7 +152,6 @@ export default {
 }
 .section-text{
     justify-content: center;
-    /* padding: 10rem 0 0 0; */
     flex-direction: column;
   }
   .skill-text{
