@@ -35,6 +35,7 @@ export default {
       xDirection: computed(() => {
         if (props.xDirection==='right') return 1
         if (props.xDirection==='left') return -1
+        if (props.xDirection==='center') return 0
         return props.xDirection==='fade' ? 0:null
       }),
       fromX: computed(() => {
