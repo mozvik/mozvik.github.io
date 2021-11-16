@@ -36,6 +36,9 @@ export default {
     const mouseDirectionX = ref("")
     const spans = ref("")
     const spanContainer = ref([])
+    const observer = ref(null)
+    const status = ref(null)
+
     onMounted(() => {
       splitContent(split.value)
       
@@ -45,8 +48,34 @@ export default {
       if (props.smoke){ 
           setupSmokeSpans()
       }
+
+      observer.value = new IntersectionObserver(intersection, {threshold: [.1]})
+     
+      observer.value.observe(split.value)
     })
-    
+
+     const intersection = (entries) => {
+        const active = entries.filter((e) => e.isIntersecting ); 
+        const inActive = entries.filter((e) => !e.isIntersecting ); 
+        if (inActive.length){
+          stopAnimation()
+         status.value = 'stop'}
+        if (active.length){
+          status.value = 'animating'
+          
+        } 
+       console.log('status.value :>> ', status.value, spanContainer.value);
+    }
+    function stopAnimation(){
+      spanContainer.value.forEach((element) =>{
+        element.classList.remove('randomfadein');
+        setSmokeStyle(element)
+        element.addEventListener("mouseenter", mouseEnterSmoke)
+        
+        
+      })
+    }
+
     function splitContent(ele) {
       let el = ele.querySelector("h1,h3");
       for (let index = 0; index < el.textContent.length; index++) {
@@ -251,7 +280,7 @@ export default {
     }
     function mouseEnterSmoke(e) {
       
-      if (e.target.state === 'idle') {
+      if (e.target.state != 'smoking') {
         setSmokeStyle(e.target, false)
         e.target.classList.add("forwards")
         e.target.classList.add("easein")
@@ -272,18 +301,19 @@ export default {
     }
     function animEndSmoke(e) {
       e.target.addEventListener("mouseenter", mouseEnterSmoke)
-      if (e.target.state === 'init') {
+      if (e.target.state != 'smoking' && e.target.state != 'idle') {
         e.target.state = 'idle'
         e.target.className = ""
       }
       if (e.target.state === 'smoking') smokeReveal(e.target)       
     }
     function animEndFadeIn(e) {
+     
+        e.target.state='init' 
+        e.target.className = "" 
+        setSmokeStyle(e.target, true)
+        e.target.removeEventListener("animationend", animEndFadeIn)
 
-      e.target.state='init'
-      e.target.className = ""
-      setSmokeStyle(e.target, true)
-      e.target.removeEventListener("animationend", animEndFadeIn)
     }
     return {
        split,
@@ -302,7 +332,12 @@ export default {
   display: inline-block;
   white-space: pre;
 }
-
+.paused{
+  -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused; 
+    animation-play-state:paused;
+}
 
 .kick-to-left {
   animation: kick-to-left 0.9s ease 1 forwards;
