@@ -24,7 +24,7 @@
                <p class="light100">
                 {{languageData.computed.currentLanguageData().aboutView.text3}}
               </p>
-              <div class="cv-button"><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}</ButtonDownload></div> </Frame>
+              <div class="cv-button"><a href="cv.pdf" download><ButtonDownload >{{languageData.computed.currentLanguageData().aboutView.dlText}}  </ButtonDownload></a></div> </Frame>
           </div>
        
       </div>
@@ -54,6 +54,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  a{
+    text-decoration: none;
+  }
  .content{
     
     display: flex;
