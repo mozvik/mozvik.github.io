@@ -58,12 +58,13 @@ export default {
     margin: 0 1rem;
     }
   .projects-container{
-    width: 100%;
-    height: 100%;
-    padding-top: 2.5rem;
-    
-    }
-    
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
     
   /**          LAPTOP TABLET                                   **/
 @media screen and (min-width: 992px) {
@@ -93,13 +94,11 @@ export default {
      padding-right: 5.5rem; */
    }
   
-  #portfolio .content .projects-container, .card-item{
+  .card-item{
     width: 100%;
     max-width: 950px;
     margin: 0 auto;
   }
-  /* .projects-container{
-    padding-top: 10rem;
-  } */
+ 
 }
 </style>
