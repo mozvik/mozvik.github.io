@@ -172,19 +172,20 @@ const state = reactive({
               buttonDemo: {
                 text: "View Demo",
                 icon: "healthicons:eye",
-                anchor: "https://mozvik.github.io/vue-quiz/",
+                anchor: "https://esoguides.hu",
               },
               buttonCode: {
-                text: "Github Repository",
-                icon: "akar-icons:github-outline-fill",
-                anchor: "https://github.com/mozvik/vue-quiz",
+                text: "",
+                icon: "",
+                anchor: "",
               },
             },
           ],
           backTitle: "PORTFOLIO"
         },
         contactView: {
-          title: "CONTACT", 
+          title: "CONTACT",
+          subtitle: "Get in touch",
           name: "Name",
           email: "E-mail",
           message: "Message",
@@ -371,19 +372,20 @@ const state = reactive({
               buttonDemo: {
                 text: "View Demo",
                 icon: "healthicons:eye",
-                anchor: "https://mozvik.github.io/vue-quiz/",
+                anchor: "https://esoguides.hu",
               },
               buttonCode: {
-                text: "Github Repository",
-                icon: "akar-icons:github-outline-fill",
-                anchor: "https://github.com/mozvik/vue-quiz",
+                text: "",
+                icon: "",
+                anchor: "",
               },
             },
           ],
           backTitle: "PORTFÓLIÓ"
         },
         contactView: {
-          title: "KAPCSOLAT", 
+          title: "KAPCSOLAT",
+          subtitle: "Üzenet küldés",
           name: "Név",
           email: "E-mail",
           message: "Üzenet",
