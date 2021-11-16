@@ -1,18 +1,18 @@
 <template>
-    <div id="project-outer" v-if="displaySize < 3" >
+    <div id="project-mobile">
       <!-- <div id="project-active" v-if="displaySize < 3"> -->
         <div class="card-title" >{{ activeProject.current.title }}</div>
         <div class="card-brief">{{ activeProject.current.brief }}</div>
-        <div class="item-buttons" >
+        <div class="item-buttons"  v-if="activeProject.current.buttonDemo.text">
             <div class="item-demo">
               <Button :options="activeProject.current.buttonDemo">{{activeProject.current.buttonDemo.text}}</Button>
             </div>
-            <div class="item-code">
-              <span></span><Button :options="activeProject.current.buttonCode">{{activeProject.current.buttonCode.text}}</Button>
+            <div class="item-code" v-if="activeProject.current.buttonCode.text">
+              <span></span><Button  :options="activeProject.current.buttonCode">{{activeProject.current.buttonCode.text}}</Button>
             </div>
         </div>
     </div>
-    <div id="project-cards" :class="status" v-if="displaySize > 2"  ref="mySelf">
+    <div id="project-desktop" :class="status"  ref="mySelf">
         <div v-for="(card, i) in languageData.computed.currentLanguageData().portfolioView.cards"
         :key="i"
         :title="card.title"
@@ -26,10 +26,10 @@
           <div class="card-title" >{{ card.title }}</div>
           <div class="card-brief">{{ card.brief }}</div>
           <div class="item-buttons">
-            <div class="item-demo">
+            <div class="item-demo" v-show="card.buttonDemo.text">
               <Button :options="card.buttonDemo">{{card.buttonDemo.text}}</Button>
             </div>
-            <div class="item-code">
+            <div class="item-code" v-show="card.buttonCode.text">
               <span></span><Button :options="card.buttonCode">{{card.buttonCode.text}}</Button>
             </div>
           </div>
@@ -47,7 +47,7 @@
 
          
     </div>
-      <div id="arrows" v-if="displaySize < 3">
+    <div id="arrows" v-if="displaySize < 3">
         <div class="arrow-prev">
         <Icon icon="carbon:previous-filled" width="60" @click="activeProject.stepBackward"/>
         </div>
@@ -133,16 +133,15 @@ export default {
       })
     })
     const observer = ref(null)
-    const mySelf = ref(document.getElementById('project-cards'))
+    const mySelf = ref(document.getElementById('project-desktop'))
     const status = ref(null)
 
 
 
     onMounted(() => {
       observer.value = new IntersectionObserver(intersection, {threshold: [.1]})
-      console.log(' :>> ', document.getElementById('project-cards'));
-      console.log('object :>> ', mySelf.value);
-      // observer.value.observe(mySelf.value.querySelector("#project-cards"))
+     
+      observer.value.observe(mySelf.value)
      
     })
 
@@ -150,8 +149,13 @@ export default {
         const active = entries.filter((e) => e.isIntersecting ); 
         const inActive = entries.filter((e) => !e.isIntersecting ); 
         if (inActive.length) status.value = 'base-hidden'
-        if (active.length) status.value = 'base-active' 
-        console.log('status.value :>> ', status.value);
+        if (active.length){
+          if(active[0].boundingClientRect.y >= 0){
+            status.value = 'base-active-fromtop' 
+          }
+          else if(active[0].boundingClientRect.y < 0) status.value = 'base-active-frombottom'
+        } 
+       
     }
 
     return { activeProject,  languageData, cardStyle, mySelf, status
@@ -163,26 +167,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#project-outer{
-  position: relative;
-  /* border: 1px solid white; */
-  /* width: 100%;
-  height: 60vh; */
-  /* overflow-y: scroll; */
-  /* overflow-x: auto; */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+#project-desktop {
+  display: none;
+}
+#project-mobile{
+  height: 50vh;
 }
 #arrows{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
-  bottom: 0;
+  margin-top: 5rem;
+  /* bottom: 0; */
 }
 #arrows>div{
   padding: .1rem 1rem;
@@ -221,23 +220,22 @@ export default {
 /**          DESKTOP                                   **/
 @media screen and (min-width: 992px) {
 
-#project-outer{
-   position: relative;
-   flex-direction: row;
-   justify-content: space-around;
-   align-items: center;
-   /* height: auto; */
-   /* min-height:50vh; */
-   /* overflow:hidden;  */
+
+#project-mobile{
+   display: none;
  }
- #project-cards{
+ #project-desktop{
+   display: initial;
    width: 100%;
    height: 100%;
    padding-top: 10rem;
    justify-items: center;
    align-items: center;
    z-index: 10;
-  
+   transform-origin: top right;
+   /* transform: rotate(0deg); */
+   opacity: 1;
+ 
  }
  .item-buttons{
     padding-left: 1rem;
@@ -247,7 +245,7 @@ export default {
    color: var(--dark);
    flex-basis: 50%;
    width: 650px;
-   /* height: 325px; */
+   height: 325px; 
    position: absolute;
    transition: transform 0.35s ease-in-out;
    transform-origin: top right;
@@ -266,13 +264,13 @@ export default {
  }
  #arrows{
   width: auto;
+  position: absolute;
   bottom: 0;
   right: 0;
-  padding: 1rem;
   transition: all 1.35s ease-in-out;
   }
   .item-wrapper{
-    /* height: 100%; */
+    height: 100%; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -343,16 +341,31 @@ export default {
   transition: transform 0.35s ease-in-out;
   
 }
-.base-active{
- 
- opacity: 0;
- transition: opacity 1.4s ease-in-out;
- 
-}
-.base-hidden{
+.base-active-frombottom{
+ transform-origin: top right;
  opacity: 1;
- 
- transition: opacity 1.4s ease-in-out;
+ animation: entering-from-bottom 1.5s ease forwards;
+}
+@keyframes entering-from-bottom {
+  0% {opacity:0; transform: rotate(-4deg)} 
+  15% {opacity: 1;}
+  100% {opacity:1; transform: rotate(0deg)} 
+}
+.base-active-fromtop{
+ transform-origin: bottom right;
+ opacity: 1;
+ animation: entering-from-top 1.5s ease forwards;
+}
+@keyframes entering-from-top {
+  0% {opacity:0; transform: rotate(5deg)} 
+  15% {opacity: 1;}
+  100% {opacity:1; transform: rotate(0deg)} 
+}
+
+.base-hidden{
+ opacity: 0;
+ transform: rotate(-9deg);
+ transition: all 0.2s ease;
 }
 .card-title{
   border-bottom: 2px solid var(--primary);
