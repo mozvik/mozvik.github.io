@@ -3,7 +3,7 @@
     <h1 class="title light">{{languageData.computed.currentLanguageData().contactView.title}}</h1>
     <div class="c-form">
         <!-- <h3>Get In Touch</h3> -->
-        <Frame xDirection="left">
+        <Frame xDirection="center">
           <form action="">
               <div class="subtitle">{{languageData.computed.currentLanguageData().contactView.subtitle}}</div>
               <label for="name">
@@ -163,9 +163,10 @@ form{
     padding-top: 5rem;
   }
   .c-form{
-    padding-top: 7rem; 
-    width: 90%;
     
+    width: 100%;
+    padding: 0 1rem;
+    padding-top: 7rem; 
   }
   .content{
     justify-content: flex-start;
@@ -180,7 +181,7 @@ form{
     /* width: 1000px; */
   }
   .c-form{
-    width: 90%; 
+    width: 100%; 
     justify-content: flex-end;
   }
   
