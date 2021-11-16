@@ -122,7 +122,6 @@ export default {
             backTitle.classList.remove("btitle-float-up")
             backTitle.classList.remove("btitle-float-down")
           }
-           
         }
         if (active.length) {
           activeMenuItem.value = active[0].target.id
@@ -219,7 +218,7 @@ body {
   font-family: "Roboto", sans-serif;
   position: relative;
   display: grid;
- 
+  user-select: none;
   grid-template-rows: 70px 1fr;
   width: 100vw;
   height: 100vh;
@@ -246,7 +245,7 @@ body {
   scroll-snap-align: center;
   /* scroll-snap-stop: center; */
   height: 100vh;  
-  user-select: none;
+  
   z-index: 1;
 
 }
