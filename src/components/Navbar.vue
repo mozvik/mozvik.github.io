@@ -73,16 +73,13 @@
           </div>
         </div>
         <div class="social-icons">
-          <div class="social-icon "><i class="lni lni-facebook"></i></div>
-          <div class="social-icon"><i class="lni lni-linkedin"></i></div>
-          <div class="social-icon"><i class="lni lni-github"></i></div>
+          <div class="social-icon "><a href="https://www.facebook.com/attila.mozvik" target="_blank"><i class="lni lni-facebook"></i></a></div>
+          <div class="social-icon"><a href="" target="_blank"><i class="lni lni-linkedin"></i></a></div>
+          <div class="social-icon"><a href="https://github.com/mozvik" target="_blank"><i class="lni lni-github"></i></a></div>
         </div>
         
       </div>
       
-      <!-- <div class="navbar-bg" @click="menuActive = !menuActive"></div> -->
-      
-
     </div>
     </transition>
   </nav>
@@ -240,7 +237,11 @@ nav a {
   position: relative;
   transition: all .4s ease-out;
 }
-
+.social-icon a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
 .social-icon i{
   position: absolute;
   top: 50%;
