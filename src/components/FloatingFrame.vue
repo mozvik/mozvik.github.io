@@ -76,22 +76,22 @@ export default {
   },
   setup() {
     const languageData = inject("Locale")
-    const cardStyle = reactive(
-      [ {
-        transform: 'rotate(-3deg) translate(20px, 10px)'
+    // const cardStyle = reactive(
+    //   [ {
+    //     transform: 'rotate(-3deg) translate(20px, 10px)'
         
-      },{
-        transform: 'rotate(3deg) translate(5px, -20px)',
-        filter: 'brightness(.9)'
-      },{
-         transform: 'rotate(4deg) translate(30px, -40px)',
-         filter: 'brightness(.8)'
-      },{
-         transform: 'rotate(6deg) translate(50px, -60px)',
-         filter: 'brightness(.7)'
-      }
+    //   },{
+    //     transform: 'rotate(3deg) translate(5px, -20px)',
+    //     filter: 'brightness(.9)'
+    //   },{
+    //      transform: 'rotate(4deg) translate(30px, -40px)',
+    //      filter: 'brightness(.8)'
+    //   },{
+    //      transform: 'rotate(6deg) translate(50px, -60px)',
+    //      filter: 'brightness(.7)'
+    //   }
 
-    ])
+    // ])
     const activeProject = reactive({
       index: 0,
       stepForward: function(){
@@ -139,7 +139,7 @@ export default {
 
 
     onMounted(() => {
-      observer.value = new IntersectionObserver(intersection, {threshold: [.1]})
+      observer.value = new IntersectionObserver(intersection, {threshold: [.5]})
      
       observer.value.observe(mySelf.value)
      
@@ -158,7 +158,7 @@ export default {
        
     }
 
-    return { activeProject,  languageData, cardStyle, mySelf, status
+    return { activeProject,  languageData,  mySelf, status
        
     };
   },
@@ -348,7 +348,7 @@ export default {
 }
 @keyframes entering-from-bottom {
   0% {opacity:0; transform: rotate(-4deg)} 
-  15% {opacity: 1;}
+  35% {opacity: 1;}
   100% {opacity:1; transform: rotate(0deg)} 
 }
 .base-active-fromtop{
@@ -358,11 +358,12 @@ export default {
 }
 @keyframes entering-from-top {
   0% {opacity:0; transform: rotate(5deg)} 
-  15% {opacity: 1;}
+  35% {opacity: 1;}
   100% {opacity:1; transform: rotate(0deg)} 
 }
 
-.base-hidden{
+#project-desktop.base-hidden{
+ 
  opacity: 0;
  transform: rotate(-9deg);
  transition: all 0.2s ease;
