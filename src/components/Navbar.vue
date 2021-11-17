@@ -74,7 +74,7 @@
         </div>
         <div class="social-icons">
           <div class="social-icon "><a href="https://www.facebook.com/attila.mozvik" target="_blank"><i class="lni lni-facebook"></i></a></div>
-          <div class="social-icon"><a href="" target="_blank"><i class="lni lni-linkedin"></i></a></div>
+          <div class="social-icon"><a href="https://www.linkedin.com/in/attila-mozvik-4b5754226/" target="_blank"><i class="lni lni-linkedin"></i></a></div>
           <div class="social-icon"><a href="https://github.com/mozvik" target="_blank"><i class="lni lni-github"></i></a></div>
         </div>
         
