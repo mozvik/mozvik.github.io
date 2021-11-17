@@ -1,8 +1,7 @@
 <template>
-  <button>
-    <span class="btn-icon"><Icon :icon="options ? options.icon:''" width="30" /></span>
-    
-      <a v-if="options" class="btn-text" :href="options.anchor" target="_blank">
+  <button :disabled="isDisabled" :class="isDisabled ? 'btn-disabled':''">
+    <span :class="!isDisabled ? 'btn-icon':'btn-icon-disabled'"><Icon :icon="options ? options.icon:''" width="30" /></span>
+      <a v-if="options" :class="!isDisabled ? 'btn-text':'btn-text-disabled'" :href="options.anchor" target="_blank">
       <slot ></slot>
     </a>
   </button>
@@ -29,6 +28,10 @@ export default {
           type: String,
         },
       },
+      isDisabled: {
+          type: Boolean,
+          default: false,
+      }
     },  
 };
 </script>
@@ -76,6 +79,12 @@ button:hover > .btn-icon {
   transform: translate(-0.5rem, 0.19rem);
   transition: all 300ms ease-in-out;
 }
+.btn-icon-disabled{
+  transform: translate(-0.5rem, 7rem);
+  display: inline-block;
+  text-align: left;
+  font-size: 18px;
+}
 button > .btn-text {
   color: var(--light);
   transform: translate(-1rem, 0rem);
@@ -89,11 +98,24 @@ button:hover > .btn-text {
   transform: translate(1rem, 0);
   transition: all 300ms ease-in-out;
 }
-button:hover {
+button:hover{
   background: var(--light);
   border: 3px solid var(--light);
   cursor: pointer;
   transition: all 300ms ease-in-out;
+}
+.btn-disabled{
+  
+  background: var(--light);
+}
+.btn-disabled:hover, .btn-text-disabled:hover{
+  cursor:not-allowed;
+}
+.btn-text-disabled {
+  transform: translate(-1rem, 0rem);
+  text-align: center;
+  font-size: 18px;
+  color: var(--secondary);
 }
 /****************************************************** */
 /**          DESKTOP                                   **/
