@@ -186,6 +186,9 @@ const state = reactive({
         contactView: {
           title: "CONTACT",
           subtitle: "Get in touch",
+          delivering: "Delivering your message",
+          delivered: "Your message has been delivered",
+          error: "Error occurred",
           name: "Name",
           email: "E-mail",
           message: "Message",
@@ -385,7 +388,10 @@ const state = reactive({
         },
         contactView: {
           title: "KAPCSOLAT",
-          subtitle: "Üzenet küldés",
+          subtitle: "Küldjön üzenetet",
+          delivering: "Üzenet küldése folyamatban",
+          delivered: "Az üzenet elküldve",
+          error: "Hiba történt",
           name: "Név",
           email: "E-mail",
           message: "Üzenet",
