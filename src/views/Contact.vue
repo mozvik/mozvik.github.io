@@ -4,23 +4,35 @@
     <div class="c-form">
         <!-- <h3>Get In Touch</h3> -->
         <Frame xDirection="center">
-          <form action="https://formspree.io/f/mdoyqwew" method="POST">
-              <div class="subtitle">{{languageData.computed.currentLanguageData().contactView.subtitle}}</div>
+          <form method="POST"
+          @submit.prevent="sendEmail">
+              <div class="subtitle" v-if="loading==''">{{languageData.computed.currentLanguageData().contactView.subtitle}}</div>
+              <div class="subtitle" v-else-if="loading=='sending'">{{languageData.computed.currentLanguageData().contactView.delivering}}</div>
+              <div class="subtitle" v-else-if="loading=='sent'">{{languageData.computed.currentLanguageData().contactView.delivered}}</div>
+              <div class="subtitle" v-else>{{languageData.computed.currentLanguageData().contactView.error}}</div>
               <label for="name">
                 <span><Icon  icon="fa-regular:user" width="20" /></span>
                 <input type="text" id="name" name="name" :placeholder="languageData.computed.currentLanguageData().contactView.name" 
+                v-model="nameMsg"
                 >
                 </label>
               <label for="email">
                 <span><Icon  icon="fa-regular:envelope" width="20" /></span>
-                <input type="email" id="email" name="_replyto" :placeholder="languageData.computed.currentLanguageData().contactView.email"></label>
+                <input type="email" id="email" name="_replyto" :placeholder="languageData.computed.currentLanguageData().contactView.email"
+                v-model="emailMsg"
+                ></label>
           
               <label for="message">
                 <span><Icon  icon="fa-solid:pencil-alt" width="20" /></span>
                 <textarea  id="message" name="message" :placeholder="languageData.computed.currentLanguageData().contactView.message"
-                rows="3"></textarea>
+                rows="3"
+                v-model="messageMsg"
+                ></textarea>
               </label>
-              <div class="s-button"><Button :options='options'>{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
+              <div class="s-button"><Button :options='options'
+              :isDisabled="nameMsg =='' || 
+              emailMsg == '' || messageMsg == '' ?true:false"
+              >{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
           
           </form>
         </Frame>
@@ -33,9 +45,10 @@
 </template>
 
 <script>
- import { Icon } from "@iconify/vue";
- import Button from "@/components/Button.vue";
- import Frame from "@/components/Frame.vue";
+import axios from 'axios';
+import { Icon } from "@iconify/vue";
+import Button from "@/components/Button.vue";
+import Frame from "@/components/Frame.vue";
 import { inject, ref } from "vue"
 export default {
   name: "Contact",
@@ -44,14 +57,48 @@ export default {
      Button,
      Frame
   },
-   setup(){
+  setup(){
     const languageData = inject("Locale")
     const options = ref({
         icon: 'icon-park-outline:send-email',
         anchor: '',
       })
+    const nameMsg = ref('')
+    const emailMsg = ref('')
+    const messageMsg = ref('')
+    const loading = ref('')
     
-    return { languageData, options }
+    function sendEmail(){
+      if (nameMsg.value == '' || emailMsg.value == '' || messageMsg.value == '') return
+    loading.value = 'sending'      
+    axios.post('https://formspree.io/f/mdoyqwew',{
+    name: nameMsg.value,          
+    from: emailMsg.value,          
+    _subject: `${nameMsg.value} | Friendly Message from Github Page`,
+    message: messageMsg.value,
+    },
+    
+    ).then((response) => {
+   nameMsg.value = '';
+   emailMsg.value = '';
+   messageMsg.value = '';
+   loading.value = 'sent';  
+   response
+   //i redirect my app to '/success' route once payload completed.  
+   this.$router.push({ path: '/success' });      
+    }).catch((error) => {        
+      if (error.response) {    
+         loading.value = error.response.data     
+        }
+    })
+    
+    
+    
+    
+    }
+   
+    return { languageData, options, sendEmail, 
+    nameMsg, emailMsg, messageMsg, loading}
   },
 };
 </script>
@@ -97,7 +144,7 @@ export default {
   }
   form input, form textarea{
     border-radius: 16px;
-    border: none;
+    border: solid 1px transparent;
   }
   form input:focus, form textarea:focus{
     border: solid 1px var(--primary);
