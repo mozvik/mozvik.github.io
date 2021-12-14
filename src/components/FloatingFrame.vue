@@ -250,7 +250,7 @@ export default {
    transition: transform 0.35s ease-in-out;
    transform-origin: top right;
    border-radius: 16px;
-   box-shadow: 7px 7px 7px 5px var(--shadow);
+   box-shadow: 5px 5px 5px 1px var(--shadow);
 }
 
 

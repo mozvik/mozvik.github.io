@@ -74,7 +74,7 @@ export default {
   }
   .img img {
     border: 4px solid var(--light);
-    border-radius: 50%;box-shadow: 7px 7px 7px 5px var(--shadow);
+    border-radius: 50%;box-shadow: 5px 5px 5px 1px var(--shadow);
   }
   .img {
     margin: 0 auto;

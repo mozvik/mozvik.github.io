@@ -360,13 +360,15 @@ p {
   h1 span,
   .title {
     font-size: 3rem;
-    text-shadow: 2px 2px 4px var(--dark);
+    text-shadow: 1px 1px 2px var(--dark);
+    opacity: .975;
   }
   h3 {
     padding-top: 1rem;
     font-size: 1.5rem;
     text-transform: uppercase;
-    text-shadow: 2px 2px 4px var(--dark);
+    text-shadow: 1px 1px 2px var(--dark);
+    opacity: .9;
   }
 
   #app {

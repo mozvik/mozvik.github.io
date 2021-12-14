@@ -97,7 +97,7 @@ export default {
    /* transform-origin: top right; */
    /* transform-origin: center center; */
    border-radius: 16px;
-   box-shadow: 7px 7px 7px 5px var(--shadow);
+   box-shadow: 5px 5px 5px 1px  var(--shadow);
    }
    .entering-from-top{
      opacity: 0;
