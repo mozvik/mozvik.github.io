@@ -1,27 +1,25 @@
 <template>
     <div id="project-mobile">
-      <!-- <div id="project-active" v-if="displaySize < 3"> -->
-        <div class="card-title" >{{ activeProject.current.title }}</div>
-        <div class="card-brief">{{ activeProject.current.brief }}</div>
-        <div class="item-buttons"  v-if="activeProject.current.buttonDemo.text">
-            <div class="item-demo">
-              <Button :options="activeProject.current.buttonDemo">{{activeProject.current.buttonDemo.text}}</Button>
-            </div>
-            <div class="item-code" v-if="activeProject.current.buttonCode.text">
-              <span></span><Button  :options="activeProject.current.buttonCode">{{activeProject.current.buttonCode.text}}</Button>
-            </div>
+      <div class="card-title" >{{ activeProject.current.title }}</div>
+      <div class="card-brief">{{ activeProject.current.brief }}</div>
+      <div class="item-buttons"  v-if="activeProject.current.buttonDemo.text">
+        <div class="item-demo">
+          <Button :options="activeProject.current.buttonDemo">{{activeProject.current.buttonDemo.text}}</Button>
         </div>
+        <div class="item-code" v-if="activeProject.current.buttonCode.text">
+          <span></span><Button  :options="activeProject.current.buttonCode">{{activeProject.current.buttonCode.text}}</Button>
+        </div>
+      </div>
     </div>
     <div id="project-desktop" :class="status"  ref="mySelf">
-        <div v-for="(card, i) in languageData.computed.currentLanguageData().portfolioView.cards"
-        :key="i"
-        :title="card.title"
-        :content="card.content"
-        class="card-item"
-        :class="[activeProject.index != i && activeProject.nextIndex != i && activeProject.prevIndex != i ? 'card-hidden':'',
-        activeProject.nextIndex === i ? 'card-next':'', 
-        activeProject.prevIndex === i ? 'card-out':'',
-        activeProject.index === i ? 'card-active':'']"      > 
+      <div v-for="(card, i) in languageData.computed.currentLanguageData().portfolioView.cards"
+      :key="i"
+      :content="card.content"
+      class="card-item"
+      :class="[activeProject.index != i && activeProject.nextIndex != i && activeProject.prevIndex != i ? 'card-hidden':'',
+      activeProject.nextIndex === i ? 'card-next':'', 
+      activeProject.prevIndex === i ? 'card-out':'',
+      activeProject.index === i ? 'card-active':'']"> 
         <div class="item-wrapper">
           <div class="card-title" >{{ card.title }}</div>
           <div class="card-brief">{{ card.brief }}</div>
@@ -34,28 +32,20 @@
             </div>
           </div>
         </div>
-
-      
-      <!-- <div class="card-brief idle-card">{{ card.brief }}</div> -->
         <div id="arrows">
-       
           <div class="arrow-next" @click="activeProject.stepForward">
             <Icon icon="carbon:next-filled" width="60"/>
           </div>
         </div>
       </div>
-
-         
     </div>
     <div id="arrows" v-if="displaySize < 3">
-        <div class="arrow-prev">
-        <Icon icon="carbon:previous-filled" width="60" @click="activeProject.stepBackward"/>
-        </div>
-
-        <div class="arrow-next">
-          <Icon icon="carbon:next-filled" width="60" @click="activeProject.stepForward"/>
-        </div>
-      <!-- </div> -->
+      <div class="arrow-prev">
+      <Icon icon="carbon:previous-filled" width="60" @click="activeProject.stepBackward"/>
+      </div>
+      <div class="arrow-next">
+        <Icon icon="carbon:next-filled" width="60" @click="activeProject.stepForward"/>
+      </div>
     </div>
 </template>
 
@@ -76,22 +66,6 @@ export default {
   },
   setup() {
     const languageData = inject("Locale")
-    // const cardStyle = reactive(
-    //   [ {
-    //     transform: 'rotate(-3deg) translate(20px, 10px)'
-        
-    //   },{
-    //     transform: 'rotate(3deg) translate(5px, -20px)',
-    //     filter: 'brightness(.9)'
-    //   },{
-    //      transform: 'rotate(4deg) translate(30px, -40px)',
-    //      filter: 'brightness(.8)'
-    //   },{
-    //      transform: 'rotate(6deg) translate(50px, -60px)',
-    //      filter: 'brightness(.7)'
-    //   }
-
-    // ])
     const activeProject = reactive({
       index: 0,
       stepForward: function(){
@@ -136,14 +110,10 @@ export default {
     const mySelf = ref(document.getElementById('project-desktop'))
     const status = ref(null)
 
-
-
     onMounted(() => {
       observer.value = new IntersectionObserver(intersection, {threshold: [.5]})
-     
       observer.value.observe(mySelf.value)
-     
-    })
+     })
 
     const intersection = (entries) => {
         const active = entries.filter((e) => e.isIntersecting ); 
@@ -178,10 +148,8 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* position: absolute; */
   width: 100%;
   margin-top: 5rem;
-  /* bottom: 0; */
 }
 #arrows>div{
   padding: .1rem 1rem;
@@ -189,7 +157,6 @@ export default {
 #project-active{
    width: 100%;
    height: 100%;
-   /* min-height:60vh; */
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -208,6 +175,7 @@ export default {
  .arrow-next, .arrow-prev{
    cursor: pointer;
    transition: color 0.30s ease-in-out;
+   color: var(--primary);
  }
  .arrow-next:hover, .arrow-prev:hover{
    color: var(--secondary);
@@ -233,7 +201,6 @@ export default {
    align-items: center;
    z-index: 10;
    transform-origin: top right;
-   /* transform: rotate(0deg); */
    opacity: 1;
  
  }
@@ -255,11 +222,13 @@ export default {
 
 
  .card-hidden{
-   /* visibility: hidden;  */
-   display: none;
+    display: none;
+ }
+ .arrow-next, .arrow-prev{
+   color: var(--background);
  }
  .arrow-next:hover, .arrow-prev:hover{
-   color: var(--background);
+   color: var(--background800);
    
  }
  #arrows{
@@ -370,9 +339,7 @@ export default {
 }
 .card-title{
   border-bottom: 2px solid var(--primary);
-  /* width: 90%; */
   margin: 0 1rem;
-  /* margin: 0 auto; */
 }
 
 }

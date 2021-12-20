@@ -2,40 +2,39 @@
  <div class="section" id="contact">
     <h1 class="title light">{{languageData.computed.currentLanguageData().contactView.title}}</h1>
     <div class="c-form">
-        <!-- <h3>Get In Touch</h3> -->
-        <Frame xDirection="center">
-          <form method="POST"
-          @submit.prevent="sendEmail">
-              <div class="subtitle" v-if="loading==''">{{languageData.computed.currentLanguageData().contactView.subtitle}}</div>
-              <div class="subtitle" v-else-if="loading=='sending'">{{languageData.computed.currentLanguageData().contactView.delivering}}</div>
-              <div class="subtitle" v-else-if="loading=='sent'">{{languageData.computed.currentLanguageData().contactView.delivered}}</div>
-              <div class="subtitle" v-else>{{languageData.computed.currentLanguageData().contactView.error}}</div>
-              <label for="name">
-                <span><Icon  icon="fa-regular:user" width="20" /></span>
-                <input type="text" id="name" name="name" :placeholder="languageData.computed.currentLanguageData().contactView.name" 
-                v-model="nameMsg"
-                >
-                </label>
-              <label for="email">
-                <span><Icon  icon="fa-regular:envelope" width="20" /></span>
-                <input type="email" id="email" name="_replyto" :placeholder="languageData.computed.currentLanguageData().contactView.email"
-                v-model="emailMsg"
-                ></label>
-          
-              <label for="message">
-                <span><Icon  icon="fa-solid:pencil-alt" width="20" /></span>
-                <textarea  id="message" name="message" :placeholder="languageData.computed.currentLanguageData().contactView.message"
-                rows="3"
-                v-model="messageMsg"
-                ></textarea>
+      <Frame xDirection="center">
+        <form method="POST"
+        @submit.prevent="sendEmail">
+            <div class="subtitle" v-if="loading==''">{{languageData.computed.currentLanguageData().contactView.subtitle}}</div>
+            <div class="subtitle" v-else-if="loading=='sending'">{{languageData.computed.currentLanguageData().contactView.delivering}}</div>
+            <div class="subtitle" v-else-if="loading=='sent'">{{languageData.computed.currentLanguageData().contactView.delivered}}</div>
+            <div class="subtitle" v-else>{{languageData.computed.currentLanguageData().contactView.error}}</div>
+            <label for="name">
+              <span><Icon  icon="fa-regular:user" width="20" /></span>
+              <input type="text" id="name" name="name" :placeholder="languageData.computed.currentLanguageData().contactView.name" 
+              v-model="nameMsg"
+              >
               </label>
-              <div class="s-button"><Button :options='options'
-              :isDisabled="nameMsg =='' || 
-              emailMsg == '' || messageMsg == '' ?true:false"
-              >{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
-          
-          </form>
-        </Frame>
+            <label for="email">
+              <span><Icon  icon="fa-regular:envelope" width="20" /></span>
+              <input type="email" id="email" name="_replyto" :placeholder="languageData.computed.currentLanguageData().contactView.email"
+              v-model="emailMsg"
+              ></label>
+        
+            <label for="message">
+              <span><Icon  icon="fa-solid:pencil-alt" width="20" /></span>
+              <textarea  id="message" name="message" :placeholder="languageData.computed.currentLanguageData().contactView.message"
+              rows="3"
+              v-model="messageMsg"
+              ></textarea>
+            </label>
+            <div class="s-button"><Button :options='options'
+            :isDisabled="nameMsg =='' || 
+            emailMsg == '' || messageMsg == '' ?true:false"
+            >{{languageData.computed.currentLanguageData().contactView.send}}</Button></div>
+        
+        </form>
+      </Frame>
     </div>
 
     <div class="back-title">
