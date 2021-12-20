@@ -3,8 +3,8 @@
     <div class="mobile-bar" v-if="displaySize < 3">
       <div class="logo">
         <div>
-          <img class="svg"
-            :src="colors.state.currentColorMode == 'dark' ? '/logo-spinner-white.svg':'/logo-spinner-black.svg'"
+          <embed class="svg"
+            :src="colors.state.currentColorMode == 'dark' ? '/logo-spinner-E8DDCB.svg':'/logo-spinner-AFAFAF.svg'"
             alt="logo"
             width="50"
             height="50"
@@ -34,10 +34,10 @@
 
       <div class="logo" v-if="displaySize >= 3">
         <div>
-          <img class="svg"
-            :src="colors.state.currentColorMode == 'dark' ? '/logo-full-en-white.svg':'/logo-full-en-black.svg'"
+          <embed class="svg"
+            :src="colors.state.currentColorMode == 'dark' ? '/logo-full-hu-E8DDCB.svg':'/logo-full-hu-AFAFAF.svg'"
             alt="logo"
-            width="150"
+            width="170"
             height="250"
             @click="$emit('selectedMenuItem', 'home')"
           />
@@ -219,13 +219,11 @@ nav a {
   color: var(--light);
   opacity: 1; 
 }
-.nav-items > ul > .active-menu-item::after{
-  /* background: var(--primary); */
-}
+
 .logo {
   text-align: center;
 }
-.mobile-bar .logo img{
+.mobile-bar .logo embed{
   padding-top: 8px;
 }
 .social-icon{
