@@ -26,7 +26,7 @@ button {
   font-weight: 500;
   font-size: 18px;
   border-radius: 16px;
-  border: 3px solid var(--light);
+  border: 3px solid var(--background);
   overflow: hidden;
   transition: color 300ms ease-in-out;
   padding: 0.5em 2em;
@@ -36,7 +36,7 @@ button {
   align-items: center;
   transition: all 300ms ease-in-out;
   width: 100%; 
-  background:  var(--background800);
+  background:  var(--secondary);
   height: auto;
 }
 
@@ -57,7 +57,7 @@ button:hover > .dlbtn-icon {
   transition: all 300ms ease-in-out;
 }
 button > .dlbtn-text {
-  color: var(--light);
+  color: var(--background);
   transform: translate(-1rem, 0rem);
   text-align: center;
   font-size: 18px;
@@ -70,8 +70,7 @@ button:hover > .dlbtn-text {
   transition: all 300ms ease-in-out;
 }
 button:hover {
-  background: var(--light);
-  border: 3px solid var(--light);
+  border: 3px solid var(--background800);
   cursor: pointer;
   transition: all 300ms ease-in-out;
 }

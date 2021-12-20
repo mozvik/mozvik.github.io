@@ -48,22 +48,19 @@ button {
   position: relative;
   z-index: 2;
   border-radius: 16px;
-  border: 3px solid var(--light);
+  border: 3px solid var(--background);
   overflow: hidden;
   transition: color 300ms ease-in-out;
   padding: 0.25em 2em;
-  /* margin: .5rem; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   transition: all 300ms ease-in-out;
   width: 100%; 
-  background:  var(--background800);
+  background:  var(--secondary);
   height: auto;
-  
 }
-
 
 button > .btn-icon {
   transform: translate(-0.5rem, 7rem);
@@ -86,7 +83,7 @@ button:hover > .btn-icon {
   font-size: 18px;
 }
 button > .btn-text {
-  color: var(--light);
+  color: var(--background);
   transform: translate(-1rem, 0rem);
   text-align: center;
   font-size: 18px;
@@ -99,23 +96,26 @@ button:hover > .btn-text {
   transition: all 300ms ease-in-out;
 }
 button:hover{
-  background: var(--light);
-  border: 3px solid var(--light);
+  border: 3px solid var(--background800);
   cursor: pointer;
   transition: all 300ms ease-in-out;
 }
 .btn-disabled{
-  
-  background: var(--light);
+  border: 3px solid var(--light);
+  opacity: .5;
 }
-.btn-disabled:hover, .btn-text-disabled:hover{
+.btn-disabled:hover{
+  cursor:not-allowed;
+  border: 3px solid var(--light);
+} 
+.btn-text-disabled:hover{
   cursor:not-allowed;
 }
 .btn-text-disabled {
   transform: translate(-1rem, 0rem);
   text-align: center;
   font-size: 18px;
-  color: var(--secondary);
+  color: var(--light);
 }
 /****************************************************** */
 /**          DESKTOP                                   **/
@@ -128,7 +128,6 @@ button:hover{
   /****************************************************** */
 /**          LARGE DESKTOP                                   **/
 @media screen and (min-width: 1200px) {
-  
   button {
     width: 300px;
   }
