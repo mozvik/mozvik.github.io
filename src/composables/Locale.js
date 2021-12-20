@@ -86,12 +86,12 @@ const state = reactive({
               },
             },
             {
-              title: "Puzzle Slider",
+              title: "BookBro",
               imageMobile: "https://picsum.photos/300/435/?rnd=2",
               imageDesktop: "https://picsum.photos/300/435/?rnd=2",
-              tech: "Vue, Vuex, Ajax",
+              tech: "Angular",
               brief:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt id quis porro?",
+                "Book finder that consumes Google Books API. My first Angular project:)",
               description:
                 "",
               technology: [
@@ -111,12 +111,12 @@ const state = reactive({
               buttonDemo: {
                 text: "View Demo",
                 icon: "healthicons:eye",
-                anchor: "https://mozvik.github.io/vue-quiz/",
+                anchor: "https://mozvik.github.io/bookbro/",
               },
               buttonCode: {
                 text: "Github Repository",
                 icon: "akar-icons:github-outline-fill",
-                anchor: "https://github.com/mozvik/vue-quiz",
+                anchor: "https://github.com/mozvik/bookbro",
               },
             },
            
@@ -142,12 +142,42 @@ const state = reactive({
               buttonDemo: {
                 text: "View Demo",
                 icon: "healthicons:eye",
-                anchor: "https://mozvik.github.io/vue-quiz/",
+                anchor: "",
               },
               buttonCode: {
                 text: "Github Repository",
                 icon: "akar-icons:github-outline-fill",
-                anchor: "https://github.com/mozvik/vue-quiz",
+                anchor: "",
+              },
+            },
+            {
+              title: "Flix Buddy",
+              imageMobile: "https://picsum.photos/300/435/?rnd=4",
+              imageDesktop: "https://picsum.photos/300/435/?rnd=4",
+              tech: "Angular",
+              brief:
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, deleniti laboriosam!",
+              description:
+                "",
+              technology: [
+                {
+                  icon: "logos:angular-icon",
+                  width: 26,
+                },
+                {
+                  icon: "logos:php",
+                  width: 50,
+                },
+              ],
+              buttonDemo: {
+                text: "View Demo",
+                icon: "healthicons:eye",
+                anchor: "",
+              },
+              buttonCode: {
+                text: "Github Repository",
+                icon: "akar-icons:github-outline-fill",
+                anchor: "",
               },
             },
             {
