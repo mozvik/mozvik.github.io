@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { slideInAnimation } from './animations';
+import { slideAnimation } from './animations';
 import { DataService } from './service/data.service';
 import { LocaleService } from './service/locale.service';
 
@@ -9,22 +9,25 @@ import { LocaleService } from './service/locale.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [slideInAnimation]
+  animations: [slideAnimation]
 })
 export class AppComponent {
   
   
   activeView = 0
   scrollingDirection = ""
-  //menuItems: any
+  touchDirection = ""
+  touchPosition = 10000
+  
   name: any
-  //checked = false;
-
+  
+  
   
   constructor(public dataService: DataService,
     public localeService: LocaleService,
-    private route: ActivatedRoute,
-    private router: Router) { 
+    // private route: ActivatedRoute,
+    // private router: Router
+  ) { 
     
   }
 //   @HostListener('window:scroll', ['$event'])
@@ -34,27 +37,37 @@ export class AppComponent {
 // }
   ngOnInit(): void {
     this.localeService.setLocaleData()
-    this.route.queryParams.subscribe(params => {
-      this.name = params['name'];
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   this.name = params['name'];
+    // });
   }
   
-  prepareRoute(outlet: RouterOutlet) {
+  // prepareRoute(outlet: RouterOutlet) {
+  //   return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  // }
 
-    return  outlet?.activatedRouteData?.['animation'];
-  }
   onScroll(e: any) {
     if (e.deltaY < 0 && this.activeView > 0) {
       this.activeView--
-      this.router.navigate(['/' + this.localeService.currentLanguageData.menuItems[this.activeView].link]);
+      this.navigateTo(['/' + this.localeService.currentLanguageData.menuItems[this.activeView].link]);
       this.scrollingDirection = "up"
     } else
       if (e.deltaY > 0 && this.activeView < this.localeService.currentLanguageData.menuItems.length - 1) {
         this.activeView++
-        this.router.navigate(['/' + this.localeService.currentLanguageData.menuItems[this.activeView].link]);
+        this.navigateTo(['/' + this.localeService.currentLanguageData.menuItems[this.activeView].link]);
         this.scrollingDirection = "down"
     }
   }
+
+
+
+  navigateTo(route: any[]) {
+    // this.router.navigate(route);
+  }
+  setScrollDirection(direction: string) {
+    this.scrollingDirection = direction
+  }
+
   toggleLanguage() {
     if (this.localeService.currentLanguage === 'hu') {
       this.localeService.currentLanguage = 'en'

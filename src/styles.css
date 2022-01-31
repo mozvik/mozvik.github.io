@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities; 
 
-html, body {}
+html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* router-outlet ~ * {
@@ -18,5 +18,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 0;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
