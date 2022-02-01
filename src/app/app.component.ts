@@ -15,9 +15,7 @@ export class AppComponent {
   
   
   activeView = 0
-  scrollingDirection = ""
-  touchDirection = ""
-  touchPosition = 10000
+  
   
   name: any
   
@@ -25,16 +23,10 @@ export class AppComponent {
   
   constructor(public dataService: DataService,
     public localeService: LocaleService,
-    // private route: ActivatedRoute,
-    // private router: Router
   ) { 
     
   }
-//   @HostListener('window:scroll', ['$event'])
-// onWindowScroll(e: any) {
-   
 
-// }
   ngOnInit(): void {
     this.localeService.setLocaleData()
     // this.route.queryParams.subscribe(params => {
@@ -46,27 +38,16 @@ export class AppComponent {
   //   return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   // }
 
-  onScroll(e: any) {
-    if (e.deltaY < 0 && this.activeView > 0) {
-      this.activeView--
-      this.navigateTo(['/' + this.localeService.currentLanguageData.menuItems[this.activeView].link]);
-      this.scrollingDirection = "up"
-    } else
-      if (e.deltaY > 0 && this.activeView < this.localeService.currentLanguageData.menuItems.length - 1) {
-        this.activeView++
-        this.navigateTo(['/' + this.localeService.currentLanguageData.menuItems[this.activeView].link]);
-        this.scrollingDirection = "down"
-    }
-  }
+  
 
 
 
   navigateTo(route: any[]) {
     // this.router.navigate(route);
   }
-  setScrollDirection(direction: string) {
-    this.scrollingDirection = direction
-  }
+  // setScrollDirection(direction: string) {
+  //   this.scrollingDirection = direction
+  // }
 
   toggleLanguage() {
     if (this.localeService.currentLanguage === 'hu') {

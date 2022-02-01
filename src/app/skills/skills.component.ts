@@ -7,10 +7,15 @@ import { LocaleService } from '../service/locale.service';
   styleUrls: ['./skills.component.css']
 })
 export class SkillsComponent implements OnInit {
+  vis: boolean = false
 
   constructor(public localeService: LocaleService) { }
 
   ngOnInit(): void {
   }
 
+  isVisible(e: any) {
+    this.vis = e
+    console.log('this.vis :>> ', this.vis);
+  }
 }
