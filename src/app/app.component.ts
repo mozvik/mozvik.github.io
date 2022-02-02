@@ -25,6 +25,7 @@ export class AppComponent {
     public localeService: LocaleService,
   ) { 
     
+
   }
 
   ngOnInit(): void {

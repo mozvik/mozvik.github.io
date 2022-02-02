@@ -10,7 +10,8 @@ export class ObserveIntersectionDirective {
   @Input() threshold: Array<number> = [1]
   @Input() debounce: number = 0
 
-  @Output() visible = new EventEmitter<boolean>()
+  @Output() enter = new EventEmitter<any>()
+  @Output() leave = new EventEmitter<any>()
   @Output() scrollDirection = new EventEmitter<String>()
 
   private intersectionObserver?: IntersectionObserver
@@ -94,10 +95,10 @@ export class ObserveIntersectionDirective {
         
         if (isStillVisible) {
           // console.log('im visible :>> ', entry);
-          this.visible.emit(true);
+          this.enter.emit(entry);
         }
         else {
-          this.visible.emit(false);
+          this.leave.emit(entry);
         }
       });
   }

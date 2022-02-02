@@ -1,8 +1,16 @@
 <div class="flex flex-col items-center justify-center h-screen">
   <div observeIntersection  class="border text-center p-10">
-    <p>portfolio works!</p>
+    <h1 class="uppercase">
+      {{localeService.currentLanguageData.portfolio.t1}}</h1>
+
+    
   
   </div>
   <div class="border text-center p-10">
+    <ul>
+      <li *ngFor="let item of localeService.currentLanguageData.portfolio.projects">
+        {{ item.title}}
+      </li>
+    </ul>
   </div>
 </div>

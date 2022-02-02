@@ -17,6 +17,7 @@ import { SkillsComponent } from './skills/skills.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactComponent } from './contact/contact.component';
 import { ObserveIntersectionDirective } from './directive/observe-intersection.directive';
+import { FloatingObjectComponent } from './floating-object/floating-object.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ObserveIntersectionDirective } from './directive/observe-intersection.d
     SkillsComponent,
     PortfolioComponent,
     ContactComponent,
-    ObserveIntersectionDirective
+    ObserveIntersectionDirective,
+    FloatingObjectComponent
   ],
   imports: [
     BrowserModule,

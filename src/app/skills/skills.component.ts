@@ -14,8 +14,13 @@ export class SkillsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isVisible(e: any) {
-    this.vis = e
+  entering(e: any) {
+    this.vis = true
     console.log('this.vis :>> ', this.vis);
   }
+  leaving(e: any) {
+    this.vis = false
+    console.log('this.vis :>> ', this.vis);
+  }
+
 }
