@@ -1,7 +1,28 @@
-<div class="flex flex-col items-center justify-center h-screen">
-  <div class="border text-center p-10">
-    <p>{{localeService.currentLanguageData.about.p1}}</p>
-    <p>{{localeService.currentLanguageData.about.p2}}</p>
-    <p>{{localeService.currentLanguageData.about.p3}}</p>
+
+  <!-- [threshold]='[.5]'
+  (enter)="st($event)"
+  (leave)="end($event)" -->
+<app-slidein-object #aboutSlidein observeIntersection
+  [threshold]='[1]'
+  [rootMargin]="'200px'"
+  (enter)="aboutSlidein.visible = true"
+  (leave)="aboutSlidein.visible = false"
+  [xStart]="-200"
+  [xStop]="50"
+  [speed]="0.5"
+  >
+<div class="back-title">
+  {{localeService.currentLanguageData.about.title}}
+</div>
+
+</app-slidein-object>
+<div class="flex flex-col justify-center h-screen px-5 my-10 relative ">
+ 
+  <div class="border px-10 py-20 title-3  content-block w-full lg:w-8/12">
+    <p class="pb-5">{{localeService.currentLanguageData.about.p1}}</p>
+    <p class="pb-5">{{localeService.currentLanguageData.about.p2}}</p>
+    <p class="">{{localeService.currentLanguageData.about.p3}}</p>
   </div>
+ 
+  
 </div>

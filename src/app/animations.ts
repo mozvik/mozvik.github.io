@@ -1,4 +1,4 @@
-import { animate, animateChild, group, query, style, transition, trigger } from "@angular/animations";
+import { animate, animateChild, animation, group, keyframes, query, style, transition, trigger, useAnimation } from "@angular/animations";
 
 export const slideAnimation =
   trigger('routeAnimations', [
@@ -6,8 +6,8 @@ export const slideAnimation =
     transition(':decrement', slideInOut('top') ),
   ]);
 
+
 function slideInOut(direction: string) {
-    console.log('direction :>> ', direction);
     const optional = { optional: true };
     return [
       query(':enter, :leave', [
@@ -32,6 +32,27 @@ function slideInOut(direction: string) {
       ]),
     ];
   }
+
+export const floating = animation([
+  
+  animate('{{ time }}ms', keyframes([
+    style({
+      transform: 'rotateZ({{z1}}deg)', offset: 0
+    }),
+    style({
+      transform: "rotateZ({{z2}}deg)", offset: 0.2
+    }),
+    style({
+      transform: "rotateZ({{z3}}deg)", offset: 0.5
+    }),
+    style({
+      transform: "rotateZ({{z4}}deg)", offset: 0.8
+    }),
+    style({
+      transform: "rotateZ({{z5}}deg)", offset: 1
+    }),
+  ]))  
+])
 
 
 

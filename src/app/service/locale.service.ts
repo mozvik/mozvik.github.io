@@ -26,13 +26,13 @@ export class LocaleService {
         name: 'kapcsolat',
         link: 'contact'
       }],
-      home: { title: 'kezdőlap', t1: 'üdvözlöm' , t2: ', mozvik attila vagyok' , t3: 'web és szoftverfejlesztő' },
-      about: { title: 'rólam', p1: 'Nagy szerelmem a webfejlesztés, ahol egyrészt ki tudom fejezni a kreativitásomat, másrészt meg tudom mutatni a programozói tudásomat is.', p2: 'Szeretek alkotni és látni azt, ahogy egy projekt általam kel életre.', p3: "Örömöm lelem animációk és különféle effektusok készítésében, vagy csupán egy probléma megoldásában.", btn: 'önéletrajz' },
+      home: { title: 'kezdőlap', t1: 'Üdvözlöm,' , t2: 'Mozvik Attila vagyok' , t3: 'web és szoftverfejlesztő' },
+      about: { title: 'rólam', p1: 'Nagy szerelmem a webfejlesztés, ahol ki tudom fejezni a kreativitásomat, másrészt meg tudom mutatni a programozói tudásomat is.', p2: 'Szeretek alkotni és látni azt, ahogy egy projekt általam kel életre.', p3: "Örömöm lelem animációk és különféle effektusok készítésében, vagy csupán egy probléma megoldásában.", btn: 'önéletrajz' },
       skills: { title: 'készségek', p1: 'Fő szakterületem a front-end fejlesztés, HTML, CSS és JavaScript keretrendszerek. Kisebb, reszponzív web alkalmazásokat, és komponenseket készítek.', p2: 'Ezen felül rendelkezem szerveroldali PHP programnyelv ismeretekkel is.' },
       skillTree: ['HTML, CSS', 'Angular', 'Vue.js', 'PHP', 'C#'],
       portfolio: {
         title: 'munkáim',
-        t1: 'portfólió',
+        t1: 'munkáim',
         projects: [{
           title: 'ngx-mat-file',
           details: 'A népszerű UI komponens könyvtár által nem támogatott fájl input mező megvalósítása.',
@@ -73,7 +73,7 @@ export class LocaleService {
     
     
       },
-      contact: { title: 'küldjön üzenetet', i1: 'név', i2: 'e-mail', i3: 'üzenet', btn: 'küldés' },
+      contact: { title: 'kapcsolat', t1:'Küldjön üzenetet', i1: 'név', i2: 'e-mail', i3: 'üzenet', btn: 'küldés' },
       
     },
     en: {
@@ -93,13 +93,13 @@ export class LocaleService {
         name: 'contact',
         link: 'contact'
       }],
-      home: { title: 'home', t1: 'hello, i\'m,' ,  t2: 'attila mozvik' , t3: 'web & software developer' },
+      home: { title: 'home', t1: 'Hello,' ,  t2: 'I\'m Attila Mozvik' , t3: 'web & software developer' },
       about: { title: 'about', p1: 'I have a serious passion for web development, that provides me the opportunity of both creativity and programming.', p2: 'I love experimenting with UI animations and effects, build something, or just solving problems.', p3: "", btn: 'download cv' },
       skills: { title: 'skills', p1: 'My main area of expertise is front-end development, HTML, CSS and JavaScript Frameworks. Building web applications, interactive layouts and components.', p2: 'I also have back-end knowledge of PHP.' },
       skillTree: ['HTML, CSS', 'Angular', 'Vue.js', 'PHP', 'C#'],
       portfolio: {
-        title: 'My Recent Projects',
-        t1: 'Portfolio',
+        title: 'Portfolio',
+        t1: 'My Recent Projects',
         projects: [{
           title: 'ngx-mat-file',
           details: 'File Input component package for Angular Material UI',
@@ -140,7 +140,7 @@ export class LocaleService {
     
     
       },
-      contact: { title: 'fet in touch', i1: 'name', i2: 'e-mail', i3: 'message', btn: 'send' },
+      contact: { title: 'contact', t1:'get in touch', i1: 'name', i2: 'e-mail', i3: 'message', btn: 'send' },
     }
   }
     

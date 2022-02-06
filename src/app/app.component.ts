@@ -1,6 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+
 import { slideAnimation } from './animations';
 import { DataService } from './service/data.service';
 import { LocaleService } from './service/locale.service';
@@ -12,8 +11,7 @@ import { LocaleService } from './service/locale.service';
   animations: [slideAnimation]
 })
 export class AppComponent {
-  
-  
+
   activeView = 0
   
   
@@ -30,9 +28,13 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.localeService.setLocaleData()
+    // this.content.nativeElement.scrollTop = 0
     // this.route.queryParams.subscribe(params => {
-    //   this.name = params['name'];
-    // });
+      //   this.name = params['name'];
+      // });
+    }
+    ngAfterViewInit() {
+   
   }
   
   // prepareRoute(outlet: RouterOutlet) {

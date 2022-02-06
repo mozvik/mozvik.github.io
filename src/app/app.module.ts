@@ -18,6 +18,12 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactComponent } from './contact/contact.component';
 import { ObserveIntersectionDirective } from './directive/observe-intersection.directive';
 import { FloatingObjectComponent } from './floating-object/floating-object.component';
+import { WheelComponent } from './wheel/wheel.component';
+import { SlideinObjectComponent } from './slidein-object/slidein-object.component';
+
+import { MenuItemComponent } from './menu-item/menu-item.component';
+
+
 
 
 @NgModule({
@@ -29,7 +35,12 @@ import { FloatingObjectComponent } from './floating-object/floating-object.compo
     PortfolioComponent,
     ContactComponent,
     ObserveIntersectionDirective,
-    FloatingObjectComponent
+    FloatingObjectComponent,
+    WheelComponent,
+    SlideinObjectComponent,
+    MenuItemComponent,
+
+
   ],
   imports: [
     BrowserModule,

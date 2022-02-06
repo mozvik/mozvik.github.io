@@ -1,0 +1,29 @@
+@keyframes float {
+  0%   {transform: translateX(0) rotateY(0)}
+  33%  {transform: translateX(10%) rotateZ(10deg)}
+  66%  {transform: translateX(5%) rotateX(10deg)}
+  100% {transform: translateX(0%)}
+}
+
+/* .floating-obj {
+  animation: float 5s infinite;
+} */
+
+.floating-outer{
+  position: relative;
+  /* height: 100%; */
+  /* perspective: 100px;
+  perspective-origin: center; */
+  background: red;
+  display: inline-block;
+  
+  transform-origin: center;
+}
+.floating-inner{
+  /* transition: all 0.5s ease-out; */
+  /* background: green; */
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+ /* transform-style: preserve-3d; */
+}

@@ -4,8 +4,19 @@
 @tailwind components;
 @tailwind utilities; 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+  height: 100%; 
+
+}
+body {
+  overflow-x: hidden; 
+  max-width: 1980px;
+  width: 100%;
+  margin: 0 auto;
+  background: #fafafa; 
+  font-family: Montserrat, Arial, sans-serif; }
+
+/* body { margin: 0; font-family: Inconsolata, monospace, sans-serif; } */
 
 /* router-outlet ~ * {
   position: absolute;
@@ -15,7 +26,61 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 } */
 
 ::-webkit-scrollbar {
-  width: 0;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+/*  width: 0;  /* Remove scrollbar space */
+/*  background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
+.content-block{
+  /* background: radial-gradient(white 50%, transparent 80%); */
+  /* background: linear-gradient(to bottom , transparent, white 30% ,white 70%, transparent); */
+
+}
+
+.title-1{
+  font-family: Special Elite, monospace, sans-serif; 
+  font-size: 60px; 
+  /* font-family: Montserrat, Arial, sans-serif; 
+  font-size: 3.5rem; 
+  font-weight: 700; */
+}
+.lead-1{
+  font-family: Inconsolata, monospace, sans-serif; 
+  font-size: 1.9rem; 
+  font-weight: 400;
+}
+.title-2{
+  font-family: Inconsolata, monospace, sans-serif; 
+  font-size: 1.65rem; 
+  font-weight: 400;
+}
+.title-3{
+  font-family: Inconsolata, monospace, sans-serif; 
+  font-size: 1.15rem; 
+  font-weight: 400;
+}
+
+.menu-item{
+  font-family: Inconsolata, monospace, sans-serif; 
+  font-size: 1.3rem; 
+  font-weight: 400;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.back-title{
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* transform: rotate(-7deg); */
+  opacity: 1;
+  font-family: Special Elite, monospace, sans-serif; 
+  font-size: 60px; 
+  z-index: -1;
+}
+
+@media screen and (min-width: 992px){
+.back-title, .title-1{
+  font-size: 100px;
+}
+}

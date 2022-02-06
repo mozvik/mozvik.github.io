@@ -1,0 +1,16 @@
+<div class="outer-wheel" #wheel [ngStyle]="wheelStyles">
+  <div
+  *ngFor="let item of brands"
+  class="outer-rim shadow-lg" 
+  [style.top]="item.y + 'px'"
+  [style.left]="item.x + 'px'"
+  [@floating]="{value: state, params: item.animationOptions}"
+  (@floating.done)="onEnd($event)"
+  >
+  
+    <div class="brand-image" [style.background-image]="'url(../assets/'+item.bgImg+')'"></div>
+  </div>
+  
+
+
+</div>

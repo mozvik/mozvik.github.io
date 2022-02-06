@@ -15,7 +15,7 @@ class Scrooth {
     e.preventDefault();
 
     if (!this.running) {
-      this.top = this.element.pageYOffset || this.element.scrollTop || 0;
+      this.top = this.element.pageYOffset ;
       this.running = true;
       this.currentDistance = e.deltaY > 0 ? 0.1 : -0.1;
       this.isDistanceAsc = true;
@@ -25,6 +25,7 @@ class Scrooth {
       this.currentDistance = e.deltaY > 0 ? this.distance : -this.distance;
     }
   }
+   
 
   scroll() {
     if (this.running) {
@@ -34,7 +35,8 @@ class Scrooth {
 
       this.top += this.currentDistance;
       this.element.scrollTo(0, this.top);
-      
+      if(this.top < 0 ) this.top = 0
+      if(this.top > (document.body.scrollHeight - this.element.innerHeight) ) this.top = document.body.scrollHeight - this.element.innerHeight
       requestAnimationFrame(this.scroll);
     }
   }
@@ -42,7 +44,7 @@ class Scrooth {
 
 const body = new Scrooth({
   element: window,
-  strength: 20,
-  acceleration: 1.95,
-  deceleration: 0.955,
+  strength: 15,
+  acceleration: 1.85,
+  deceleration: 0.945,
 });

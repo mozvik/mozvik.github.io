@@ -1,0 +1,16 @@
+<div #menuItem
+class="menu-col"
+(mouseover)="isHovered=true"
+(mouseleave)="isHovered=false">
+  <div
+  *ngFor="let item of spans; let even = even"
+  class="menu-letter">
+
+    <span [ngStyle]="isHovered ? {
+      transition: 'all '+item.duration+'ms ease',
+      transitionDelay: even ? item.delay+'ms':'0ms',
+      transform: 'translateX(-1ch)'} 
+      : {}">
+      {{item.letter}}{{item.letter}}</span>
+  </div>
+</div>

@@ -1,16 +1,30 @@
-<div class="flex flex-col items-center justify-center h-screen">
-  <div observeIntersection  class="border text-center p-10">
-    <h1 class="uppercase">
+<app-slidein-object #worksSlidein observeIntersection
+  [threshold]='[1]'
+  [rootMargin]="'200px'"
+  (enter)="worksSlidein.visible = true"
+  (leave)="worksSlidein.visible = false"
+  [xStart]="-600"
+  [xStop]="50"
+  [speed]="1"
+  >
+<div class="back-title uppercase ">
+  {{localeService.currentLanguageData.portfolio.title}}
+</div>
+</app-slidein-object>
+<div class="flex flex-col justify-center h-screen px-5 my-20 relative ">
+  <div observeIntersection  class="border px-10">
+    <h1 class="uppercase title-2">
       {{localeService.currentLanguageData.portfolio.t1}}</h1>
 
     
   
   </div>
-  <div class="border text-center p-10">
-    <ul>
+  <div class="border px-10">
+    <ul class="title-3">
       <li *ngFor="let item of localeService.currentLanguageData.portfolio.projects">
         {{ item.title}}
       </li>
     </ul>
   </div>
+  
 </div>

@@ -1,15 +1,32 @@
-<div class="flex flex-col items-center justify-center h-screen bg-slate-100">
-  <div observeIntersection [debounce]="500" (enter)="entering($event)" (leave)="leaving($event)" [style]="vis ? 'background:red':'background:initial'" class="border text-center p-10">
-    <p>{{localeService.currentLanguageData.skills.p1}}</p>
-    <p>{{localeService.currentLanguageData.skills.p2}}</p>
+<app-slidein-object #skillSlidein observeIntersection
+  [threshold]='[1]'
+  [rootMargin]="'200px'"
+  (enter)="skillSlidein.visible = true"
+  (leave)="skillSlidein.visible = false"
+  [xStart]="-700"
+  [xStop]="50"
+  [speed]="1"
+  >
+<div class="back-title uppercase ">
+  {{localeService.currentLanguageData.skills.title}}
+</div>
+</app-slidein-object>
+<div class="flex flex-col justify-center h-screen px-5 my-10 relative ">
+
+  <!-- <div observeIntersection [debounce]="500" (enter)="entering($event)" (leave)="leaving($event)" [style]="vis ? 'background:red':'background:initial'" class="border p-10"> -->
+  <div  class="border px-10 pt-32 title-3 content-block w-full lg:w-8/12">
+    <p class="pb-5">{{localeService.currentLanguageData.skills.p1}}</p>
+    <p class="pb-5">{{localeService.currentLanguageData.skills.p2}}</p>
     <p >{{localeService.currentLanguageData.skills.p3}}</p>
   </div>
-  <div class="border text-center p-10">
-    <app-floating-object *ngIf="vis"></app-floating-object>
-    <ul>
-      <li *ngFor="let skill of localeService.currentLanguageData.skillTree">
+  <div class="border px-10 w-full lg:w-8/12">
+   
+    
+    <ul class="title-3 divide-y py-10 divide-dotted content-block">
+      <li *ngFor="let skill of localeService.currentLanguageData.skillTree" class="">
         {{ skill}}
       </li>
     </ul>
   </div>
+  
 </div>
