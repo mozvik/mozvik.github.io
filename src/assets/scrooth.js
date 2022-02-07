@@ -44,7 +44,7 @@ class Scrooth {
 
 const body = new Scrooth({
   element: window,
-  strength: 15,
-  acceleration: 1.85,
-  deceleration: 0.945,
+  strength: 14,
+  acceleration: 1.9,
+  deceleration: 0.940,
 });

@@ -13,7 +13,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { SkillsComponent } from './skills/skills.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactComponent } from './contact/contact.component';
 import { ObserveIntersectionDirective } from './directive/observe-intersection.directive';
@@ -31,7 +30,6 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
     AppComponent,
     HomeComponent,
     AboutComponent,
-    SkillsComponent,
     PortfolioComponent,
     ContactComponent,
     ObserveIntersectionDirective,

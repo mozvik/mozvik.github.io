@@ -39,9 +39,7 @@ body {
 .title-1{
   font-family: Special Elite, monospace, sans-serif; 
   font-size: 60px; 
-  /* font-family: Montserrat, Arial, sans-serif; 
-  font-size: 3.5rem; 
-  font-weight: 700; */
+ 
 }
 .lead-1{
   font-family: Inconsolata, monospace, sans-serif; 
@@ -81,6 +79,7 @@ body {
 
 @media screen and (min-width: 992px){
 .back-title, .title-1{
-  font-size: 100px;
+  font-size: 70px;
 }
+
 }

@@ -17,17 +17,14 @@ export class LocaleService {
         name: 'rólam',
         link: 'about'
       },{
-        name: 'készségek',
-        link: 'skills'
-      },{
         name: 'munkáim',
         link: 'portfolio'
       },{
         name: 'kapcsolat',
         link: 'contact'
       }],
-      home: { title: 'kezdőlap', t1: 'Üdvözlöm,' , t2: 'Mozvik Attila vagyok' , t3: 'web és szoftverfejlesztő' },
-      about: { title: 'rólam', p1: 'Nagy szerelmem a webfejlesztés, ahol ki tudom fejezni a kreativitásomat, másrészt meg tudom mutatni a programozói tudásomat is.', p2: 'Szeretek alkotni és látni azt, ahogy egy projekt általam kel életre.', p3: "Örömöm lelem animációk és különféle effektusok készítésében, vagy csupán egy probléma megoldásában.", btn: 'önéletrajz' },
+      home: { title: 'kezdőlap', t1: 'Üdvözlöm,' , t2: 'Mozvik Attila', t3: 'vagyok' , t4: 'web és szoftverfejlesztő' },
+      about: { title: 'rólam', p1: 'A webfejlesztés világa az a hely, ahol ki tudom fejezni a kreativitásomat, és meg tudom mutatni a programozói tudásomat is.', p2: 'Szeretek alkotni, és látni azt, ahogy egy projekt általam kel életre.', p3: "Örömöm lelem animációk és különféle effektusok készítésében, vagy csupán egy probléma megoldásában.", btn: 'önéletrajz' },
       skills: { title: 'készségek', p1: 'Fő szakterületem a front-end fejlesztés, HTML, CSS és JavaScript keretrendszerek. Kisebb, reszponzív web alkalmazásokat, és komponenseket készítek.', p2: 'Ezen felül rendelkezem szerveroldali PHP programnyelv ismeretekkel is.' },
       skillTree: ['HTML, CSS', 'Angular', 'Vue.js', 'PHP', 'C#'],
       portfolio: {
@@ -84,16 +81,13 @@ export class LocaleService {
         name: 'about',
         link: 'about'
       },{
-        name: 'skills',
-        link: 'skills'
-      },{
         name: 'portfolio',
         link: 'portfolio'
       },{
         name: 'contact',
         link: 'contact'
       }],
-      home: { title: 'home', t1: 'Hello,' ,  t2: 'I\'m Attila Mozvik' , t3: 'web & software developer' },
+      home: { title: 'home', t1: 'Hello,' ,  t2: 'I\'m Attila Mozvik', t3: '' , t4: 'web & software developer' },
       about: { title: 'about', p1: 'I have a serious passion for web development, that provides me the opportunity of both creativity and programming.', p2: 'I love experimenting with UI animations and effects, build something, or just solving problems.', p3: "", btn: 'download cv' },
       skills: { title: 'skills', p1: 'My main area of expertise is front-end development, HTML, CSS and JavaScript Frameworks. Building web applications, interactive layouts and components.', p2: 'I also have back-end knowledge of PHP.' },
       skillTree: ['HTML, CSS', 'Angular', 'Vue.js', 'PHP', 'C#'],

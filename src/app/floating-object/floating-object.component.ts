@@ -41,7 +41,7 @@ export class FloatingObjectComponent implements OnInit {
 
   @Input() speed: number = (Math.random() * .5) + .2
   @Input() xStart: number = 75
-  @Input() yStart: number = 75
+  @Input() yStart: number = 0
   @Input() visible: boolean = false
   @Input() vertical: boolean = true
   @Input() animation: boolean = true

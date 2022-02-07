@@ -1,9 +1,20 @@
 <div class="flex flex-col justify-center h-screen px-5" >
-  <div class="border px-10 py-20 content-block w-full lg:w-8/12">
-    <div class="title-1 mb-20">
-      <div #firstLine></div>
-      <div #secondLine></div>
+  <div class="border px-10 pt-20 xl:pt-0 content-block w-full lg:w-10/12">
+    <div class="title-1 mb-20"
+    *ngIf="!thirdLineDone; else elseBlock">
+      <div >{{textArray[0]}}<span *ngIf="!firstLineDone" class="cursor">&#10072;</span></div>
+      <div >{{textArray2[0]}}<span *ngIf="!secondLineDone && firstLineDone" class="cursor">&#10072;</span></div>
+      <div >{{textArray3[0]}}<span *ngIf="!thirdLineDone && secondLineDone" class="cursor">&#10072;</span></div>
     </div>
-    <div class="lead-1">{{localeService.currentLanguageData.home.t3}}</div>
+    <ng-template #elseBlock >
+      <div class="title-1 mb-20">
+        <div>{{localeService.currentLanguageData.home.t1}}</div>
+        <div>{{localeService.currentLanguageData.home.t2}}</div>
+        <div>{{localeService.currentLanguageData.home.t3}}<span class="cursor">&#10072;</span></div>
+      </div>
+    </ng-template>
+    <div class="lead-1"
+    [class] = "thirdLineDone? 'reveal':'hide'"
+    >{{localeService.currentLanguageData.home.t4}}</div>
   </div>
 </div>
