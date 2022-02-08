@@ -31,7 +31,12 @@ function slideInOut(direction: string) {
         ])
       ]),
     ];
-  }
+}
+  
+export const revealAnimation = animation([
+  animate('{{ duration }}ms {{ delay }}ms')
+  
+]);
 
 export const floating = animation([
   

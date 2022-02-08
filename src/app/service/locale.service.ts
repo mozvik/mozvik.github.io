@@ -54,7 +54,7 @@ export class LocaleService {
         },{
           title: 'Rece-fice Recepttár',
           details: 'A szakdolgozatom. Receptkezelő alkalmazás/weboldal.',
-          tech: ['Angular 13'],
+          tech: ['Angular 13','php'],
           techIcon: [''],
           code: 'github.com',
           demo: 'facebook.com'
@@ -63,7 +63,7 @@ export class LocaleService {
           details: 'Videójátékos weboldal, magazin. Bootstrap, Javascript és PHP alapokon.',
           tech: ['PHP','JavaScript','Bootstrap'],
           techIcon: ['PHP','',''],
-          code: 'github.com',
+          code: '',
           demo: 'facebook.com'
         }]
     
@@ -127,7 +127,7 @@ export class LocaleService {
           details: 'Gamer magazine. Bootstrap, Javascript and PHP backend.',
           tech: ['PHP','JavaScript','Bootstrap'],
           techIcon: ['PHP','',''],
-          code: 'github.com',
+          code: '',
           demo: 'facebook.com'
         }]
     

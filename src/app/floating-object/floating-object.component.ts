@@ -70,7 +70,7 @@ export class FloatingObjectComponent implements OnInit {
       
     if (this.vertical) {
      
-      this.outerElement.nativeElement.style.top = (200 * this.yRatio * this.speed) + "%"
+      this.outerElement.nativeElement.style.top = (100 * this.yRatio * this.speed) + "%"
       this.outerElement.nativeElement.style.left = this.xStart + "%"
     } else {
      

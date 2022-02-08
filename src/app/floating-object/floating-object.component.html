@@ -4,7 +4,7 @@
 #outerElement
 [@slideInOut]="visible" 
 [@floating]="{value: state, params: animationOptions}" (@floating.done)="onEnd($event)"
-class="floating-outer drop-shadow-xl" >
+class="floating-outer" >
 <ng-content #innerElement></ng-content></div>
 
 <!-- (@slideInOut.done)="state = 'start'" -->

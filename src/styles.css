@@ -14,7 +14,11 @@ body {
   width: 100%;
   margin: 0 auto;
   background: #fafafa; 
-  font-family: Montserrat, Arial, sans-serif; }
+  font-family: Montserrat, Arial, sans-serif; 
+  user-select: none;
+}
+
+
 
 /* body { margin: 0; font-family: Inconsolata, monospace, sans-serif; } */
 
@@ -36,6 +40,13 @@ body {
 
 }
 
+button.mat-stroked-button{
+  font-family: Montserrat, Arial, sans-serif; 
+
+  font-weight: 700;
+
+}
+
 .title-1{
   font-family: Special Elite, monospace, sans-serif; 
   font-size: 60px; 
@@ -44,6 +55,12 @@ body {
 .lead-1{
   font-family: Inconsolata, monospace, sans-serif; 
   font-size: 1.9rem; 
+  font-weight: 400;
+}
+.lead-2{
+  font-family: Inconsolata, monospace, sans-serif; 
+  font-size: 1.5rem; 
+  line-height: 2.0rem;
   font-weight: 400;
 }
 .title-2{
