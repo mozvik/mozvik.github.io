@@ -1,4 +1,4 @@
-import { animate, animateChild, animation, group, keyframes, query, style, transition, trigger, useAnimation } from "@angular/animations";
+import { animate, animateChild, animation, AnimationMetadata, group, keyframes, query, state, style, transition, trigger, useAnimation } from "@angular/animations";
 
 export const slideAnimation =
   trigger('routeAnimations', [
@@ -60,6 +60,31 @@ export const floating = animation([
 ])
 
 
+
+
+
+
+
+export const slideIn: AnimationMetadata[] = [
+  style({ opacity: 0, transform: 'translateX(100%)' }),
+  animate('300ms', style({ opacity: 1, transform: 'translateX(0)' })),
+]
+export const slideOut: AnimationMetadata[] = [
+  style({ opacity: 1, transform: 'translateX(0)' }),
+  animate('300ms', style({ opacity: 0, transform: 'translateX(100%)' })),
+]
+export const slideUp: AnimationMetadata[] = [
+  style({ opacity: 0, transform: 'translateY(100%)' }),
+  animate('300ms', style({ opacity: 1, transform: 'translateY(0)' })),
+]
+export const slideDown: AnimationMetadata[] = [
+  style({ opacity: 1, transform: 'translateY(0)' }),
+  animate('300ms', style({ opacity: 0, transform: 'translateY(100%)' })),
+]
+export const fadeOut: AnimationMetadata[] = [
+  style({ opacity: 1 }),
+  animate('300ms', style({ opacity: 0 })),
+]
 
 
 // export const slideInOut =

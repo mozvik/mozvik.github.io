@@ -8,11 +8,10 @@ export class ObserveIntersectionDirective {
   @Input() rootMargin: string = '0px'
   @Input() threshold: Array<number> = [1]
   
-  @Output() enter = new EventEmitter<any>()
-  @Output() leave = new EventEmitter<any>()
+  @Output() enter = new EventEmitter<boolean>()
+  @Output() leave = new EventEmitter<boolean>()
   
   private intersectionObserver?: IntersectionObserver
-  
   
   private options = {
     rootMargin: '0px',
@@ -29,24 +28,20 @@ export class ObserveIntersectionDirective {
   ngAfterViewInit() {
     this.intersectionObserver = new IntersectionObserver(this.handleIntersect, this.options);
     this.intersectionObserver.observe(this.ele.nativeElement)
-    
   }
 
   private handleIntersect = (entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
       if (entry.isIntersecting) {
-        this.enter.emit(entry)
-        //console.log('enter :>> ', entry.target);
+        this.enter.emit(true)
       }
       else {
-        this.leave.emit(entry)
-        //console.log('leave :>> ', entry.target);
+        this.leave.emit(false)
       }
-    });
+    })
   }
 
   ngOnDestroy() {
     this.intersectionObserver?.unobserve(this.ele.nativeElement)
   }
-  
 }

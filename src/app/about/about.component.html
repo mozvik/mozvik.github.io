@@ -1,10 +1,6 @@
 
-  <!-- [threshold]='[.5]'
-  (enter)="st($event)"
-  (leave)="end($event)" -->
-
-<div class="flex flex-col px-5 justify-center   relative ">
-  <app-slidein-object #aboutSlidein observeIntersection
+<div class="flex flex-col px-5 justify-center height-screen  relative ">
+  <!-- <app-slidein-object #aboutSlidein observeIntersection
   [threshold]='[1]'
   [rootMargin]="'200px'"
   (enter)="aboutSlidein.visible = true"
@@ -12,12 +8,17 @@
   [xStart]="-190"
   [xStop]="50"
   [speed]="1"
-  >
-<div class="back-title">
-  {{localeService.currentLanguageData.about.title}}
-</div>
+  > -->
+  <!-- (leave)="show =false"  -->
+  <div 
+  observeIntersection [threshold]="[.7]" 
+  (enter)="show =true" 
+  [@reveal]="{value: show}"
+  class="back-title">
+    {{localeService.currentLanguageData.about.title}}
+  </div>
 
-</app-slidein-object>
+<!-- </app-slidein-object> -->
  
   <div class="px-5 xl:px-10 py-20 title-3 mt-28 content-block w-full lg:w-8/12">
     <p class="pb-5">{{localeService.currentLanguageData.about.p1}}</p>
