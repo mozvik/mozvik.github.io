@@ -70,7 +70,7 @@ export class LocaleService {
     
     
       },
-      contact: { title: 'kapcsolat', t1:'Küldjön üzenetet', i1: 'név', i2: 'e-mail', i3: 'üzenet', btn: 'küldés' },
+      contact: { title: 'kapcsolat', t1:'Küldjön üzenetet', i1: 'Név', i2: 'E-mail', i3: 'Üzenet', btn: 'Küldés', required: 'Kötelező kitölteni', invalidEmail: 'Nem megfelelő e-mail formátum' },
       
     },
     en: {
@@ -134,7 +134,7 @@ export class LocaleService {
     
     
       },
-      contact: { title: 'contact', t1:'get in touch', i1: 'name', i2: 'e-mail', i3: 'message', btn: 'send' },
+      contact: { title: 'contact', t1:'Get in Touch', i1: 'Name', i2: 'E-mail', i3: 'Message', btn: 'Send', required: 'Required', invalidEmail: 'Not a valid email' },
     }
   }
     

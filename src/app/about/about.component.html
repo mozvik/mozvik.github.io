@@ -1,5 +1,6 @@
 
-<div class="flex flex-col px-5 justify-center height-screen  relative ">
+<div id="about"
+class="flex flex-col px-5 justify-center height-screen my-52 relative ">
   <!-- <app-slidein-object #aboutSlidein observeIntersection
   [threshold]='[1]'
   [rootMargin]="'200px'"
@@ -13,9 +14,11 @@
   <div 
   observeIntersection [threshold]="[.7]" 
   (enter)="show =true" 
-  [@reveal]="{value: show}"
-  class="back-title">
-    {{localeService.currentLanguageData.about.title}}
+  >
+    <div class="back-title"
+    [class]="show ? 't-show' : 't-hide'">
+        {{localeService.currentLanguageData.about.title}}
+    </div>
   </div>
 
 <!-- </app-slidein-object> -->

@@ -1,20 +1,16 @@
 
-<div class="flex flex-col justify-center pb-20 px-5 relative content-block ">
-  <app-slidein-object 
-  class="mb-28"
-  #worksSlidein observeIntersection
-  [threshold]='[1]'
-  [rootMargin]="'200px'"
-  (enter)="worksSlidein.visible = true"
-  (leave)="worksSlidein.visible = false"
-  [xStart]="-600"
-  [xStop]="50"
-  [speed]="1"
+<div id="portfolio"
+class="flex flex-col justify-center my-52 px-5 relative">
+  <div 
+  observeIntersection [threshold]="[.7]" 
+  (enter)="titleShow =true" 
+  
   >
-<div class="back-title">
-  {{localeService.currentLanguageData.portfolio.title}}
-</div>
-</app-slidein-object>
+    <div class="back-title"
+    [class]="titleShow ? 't-show' : 't-hide'">
+        {{localeService.currentLanguageData.portfolio.title}}
+    </div>
+  </div>
   
   <div observeIntersection
   [threshold]="[.25]"
@@ -23,11 +19,10 @@
   
   class=" px-5 xl:px-10 mt-28 content-block w-full lg:w-8/12 outer-container"> 
     <div 
-      class="h-48 w-3/4 md:w-auto lg:w-1/2 my-10 item-container"
+      class="h-48 w-3/4 md:w-auto lg:w-1/2 my-10 item-container mr-0 lg:mr-5"
       *ngFor="let item of localeService.currentLanguageData.portfolio.projects ; index as i"
-      [@reveal]="{ value: projectShow, params:  duration[i]}"
+      [@reveal]="{ value: projectShow, params: duration[i]}"
       >
-     
         <div class="title-2 i-title">{{ item.title}}
           <hr>
         </div>
@@ -40,12 +35,12 @@
         </div>
       
 
-      <div class=" p-2 flex"
+      <div class="py-2 flex"
       
       >
-        <div class="px-2">
+        <div class="px-2" *ngIf="item.code">
           <button mat-stroked-button
-          *ngIf="item.code"
+          
           >
           <mat-icon>code</mat-icon>
           </button>

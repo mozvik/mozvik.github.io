@@ -66,7 +66,8 @@
     class="w-64" color="primary" style="position: fixed; top:0; ">
       <div class="flex flex-col justify-around h-screen">
         <div class="border flex flex-col items-center">
-          <embed src="assets/logo-spinner-E8DDCB.svg" width="100"  alt="" class="pointer-events-none">
+          <!-- <embed src="assets/logo-spinner-E8DDCB.svg" width="100"  alt="" class="pointer-events-none"> -->
+          <img src="assets/minime.jpg" width="100"  alt="" class="pointer-events-none" id="minime">
           <p><button mat-stroked-button (click)="sidenav.close()">Toggle</button></p>
         </div>
       
@@ -74,7 +75,11 @@
         <div class="border ">
           <!-- <ul> -->
             <!-- [routerLink]="'/'+item.link" -->
-            <app-menu-item *ngFor="let item of localeService.currentLanguageData.menuItems"
+            <app-menu-item 
+            *ngFor="let item of localeService.currentLanguageData.menuItems; let i = index"
+            [active]="activeMenuItem === i"
+            (clicked)="activeMenuItem = i"
+            (click)="scrollTo(item.link)"
             [text]="item.name"
             class="cursor-pointer menu-item"
             ></app-menu-item>
@@ -87,8 +92,8 @@
             <mat-icon>facebook</mat-icon>
           </div>
           <div class="border flex justify-center">
-            <mat-slide-toggle color="primary" (click)="toggleLanguage()" >{{localeService.currentLanguage}}</mat-slide-toggle>
-            <mat-slide-toggle color="primary" (click)="toggleLanguage()" >{{localeService.currentLanguage}}</mat-slide-toggle>
+            <mat-slide-toggle color="warn" (click)="toggleLanguage()" >{{localeService.currentLanguage}}</mat-slide-toggle>
+            <mat-slide-toggle color="" (click)="toggleLanguage()" >{{localeService.currentLanguage}}</mat-slide-toggle>
           </div>
         </div>
       </div>

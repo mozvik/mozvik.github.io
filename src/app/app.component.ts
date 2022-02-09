@@ -12,7 +12,7 @@ import { LocaleService } from './service/locale.service';
 })
 export class AppComponent {
 
-  activeView = 0
+  activeMenuItem = 0
   
   
   name: any
@@ -51,6 +51,11 @@ export class AppComponent {
   // setScrollDirection(direction: string) {
   //   this.scrollingDirection = direction
   // }
+  scrollTo(section: string) {
+    console.log('click  :>> ', section );
+    //@ts-ignore
+    document.getElementById(section).scrollIntoView({behavior: 'smooth'});
+  }
 
   toggleLanguage() {
     if (this.localeService.currentLanguage === 'hu') {

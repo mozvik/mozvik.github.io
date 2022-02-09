@@ -10,10 +10,10 @@ import { slideUp, fadeOut } from '../animations';
   animations: [
     trigger('reveal', [
       state('true',
-        style({ opacity: 1 , transform: 'translateX(2rem)'})
+        style({ opacity: 1 , transform: 'translateX(4rem)'})
       ),
       state('false',
-        style({ opacity: 0 , transform: 'translateX(-10%)'})
+        style({ opacity: 0 , transform: 'translateX(100%)'})
       ),
       transition('false <=> true', [
         animate('1100ms ease')

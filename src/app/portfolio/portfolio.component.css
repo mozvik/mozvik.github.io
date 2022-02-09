@@ -18,11 +18,11 @@
   overflow: hidden;
   width: 360px;
   height: auto;
-  border: solid 1px purple;
+  border: solid 1px #393d3f;
   border-radius: 5px;
   padding: 1.5rem;
-  margin: 1.0rem;
-  box-shadow: 1px 1px 1px rgba(128, 0, 128,.4);
+  
+  box-shadow: 1px 1px 1px #393d3f;
 }
 
 .i-title{
@@ -38,4 +38,5 @@
   .outer-container{
     justify-content: flex-start;
   }
+  
 }

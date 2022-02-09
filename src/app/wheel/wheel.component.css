@@ -43,10 +43,10 @@
   max-height: 120px;
   width: 7.5vw;
   height: 7.5vw;
-  border: solid 1px purple;
+  border: solid 1px #393d3f;
   border-radius: 5%;
   transition: all 0.2s ease-out;
-  background-color: lightsteelblue;
+  background-color: #62929e;
 }
 .brand-image{
   background-size: cover;

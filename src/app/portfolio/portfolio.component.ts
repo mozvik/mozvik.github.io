@@ -23,15 +23,26 @@ import { LocaleService } from '../service/locale.service';
       ]),
       transition('* => false', [
         animate(1100)
-      ]),])
+      ]),]),
+    trigger('revealTitle', [
+      state('true',
+          style({ opacity: 1 , transform: 'translateX(4rem)'})
+        ),
+        state('false',
+          style({ opacity: 0 , transform: 'translateX(100%)'})
+        ),
+        transition('false <=> true', [
+          animate('1100ms ease')
+        ]),
+      ])
   ]
 })
 export class PortfolioComponent implements OnInit {
 
   public projectMetadata: any[] = []
   public duration: any[] = []
-  public projectShow = false
-
+  public projectShow: boolean = false
+  public titleShow: boolean = false
   
 
   constructor(public localeService: LocaleService,
