@@ -7,14 +7,16 @@ class="flex flex-col justify-center h-screen px-5 relative">
     [class]="titleShow ? 't-show' : 't-hide'">
         {{localeService.currentLanguageData.contact.title}}</div>
     </div>
-  <div class="p-10 lead-1 w-full lg:w-8/12">
+  <div class="lg:px-10 py-5 lead-1 w-full lg:w-8/12">
     <h1 class="">
       {{localeService.currentLanguageData.contact.t1}}</h1>
   </div>
-  <div class="px-10 title-3 w-full lg:w-8/12">
+  <div class="lg:px-10 title-3 w-full lg:w-8/12">
 
-    <div class="example-container ">
-      <form [formGroup]="formGroup"
+    <div observeIntersection [threshold]="[1]" 
+    (enter)="dataService.activeMenuItem=3" >
+      <form 
+      [formGroup]="formGroup"
       class="flex flex-col">
         <mat-form-field appearance="outline"
         class="pt-5">
@@ -35,7 +37,22 @@ class="flex flex-col justify-center h-screen px-5 relative">
           <mat-error *ngIf="formGroup.invalid">{{getErrorMessage("message")}}</mat-error>
         </mat-form-field>
     </form>
-    <button mat-stroked-button >{{localeService.currentLanguageData.contact.btn}}</button>
+    <div class="flex justify-between mt-4">
+      <button mat-stroked-button >{{localeService.currentLanguageData.contact.btn}}</button>
+      <div class="social">
+        <a href="" target="_blank">
+        <mat-icon svgIcon="github"></mat-icon>
+        </a>
+        <a href="" target="_blank">
+          <mat-icon svgIcon="linkedin"></mat-icon>
+        </a>
+        <a href="https://www.facebook.com/attila.mozvik" target="_blank">
+          <mat-icon>facebook</mat-icon>
+        </a>
+      </div>
+    </div>
+    
+
     </div>
   </div> 
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../service/data.service';
 import { LocaleService } from '../service/locale.service';
 
 @Component({
@@ -21,7 +22,10 @@ export class HomeComponent implements OnInit {
   public textArrayThirdLine: string[] = [];
 
 
-  constructor( public localeService: LocaleService) { }
+  constructor(
+    public localeService: LocaleService,
+    public dataService: DataService
+  ) { }
 
   ngOnInit(): void {
     this.lang = this.localeService.currentLanguage

@@ -13,27 +13,21 @@ body {
   max-width: 1980px;
   width: 100%;
   margin: 0 auto;
-  background: #e0e1dd;
-  color: #0d1b2a; 
+  background: var(--bgMain);
+  color: var(--color); 
   font-family: Montserrat, Arial, sans-serif; 
   user-select: none;
 }
 
 .mat-drawer-container{
-  /* color: #0d1b2a;  */
-  /* background: #e0e1dd; */
-  color: #2d3032; 
-  background: #f6f6f6;
+  color: var(--color); 
+  background: var(--bgMain);
 }
 .mat-sidenav{
-
-  /* background: rgba(13, 27, 42,.25); */
-  /* background: rgba(142, 141, 138,.25); */
-  background: #e7e9f0;
-  background: #d2d3d3;
-  background: #e1e2e2;
-  color: #2d3032;
+  background: var(--bgAlt);
+  color: var(--color); 
 }
+
 /* body { margin: 0; font-family: Inconsolata, monospace, sans-serif; } */
 
 /* router-outlet ~ * {
@@ -53,12 +47,13 @@ body {
   /* background: linear-gradient(to bottom , transparent, white 30% ,white 70%, transparent); */
 
 }
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,  .mat-focused .mat-form-field-label {
+  color: var(--color)!important;
+}
 
 button.mat-stroked-button{
   font-family: Montserrat, Arial, sans-serif; 
-
   font-weight: 700;
-
 }
 
 .title-1{
@@ -81,7 +76,7 @@ button.mat-stroked-button{
   font-family: Inconsolata, monospace, sans-serif; 
   font-size: 1.65rem; 
   font-weight: 400;
-  color: #408687;
+  color: var(--primary);
 }
 .title-3{
   font-family: Inconsolata, monospace, sans-serif; 
@@ -96,7 +91,6 @@ button.mat-stroked-button{
   display: block;
   text-align: center;
   text-transform: uppercase;
-  
 }
 
 .back-title{
@@ -104,10 +98,6 @@ button.mat-stroked-button{
   display: inline-block;
   top: 0;
   left: 0;
-  /* position: absolute;
-  top: 0;
-  left: 0; */
-  /* transform: rotate(-7deg); */
   opacity: 1;
   font-family: Special Elite, monospace, sans-serif; 
   font-size: 60px; 

@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { slideAnimation } from './animations';
 import { DataService } from './service/data.service';
 import { LocaleService } from './service/locale.service';
+import { IconService } from './service/icon.service';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,9 @@ export class AppComponent {
   constructor(
     public dataService: DataService,
     public localeService: LocaleService,
+    private iconService: IconService,
   ) { 
-    
-
+    this.iconService.registerIcons();
   }
 
   ngOnInit(): void {

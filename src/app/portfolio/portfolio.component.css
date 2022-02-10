@@ -18,11 +18,11 @@
   overflow: hidden;
   width: 360px;
   height: auto;
-  border: solid 1px #393d3f;
+  border: solid 1px var(--color);
   border-radius: 5px;
   padding: 1.5rem;
   
-  box-shadow: 1px 1px 1px #393d3f;
+  box-shadow: 1px 1px 1px var(--color);
 }
 
 .i-details{

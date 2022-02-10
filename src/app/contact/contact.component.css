@@ -1,0 +1,15 @@
+.social .mat-icon, .mat-icon, .mat-icon path{
+  height: auto;
+  width: 30px;
+  font-size: 30px;
+  margin-left: .5rem;
+  color: var(--color);
+  fill: var(--color);
+  transition: all .3s ease;
+}
+
+.social .mat-icon:hover {
+  transition: all .3s ease;
+  color: var(--primary);
+  fill: var(--primary);
+}

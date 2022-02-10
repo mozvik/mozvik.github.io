@@ -1,6 +1,7 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LocaleService } from '../service/locale.service';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,7 +18,10 @@ export class ContactComponent implements OnInit {
     message: new FormControl('', [Validators.required])
   })
 
-  constructor(public localeService: LocaleService) { }
+  constructor(
+    public localeService: LocaleService,
+    public dataService: DataService
+  ) { }
 
   ngOnInit(): void {
   }

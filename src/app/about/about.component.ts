@@ -2,6 +2,7 @@ import { animate, AnimationBuilder, AnimationPlayer, state, style, transition, t
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LocaleService } from '../service/locale.service';
 import { slideUp, fadeOut } from '../animations';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-about',
@@ -27,10 +28,10 @@ export class AboutComponent implements OnInit {
 
   constructor(
     public localeService: LocaleService,
+    public dataService: DataService,
     ) { }
   
   ngOnInit(): void {
   }
- 
  
 }

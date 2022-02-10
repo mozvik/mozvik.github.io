@@ -57,8 +57,11 @@
 
 
 <div class="container mx-auto max-w-full w-screen" 
-[style]="{'--background': dataService.currentColorMap.background, 
-'--color': dataService.currentColorMap.color
+[style]="{
+  '--bgMain': dataService.currentColorMap.bgMain, 
+  '--bgAlt': dataService.currentColorMap.bgAlt, 
+  '--color': dataService.currentColorMap.color,
+  '--primary': dataService.currentColorMap.primary
 }"
 >
   <mat-toolbar class=" flex items-center justify-between " *ngIf="dataService.displaySize=='Small' || dataService.displaySize=='XSmall'">
@@ -70,48 +73,44 @@
     </div>
   </mat-toolbar>
 
-
-  
-  
   <mat-sidenav-container  
   class="relative"   (backdropClick)="sidenav.close()">
     <mat-sidenav #sidenav [opened]="dataService.displaySize=='Medium' || dataService.displaySize=='Large'|| dataService.displaySize=='XLarge' ? 'true':'false'" mode="side" (keydown.escape)="sidenav.close()" disableClose
     class="w-64" color="primary" style="position: fixed; top:0; ">
       <div class="flex flex-col justify-around h-screen">
         <div class="border flex flex-col items-center">
-          <!-- <embed src="assets/logo-spinner-E8DDCB.svg" width="100"  alt="" class="pointer-events-none"> -->
-          <img src="assets/minime.jpg" width="100"  alt="" class="pointer-events-none" id="minime">
-          <p><button mat-stroked-button (click)="sidenav.close()">Toggle</button></p>
-          <div class="teszt"
-          >hi</div>
+          <img src="assets/minime.jpg" width="120"  alt="" class="pointer-events-none" id="minime">
+          <!-- <p><button mat-stroked-button (click)="sidenav.close()">Toggle</button></p> -->
         </div>
       
         
-        <div class="border ">
+        <div class="">
           <!-- <ul> -->
             <!-- [routerLink]="'/'+item.link" -->
             <app-menu-item 
             *ngFor="let item of localeService.currentLanguageData.menuItems; let i = index"
-            [active]="activeMenuItem === i"
-            (clicked)="activeMenuItem = i"
+            [active]="dataService.activeMenuItem === i"
+            (clicked)="dataService.activeMenuItem = i"
             (click)="scrollTo(item.link)"
             [text]="item.name"
             class="cursor-pointer menu-item"
             ></app-menu-item>
           <!-- </ul> -->
         </div>
-        <div class="border ">
-          <div class="border flex justify-center">
-            <mat-icon>facebook</mat-icon>
-            <mat-icon>facebook</mat-icon>
-            <mat-icon>facebook</mat-icon>
+        <div class="flex flex-col justify-center ">
+            <div class="flex mb-2 items-center justify-center">
+              <mat-icon svgIcon="hu" [class.opacity-30]="localeService.currentLanguage!='hu'"></mat-icon>
+              <mat-slide-toggle class="mx-3" (click)="toggleLanguage()"></mat-slide-toggle>
+              <mat-icon svgIcon="en" [class.opacity-30]="localeService.currentLanguage!='en'"></mat-icon>
+            </div>
+            <div class="flex mt-2 items-center justify-center">
+              <mat-icon [class.opacity-30]="dataService.currentColorTheme!='light'">light_mode</mat-icon>
+              <mat-slide-toggle class="mx-3" (click)="toggleColorTheme()" ></mat-slide-toggle>
+              <mat-icon [class.opacity-30]="dataService.currentColorTheme!='dark'">dark_mode</mat-icon>
           </div>
-          <div class="border flex justify-center">
-            <mat-slide-toggle color="warn" (click)="toggleLanguage()" >{{localeService.currentLanguage}}</mat-slide-toggle>
-            <mat-slide-toggle color="" (click)="toggleColorTheme()" >{{dataService.currentColorTheme}} | {{dataService.currentColorMap.background}}</mat-slide-toggle>
           </div>
         </div>
-      </div>
+
     </mat-sidenav>
 
     <mat-sidenav-content style="overflow: hidden;"

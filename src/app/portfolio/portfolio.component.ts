@@ -44,7 +44,7 @@ export class PortfolioComponent implements OnInit {
   
   constructor(
     public localeService: LocaleService,
-    private dataService: DataService) { }
+    public dataService: DataService) { }
 
   ngOnInit(): void {
     this.initProjects();

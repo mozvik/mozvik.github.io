@@ -10,6 +10,7 @@ export class DataService {
   displaySize: string = ""
   currentColorTheme = "light"
   currentColorMap: any = {};
+  activeMenuItem: number = 0;
 
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
@@ -21,12 +22,16 @@ export class DataService {
 
   colorMap = {
     light: {
-      background: '#fff',
-      color: 'red'
+      bgMain: '#f6f6f6',
+      bgAlt:'#e1e2e2',
+      color: '#2d3032',
+      primary: '#1ba098'
     },
     dark: {
-      background: '#000',
-      color: 'white'
+      bgMain: '#f6f6f6',
+      bgAlt:'#e1e2e2',
+      color: '#2d3032',
+      primary: '#1ba098'
     }
 
   }

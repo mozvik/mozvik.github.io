@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 // import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -44,6 +45,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     // AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

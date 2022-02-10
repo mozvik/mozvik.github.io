@@ -19,8 +19,9 @@ span{
   display: inline-block;
   transform: translateX(0);
   overflow: hidden;
+  transition: all .25s ease;
 }
 .menu-active span{
-  color: #408697;
-  color: #1BA098;
+  transition: all .45s ease;
+  color: var(--primary);
 }

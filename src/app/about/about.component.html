@@ -1,8 +1,9 @@
-<div id="about"
+<div 
+id="about"
 class="flex flex-col px-5 justify-center height-screen my-52 relative ">
   <div 
   observeIntersection [threshold]="[.7]" 
-  (enter)="show =true" 
+  (enter)="show = true" 
   >
     <div class="back-title"
     [class]="show ? 't-show' : 't-hide'">
@@ -10,7 +11,9 @@ class="flex flex-col px-5 justify-center height-screen my-52 relative ">
     </div>
   </div>
 
-  <div class="px-5 xl:px-10 py-20 title-3 mt-28 content-block w-full lg:w-8/12">
+  <div class="lg:px-5 xl:px-10 py-20 title-3 mt-28 content-block w-full lg:w-8/12"
+  observeIntersection [threshold]="[1]" 
+  (enter)="dataService.activeMenuItem=1" >
     <p class="pb-5">{{localeService.currentLanguageData.about.p1}}</p>
     <p class="pb-5">{{localeService.currentLanguageData.about.p2}}</p>
     <p class="">{{localeService.currentLanguageData.about.p3}}</p>
