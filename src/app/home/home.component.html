@@ -3,9 +3,9 @@ class="flex flex-col justify-center h-screen px-5" >
   <div class="px-5 pb-20 xl:px-10 xl:pb-0 content-block w-full lg:w-10/12">
     <div class="title-1 mb-20"
     *ngIf="!thirdLineDone; else elseBlock">
-      <div >{{textArray[0]}}<span *ngIf="!firstLineDone" class="cursor">&#10072;</span></div>
-      <div >{{textArray2[0]}}<span *ngIf="!secondLineDone && firstLineDone" class="cursor">&#10072;</span></div>
-      <div >{{textArray3[0]}}<span *ngIf="!thirdLineDone && secondLineDone" class="cursor">&#10072;</span></div>
+      <div >{{textArrayFirstLine[0]}}<span *ngIf="!firstLineDone" class="cursor">&#10072;</span></div>
+      <div >{{textArraySecondLine[0]}}<span *ngIf="!secondLineDone && firstLineDone" class="cursor">&#10072;</span></div>
+      <div >{{textArrayThirdLine[0]}}<span *ngIf="!thirdLineDone && secondLineDone" class="cursor">&#10072;</span></div>
     </div>
     <ng-template #elseBlock >
       <div class="title-1 mb-20">

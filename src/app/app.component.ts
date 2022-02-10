@@ -15,11 +15,12 @@ export class AppComponent {
   activeMenuItem = 0
   
   
-  name: any
+  //name: any
   
   
   
-  constructor(public dataService: DataService,
+  constructor(
+    public dataService: DataService,
     public localeService: LocaleService,
   ) { 
     
@@ -27,6 +28,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    this.dataService.setColorTheme()
     this.localeService.setLocaleData()
     // this.content.nativeElement.scrollTop = 0
     // this.route.queryParams.subscribe(params => {
@@ -41,8 +43,15 @@ export class AppComponent {
   //   return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   // }
 
-  
-
+  toggleColorTheme() {
+    if(this.dataService.currentColorTheme == "dark"){
+      this.dataService.currentColorTheme = "light"
+    } 
+    else {
+      this.dataService.currentColorTheme = "dark"
+    }
+    this.dataService.setColorTheme()
+  }
 
 
   navigateTo(route: any[]) {

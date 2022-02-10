@@ -3,27 +3,18 @@ class="menu-col"
 (mouseover)="isHovered=true"
 (mouseleave)="isHovered=false"
 (click)="clicked.emit(true)">
-  <span class="chevron-left"
-  
-  [@inOutLeftChevron]="{value: active}">
-    <mat-icon>chevron_right</mat-icon>
-  </span>
   <div
   *ngFor="let item of spans; let even = even"
-  class="menu-letter">
-    
+  class="menu-letter"
+  [class.menu-active]="active">
 
     <span [ngStyle]="isHovered ? {
       transition: 'all '+item.duration+'ms ease',
       transitionDelay: even ? item.delay+'ms':'0ms',
       transform: 'translateX(-1ch)'} 
       : {}">
-      {{item.letter}}{{item.letter}}</span>
-
+      {{item.letter}}{{item.letter}}
+    </span>
 
   </div>
-  <span class="chevron-right"
-  [@inOutRightChevron]="active">
-    <mat-icon>chevron_left</mat-icon>
-  </span>
 </div>

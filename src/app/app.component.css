@@ -19,3 +19,7 @@
 #minime{
   border-radius: 50%;
 }
+.teszt{
+  background: var(--background);
+  color: var(--color);
+}

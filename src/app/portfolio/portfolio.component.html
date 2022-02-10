@@ -3,9 +3,7 @@
 class="flex flex-col justify-center my-52 px-5 relative">
   <div 
   observeIntersection [threshold]="[.7]" 
-  (enter)="titleShow =true" 
-  
-  >
+  (enter)="titleShow =true">
     <div class="back-title"
     [class]="titleShow ? 't-show' : 't-hide'">
         {{localeService.currentLanguageData.portfolio.title}}
@@ -16,7 +14,6 @@ class="flex flex-col justify-center my-52 px-5 relative">
   [threshold]="[.25]"
   (enter)="projectShow=true"
   (leave)="projectShow=false"
-  
   class=" px-5 xl:px-10 mt-28 content-block w-full lg:w-8/12 outer-container"> 
     <div 
       class="h-48 w-3/4 md:w-auto lg:w-1/2 my-10 item-container mr-0 lg:mr-5"
@@ -33,15 +30,9 @@ class="flex flex-col justify-center my-52 px-5 relative">
           <hr>
           {{ item.tech}}
         </div>
-      
-
-      <div class="py-2 flex"
-      
-      >
+      <div class="py-2 flex">
         <div class="px-2" *ngIf="item.code">
-          <button mat-stroked-button
-          
-          >
+          <button mat-stroked-button>
           <mat-icon>code</mat-icon>
           </button>
         </div>
@@ -53,5 +44,4 @@ class="flex flex-col justify-center my-52 px-5 relative">
       </div>
       </div>
   </div>
-  
 </div>

@@ -1,28 +1,24 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { debounce, debounceTime, delay, filter, from, interval, map, Observable, Subscription, take, takeUntil } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { LocaleService } from '../service/locale.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  animations: [
-    // animation triggers go here
-  ]
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-  private counter: number = 0;
-  private counter2: number = 0;
-  private counter3: number = 0;
   private lang: string = ''
+  private counterFirstLine: number = 0;
+  private counterSecondLine: number = 0;
+  private counterThirdLine: number = 0;
 
   public firstLineDone: boolean = false;
   public secondLineDone: boolean = false;
   public thirdLineDone: boolean = false;
-  public textArray: string[] = [];
-  public textArray2: string[] = [];
-  public textArray3: string[] = [];
+  public textArrayFirstLine: string[] = [];
+  public textArraySecondLine: string[] = [];
+  public textArrayThirdLine: string[] = [];
 
 
   constructor( public localeService: LocaleService) { }
@@ -32,20 +28,18 @@ export class HomeComponent implements OnInit {
     setTimeout(this.typewriter, 2600);
   }
 
-
   typewriter = () => {
     if (this.lang != this.localeService.currentLanguage ) {
       this.lang = this.localeService.currentLanguage
-      this.textArray[0] = this.textArray2[0] = this.textArray3[0] = ''
-      this.counter = this.counter2 = this.counter3 = 0;
+      this.textArrayFirstLine[0] = this.textArraySecondLine[0] = this.textArrayThirdLine[0] = ''
+      this.counterFirstLine = this.counterSecondLine = this.counterThirdLine = 0;
       this.firstLineDone = this.secondLineDone = this.thirdLineDone = false;
-      
     }
 
     if (this.secondLineDone) {
-      this.textArray3[0] = this.localeService.currentLanguageData.home.t3.substring(0, this.counter3)
+      this.textArrayThirdLine[0] = this.localeService.currentLanguageData.home.t3.substring(0, this.counterThirdLine)
 
-      if (this.counter3++ != this.localeService.currentLanguageData.home.t3.length) {
+      if (this.counterThirdLine++ != this.localeService.currentLanguageData.home.t3.length) {
         setTimeout(this.typewriter, 80);
       } 
       else {
@@ -55,9 +49,9 @@ export class HomeComponent implements OnInit {
 
     if (this.firstLineDone && !this.secondLineDone) {
       
-      this.textArray2[0] = this.localeService.currentLanguageData.home.t2.substring(0, this.counter2)
+      this.textArraySecondLine[0] = this.localeService.currentLanguageData.home.t2.substring(0, this.counterSecondLine)
       
-      if (this.counter2++ != this.localeService.currentLanguageData.home.t2.length) {
+      if (this.counterSecondLine++ != this.localeService.currentLanguageData.home.t2.length) {
         setTimeout(this.typewriter, 100);
       } 
       else {
@@ -67,9 +61,9 @@ export class HomeComponent implements OnInit {
     }
 
     if (!this.firstLineDone) {
-      this.textArray[0] = this.localeService.currentLanguageData.home.t1.substring(0, this.counter)
+      this.textArrayFirstLine[0] = this.localeService.currentLanguageData.home.t1.substring(0, this.counterFirstLine)
       
-      if (this.counter++ != this.localeService.currentLanguageData.home.t1.length ) {
+      if (this.counterFirstLine++ != this.localeService.currentLanguageData.home.t1.length ) {
         setTimeout(this.typewriter, 100);
       } else {
         setTimeout(() => (this.firstLineDone = true), 100);

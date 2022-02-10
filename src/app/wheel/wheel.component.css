@@ -6,10 +6,8 @@
   display: none;
 }
 
-/* [(300,184), (382,218), (416,300), (382,382), (300,416), (218,382), (184,300), (218,218)] */
 @media screen and (min-width: 992px){
   .outer-wheel{
-    
     display: block;
     max-width: 2000px;
     min-width: 600px;
@@ -46,7 +44,7 @@
   border: solid 1px #393d3f;
   border-radius: 5%;
   transition: all 0.2s ease-out;
-  background-color: #62929e;
+  background-color: #e7e9f0;
 }
 .brand-image{
   background-size: cover;

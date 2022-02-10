@@ -22,13 +22,17 @@ body {
 .mat-drawer-container{
   /* color: #0d1b2a;  */
   /* background: #e0e1dd; */
-  color: #393d3f; 
-  background: #fdfdff;
+  color: #2d3032; 
+  background: #f6f6f6;
 }
 .mat-sidenav{
 
   /* background: rgba(13, 27, 42,.25); */
-  background: #62929e;
+  /* background: rgba(142, 141, 138,.25); */
+  background: #e7e9f0;
+  background: #d2d3d3;
+  background: #e1e2e2;
+  color: #2d3032;
 }
 /* body { margin: 0; font-family: Inconsolata, monospace, sans-serif; } */
 
@@ -77,6 +81,7 @@ button.mat-stroked-button{
   font-family: Inconsolata, monospace, sans-serif; 
   font-size: 1.65rem; 
   font-weight: 400;
+  color: #408687;
 }
 .title-3{
   font-family: Inconsolata, monospace, sans-serif; 
@@ -91,6 +96,7 @@ button.mat-stroked-button{
   display: block;
   text-align: center;
   text-transform: uppercase;
+  
 }
 
 .back-title{
@@ -116,7 +122,7 @@ button.mat-stroked-button{
 .t-show{
   position: relative;
   opacity: 1;
-  transform: translateX(1rem);
+  transform: translateX(0rem);
   transition: all .7s ease-out;
 }
 
@@ -126,6 +132,6 @@ button.mat-stroked-button{
   font-size: 70px;
 }
 .t-show{
-  transform: translateX(3rem);
+  transform: translateX(2rem);
 }
 }

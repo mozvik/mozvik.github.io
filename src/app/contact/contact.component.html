@@ -1,5 +1,3 @@
-
-
 <div id="contact"
 class="flex flex-col justify-center h-screen px-5 relative">
   <div 
@@ -9,7 +7,7 @@ class="flex flex-col justify-center h-screen px-5 relative">
     [class]="titleShow ? 't-show' : 't-hide'">
         {{localeService.currentLanguageData.contact.title}}</div>
     </div>
-  <div class="p-10 title-2 w-full lg:w-8/12">
+  <div class="p-10 lead-1 w-full lg:w-8/12">
     <h1 class="">
       {{localeService.currentLanguageData.contact.t1}}</h1>
   </div>
@@ -37,11 +35,7 @@ class="flex flex-col justify-center h-screen px-5 relative">
           <mat-error *ngIf="formGroup.invalid">{{getErrorMessage("message")}}</mat-error>
         </mat-form-field>
     </form>
-    <button mat-stroked-button color="primary">{{localeService.currentLanguageData.contact.btn}}</button>
+    <button mat-stroked-button >{{localeService.currentLanguageData.contact.btn}}</button>
     </div>
-
-
-    
-  </div>
- 
+  </div> 
 </div>

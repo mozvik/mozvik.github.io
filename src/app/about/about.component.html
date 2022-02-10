@@ -1,16 +1,5 @@
-
 <div id="about"
 class="flex flex-col px-5 justify-center height-screen my-52 relative ">
-  <!-- <app-slidein-object #aboutSlidein observeIntersection
-  [threshold]='[1]'
-  [rootMargin]="'200px'"
-  (enter)="aboutSlidein.visible = true"
-  (leave)="aboutSlidein.visible = false"
-  [xStart]="-190"
-  [xStop]="50"
-  [speed]="1"
-  > -->
-  <!-- (leave)="show =false"  -->
   <div 
   observeIntersection [threshold]="[.7]" 
   (enter)="show =true" 
@@ -21,8 +10,6 @@ class="flex flex-col px-5 justify-center height-screen my-52 relative ">
     </div>
   </div>
 
-<!-- </app-slidein-object> -->
- 
   <div class="px-5 xl:px-10 py-20 title-3 mt-28 content-block w-full lg:w-8/12">
     <p class="pb-5">{{localeService.currentLanguageData.about.p1}}</p>
     <p class="pb-5">{{localeService.currentLanguageData.about.p2}}</p>
@@ -34,11 +21,10 @@ class="flex flex-col px-5 justify-center height-screen my-52 relative ">
     <p class="pb-5">{{localeService.currentLanguageData.skills.p2}}</p>
     <p class="mb-5">{{localeService.currentLanguageData.skills.p3}}</p>
     <button 
-    color="primary"
+    
     mat-stroked-button
     class="uppercase">{{localeService.currentLanguageData.about.btn}}
           <mat-icon>download</mat-icon>
     </button>
   </div>
-   
 </div>

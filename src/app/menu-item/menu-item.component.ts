@@ -1,54 +1,9 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu-item',
   templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.css'],
-  animations: [
-    trigger(
-      'inOutLeftChevron', 
-      [
-        state('false' , style({ transform: 'translateX(-2rem)', opacity: 0 })),
-        state('true', style({ transform: 'translateX(0)', opacity: 1 })),
-        transition(
-          'false => true', 
-          [
-            
-            animate('.5s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
-          ]
-        ),
-        transition(
-          'true => false', 
-          [
-            
-            animate('.5s ease-in', style({ transform: 'translateX(-2rem)', opacity: 0 }))
-          ]
-        )
-      ]
-    ),
-    trigger(
-      'inOutRightChevron', 
-      [
-        state('false' , style({ transform: 'translateX(2rem)', opacity: 0 })),
-        state('true', style({ transform: 'translateX(.25rem)', opacity: 1 })),
-        transition(
-          'false => true', 
-          [
-           
-            animate('.5s ease-out', style({ transform: 'translateX(.25rem)', opacity: 1 }))
-          ]
-        ),
-        transition(
-          'true => false', 
-          [
-            
-            animate('.5s ease-in', style({ transform: 'translateX(2rem)', opacity: 0 }))
-          ]
-        )
-      ]
-    )
-  ]
+  styleUrls: ['./menu-item.component.css']
 })
 export class MenuItemComponent implements OnInit {
 

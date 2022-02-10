@@ -1,5 +1,4 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { MapType } from '@angular/compiler';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { floating } from '../animations';
 
@@ -10,12 +9,9 @@ import { floating } from '../animations';
   animations: [
     trigger('floating', [
       transition('* <=> *', [
-        useAnimation(floating
-          
-         )
-        
-               
-        ])])
+        useAnimation(floating)
+      ])
+    ])
   ]
 })
 export class WheelComponent implements OnInit {
@@ -30,24 +26,19 @@ export class WheelComponent implements OnInit {
     { name: 'tailwind', x: 0, y: 0, bgImg:'tailwind.png', animationOptions: {}},
     { name: 'php', x: 0, y: 0, bgImg:'php.png', animationOptions: {}},
     { name: '.net', x: 0, y: 0, bgImg:'core.png', animationOptions: {}},
-
-
   ]
-  wheelStyles = {     
+
+  public wheelStyles: any = {     
     'transform':  '',  
-   
-};
+  }
   public state: string = "start"
-  public animationOptions = [{}]
+  public animationOptions: any[] = [{}]
   
-  private origo = { x: 0, y: 0 }
   private wheelRadiusX: number = 0
   private wheelRadiusY: number = 0
 
-
   @ViewChild('wheel', { static: true }) private wheel: ElementRef = new ElementRef(1);
   
-
   constructor() { }
 
   ngOnInit(): void {
@@ -55,7 +46,6 @@ export class WheelComponent implements OnInit {
     this.randomizeAnimation()
   }
   
-
   @HostListener('window:resize', ['$event']) onResize(event: any) {
     this.wheelRadiusX = this.wheel.nativeElement.getBoundingClientRect().width / 2
     this.wheelRadiusY = this.wheel.nativeElement.getBoundingClientRect().height / 2
@@ -70,10 +60,10 @@ export class WheelComponent implements OnInit {
    
   }
 
-  
   private calcRadian( degree:number): number{
     return degree / (180 / Math.PI)
   }
+
   private calcPoint(radiusX: number, radiusY:number, pointAngleRadian: number): any {
     return { x: Math.cos(pointAngleRadian) * radiusX, y: Math.sin(pointAngleRadian) * radiusY}
   }
@@ -103,18 +93,14 @@ export class WheelComponent implements OnInit {
         z4: Math.floor((Math.random() * 2)) - 1 === -1 ? random2 * -1 : random2,
         z5: (Math.random() * 0.5) - 0.25,
       }
-
-
     }
-
   }
+
   onEnd(e: any) {
-
-      if (e.toState === "start") {
-          this.state = "end";
-      } else {
-        this.state = "start";
-      }
+    if (e.toState === "start") {
+        this.state = "end";
+    } else {
+      this.state = "start";
     }
-
+  }
 }
