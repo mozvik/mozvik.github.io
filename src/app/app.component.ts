@@ -13,12 +13,16 @@ import { IconService } from './service/icon.service';
 })
 export class AppComponent {
 
-  activeMenuItem = 0
-  
+  //activeMenuItem = 0
+  curtainDown: boolean = false
   
   //name: any
   
-  
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (this.curtainDown) {
+     this.toggleCurtain()
+   }
+  }
   
   constructor(
     public dataService: DataService,
@@ -54,6 +58,9 @@ export class AppComponent {
     this.dataService.setColorTheme()
   }
 
+  toggleCurtain() {
+    this.curtainDown = !this.curtainDown
+  }
 
   navigateTo(route: any[]) {
     // this.router.navigate(route);

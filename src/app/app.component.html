@@ -61,16 +61,21 @@
   '--bgMain': dataService.currentColorMap.bgMain, 
   '--bgAlt': dataService.currentColorMap.bgAlt, 
   '--color': dataService.currentColorMap.color,
-  '--primary': dataService.currentColorMap.primary
+  '--primary': dataService.currentColorMap.primary,
+  '--bgInput': dataService.currentColorMap.bgInput,
+  '--colorInput': dataService.currentColorMap.colorInput
 }"
 >
-  <mat-toolbar class=" flex items-center justify-between " *ngIf="dataService.displaySize=='Small' || dataService.displaySize=='XSmall'">
+  <mat-toolbar class="flex items-center justify-between fixed top-0 left-0 h-16 z-20" *ngIf="dataService.displaySize=='Small' || dataService.displaySize=='XSmall'">
     <div class="cursor-pointer w-auto">
-      <embed src="assets/logo-spinner-E8DDCB.svg" width="40" height="40" alt="" class="pointer-events-none">
+      <img src="assets/logo-spinner-AFAFAF.svg" width="40" height="40" alt="">
     </div>
-    <div class="cursor-pointer pr-5" aria-label="Example icon-button with menu icon">
-      <mat-icon class="text-5xl">menu</mat-icon>
+    <div class="" aria-label="Example icon-button with menu icon">
+      <button mat-icon-button><mat-icon class="text-5xl mr-5" (click)="toggleCurtain()">menu</mat-icon></button>
     </div>
+
+    <div [class.curtain-down]="curtainDown"
+    class="curtain-up fixed top-16 h-48 w-screen bg-blue-400 opacity-90">fuggony</div>
   </mat-toolbar>
 
   <mat-sidenav-container  
@@ -78,8 +83,10 @@
     <mat-sidenav #sidenav [opened]="dataService.displaySize=='Medium' || dataService.displaySize=='Large'|| dataService.displaySize=='XLarge' ? 'true':'false'" mode="side" (keydown.escape)="sidenav.close()" disableClose
     class="w-64" color="primary" style="position: fixed; top:0; ">
       <div class="flex flex-col justify-around h-screen">
-        <div class="border flex flex-col items-center">
-          <img src="assets/minime.jpg" width="120"  alt="" class="pointer-events-none" id="minime">
+        <div class="flex flex-col items-center">
+          <img src="assets/minime.jpg" width="120" alt="" id="minime"
+          class="hover:cursor-pointer"
+          (click)="scrollTo('home')">
           <!-- <p><button mat-stroked-button (click)="sidenav.close()">Toggle</button></p> -->
         </div>
       

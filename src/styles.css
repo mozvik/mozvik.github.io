@@ -19,13 +19,37 @@ body {
   user-select: none;
 }
 
-.mat-drawer-container{
+.mat-sidenav-container{
   color: var(--color); 
   background: var(--bgMain);
 }
-.mat-sidenav{
+.mat-sidenav, .mat-toolbar{
   background: var(--bgAlt);
   color: var(--color); 
+}
+.mat-stroked-button{
+  border-color: var(--color)!important; 
+}
+
+.mat-form-field-appearance-fill .mat-form-field-fill {
+  background-color: var(--bgInput)!important;
+}
+.mat-form-field-flex {
+  background-color: white !important;
+}
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: var(--color) !important;
+}
+input.mat-input-element, textarea.mat-input-element {
+  color: var(--colorInput);
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar  {
+  background-color: rgba(0, 0, 0, 0.38);
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: var(--primary);
 }
 
 /* body { margin: 0; font-family: Inconsolata, monospace, sans-serif; } */

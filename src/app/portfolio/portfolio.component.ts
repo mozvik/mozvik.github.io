@@ -9,12 +9,12 @@ import { LocaleService } from '../service/locale.service';
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.css'],
   animations: [
-    trigger('reveal', [
+    trigger('revealProject', [
       state('true',
-        style({ opacity: 1 })
+        style({ opacity: 1, transform: 'translateX(0rem)'})
       ),
       state('false',
-        style({ opacity: 0 })
+        style({ opacity: 0, transform: 'translateX(4rem)'})
       ),
       transition('* => true', [
         useAnimation(revealAnimation)
@@ -63,7 +63,7 @@ export class PortfolioComponent implements OnInit {
       const y = Math.round(Math.random() * 80)
       const speed = (Math.random() * 1.25) + 1.25
       const duration = (Math.random() * 400) + 600
-      const delay = (Math.random() * 100) + 200
+      const delay = (Math.random() * 100) + (500 * i) 
 
       this.duration.push({
         duration: duration,
