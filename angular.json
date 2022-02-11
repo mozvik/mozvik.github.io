@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "angular-cli-ghpages:deploy",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "baseHref": "https://mozvik.github.io/",
             "outputPath": "dist/portfolio",
@@ -101,6 +101,13 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://mozvik.github.io/",
+            "branch": "master"
           }
         }
       }
