@@ -6,11 +6,10 @@
 
 html, body { 
   height: 100%; 
-
 }
 body {
   overflow-x: hidden; 
-  max-width: 1980px;
+  /* max-width: 1980px; */
   width: 100%;
   margin: 0 auto;
   background: var(--bgMain);
@@ -78,6 +77,10 @@ input.mat-input-element, textarea.mat-input-element {
 button.mat-stroked-button{
   font-family: Montserrat, Arial, sans-serif; 
   font-weight: 700;
+}
+button.mat-stroked-button[disabled]{
+  color: var(--color)!important;
+  opacity: .5;
 }
 
 .title-1{

@@ -33,7 +33,7 @@ export class LocaleService {
         inProgress: 'Folyamatban...',
         projects: [{
           title: 'ngx-mat-file',
-          details: 'A népszerű UI komponens könyvtár által nem támogatott fájl input mező megvalósítása.',
+          details: 'A népszerű Angular Material komponens könyvtár által nem támogatott fájl input mező megvalósítása.',
           tech: ['Angular 13'],
           techIcon: ['Angular 13'],
           code: 'https://github.com/mozvik/ngx-mat-file',

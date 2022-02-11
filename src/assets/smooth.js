@@ -1,4 +1,4 @@
-class Scrooth {
+class Smooth {
   constructor({element = window, strength=10, acceleration = 1.2,deceleration = 0.975}={}) {
     this.element = element;
     this.distance = strength;
@@ -42,7 +42,7 @@ class Scrooth {
   }
 }
 
-const body = new Scrooth({
+const body = new Smooth({
   element: window,
   strength: 14,
   acceleration: 1.9,

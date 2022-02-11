@@ -66,16 +66,42 @@
   '--colorInput': dataService.currentColorMap.colorInput
 }"
 >
-  <mat-toolbar class="flex items-center justify-between fixed top-0 left-0 h-16 z-20" *ngIf="dataService.displaySize=='Small' || dataService.displaySize=='XSmall'">
-    <div class="cursor-pointer w-auto">
-      <img src="assets/logo-spinner-AFAFAF.svg" width="40" height="40" alt="">
+  <mat-toolbar class="flex items-center justify-between fixed top-0 left-0 h-16 z-10 shadow-xl" *ngIf="dataService.displaySize=='Small' || dataService.displaySize=='XSmall'">
+    <div class="cursor-pointer w-auto" id="logo">
+      <img [src]="dataService.currentColorTheme == 'light' ? 'assets/logo-spinner-2d3032.svg':'assets/logo-spinner-c5c6c7.svg'" width="40" height="40" alt="">
     </div>
     <div class="" aria-label="Example icon-button with menu icon">
-      <button mat-icon-button><mat-icon class="text-5xl mr-5" (click)="toggleCurtain()">menu</mat-icon></button>
+      <button mat-icon-button [disableRipple]="true"><mat-icon class="text-5xl mr-5" (click)="toggleCurtain()">menu</mat-icon></button>
     </div>
 
     <div [class.curtain-down]="curtainDown"
-    class="curtain-up fixed top-16 h-48 w-screen bg-blue-400 opacity-90">fuggony</div>
+    class="curtain-up fixed flex flex-col items-center">
+      <div class="flex flex-col items-center pt-10 pb-20">
+        <img src="assets/minime.jpg" width="120" alt="" id="minime"
+        class="hover:cursor-pointer"
+        (click)="scrollTo('home')">
+      </div>
+      <div
+      *ngFor="let item of localeService.currentLanguageData.menuItems; let i = index"
+            (clicked)="dataService.activeMenuItem = i"
+            (click)="scrollTo(item.link)"
+            class="cursor-pointer menu-item py-2 mobile-menu-item"
+      >{{item.name}}
+      </div>
+      <div class="flex flex-col justify-center pt-20">
+        <div class="flex mb-2 items-center justify-center">
+          <mat-icon svgIcon="hu" [class.opacity-30]="localeService.currentLanguage!='hu'"></mat-icon>
+          <mat-slide-toggle class="mx-3" (click)="toggleLanguage()"></mat-slide-toggle>
+          <mat-icon svgIcon="en" [class.opacity-30]="localeService.currentLanguage!='en'"></mat-icon>
+        </div>
+        <div class="flex mt-2 items-center justify-center">
+          <mat-icon [class.opacity-30]="dataService.currentColorTheme!='light'">light_mode</mat-icon>
+          <mat-slide-toggle class="mx-3" (click)="toggleColorTheme()" ></mat-slide-toggle>
+          <mat-icon [class.opacity-30]="dataService.currentColorTheme!='dark'">dark_mode</mat-icon>
+        </div>
+      </div>
+    </div>
+      
   </mat-toolbar>
 
   <mat-sidenav-container  
@@ -87,7 +113,6 @@
           <img src="assets/minime.jpg" width="120" alt="" id="minime"
           class="hover:cursor-pointer"
           (click)="scrollTo('home')">
-          <!-- <p><button mat-stroked-button (click)="sidenav.close()">Toggle</button></p> -->
         </div>
       
         
@@ -114,7 +139,7 @@
               <mat-icon [class.opacity-30]="dataService.currentColorTheme!='light'">light_mode</mat-icon>
               <mat-slide-toggle class="mx-3" (click)="toggleColorTheme()" ></mat-slide-toggle>
               <mat-icon [class.opacity-30]="dataService.currentColorTheme!='dark'">dark_mode</mat-icon>
-          </div>
+            </div>
           </div>
         </div>
 

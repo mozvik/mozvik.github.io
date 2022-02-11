@@ -11,7 +11,7 @@
     display: block;
     max-width: 2000px;
     min-width: 600px;
-    max-height: 1000px;
+    max-height: 2000px;
     min-height: 600px;
     width: 70vw;
     height: 50vw;
@@ -25,17 +25,21 @@
     border-radius: 50%;
     z-index: 0;
     transform-origin: center;
+    
   }
   .outer-wheel::after{
     position: absolute;
     content: '';
     top: -100vh;
-    left: 0;
+    left: -10px;
+    right: 0;
     width: 100vw;
     height: 290vh;
     opacity: .6;
-    background: linear-gradient(to right , transparent , var(--color) 25% );
+    /* background: linear-gradient(to right , transparent , var(--color) 25% ); */
+    background: radial-gradient(farthest-side, var(--color) ,  var(--bgMain) );
   }
+    
 .outer-rim{
   display: block;
   position: absolute;
@@ -43,10 +47,12 @@
   max-height: 100px;
   width: 7.5vw;
   height: 7.5vw;
-  border: solid 1px var(--color);
+  border: solid 2px var(--color);
   border-radius: 5%;
   transition: all 0.2s ease-out;
   background-color: var(--bgAlt);
+  z-index: 1;
+  
 }
 .brand-image{
   background-size: cover;

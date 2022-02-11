@@ -1,10 +1,10 @@
 import { animate, animateChild, animation, AnimationMetadata, group, keyframes, query, state, style, transition, trigger, useAnimation } from "@angular/animations";
 
-export const slideAnimation =
-  trigger('routeAnimations', [
-    transition(':increment', slideInOut('bottom') ),
-    transition(':decrement', slideInOut('top') ),
-  ]);
+// export const slideAnimation =
+//   trigger('routeAnimations', [
+//     transition(':increment', slideInOut('bottom') ),
+//     transition(':decrement', slideInOut('top') ),
+//   ]);
 
 
 function slideInOut(direction: string) {

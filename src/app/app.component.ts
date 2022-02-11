@@ -1,15 +1,53 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
-import { slideAnimation } from './animations';
+// import { slideAnimation } from './animations';
 import { DataService } from './service/data.service';
 import { LocaleService } from './service/locale.service';
 import { IconService } from './service/icon.service';
+import { animate, query, sequence, stagger, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [slideAnimation]
+  animations: [
+    trigger("menuAnimation", [
+      transition(":enter", [
+        style({ height: 0, overflow: "hidden" }),
+        query(".nav-link", [
+          style({ opacity: 0, transform: "translateY(-50px)" })
+        ]),
+        sequence([
+          animate("200ms", style({ height: "*" })),
+          query(".nav-link", [
+            stagger(-50, [
+              animate("400ms ease", style({ opacity: 1, transform: "none" }))
+            ])
+          ])
+        ])
+      ]),
+    
+      transition(":leave", [
+        style({ height: "*", overflow: "hidden" }),
+        query(".nav-link", [style({ opacity: 1, transform: "none" })]),
+        sequence([
+          query(".nav-link", [
+            stagger(50, [
+              animate(
+                "300ms ease",
+                style({ opacity: 0, transform: "translateY(-50px)" })
+              )
+            ])
+          ]),
+          animate("200ms", style({ height: 0 }))
+        ])
+      ]),
+    ]),
+    
+  
+  
+  
+  ]
 })
 export class AppComponent {
 
