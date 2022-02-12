@@ -42,19 +42,19 @@ export const floating = animation([
   
   animate('{{ time }}ms', keyframes([
     style({
-      transform: 'rotateZ({{z1}}deg)', offset: 0
+      transform: "rotateZ({{z1}}deg) translate({{x1}}px,{{y1}}px)", offset: 0
     }),
     style({
-      transform: "rotateZ({{z2}}deg)", offset: 0.2
+      transform: "rotateZ({{z2}}deg) translate({{x2}}px,{{y2}}px)", offset: 0.2
     }),
     style({
       transform: "rotateZ({{z3}}deg)", offset: 0.5
     }),
     style({
-      transform: "rotateZ({{z4}}deg)", offset: 0.8
+      transform: "rotateZ({{z4}}deg) translate({{x3}}px,{{y3}}px)", offset: 0.8
     }),
     style({
-      transform: "rotateZ({{z5}}deg)", offset: 1
+      transform: "rotateZ({{z5}}deg) translate({{x4}}px,{{y4}}px)", offset: 1
     }),
   ]))  
 ])

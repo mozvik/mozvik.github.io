@@ -67,7 +67,7 @@
 }"
 >
   <mat-toolbar class="flex items-center justify-between fixed top-0 left-0 h-16 z-10 shadow-xl" *ngIf="dataService.displaySize=='Small' || dataService.displaySize=='XSmall'">
-    <div class="cursor-pointer w-auto" id="logo">
+    <div class="cursor-pointer w-auto" id="logo" (click)="scrollTo('home')">
       <img [src]="dataService.currentColorTheme == 'light' ? 'assets/logo-spinner-2d3032.svg':'assets/logo-spinner-c5c6c7.svg'" width="40" height="40" alt="">
     </div>
     <div class="" aria-label="Example icon-button with menu icon">
@@ -105,7 +105,7 @@
   </mat-toolbar>
 
   <mat-sidenav-container  
-  class="relative"   (backdropClick)="sidenav.close()">
+  class="relative" (backdropClick)="sidenav.close()">
     <mat-sidenav #sidenav [opened]="dataService.displaySize=='Medium' || dataService.displaySize=='Large'|| dataService.displaySize=='XLarge' ? 'true':'false'" mode="side" (keydown.escape)="sidenav.close()" disableClose
     class="w-64" color="primary" style="position: fixed; top:0; ">
       <div class="flex flex-col justify-around h-screen">

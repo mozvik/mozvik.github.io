@@ -2,6 +2,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LocaleService } from '../service/locale.service';
 import { DataService } from '../service/data.service';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -17,6 +18,9 @@ export class ContactComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     message: new FormControl('', [Validators.required])
   })
+  submitted: boolean = false
+  submitState: string = ""
+
 
   constructor(
     public localeService: LocaleService,
@@ -26,6 +30,24 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  submit() {
+    this.submitState = "delivering"
+    this.dataService.postFormData(this.formGroup.value).subscribe({
+      next: (val) => {
+        if (val.ok === true) {
+          this.submitState = "delivered"
+          this.submitted = true
+        }
+      },
+      error: (e) => {
+        console.log('http error :>> ', e.error);
+        this.submitState = "error"
+        this.submitted = true
+      }
+    })
+    this.formGroup.reset()
+  }
+
   getErrorMessage(field: string): string {
 
     if (field === 'email') {

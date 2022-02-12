@@ -1,7 +1,7 @@
-<div class="outer-wheel" #wheel [ngStyle]="wheelStyles">
+<div class="outer-wheel" #wheel>
   <div
   *ngFor="let item of brands"
-  class="outer-rim shadow-lg" 
+  class="outer-rim" 
   [style.top]="item.y + 'px'"
   [style.left]="item.x + 'px'"
   [@floating]="{value: state, params: item.animationOptions}"

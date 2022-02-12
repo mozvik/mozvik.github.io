@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,9 @@ export class DataService {
 
   
 
-  constructor(breakpointObserver: BreakpointObserver) {
+  constructor(
+    private http: HttpClient,
+    breakpointObserver: BreakpointObserver) {
     breakpointObserver
       .observe([
         Breakpoints.XSmall,
@@ -69,6 +72,25 @@ export class DataService {
       else {
         this.currentColorMap = this.colorMap.light
       }
+    }
+  
+    postFormData(body: any): Observable<any> {
+      const url: string = 'https://formspree.io/f/mdoyqwew'
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        })
+      };
+      let data = `name=${body.name}&email=${body.email}&message=${body.message}`;
+      const bo = {
+        name: '',          
+        from: '',          
+        _subject: `Friendly Message from Github Page`,
+        message: '',
+    }
+       return this.http.post<any>(url, data, httpOptions)
+      //return new Observable<any>();
     }
   
     ngOnDestroy() {

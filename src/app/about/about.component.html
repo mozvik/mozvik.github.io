@@ -23,11 +23,16 @@ class="flex flex-col px-5 justify-center height-screen my-52 relative ">
     <p class="pb-5">{{localeService.currentLanguageData.skills.p1}}</p>
     <p class="pb-5">{{localeService.currentLanguageData.skills.p2}}</p>
     <p class="mb-5">{{localeService.currentLanguageData.skills.p3}}</p>
+    
     <button 
     
     mat-stroked-button
-    class="uppercase">{{localeService.currentLanguageData.about.btn}}
-          <mat-icon>download</mat-icon>
+    class="uppercase">
+      <a [href]="localeService.currentLanguage == 'hu' ? 'assets/cv-hu.pdf':'assets/cv-en.pdf'" download>
+      {{localeService.currentLanguageData.about.btn}} 
+      </a>
+      <mat-icon>download</mat-icon> 
     </button>
+     
   </div>
 </div>

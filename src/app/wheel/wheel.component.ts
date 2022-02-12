@@ -28,9 +28,6 @@ export class WheelComponent implements OnInit {
     { name: '.net', x: 0, y: 0, bgImg:'core.png', animationOptions: {}},
   ]
 
-  public wheelStyles: any = {     
-    'transform':  '',  
-  }
   public state: string = "start"
   public animationOptions: any[] = [{}]
   
@@ -50,14 +47,12 @@ export class WheelComponent implements OnInit {
     this.wheelRadiusX = this.wheel.nativeElement.getBoundingClientRect().width / 2
     this.wheelRadiusY = this.wheel.nativeElement.getBoundingClientRect().height / 2
 
-     this.calcBrandPoints()
+    this.calcBrandPoints()
   }
   
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const degree = window.scrollY/360 
-   
     this.calcBrandPoints(degree)
-   
   }
 
   private calcRadian( degree:number): number{
@@ -92,6 +87,14 @@ export class WheelComponent implements OnInit {
         z3: (Math.random() * 0.5) - 0.25,
         z4: Math.floor((Math.random() * 2)) - 1 === -1 ? random2 * -1 : random2,
         z5: (Math.random() * 0.5) - 0.25,
+        x1: 0,
+        y1: 0,
+        x2: (Math.random() * 4) - 2,
+        y2: (Math.random() * 3) + 1,
+        x3: (Math.random() * 4) - 2,
+        y3: (Math.random() * 3) - 4,
+        x4: 0,
+        y4: 0,
       }
     }
   }

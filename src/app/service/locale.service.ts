@@ -68,7 +68,9 @@ export class LocaleService {
           demo: 'https://esoguides.hu'
         }]
       },
-      contact: { title: 'kapcsolat', t1:'Küldjön üzenetet', i1: 'Név', i2: 'E-mail', i3: 'Üzenet', btn: 'Küldés', required: 'Kötelező kitölteni', invalidEmail: 'Nem megfelelő e-mail formátum' },
+      contact: { title: 'kapcsolat', t1:'Küldjön üzenetet', i1: 'Név', i2: 'E-mail', i3: 'Üzenet', btn: 'Küldés', required: 'Kötelező kitölteni', invalidEmail: 'Nem megfelelő e-mail formátum', delivering: "Üzenet küldése folyamatban",
+      delivered: "Az üzenet elküldve",
+      error: "Hiba történt" },
     },
     en: {
       menuItems: [{
@@ -132,7 +134,9 @@ export class LocaleService {
     
     
       },
-      contact: { title: 'contact', t1:'Get in Touch', i1: 'Name', i2: 'E-mail', i3: 'Message', btn: 'Send', required: 'Required field', invalidEmail: 'Not a valid email' },
+      contact: { title: 'contact', t1:'Get in Touch', i1: 'Name', i2: 'E-mail', i3: 'Message', btn: 'Send', required: 'Required field', invalidEmail: 'Not a valid email', delivering: "Delivering your message",
+      delivered: "Your message has been delivered",
+      error: "Error occurred", },
     }
   }
     

@@ -52,7 +52,6 @@
   transition: all 0.2s ease-out;
   background-color: var(--bgAlt);
   z-index: 1;
-  
 }
 .brand-image{
   background-size: cover;
