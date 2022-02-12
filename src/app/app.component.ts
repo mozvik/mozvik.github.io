@@ -14,12 +14,12 @@ import { animate, query, sequence, stagger, style, transition, trigger } from '@
     trigger("menuAnimation", [
       transition(":enter", [
         style({ height: 0, overflow: "hidden" }),
-        query(".nav-link", [
+        query(".mobile-animation", [
           style({ opacity: 0, transform: "translateY(-50px)" })
         ]),
         sequence([
           animate("200ms", style({ height: "*" })),
-          query(".nav-link", [
+          query(".mobile-animation", [
             stagger(-50, [
               animate("400ms ease", style({ opacity: 1, transform: "none" }))
             ])
@@ -29,9 +29,9 @@ import { animate, query, sequence, stagger, style, transition, trigger } from '@
     
       transition(":leave", [
         style({ height: "*", overflow: "hidden" }),
-        query(".nav-link", [style({ opacity: 1, transform: "none" })]),
+        query(".mobile-animation", [style({ opacity: 1, transform: "none" })]),
         sequence([
-          query(".nav-link", [
+          query(".mobile-animation", [
             stagger(50, [
               animate(
                 "300ms ease",
