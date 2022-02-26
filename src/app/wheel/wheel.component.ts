@@ -25,7 +25,7 @@ export class WheelComponent implements OnInit {
     { name: 'angular', x: 0, y: 0, bgImg:'angular.png', animationOptions: {}},
     { name: 'tailwind', x: 0, y: 0, bgImg:'tailwind.png', animationOptions: {}},
     { name: 'php', x: 0, y: 0, bgImg:'php.png', animationOptions: {}},
-    { name: '.net', x: 0, y: 0, bgImg:'core.png', animationOptions: {}},
+    { name: 'typescript', x: 0, y: 0, bgImg:'ts.png', animationOptions: {}},
   ]
 
   public state: string = "start"
