@@ -47,11 +47,18 @@ export class LocaleService {
           demo: 'https://mozvik.github.io/bookbro/'
         },{
           title: 'Kvíz alkalmazás',
-          details: 'Egyszerű kvíz alkalmazás Vue.js és Vuex által készítve',
+          details: 'Egyszerű kvíz alkalmazás Vue.js és Vuex által készítve.',
           tech: ['Vue 3'],
           techIcon: ['Vue 3'],
           code: 'https://github.com/mozvik/vue-quiz',
           demo: 'https://mozvik.github.io/vue-quiz/'
+        },{
+          title: 'Lídia Galériája',
+          details: 'Egy festőművész bemutatkozó oldala. Vue.js frontend és headless Wordpress backend.',
+          tech: ['Vue3','Pinia','php'],
+          techIcon: [''],
+          code: 'https://github.com/mozvik/lidia',
+          demo: 'https://blog.esoguides.hu/'
         },{
           title: 'Rece-fice Recepttár',
           details: 'A szakdolgozatom. Receptkezelő alkalmazás/weboldal.',
@@ -59,14 +66,15 @@ export class LocaleService {
           techIcon: [''],
           code: '',
           demo: ''
-        },{
-          title: 'EsoGuides',
-          details: 'Videójátékos weboldal, magazin. Bootstrap, Javascript és PHP alapokon.',
-          tech: ['PHP','JavaScript','Bootstrap'],
-          techIcon: ['PHP','',''],
-          code: '',
-          demo: 'https://esoguides.hu'
-        }]
+        }
+        , {
+        title: 'EsoGuides',
+        details: 'Videójátékos weboldal, magazin. Bootstrap, Javascript és PHP alapokon.',
+        tech: ['PHP','JavaScript','Bootstrap'],
+        techIcon: ['PHP','',''],
+        code: '',
+        demo: 'https://esoguides.hu'
+      }]
       },
       contact: { title: 'kapcsolat', t1:'Küldjön üzenetet', i1: 'Név', i2: 'E-mail', i3: 'Üzenet', btn: 'Küldés', required: 'Kötelező kitölteni', invalidEmail: 'Nem megfelelő e-mail formátum', delivering: "Üzenet küldése folyamatban",
       delivered: "Az üzenet elküldve",
@@ -115,6 +123,13 @@ export class LocaleService {
           techIcon: ['Vue 3'],
           code: 'https://github.com/mozvik/vue-quiz',
           demo: 'https://mozvik.github.io/vue-quiz/'
+        },{
+          title: "Lídia's Gallery",
+          details: 'Artist portfolio page. Vue.js frontend & headless Wordpress backend.',
+          tech: ['Vue3','Pinia','php'],
+          techIcon: [''],
+          code: 'https://github.com/mozvik/lidia',
+          demo: 'https://blog.esoguides.hu/'
         },{
           title: 'Rece-fice Recepttár',
           details: 'My thesis. Recipe manager application/website',
