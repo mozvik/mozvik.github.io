@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-// import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -22,11 +19,7 @@ import { ObserveIntersectionDirective } from './directive/observe-intersection.d
 import { FloatingObjectComponent } from './floating-object/floating-object.component';
 import { WheelComponent } from './wheel/wheel.component';
 import { SlideinObjectComponent } from './slidein-object/slidein-object.component';
-
 import { MenuItemComponent } from './menu-item/menu-item.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -40,13 +33,10 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
     WheelComponent,
     SlideinObjectComponent,
     MenuItemComponent,
-
-
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    // AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatSidenavModule,
@@ -61,5 +51,4 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-
 }

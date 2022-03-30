@@ -1,6 +1,5 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
-// import { slideAnimation } from './animations';
 import { DataService } from './service/data.service';
 import { LocaleService } from './service/locale.service';
 import { IconService } from './service/icon.service';
@@ -51,10 +50,7 @@ import { animate, query, sequence, stagger, style, transition, trigger } from '@
 })
 export class AppComponent {
 
-  //activeMenuItem = 0
   curtainDown: boolean = false
-  
-  //name: any
   
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     if (this.curtainDown) {
@@ -73,19 +69,11 @@ export class AppComponent {
   ngOnInit(): void {
     this.dataService.setColorTheme()
     this.localeService.setLocaleData()
-    // this.content.nativeElement.scrollTop = 0
-    // this.route.queryParams.subscribe(params => {
-      //   this.name = params['name'];
-      // });
     }
     ngAfterViewInit() {
    
   }
-  
-  // prepareRoute(outlet: RouterOutlet) {
-  //   return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  // }
-
+ 
   toggleColorTheme() {
     if(this.dataService.currentColorTheme == "dark"){
       this.dataService.currentColorTheme = "light"
@@ -100,12 +88,6 @@ export class AppComponent {
     this.curtainDown = !this.curtainDown
   }
 
-  navigateTo(route: any[]) {
-    // this.router.navigate(route);
-  }
-  // setScrollDirection(direction: string) {
-  //   this.scrollingDirection = direction
-  // }
   scrollTo(section: string) {
     console.log('click  :>> ', section );
     //@ts-ignore
@@ -119,9 +101,5 @@ export class AppComponent {
       this.localeService.currentLanguage = 'hu'
     }
     this.localeService.setLocaleData()
-    // this.localeService.setLocaleData('menuItems').subscribe(val=>{
-    //   console.log(val),
-    //   this.menuItems = val.home
-    //   })
   }
 }

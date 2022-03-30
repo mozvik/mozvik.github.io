@@ -36,7 +36,6 @@
     width: 100vw;
     height: 290vh;
     opacity: .6;
-    /* background: linear-gradient(to right , transparent , var(--color) 25% ); */
     background: radial-gradient(farthest-side, var(--color) ,  var(--bgMain) );
   }
     

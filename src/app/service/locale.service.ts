@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -118,7 +117,7 @@ export class LocaleService {
           demo: 'https://mozvik.github.io/bookbro/'
         },{
           title: 'Quiz Application',
-          details: 'Simple Quiz Application made with Vue.js &amp; Vuex state management.',
+          details: 'Simple Quiz Application made with Vue.js & Vuex state management.',
           tech: ['Vue 3'],
           techIcon: ['Vue 3'],
           code: 'https://github.com/mozvik/vue-quiz',
@@ -160,7 +159,4 @@ export class LocaleService {
       this.currentLanguageData = this.localeData.hu :
       this.currentLanguageData = this.localeData.en
     }
-  
-
-
 }

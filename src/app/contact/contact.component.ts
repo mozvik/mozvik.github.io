@@ -2,7 +2,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LocaleService } from '../service/locale.service';
 import { DataService } from '../service/data.service';
-import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-contact',

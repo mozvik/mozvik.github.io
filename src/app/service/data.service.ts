@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +40,6 @@ export class DataService {
     }
 
   }
-
-  
 
   constructor(
     private http: HttpClient,
@@ -90,7 +88,6 @@ export class DataService {
         message: '',
     }
        return this.http.post<any>(url, data, httpOptions)
-      //return new Observable<any>();
     }
   
     ngOnDestroy() {

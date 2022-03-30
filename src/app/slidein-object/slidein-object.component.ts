@@ -32,13 +32,9 @@ export class SlideinObjectComponent implements OnInit {
         this.xPosition = this.xStop
       }
     }
-   
-
-
   }
   public xPosition: number = 0
   public yPosition: number = 0
-
 
   constructor() { }
 

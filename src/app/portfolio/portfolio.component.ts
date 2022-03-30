@@ -1,4 +1,4 @@
-import { animate, animation, state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { revealAnimation } from '../animations';
 import { DataService } from '../service/data.service';

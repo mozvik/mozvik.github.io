@@ -9,7 +9,6 @@ html, body {
 }
 body {
   overflow-x: hidden; 
-  /* max-width: 1980px; */
   width: 100%;
   margin: 0 auto;
   background: var(--bgMain);
@@ -51,25 +50,6 @@ input.mat-input-element, textarea.mat-input-element {
   background-color: var(--primary);
 }
 
-/* body { margin: 0; font-family: Inconsolata, monospace, sans-serif; } */
-
-/* router-outlet ~ * {
-  position: absolute;
-  display: block;
-  height: 100vh;
-  width: 100vw;
-} */
-
-::-webkit-scrollbar {
-/*  width: 0;  /* Remove scrollbar space */
-/*  background: transparent;  /* Optional: just make scrollbar invisible */
-}
-
-.content-block{
-  /* background: radial-gradient(white 50%, transparent 80%); */
-  /* background: linear-gradient(to bottom , transparent, white 30% ,white 70%, transparent); */
-
-}
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,  .mat-focused .mat-form-field-label {
   color: var(--color)!important;
 }
@@ -142,7 +122,6 @@ button.mat-stroked-button[disabled]{
   transform: translateX(0rem);
   transition: all .7s ease-out;
 }
-
 
 @media screen and (min-width: 992px){
 .back-title, .title-1{

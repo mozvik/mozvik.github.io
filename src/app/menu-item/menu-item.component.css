@@ -19,9 +19,7 @@ span{
   display: inline-block;
   transform: translateX(0);
   overflow: hidden;
-  /* transition: all .25s ease; */
 }
 .menu-active span{
-  /* transition: all .45s ease; */
   color: var(--primary);
 }

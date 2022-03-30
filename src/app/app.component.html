@@ -1,15 +1,5 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <style>
   :host {
-    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
     font-size: 14px;
     color: #333;
     box-sizing: border-box;
@@ -27,34 +17,7 @@
   --bg-color: #121212;
   --text-color: #45ADFE;
 }
-  /* :host ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
-    background-color: #49c5b6 ;
-}
-
-:host ::ng-deep  .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
-    background-color: #49c5b6 ;
-}
-:host ::ng-deep .mat-slide-toggle:not(.mat-disabled) .mat-slide-toggle-bar {
-    background-color: #49c5b6 ;
-}
-
-:host ::ng-deep  .mat-slide-toggle:not(.mat-disabled) .mat-slide-toggle-thumb {
-    background-color: #49c5b6 ;
-} */
-
 </style>
-
-
-
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <div class="container mx-auto max-w-full w-screen" 
 [style]="{
@@ -101,7 +64,6 @@
         </div>
       </div>
     </div>
-      
   </mat-toolbar>
 
   <mat-sidenav-container  
@@ -114,20 +76,15 @@
           class="hover:cursor-pointer"
           (click)="scrollTo('home')">
         </div>
-      
-        
         <div class="">
-          <!-- <ul> -->
-            <!-- [routerLink]="'/'+item.link" -->
-            <app-menu-item 
-            *ngFor="let item of localeService.currentLanguageData.menuItems; let i = index"
-            [active]="dataService.activeMenuItem === i"
-            (clicked)="dataService.activeMenuItem = i"
-            (click)="scrollTo(item.link)"
-            [text]="item.name"
-            class="cursor-pointer menu-item"
-            ></app-menu-item>
-          <!-- </ul> -->
+          <app-menu-item 
+          *ngFor="let item of localeService.currentLanguageData.menuItems; let i = index"
+          [active]="dataService.activeMenuItem === i"
+          (clicked)="dataService.activeMenuItem = i"
+          (click)="scrollTo(item.link)"
+          [text]="item.name"
+          class="cursor-pointer menu-item">
+          </app-menu-item>
         </div>
         <div class="flex flex-col justify-center ">
             <div class="flex mb-2 items-center justify-center">
@@ -142,22 +99,14 @@
             </div>
           </div>
         </div>
-
     </mat-sidenav>
 
-    <mat-sidenav-content style="overflow: hidden;"
-    >
-    <app-home></app-home>
-    <app-about></app-about>
-    <!-- <app-skills></app-skills> -->
-    <app-portfolio></app-portfolio>
-    <app-contact></app-contact>
-    <app-wheel></app-wheel>
-<!-- 
-      <div [@routeAnimations]="prepareRoute(outlet)">
-        <router-outlet #outlet="outlet"></router-outlet>
-      </div> -->
-      
+    <mat-sidenav-content style="overflow: hidden;">
+      <app-home></app-home>
+      <app-about></app-about>
+      <app-portfolio></app-portfolio>
+      <app-contact></app-contact>
+      <app-wheel></app-wheel>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

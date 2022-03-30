@@ -1,7 +1,6 @@
-import { animate, AnimationBuilder, AnimationPlayer, state, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { LocaleService } from '../service/locale.service';
-import { slideUp, fadeOut } from '../animations';
 import { DataService } from '../service/data.service';
 
 @Component({

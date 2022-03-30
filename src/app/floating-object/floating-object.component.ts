@@ -1,6 +1,5 @@
-import { animate, AnimationOptions, group, keyframes, query, state, style, transition, trigger, useAnimation } from '@angular/animations';
-import { Component, ContentChild, ContentChildren, ElementRef, HostListener, Input, OnInit, QueryList, TemplateRef, ViewChild } from '@angular/core';
-// import { title } from 'process';
+import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { Component, ContentChildren, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild } from '@angular/core';
 import { floating } from '../animations';
 
 @Component({
@@ -11,12 +10,10 @@ import { floating } from '../animations';
       
      trigger('slideInOut', [
       state('true',
-      //enforce your styles for the fadeIn state here
-          style({ opacity: 1 })
+        style({ opacity: 1 })
       ),
       state('false',
-      //enforce your styles for fadeOut state here
-          style({ opacity: 0 })
+        style({ opacity: 0 })
       ),
       transition('* => true', [
         animate(300)
@@ -29,11 +26,7 @@ import { floating } from '../animations';
     trigger('floating', [
       transition('* => *', [
          useAnimation(floating
-          
-         )
-        
-               
-      ]
+         )]
       )])
   ]
 })
@@ -65,23 +58,16 @@ export class FloatingObjectComponent implements OnInit {
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
    
     this.yPosition = this.outerElement?.nativeElement.getBoundingClientRect().top    
-    //this.yRatio = Math.abs(this.yPosition / window.innerHeight)
     this.yRatio = this.yPosition / window.innerHeight
       
     if (this.vertical) {
-     
       this.outerElement.nativeElement.style.top = (100 * this.yRatio * this.speed) + "%"
       this.outerElement.nativeElement.style.left = this.xStart + "%"
     } else {
-     
-
       this.outerElement.nativeElement.style.left = ((this.xStart - (100 * this.yRatio)) * this.speed) + "%"
       this.outerElement.nativeElement.style.top =  this.yStart + "vh"
     }
-
   }
-
-
 
   constructor() { }
 
