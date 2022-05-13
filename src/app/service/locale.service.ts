@@ -45,6 +45,13 @@ export class LocaleService {
           code: 'https://github.com/mozvik/bookbro',
           demo: 'https://mozvik.github.io/bookbro/'
         },{
+          title: 'Babel Fish',
+          details: 'Egyszerű fordító alkalmazás.',
+          tech: ['Angular 13, Ant Design(Ng-Zorro)'],
+          techIcon: ['Angular 13'],
+          code: 'https://github.com/mozvik/babel-fish',
+          demo: 'https://mozvik.github.io/babel-fish/'
+        },{
           title: 'Kvíz alkalmazás',
           details: 'Egyszerű kvíz alkalmazás Vue.js és Vuex által készítve.',
           tech: ['Vue 3'],
@@ -115,6 +122,13 @@ export class LocaleService {
           techIcon: ['Angular 13'],
           code: 'https://github.com/mozvik/bookbro',
           demo: 'https://mozvik.github.io/bookbro/'
+        },{
+          title: 'Babel Fish',
+          details: 'Simple translating application.',
+          tech: ['Angular 13, Ant Design(Ng-Zorro)'],
+          techIcon: ['Angular 13'],
+          code: 'https://github.com/mozvik/babel-fish',
+          demo: 'https://mozvik.github.io/babel-fish/'
         },{
           title: 'Quiz Application',
           details: 'Simple Quiz Application made with Vue.js & Vuex state management.',
