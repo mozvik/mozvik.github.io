@@ -38,19 +38,26 @@ export class LocaleService {
           code: 'https://github.com/mozvik/ngx-mat-file',
           demo: 'https://mozvik.github.io/ngx-mat-file/'
         },{
+          title: 'Rece-fice Recepttár',
+          details: 'A szakdolgozatom. Receptkezelő alkalmazás/weboldal. Folyamatban...',
+          tech: ['Angular 13',' Angular Material',' php'],
+          techIcon: [''],
+          code: 'https://github.com/mozvik/rece-fice',
+          demo: 'https://rece-fice.netlify.app'
+        },{
+          title: 'Babel Fish',
+          details: 'Egyszerű fordító alkalmazás.',
+          tech: ['Angular 13',' Ant Design(Ng-Zorro)'],
+          techIcon: ['Angular 13'],
+          code: 'https://github.com/mozvik/babel-fish',
+          demo: 'https://mozvik.github.io/babel-fish/'
+        },{
           title: 'BookBro',
           details: 'Könyvkereső, ami a Google Books API-ját használja. Az első Angular munkám:)',
           tech: ['Angular 13'],
           techIcon: ['Angular 13'],
           code: 'https://github.com/mozvik/bookbro',
           demo: 'https://mozvik.github.io/bookbro/'
-        },{
-          title: 'Babel Fish',
-          details: 'Egyszerű fordító alkalmazás.',
-          tech: ['Angular 13, Ant Design(Ng-Zorro)'],
-          techIcon: ['Angular 13'],
-          code: 'https://github.com/mozvik/babel-fish',
-          demo: 'https://mozvik.github.io/babel-fish/'
         },{
           title: 'Kvíz alkalmazás',
           details: 'Egyszerű kvíz alkalmazás Vue.js és Vuex által készítve.',
@@ -61,22 +68,15 @@ export class LocaleService {
         },{
           title: 'Lídia Galériája',
           details: 'Egy festőművész bemutatkozó oldala. Vue.js frontend és headless Wordpress backend.',
-          tech: ['Vue3','Pinia','php'],
+          tech: ['Vue3',' Pinia',' php'],
           techIcon: [''],
           code: 'https://github.com/mozvik/lidia',
           demo: 'https://blog.esoguides.hu/'
-        },{
-          title: 'Rece-fice Recepttár',
-          details: 'A szakdolgozatom. Receptkezelő alkalmazás/weboldal.',
-          tech: ['Angular 13','php'],
-          techIcon: [''],
-          code: '',
-          demo: ''
         }
         , {
         title: 'EsoGuides',
         details: 'Videójátékos weboldal, magazin. Bootstrap, Javascript és PHP alapokon.',
-        tech: ['PHP','JavaScript','Bootstrap'],
+        tech: ['PHP',' JavaScript',' Bootstrap'],
         techIcon: ['PHP','',''],
         code: '',
         demo: 'https://esoguides.hu'
@@ -116,19 +116,26 @@ export class LocaleService {
           code: 'https://github.com/mozvik/ngx-mat-file',
           demo: 'https://mozvik.github.io/ngx-mat-file/'
         },{
+          title: 'Rece-fice Recepttár',
+          details: 'My thesis. Recipe manager application/website. Work in progress...',
+          tech: ['Angular 13',' Angular Material',' php'],
+          techIcon: [''],
+          code: 'https://github.com/mozvik/rece-fice',
+          demo: 'https://rece-fice.netlify.app'
+        },{
+          title: 'Babel Fish',
+          details: 'Simple translator application.',
+          tech: ['Angular 13',' Ant Design(Ng-Zorro)'],
+          techIcon: ['Angular 13'],
+          code: 'https://github.com/mozvik/babel-fish',
+          demo: 'https://mozvik.github.io/babel-fish/'
+        },{
           title: 'BookBro',
           details: 'Book finder that consumes Google Books API. My first Angular project:)',
           tech: ['Angular 13'],
           techIcon: ['Angular 13'],
           code: 'https://github.com/mozvik/bookbro',
           demo: 'https://mozvik.github.io/bookbro/'
-        },{
-          title: 'Babel Fish',
-          details: 'Simple translating application.',
-          tech: ['Angular 13, Ant Design(Ng-Zorro)'],
-          techIcon: ['Angular 13'],
-          code: 'https://github.com/mozvik/babel-fish',
-          demo: 'https://mozvik.github.io/babel-fish/'
         },{
           title: 'Quiz Application',
           details: 'Simple Quiz Application made with Vue.js & Vuex state management.',
@@ -139,21 +146,14 @@ export class LocaleService {
         },{
           title: "Lídia's Gallery",
           details: 'Artist portfolio page. Vue.js frontend & headless Wordpress backend.',
-          tech: ['Vue3','Pinia','php'],
+          tech: ['Vue3',' Pinia',' php'],
           techIcon: [''],
           code: 'https://github.com/mozvik/lidia',
           demo: 'https://blog.esoguides.hu/'
         },{
-          title: 'Rece-fice Recepttár',
-          details: 'My thesis. Recipe manager application/website',
-          tech: ['Angular 13'],
-          techIcon: [''],
-          code: '',
-          demo: ''
-        },{
           title: 'EsoGuides',
           details: 'Gamer magazine. Bootstrap, Javascript and PHP backend.',
-          tech: ['PHP','JavaScript','Bootstrap'],
+          tech: ['PHP',' JavaScript',' Bootstrap'],
           techIcon: ['PHP','',''],
           code: '',
           demo: 'https://esoguides.hu'
