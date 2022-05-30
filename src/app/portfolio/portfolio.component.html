@@ -18,22 +18,25 @@ class="flex flex-col justify-center my-52 px-5 relative">
   class="lg:px-5 xl:px-10 mt-28 content-block w-full lg:w-8/12 outer-container"> 
     <div observeIntersection [threshold]="[1]" 
     (enter)="dataService.activeMenuItem=2" 
-      class="h-48 w-3/4 md:w-auto lg:w-1/2 my-10 item-container mr-0 md:mr-5"
+      class="h-48 w-3/4 md:w-auto lg:w-1/2 my-10 item-container mr-0 md:mr-5 flex flex-col justify-between"
       *ngFor="let item of localeService.currentLanguageData.portfolio.projects ; let i = index"
       [@revealProject]="{ value: projectShow, params: duration[i]}"
       >
-        <div class="title-2 i-title">{{ item.title}}
-          <hr>
-        </div>
-        <div class="title-3 i-details">
-          {{ item.details}}
-        </div>
-        <div class="i-tech">
-          <hr>
-          {{ item.tech}}
+        <div>
+          <div class="title-2 i-title">{{ item.title}}
+            <hr>
+          </div>
+          <div class="title-3 i-details">
+            {{ item.details}}
+          </div>
+          <div class="i-tech">
+            <hr>
+            {{ item.tech}}
+          </div>
+         
         </div>
       <div class="py-2 flex"
-      *ngIf="item.code || item.demo; else elseBlock">
+      *ngIf="item.code || item.demo">
         <div class="px-2" *ngIf="item.code">
           <a href="{{item.code}}" target="_blank">
             <button mat-stroked-button >         
@@ -50,7 +53,7 @@ class="flex flex-col justify-center my-52 px-5 relative">
           </a>
         </div>
       </div>
-      <ng-template #elseBlock ><div class='lead-2'>{{localeService.currentLanguageData.portfolio.inProgress}}</div></ng-template>
+      
       </div>
   </div>
 </div>
