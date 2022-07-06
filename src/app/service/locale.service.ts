@@ -43,7 +43,7 @@ export class LocaleService {
           tech: ['Angular 13',' Angular Material',' php'],
           techIcon: [''],
           code: 'https://github.com/mozvik/rece-fice',
-          demo: 'https://rece-fice.netlify.app'
+          demo: 'https://teszt.esoguides.hu/'
         },{
           title: 'Babel Fish',
           details: 'Egyszerű fordító alkalmazás.',
@@ -121,7 +121,7 @@ export class LocaleService {
           tech: ['Angular 13',' Angular Material',' php'],
           techIcon: [''],
           code: 'https://github.com/mozvik/rece-fice',
-          demo: 'https://rece-fice.netlify.app'
+          demo: 'https://teszt.esoguides.hu/'
         },{
           title: 'Babel Fish',
           details: 'Simple translator application.',
